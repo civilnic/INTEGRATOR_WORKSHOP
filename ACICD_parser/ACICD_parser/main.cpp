@@ -44,7 +44,7 @@ void parsefile(std::fstream& f, parser_& parser)
         for(int i = 0; i < nb; ++i)
         {
             parser.consume(buf[i]);
-            std::cout << buf[i];
+           // std::cout << buf[i];
         }
     }
     if(f.eof())
