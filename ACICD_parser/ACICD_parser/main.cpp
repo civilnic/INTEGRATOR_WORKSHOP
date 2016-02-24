@@ -54,18 +54,32 @@ void parsefile(std::fstream& f, parser_& parser)
 int main(int argc, char** argv)
 {
     std::string file;
+    dvp::csv_stl_traits new_sep;
+
     if(argc <= 1)
             file = "acicd.csv";
         else
             file = argv[1];
+
     dvp::csv_parser<dvp::csv_stl_traits> parser;
-    handler<std::string> h(parser);
+
+    //handler<std::string> h(parser);
+    dvp::csv_data data;
+    dvp::csv_data_handler handler(data, false, parser);
+
     std::fstream f(file);
     parsefile(f, parser);
-    std::cout << h.nbfields
-//			data.size()
-            << " " << h.nblines
+    std::cout << //h.nbfields
+            data.size()
+ //           << " " << h.nblines
             << std::endl;
+    dvp::csv_data::const_iterator it;
+    it=data.const_iterator;
+    for (it=data.begin();it=data.end();++it)
+    {
+        std::cout << *it <<std::endl;
+    }
+
     return 0;
 }
 
