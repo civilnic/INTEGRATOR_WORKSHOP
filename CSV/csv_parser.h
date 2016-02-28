@@ -191,6 +191,7 @@ void csv_parser<csv_traits>::consume(typename csv_traits::char_type c)
 				csv_traits::append(last_value_, c);
 				state_ = state::record;
 			}
+  //          printf("state::new_line: %c\n",c);
 			break;
 		}
 		case state::record:
@@ -208,6 +209,8 @@ void csv_parser<csv_traits>::consume(typename csv_traits::char_type c)
 			}
 			else 
 				csv_traits::append(last_value_, c);
+
+ //           printf("state::record: %c\n",c);
 			break;
 		}
 		case state::quote_quoted_record:
@@ -230,6 +233,7 @@ void csv_parser<csv_traits>::consume(typename csv_traits::char_type c)
 			}
 			else
 				call_error_handler(csv_error::malformed_quoted_string);
+ //           printf("state::quote_quoted_record: %c\n",c);
 			break;
 		}
 		case state::between_records:
@@ -252,6 +256,7 @@ void csv_parser<csv_traits>::consume(typename csv_traits::char_type c)
 				csv_traits::append(last_value_, c);
 				state_ = state::record;
 			}
+ //           printf("state::between_records: %c\n",c);
 			break;
 		}
 		case state::comment:
@@ -264,6 +269,7 @@ void csv_parser<csv_traits>::consume(typename csv_traits::char_type c)
 			}
 			else
 				csv_traits::append(last_value_, c);
+ //           printf("state::comment: %c\n",c);
 			break;
 		}
 		case state::quoted_record:
@@ -276,6 +282,7 @@ void csv_parser<csv_traits>::consume(typename csv_traits::char_type c)
 					update_line_counter();
 				csv_traits::append(last_value_, c);
 			}
+  //           printf("state::quoted_record: %c\n",c);
 			break;
 		}
 	}

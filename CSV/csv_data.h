@@ -39,8 +39,8 @@ friend class csv_data_handler;
 
 	std::vector<csv_record> records_;
 	std::vector<std::string> headers_;
-	void new_record() { records_.emplace_back(*this); };
-	void add_field(std::string const& field) { records_.back().add_field(field); };
+    void new_record() { records_.emplace_back(*this); }
+    void add_field(std::string const& field) { records_.back().add_field(field); }
 public:
 	typedef std::vector<csv_record>::const_iterator const_iterator;
 	const_iterator begin() const { return records_.begin(); }
