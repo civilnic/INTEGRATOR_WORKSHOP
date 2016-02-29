@@ -12,26 +12,6 @@
 using namespace std;
 
 
-template<typename string_type>
-struct handler
-{
-    int curfield = 0;
-    int nbfields = 0;
-    int nblines = 0;
-    bool field_handler(string_type const &/*f*/) {
-        nbfields += 1;
-        return true;
-    }
-
-    bool line_handler() { nblines += 1; curfield = 0; return true;}
-    template<typename parser_>
-    handler(parser_ &parser)
-    {
-        parser.field_handler = [this](string_type const& s) { return this->field_handler(s); };
-        parser.end_line_handler = [this]() { return this->line_handler(); };
-    }
-};
-
 template<typename parser_>
 void parsefile(std::fstream& f, parser_& parser)
 {
@@ -75,6 +55,7 @@ int main(int argc, char** argv)
 
 
     std::fstream f(file);
+
     parsefile(f, parser);
     std::cout << //h.nbfields
             data.size()
@@ -96,10 +77,13 @@ int main(int argc, char** argv)
 
     for(it=data.begin();it!=data.end();++it)
     {
-       //std::cout <<(*it)[0] << std::endl;
-       std::string str_header{*(it->begin()),*(it->end())};
-        std::cout << str_header << std::endl;
+       if((*it)[0].compare(str_key_word)==0)
+       {
+            ++it;
+            std::cout <<(*it)[0] << std::endl;
+       }
 
+std::cout <<(*it)[0] << std::endl;
        for(it_record=it->begin();it_record!=it->end();++it_record)
        {
            // std::cout <<"test nasa:" +   *it_record   << std::endl;
