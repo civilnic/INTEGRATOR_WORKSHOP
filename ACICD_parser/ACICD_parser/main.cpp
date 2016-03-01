@@ -11,7 +11,6 @@
 
 using namespace std;
 
-
 template<typename parser_>
 void parsefile(std::fstream& f, parser_& parser)
 {
@@ -42,7 +41,7 @@ int main(int argc, char** argv)
     //handler<std::string> h(parser);
     dvp::csv_data data;
 
-    dvp::csv_data_handler handler(data, false, parser);
+    dvp::acicd_data_handler handler(data, true, parser);
 
     std::vector<std::string> vect_header;
     std::vector<std::string>::iterator it_header;
@@ -83,7 +82,7 @@ int main(int argc, char** argv)
             std::cout <<(*it)[0] << std::endl;
        }
 
-std::cout <<(*it)[0] << std::endl;
+
        for(it_record=it->begin();it_record!=it->end();++it_record)
        {
            // std::cout <<"test nasa:" +   *it_record   << std::endl;

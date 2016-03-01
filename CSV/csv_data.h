@@ -36,6 +36,7 @@ public:
 class csv_data
 {
 friend class csv_data_handler;
+friend class acicd_data_handler;
 
 	std::vector<csv_record> records_;
 	std::vector<std::string> headers_;
@@ -61,7 +62,8 @@ boost::optional<std::string const&> csv_record::operator[](std::string const& he
 }
 
 
-class csv_data_handler {
+class csv_data_handler
+{
 	bool has_headers_;
 	csv_data& data_;
 	bool at_beginning_of_line;
@@ -104,6 +106,62 @@ public:
 		parser.end_line_handler = [this]() { return this->end_line_handler(); };
 	}
 		
+};
+
+
+
+class acicd_data_handler
+{
+    bool has_headers_;
+    csv_data& data_;
+    bool at_beginning_of_line;
+    bool at_first_line;
+public:
+    bool comment_handler(std::string const& s)
+    {
+        std::cout <<s << std::endl;
+        return true;
+    }
+
+    bool field_handler(std::string const& s)
+    {
+       // std::cout <<s << std::endl;
+        if(at_first_line && has_headers_)
+        {
+            data_.headers_.push_back(s);
+        }
+        else
+        {
+            if(at_first_line)
+                data_.headers_.push_back(std::string("header") + std::to_string(data_.headers_.size()));
+            if(at_beginning_of_line)
+            {
+                data_.new_record();
+                at_beginning_of_line = false;
+            }
+            data_.add_field(s);
+        }
+        return true;
+    }
+    bool end_line_handler()
+    {
+        at_beginning_of_line = true;
+        at_first_line = false;
+        return true;
+    }
+
+    template<typename parser_>
+    acicd_data_handler(csv_data& data, bool has_header_line, parser_& parser) :
+        data_(data),
+        has_headers_(has_header_line),
+        at_beginning_of_line(true),
+        at_first_line(true)
+    {
+        parser.comment_handler = [this](std::string const& s) { return this->comment_handler(s); };
+        parser.field_handler = [this](std::string const& s) { return this->field_handler(s); };
+        parser.end_line_handler = [this]() { return this->end_line_handler(); };
+    }
+
 };
 }
 
