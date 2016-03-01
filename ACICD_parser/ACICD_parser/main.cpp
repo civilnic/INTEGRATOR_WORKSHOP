@@ -76,7 +76,7 @@ int main(int argc, char** argv)
 
     for(it=data.begin();it!=data.end();++it)
     {
-       if((*it)[0].compare(str_key_word)==0)
+       if((*it)[0].compare(key_word_begin_data_section)==0)
        {
             ++it;
             std::cout <<(*it)[0] << std::endl;

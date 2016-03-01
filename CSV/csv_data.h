@@ -5,6 +5,8 @@
 #include <string>
 #include <boost/optional.hpp>
 
+#include "acicd_header.h"
+
 namespace dvp
 {
 
@@ -116,9 +118,41 @@ class acicd_data_handler
     csv_data& data_;
     bool at_beginning_of_line;
     bool at_first_line;
+    bool begin_of_data_section=false;
+    bool end_of_data_section=false;
+    std::vector<std::string> section_name;
 public:
+
     bool comment_handler(std::string const& s)
     {
+
+
+
+        if(at_beginning_of_line&&begin_of_data_section)
+        {
+            section_name.push_back(s);
+            begin_of_data_section=false;
+        }
+
+        if((!at_beginning_of_line)&&begin_of_data_section)
+        {
+             section_name.push_back(s);
+        }
+
+
+        if(s.compare(key_word_begin_data_section))
+        {
+            begin_of_data_section=true;
+            end_of_data_section=false;
+        }
+        else if(s.compare(key_word_end_data_section))
+        {
+            begin_of_data_section=false;
+            end_of_data_section=true;
+        }
+
+
+
         std::cout <<s << std::endl;
         return true;
     }
