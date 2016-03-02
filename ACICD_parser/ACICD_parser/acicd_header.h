@@ -39,6 +39,13 @@ std::vector<std::string> MIL1553_INPUT_DATA_header={"#MIL1553_INPUT_DATA","Appli
 const std::string key_word_begin_data_section="#Begin";
 const std::string key_word_end_data_section="#End";
 
+enum class acicd_header_section {
+    Begin=0,
+    Header,
+    Data,
+    End
+};
+
 enum class acicd_data_section {
     EQUIPMENT=0,
     CONNECTOR,

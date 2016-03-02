@@ -118,41 +118,44 @@ class acicd_data_handler
     csv_data& data_;
     bool at_beginning_of_line;
     bool at_first_line;
-    bool begin_of_data_section=false;
-    bool end_of_data_section=false;
+    acicd_header_section acicd_localization;
     std::vector<std::string> section_name;
 public:
 
     bool comment_handler(std::string const& s)
     {
 
-
-
-        if(at_beginning_of_line&&begin_of_data_section)
+        if(acicd_localization==acicd_header_section::Header)
         {
             section_name.push_back(s);
-            begin_of_data_section=false;
         }
 
-        if((!at_beginning_of_line)&&begin_of_data_section)
+        if(at_beginning_of_line)
         {
-             section_name.push_back(s);
+
+            if(s.compare(key_word_begin_data_section))
+            {
+                acicd_localization=acicd_header_section::Begin;
+            }
+            else if(s.compare(key_word_end_data_section))
+            {
+                acicd_localization=acicd_header_section::End;
+            }
+
+            if(acicd_localization==acicd_header_section::Begin)
+            {
+                acicd_localization=acicd_header_section::Header;
+            }
+
+            if(acicd_localization==acicd_header_section::Header)
+            {
+                acicd_localization=acicd_header_section::Data;
+            }
+
+            at_beginning_of_line = false;
         }
 
-
-        if(s.compare(key_word_begin_data_section))
-        {
-            begin_of_data_section=true;
-            end_of_data_section=false;
-        }
-        else if(s.compare(key_word_end_data_section))
-        {
-            begin_of_data_section=false;
-            end_of_data_section=true;
-        }
-
-
-
+        printf("localisation: %d\n",acicd_localization);
         std::cout <<s << std::endl;
         return true;
     }
