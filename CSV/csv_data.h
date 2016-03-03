@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include <boost/optional.hpp>
+#include <boost/algorithm/string.hpp>
 
 #include "acicd_header.h"
 
@@ -119,50 +120,95 @@ class acicd_data_handler
     bool at_beginning_of_line;
     bool at_first_line;
     acicd_header_section acicd_localization;
+    acicd_data_section acicd_section_id;
     std::vector<std::string> section_name;
+
 public:
 
     bool comment_handler(std::string const& s)
     {
+        boost::split(section_name,s, boost::is_any_of(";"));
+ //      std::cout <<"section_name:" << std::endl;
+ //     std::cout <<section_name[0] << std::endl;
+        //        printf("acicd_localization: %d\n",acicd_localization);
+        //       printf("acicd_data_section: %d\n",acicd_section_id);
+        //std::cout <<section_name << std::endl;
 
-        if(acicd_localization==acicd_header_section::Header)
+        if(acicd_localization==acicd_header_section::Begin)
         {
-            section_name.push_back(s);
+           // section_name.push_back(s);
+
+            for(std::vector<std::vector<std::string>>::const_iterator it_headers=vect_header.begin();it_headers!=vect_header.end();++it_headers)
+            {
+                std::vector<std::string>::const_iterator it_column_name=(*it_headers).begin();
+
+//std::cout <<section_name[0].compare(*it_column_name) << std::endl;
+                if(section_name[0].compare(*it_column_name)==0)
+                {
+                    std::cout <<"avant test: " << std::endl;
+                    std::cout <<*it_column_name << std::endl;
+                    std::cout <<"section_name: " << std::endl;
+                   std::cout <<section_name[0] << std::endl;
+                     std::cout <<"entete: " << std::endl;
+                     std::cout <<*it_column_name << std::endl;
+                     std::cout <<"indice: " << std::endl;
+                     std::cout <<it_headers - vect_header.begin()+1<< std::endl;
+                     acicd_section_id=acicd_data_section(it_headers - vect_header.begin()+1);
+                      printf("acicd_data_section: %d\n",acicd_section_id);
+                }
+             //   for(std::vector<std::string>::const_iterator it_column_name=(*it_headers).begin();it_column_name!=(*it_headers).end();++it_column_name)
+           //     {
+            //        std::cout <<*it_column_name << std::endl;
+           //     }
+
+
+            }
+
         }
 
         if(at_beginning_of_line)
         {
 
-            if(s.compare(key_word_begin_data_section))
+            if(section_name[0].compare(key_word_begin_data_section)==0)
             {
                 acicd_localization=acicd_header_section::Begin;
+                std::cout <<"passage a begin" << std::endl;
+                return true;
             }
-            else if(s.compare(key_word_end_data_section))
+            else if(section_name[0].compare(key_word_end_data_section)==0)
             {
                 acicd_localization=acicd_header_section::End;
+                std::cout <<"passage a end" << std::endl;
+                return true;
             }
 
             if(acicd_localization==acicd_header_section::Begin)
             {
                 acicd_localization=acicd_header_section::Header;
+                std::cout <<"passage a header" << std::endl;
+                return true;
             }
 
             if(acicd_localization==acicd_header_section::Header)
             {
                 acicd_localization=acicd_header_section::Data;
+              //  section_name.clear();
+                std::cout <<"passage a data" << std::endl;
+                return true;
             }
 
             at_beginning_of_line = false;
         }
 
-        printf("localisation: %d\n",acicd_localization);
-        std::cout <<s << std::endl;
+
+
         return true;
     }
 
     bool field_handler(std::string const& s)
     {
-       // std::cout <<s << std::endl;
+    //    std::cout <<"data:" << std::endl;
+    //    std::cout <<s << std::endl;
         if(at_first_line && has_headers_)
         {
             data_.headers_.push_back(s);
@@ -192,6 +238,8 @@ public:
         data_(data),
         has_headers_(has_header_line),
         at_beginning_of_line(true),
+        acicd_localization(acicd_header_section::Comment),
+        acicd_section_id(acicd_data_section::UNDEF),
         at_first_line(true)
     {
         parser.comment_handler = [this](std::string const& s) { return this->comment_handler(s); };
