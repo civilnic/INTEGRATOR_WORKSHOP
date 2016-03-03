@@ -9,6 +9,9 @@
 
 #include "acicd_header.h"
 
+#include <QtSql>
+#define q2c(string) string.toStdString()
+
 using namespace std;
 
 template<typename parser_>
@@ -60,33 +63,52 @@ int main(int argc, char** argv)
             data.size()
  //           << " " << h.nblines
             << std::endl;
-    int i=0;
+//    int i=0;
 
-    dvp::csv_data::const_iterator it;
-    std::vector<std::string>::const_iterator it_record;
+//    dvp::csv_data::const_iterator it;
+//    std::vector<std::string>::const_iterator it_record;
 
-    // const std::string chaine="header1";
-    // std::cout <<(*it)[chaine]   << std::endl;
-//    vect_header=data.headers();
 
-//    for(it_header=vect_header.begin();it_header!=vect_header.end();++it_header)
+//    for(it=data.begin();it!=data.end();++it)
 //    {
-       // std::cout << *it_header  << std::endl;
-//    }
+//       if((*it)[0].compare(key_word_begin_data_section)==0)
+//       {
+//            ++it;
+//            std::cout <<(*it)[0] << std::endl;
+//       }
 
-    for(it=data.begin();it!=data.end();++it)
+
+//       for(it_record=it->begin();it_record!=it->end();++it_record)
+//       {
+//           // std::cout <<"test nasa:" +   *it_record   << std::endl;
+//       }
+//   }
+    QSqlDatabase db = QSqlDatabase::database("test_integrator_workshop.sql");
+
+    db.setHostName("localhost");
+
+    db.setUserName("root");
+
+    db.setPassword("");
+
+
+    if(db.open())
+
     {
-       if((*it)[0].compare(key_word_begin_data_section)==0)
-       {
-            ++it;
-            std::cout <<(*it)[0] << std::endl;
-       }
 
+        std::cout << "Vous etes maintenant connecte a "<< std::endl;
+            std::cout       << q2c(db.hostName()) << std::endl;
 
-       for(it_record=it->begin();it_record!=it->end();++it_record)
-       {
-           // std::cout <<"test nasa:" +   *it_record   << std::endl;
-       }
+        db.close();
+
+    }
+
+    else
+
+    {
+
+        std::cout << "La connexion a echouee" << std::endl;
+
     }
 
     return 0;
