@@ -8,6 +8,7 @@
 #include <boost/optional/optional_io.hpp>
 
 #include "acicd_header.h"
+#include "mysql_database.h"
 
 #include <QtSql>
 #define q2c(string) string.toStdString()
@@ -83,13 +84,8 @@ int main(int argc, char** argv)
 //           // std::cout <<"test nasa:" +   *it_record   << std::endl;
 //       }
 //   }
-    QSqlDatabase db = QSqlDatabase::database("test_integrator_workshop.sql");
-
-    db.setHostName("localhost");
-
-    db.setUserName("root");
-
-    db.setPassword("");
+    std::string db_name="INTEGRATOR_WORKSHOP";
+    QSqlDatabase db = mysql_database::mysql_database(db_name);
 
 
     if(db.open())
