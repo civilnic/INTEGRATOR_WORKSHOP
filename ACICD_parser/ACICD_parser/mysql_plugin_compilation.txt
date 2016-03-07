@@ -1,0 +1,8 @@
+
+set mysql=C:\\PROGRA~2\\MySQL\\MYSQLS~1.7
+
+cd C:\Qt\5.5\mingw492_32\qt-everywhere-opensource-src-5.5.1\qtbase\src\plugins\sqldrivers\mysql
+
+qmake "INCLUDEPATH+=%mysql%\\include" "LIBS+=%mysql%\\lib\\libmysql.lib" mysql.pro
+
+mingw32-make
