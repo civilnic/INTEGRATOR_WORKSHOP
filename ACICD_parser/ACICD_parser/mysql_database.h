@@ -7,45 +7,18 @@
 class mysql_database
 {
 public:
-    mysql_database();
-    ~mysql_database();
-    QSqlDatabase mysql_database(std::string db_name);
-    void set_dbname(std::string db_name);
+    mysql_database(void);
+    QSqlDatabase set_database(std::string name);
+    void set_dbname(std::string name);
     std::string get_dbname(void);
+    QSqlDatabase get_db(void);
 private:
     QSqlDatabase database;
-    std::string driver_type="QMYSQL";
-    std::string db_name="mydb";
-    std::string db_user="everybody";
-    std::string db_pass="";
+    QString driver_type="QMYSQL";
+    QString db_name="mydb";
+    QString db_cnx_name="myconnection";
+    QString db_user="everybody";
+    QString db_pass="";
 };
-
-mysql_database::mysql_database()
-{
-
-}
-
-QSqlDatabase mysql_database::mysql_database(std::string db_name)
-{
-    this->db_name=db_name;
-
-    QSqlDatabase db = QSqlDatabase::addDatabase(this->driver_type);
-    db.setDatabaseName(db_name);
-    db.setUserName(this->db_user);
-    db.setPassword(this->db_pass);
-
-    return db;
-}
-
-void mysql_database::set_dbname(std::string db_name)
-{
-    this->db_name=db_name;
-}
-
-std::string mysql_database::get_dbname(void)
-{
-    return this->db_name;
-}
-
 
 #endif // MYSQL_DATABASE_H

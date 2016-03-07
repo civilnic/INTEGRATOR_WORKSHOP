@@ -85,8 +85,8 @@ int main(int argc, char** argv)
 //       }
 //   }
     std::string db_name="INTEGRATOR_WORKSHOP";
-    QSqlDatabase db = mysql_database::mysql_database(db_name);
-
+    mysql_database BDD;
+    QSqlDatabase db=BDD.set_database(db_name);
 
     if(db.open())
 
