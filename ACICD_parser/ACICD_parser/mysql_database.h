@@ -19,6 +19,7 @@ private:
     QString db_cnx_name="myconnection";
     QString db_user="everybody";
     QString db_pass="";
+    QString db_hostname="localhost";
 };
 
 #endif // MYSQL_DATABASE_H

@@ -11,6 +11,7 @@
 #include "mysql_database.h"
 
 #include <QtSql>
+
 #define q2c(string) string.toStdString()
 
 using namespace std;
@@ -89,24 +90,41 @@ int main(int argc, char** argv)
     QSqlDatabase db=BDD.set_database(db_name);
 
     if(db.open())
-
     {
-
-        std::cout << "Vous etes maintenant connecte a "<< std::endl;
-            std::cout       << q2c(db.hostName()) << std::endl;
-
-        db.close();
-
+        std::cout << "Vous etes maintenant connecte a " << q2c(db.hostName()) << std::endl;
     }
-
     else
-
     {
-
         std::cout << "La connexion a echouee" << std::endl;
-
     }
 
+    QSqlQuery query;
+    if(query.exec("UPDATE `INTEGRATOR_WORKSHOP` SET `contenu`='Mon programme avec BDD v2.0' WHERE `type`='titre'"))
+    {
+        std::cout << "Le titre a bien été changé ! :)" << std::endl;
+    }
+    else
+    {
+        std::cout << "Une erreur s'est produite. :(" << std::endl << q2c(query.lastError().text()) << std::endl;
+    }
+
+    if(query.exec("SELECT * FROM config"))
+    {
+        while(query.next())
+        {
+            std::cout << "    Nouvelle entrée" << std::endl;
+            for(int x=0; x < query.record().count(); ++x)
+            {
+//
+              std::cout << " champ: " << q2c(query.record().fieldName(x)) << std::endl;
+              std::cout << " valeur: " << q2c(query.record().value(x).toString()) << std::endl;
+         //      std::cout << "        " << q2c(query.record().fieldName(x)) << " = " << q2c(query.record().value(x)) << std::endl;
+            }
+        }
+    }
+
+
+    db.close();
     return 0;
 }
 

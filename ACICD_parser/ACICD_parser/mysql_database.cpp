@@ -13,7 +13,7 @@ QSqlDatabase mysql_database::set_database(std::string name)
     database.setDatabaseName(db_name);
     database.setUserName(this->db_user);
     database.setPassword(this->db_pass);
-
+    database.setHostName(this->db_hostname);
     return database;
 }
 
