@@ -88,6 +88,7 @@ int main(int argc, char** argv)
     std::string db_name="INTEGRATOR_WORKSHOP";
     mysql_database BDD;
     QSqlDatabase db=BDD.set_database(db_name);
+    QSqlQuery query;
 
     if(db.open())
     {
@@ -97,9 +98,25 @@ int main(int argc, char** argv)
     {
         std::cout << "La connexion a echouee" << std::endl;
     }
+    query=QSqlQuery(db);
 
-    QSqlQuery query;
-    if(query.exec("UPDATE `INTEGRATOR_WORKSHOP` SET `contenu`='Mon programme avec BDD v2.0' WHERE `type`='titre'"))
+    query.prepare("INSERT INTO mydb (id, name, salary) "
+                  "VALUES (1001, 'Thad Beaumont', 65000)" );
+
+    if(query.isValid())
+    {
+
+        std::cout << "Requete valide" << std::endl;
+    }
+    else
+    {
+        std::cout << "Requete non valide" << std::endl << q2c(query.lastError().text()) << std::endl;
+    }
+
+//    query.bindValue( ":id", 1001 );
+//    query.bindValue( ":name", "Harry" );
+
+    if(query.exec())
     {
         std::cout << "Le titre a bien été changé ! :)" << std::endl;
     }
@@ -108,17 +125,17 @@ int main(int argc, char** argv)
         std::cout << "Une erreur s'est produite. :(" << std::endl << q2c(query.lastError().text()) << std::endl;
     }
 
-    if(query.exec("SELECT * FROM config"))
+    if(query.exec("SELECT * FROM mydb"))
     {
         while(query.next())
         {
             std::cout << "    Nouvelle entrée" << std::endl;
             for(int x=0; x < query.record().count(); ++x)
             {
-//
-              std::cout << " champ: " << q2c(query.record().fieldName(x)) << std::endl;
-              std::cout << " valeur: " << q2c(query.record().value(x).toString()) << std::endl;
-         //      std::cout << "        " << q2c(query.record().fieldName(x)) << " = " << q2c(query.record().value(x)) << std::endl;
+
+            //  std::cout << " champ: " << q2c(query.record().fieldName(x)) << std::endl;
+            //  std::cout << " valeur: " << q2c(query.record().value(x).toString()) << std::endl;
+               std::cout << "        " << q2c(query.record().fieldName(x)) << " = " << q2c(query.record().value(x).toString()) << std::endl;
             }
         }
     }
