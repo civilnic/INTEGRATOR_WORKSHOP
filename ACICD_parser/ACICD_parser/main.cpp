@@ -85,60 +85,371 @@ int main(int argc, char** argv)
 //           // std::cout <<"test nasa:" +   *it_record   << std::endl;
 //       }
 //   }
-    std::string db_name="INTEGRATOR_WORKSHOP";
-    mysql_database BDD;
-    QSqlDatabase db=BDD.set_database(db_name);
-    QSqlQuery query;
 
-    if(db.open())
-    {
-        std::cout << "Vous etes maintenant connecte a " << q2c(db.hostName()) << std::endl;
-    }
-    else
-    {
-        std::cout << "La connexion a echouee" << std::endl;
-    }
-    query=QSqlQuery(db);
 
-    query.prepare("INSERT INTO mydb (id, name, salary) "
-                  "VALUES (1001, 'Thad Beaumont', 65000)" );
 
-    if(query.isValid())
-    {
 
-        std::cout << "Requete valide" << std::endl;
-    }
-    else
-    {
-        std::cout << "Requete non valide" << std::endl << q2c(query.lastError().text()) << std::endl;
-    }
 
-//    query.bindValue( ":id", 1001 );
-//    query.bindValue( ":name", "Harry" );
+//    std::string db_name="INTEGRATOR_WORKSHOP";
+//    mysql_database BDD;
+//    QSqlDatabase db=BDD.set_database(db_name);
 
-    if(query.exec())
-    {
-        std::cout << "Le titre a bien été changé ! :)" << std::endl;
-    }
-    else
-    {
-        std::cout << "Une erreur s'est produite. :(" << std::endl << q2c(query.lastError().text()) << std::endl;
-    }
 
-    if(query.exec("SELECT * FROM mydb"))
-    {
-        while(query.next())
-        {
-            std::cout << "    Nouvelle entrée" << std::endl;
-            for(int x=0; x < query.record().count(); ++x)
-            {
+//    if(db.open())
+//    {
+//        std::cout << "Vous etes maintenant connecte a " << q2c(db.hostName()) << std::endl;
+//    }
+//    else
+//    {
+//        std::cout << "La connexion a echouee" << std::endl;
+//    }
+//    QSqlQuery query(db);
 
-            //  std::cout << " champ: " << q2c(query.record().fieldName(x)) << std::endl;
-            //  std::cout << " valeur: " << q2c(query.record().value(x).toString()) << std::endl;
-               std::cout << "        " << q2c(query.record().fieldName(x)) << " = " << q2c(query.record().value(x).toString()) << std::endl;
-            }
-        }
-    }
+//    query.prepare("CREATE TABLE IF NOT EXISTS `mydb`.`EQUIPMENT`");
+//    if(query.isValid())
+//    {
+
+//        std::cout << "Requete valide" << std::endl;
+//    }
+//    else
+//    {
+//        std::cout << "*** Error ***" << std::endl;
+//        std::cout << "MySQL error:" << std::endl << q2c(query.lastError().text()) << std::endl;
+//        std::cout << "MySQL error code:" << std::endl << q2c(QString::number(query.lastError().number())) << std::endl;
+//    }
+
+
+    QSqlDatabase db = QSqlDatabase::addDatabase( "QMYSQL" );
+
+      db.setHostName( "localhost" );
+      db.setDatabaseName( "qtbook" );
+
+      db.setUserName( "root" );
+      db.setPassword( "sa" );
+
+      if( !db.open() )
+      {
+        qDebug() << db.lastError();
+        qFatal( "Failed to connect." );
+      }else{
+        qDebug( "Connected!" );
+      }
+
+
+
+      QSqlQuery qry;
+
+      qry.prepare( "CREATE TABLE IF NOT EXISTS names (id INTEGER UNIQUE PRIMARY KEY, firstname VARCHAR(30), lastname VARCHAR(30))" );
+      if( !qry.exec() )
+        qDebug() << qry.lastError();
+      else
+        qDebug() << "Table created!";
+
+//      qry.prepare( "INSERT INTO names (id, firstname, lastname) VALUES (1, 'John', 'Doe')" );
+//      if( !qry.exec() )
+//        qDebug() << qry.lastError();
+//      else
+//        qDebug( "Inserted!" );
+
+//      qry.prepare( "INSERT INTO names (id, firstname, lastname) VALUES (2, 'Jane', 'Doe')" );
+//      if( !qry.exec() )
+//        qDebug() << qry.lastError();
+//      else
+//        qDebug( "Inserted!" );
+
+//      qry.prepare( "INSERT INTO names (id, firstname, lastname) VALUES (3, 'James', 'Doe')" );
+//      if( !qry.exec() )
+//        qDebug() << qry.lastError();
+//      else
+//        qDebug( "Inserted!" );
+
+//      qry.prepare( "INSERT INTO names (id, firstname, lastname) VALUES (4, 'Judy', 'Doe')" );
+//      if( !qry.exec() )
+//        qDebug() << qry.lastError();
+//      else
+//        qDebug( "Inserted!" );
+
+//      qry.prepare( "INSERT INTO names (id, firstname, lastname) VALUES (5, 'Richard', 'Roe')" );
+//      if( !qry.exec() )
+//        qDebug() << qry.lastError();
+//      else
+//        qDebug( "Inserted!" );
+
+//      qry.prepare( "INSERT INTO names (id, firstname, lastname) VALUES (6, 'Jane', 'Roe')" );
+//      if( !qry.exec() )
+//        qDebug() << qry.lastError();
+//      else
+//        qDebug( "Inserted!" );
+
+//      qry.prepare( "INSERT INTO names (id, firstname, lastname) VALUES (7, 'John', 'Noakes')" );
+//      if( !qry.exec() )
+//        qDebug() << qry.lastError();
+//      else
+//        qDebug( "Inserted!" );
+
+//      qry.prepare( "INSERT INTO names (id, firstname, lastname) VALUES (8, 'Donna', 'Doe')" );
+//      if( !qry.exec() )
+//        qDebug() << qry.lastError();
+//      else
+//        qDebug( "Inserted!" );
+
+//      qry.prepare( "INSERT INTO names (id, firstname, lastname) VALUES (9, 'Ralph', 'Roe')" );
+//      if( !qry.exec() )
+//        qDebug() << qry.lastError();
+//      else
+//        qDebug( "Inserted!" );
+
+//    // SALARIES
+//      qry.prepare( "CREATE TABLE IF NOT EXISTS salaries (id INTEGER UNIQUE PRIMARY KEY, annual INTEGER)" );
+//      if( !qry.exec() )
+//        qDebug() << qry.lastError();
+//      else
+//        qDebug( "Inserted!" );
+
+//      qry.prepare( "INSERT INTO salaries (id, annual) VALUES (1, 1000)" );
+//      if( !qry.exec() )
+//        qDebug() << qry.lastError();
+//      else
+//        qDebug( "Inserted!" );
+
+//      qry.prepare( "INSERT INTO salaries (id, annual) VALUES (2, 900)" );
+//      if( !qry.exec() )
+//        qDebug() << qry.lastError();
+//      else
+//        qDebug( "Inserted!" );
+
+//      qry.prepare( "INSERT INTO salaries (id, annual) VALUES (3, 900)" );
+//      if( !qry.exec() )
+//        qDebug() << qry.lastError();
+//      else
+//        qDebug( "Inserted!" );
+
+//      qry.prepare( "INSERT INTO salaries (id, annual) VALUES (5, 1100)" );
+//      if( !qry.exec() )
+//        qDebug() << qry.lastError();
+//      else
+//        qDebug( "Inserted!" );
+
+//      qry.prepare( "INSERT INTO salaries (id, annual) VALUES (6, 1000)" );
+//      if( !qry.exec() )
+//        qDebug() << qry.lastError();
+//      else
+//        qDebug( "Inserted!" );
+
+//      qry.prepare( "INSERT INTO salaries (id, annual) VALUES (8, 1200)" );
+//      if( !qry.exec() )
+//        qDebug() << qry.lastError();
+//      else
+//        qDebug( "Inserted!" );
+
+//      qry.prepare( "INSERT INTO salaries (id, annual) VALUES (9, 1200)" );
+//      if( !qry.exec() )
+//        qDebug() << qry.lastError();
+//      else
+//        qDebug( "Inserted!" );
+
+//      qry.prepare( "SELECT * FROM salaries" );
+//      if( !qry.exec() )
+//        qDebug() << qry.lastError();
+//      else
+//      {
+//        qDebug( "Selected!" );
+
+//        QSqlRecord rec = qry.record();
+//        int cols = rec.count();
+
+//        QString temp;
+//        for( int c=0; c<cols; c++ )
+//          temp += rec.fieldName(c) + ((c<cols-1)?"\t":"");
+//        qDebug() << temp;
+
+//        while( qry.next() )
+//        {
+//          temp = "";
+//          for( int c=0; c<cols; c++ )
+//            temp += qry.value(c).toString() + ((c<cols-1)?"\t":"");
+//          qDebug() << temp;
+//        }
+//      }
+
+//      qry.prepare( "SELECT names.firstname, names.lastname, salaries.annual FROM names JOIN salaries ON names.id = salaries.id" );
+//      if( !qry.exec() )
+//        qDebug() << qry.lastError();
+//      else
+//      {
+//        qDebug( "Selected!" );
+
+//        QSqlRecord rec = qry.record();
+//        int cols = rec.count();
+
+//        QString temp;
+//        for( int c=0; c<cols; c++ )
+//          temp += rec.fieldName(c) + ((c<cols-1)?"\t":"");
+//        qDebug() << temp;
+
+//        while( qry.next() )
+//        {
+//          temp = "";
+//          for( int c=0; c<cols; c++ )
+//            temp += qry.value(c).toString() + ((c<cols-1)?"\t":"");
+//          qDebug() << temp;
+//        }
+//      }
+
+//      qry.prepare( "SELECT names.firstname, names.lastname, salaries.annual FROM names LEFT JOIN salaries ON names.id = salaries.id" );
+//      if( !qry.exec() )
+//        qDebug() << qry.lastError();
+//      else
+//      {
+//        qDebug( "Selected!" );
+
+//        QSqlRecord rec = qry.record();
+//        int cols = rec.count();
+
+//        QString temp;
+//        for( int c=0; c<cols; c++ )
+//          temp += rec.fieldName(c) + ((c<cols-1)?"\t":"");
+//        qDebug() << temp;
+
+//        while( qry.next() )
+//        {
+//          temp = "";
+//          for( int c=0; c<cols; c++ )
+//            temp += qry.value(c).toString() + ((c<cols-1)?"\t":"");
+//          qDebug() << temp;
+//        }
+//      }
+
+//      qry.prepare( "SELECT names.lastname, SUM(salaries.annual)/COUNT(*) AS 'Average', MIN(salaries.annual) AS 'Minimum', MAX(salaries.annual) AS 'Maximum' FROM names LEFT JOIN salaries ON names.id = salaries.id GROUP BY names.lastname" );
+//      if( !qry.exec() )
+//        qDebug() << qry.lastError();
+//      else
+//      {
+//        qDebug( "Selected!" );
+
+//        QSqlRecord rec = qry.record();
+//        int cols = rec.count();
+
+//        QString temp;
+//        for( int c=0; c<cols; c++ )
+//          temp += rec.fieldName(c) + ((c<cols-1)?"\t":"");
+//        qDebug() << temp;
+
+//        while( qry.next() )
+//        {
+//          temp = "";
+//          for( int c=0; c<cols; c++ )
+//            temp += qry.value(c).toString() + ((c<cols-1)?"\t":"");
+//          qDebug() << temp;
+//        }
+//      }
+//    // SALARIES
+
+//      qry.prepare( "SELECT * FROM names" );
+//      if( !qry.exec() )
+//        qDebug() << qry.lastError();
+//      else
+//      {
+//        qDebug( "Selected!" );
+
+//        QSqlRecord rec = qry.record();
+
+//        int cols = rec.count();
+
+//        for( int c=0; c<cols; c++ )
+//          qDebug() << QString( "Column %1: %2" ).arg( c ).arg( rec.fieldName(c) );
+
+//        for( int r=0; qry.next(); r++ )
+//          for( int c=0; c<cols; c++ )
+//            qDebug() << QString( "Row %1, %2: %3" ).arg( r ).arg( rec.fieldName(c) ).arg( qry.value(c).toString() );
+//      }
+
+
+//      qry.prepare( "SELECT firstname, lastname FROM names WHERE lastname = 'Roe'" );
+//      if( !qry.exec() )
+//        qDebug() << qry.lastError();
+//      else
+//      {
+//        qDebug( "Selected!" );
+
+//        QSqlRecord rec = qry.record();
+
+//        int cols = rec.count();
+
+//        for( int c=0; c<cols; c++ )
+//          qDebug() << QString( "Column %1: %2" ).arg( c ).arg( rec.fieldName(c) );
+
+//        for( int r=0; qry.next(); r++ )
+//          for( int c=0; c<cols; c++ )
+//            qDebug() << QString( "Row %1, %2: %3" ).arg( r ).arg( rec.fieldName(c) ).arg( qry.value(c).toString() );
+//      }
+
+
+//      qry.prepare( "SELECT firstname, lastname FROM names WHERE lastname = 'Roe' ORDER BY firstname" );
+//      if( !qry.exec() )
+//        qDebug() << qry.lastError();
+//      else
+//      {
+//        qDebug( "Selected!" );
+
+//        QSqlRecord rec = qry.record();
+
+//        int cols = rec.count();
+
+//        for( int c=0; c<cols; c++ )
+//          qDebug() << QString( "Column %1: %2" ).arg( c ).arg( rec.fieldName(c) );
+
+//        for( int r=0; qry.next(); r++ )
+//          for( int c=0; c<cols; c++ )
+//            qDebug() << QString( "Row %1, %2: %3" ).arg( r ).arg( rec.fieldName(c) ).arg( qry.value(c).toString() );
+//      }
+
+
+//      qry.prepare( "SELECT lastname, COUNT(*) as 'members' FROM names GROUP BY lastname ORDER BY lastname" );
+//      if( !qry.exec() )
+//        qDebug() << qry.lastError();
+//      else
+//      {
+//        qDebug( "Selected!" );
+
+//        QSqlRecord rec = qry.record();
+
+//        int cols = rec.count();
+
+//        for( int c=0; c<cols; c++ )
+//          qDebug() << QString( "Column %1: %2" ).arg( c ).arg( rec.fieldName(c) );
+
+//        for( int r=0; qry.next(); r++ )
+//          for( int c=0; c<cols; c++ )
+//            qDebug() << QString( "Row %1, %2: %3" ).arg( r ).arg( rec.fieldName(c) ).arg( qry.value(c).toString() );
+//      }
+
+//      qry.prepare( "UPDATE names SET firstname = 'Nisse', lastname = 'Svensson' WHERE id = 7" );
+//      if( !qry.exec() )
+//        qDebug() << qry.lastError();
+//      else
+//        qDebug( "Updated!" );
+
+//      qry.prepare( "UPDATE names SET lastname = 'Johnson' WHERE firstname = 'Jane'" );
+//      if( !qry.exec() )
+//        qDebug() << qry.lastError();
+//      else
+//        qDebug( "Updated!" );
+
+//      qry.prepare( "DELETE FROM names WHERE id = 7" );
+//      if( !qry.exec() )
+//        qDebug() << qry.lastError();
+//      else
+//        qDebug( "Deleted!" );
+
+//      qry.prepare( "DELETE FROM names WHERE lastname = 'Johnson'" );
+//      if( !qry.exec() )
+//        qDebug() << qry.lastError();
+//      else
+//        qDebug( "Deleted!" );
+
+
+
 
 
     db.close();
