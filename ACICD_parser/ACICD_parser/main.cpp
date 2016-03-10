@@ -119,10 +119,10 @@ int main(int argc, char** argv)
 //    }
 
 
-    QSqlDatabase db = QSqlDatabase::addDatabase( "QMYSQL" );
+      QSqlDatabase db = QSqlDatabase::addDatabase( "QSQLITE" );
 
       db.setHostName( "localhost" );
-      db.setDatabaseName( "qtbook" );
+      db.setDatabaseName( "qtbook.db" );
 
       db.setUserName( "root" );
       db.setPassword( "sa" );
@@ -136,14 +136,46 @@ int main(int argc, char** argv)
       }
 
 
+      QFile scriptFile("integrator_workshop.sql");
+      QSqlQuery query;
 
-      QSqlQuery qry;
+      if (scriptFile.open(QIODevice::ReadOnly))
+      {
+          // The SQLite driver executes only a single (the first) query in the QSqlQuery
+          //  if the script contains more queries, it needs to be splitted.
+          QStringList scriptQueries = QTextStream(&scriptFile).readAll().split(';');
 
-      qry.prepare( "CREATE TABLE IF NOT EXISTS names (id INTEGER UNIQUE PRIMARY KEY, firstname VARCHAR(30), lastname VARCHAR(30))" );
-      if( !qry.exec() )
-        qDebug() << qry.lastError();
-      else
-        qDebug() << "Table created!";
+          foreach (QString queryTxt, scriptQueries)
+          {
+              if (queryTxt.trimmed().isEmpty()) {
+                  continue;
+              }
+              if (!query.exec(queryTxt))
+              {
+                  qFatal(QString("One of the query failed to execute."
+                              " Error detail: " + query.lastError().text()).toLocal8Bit());
+              }
+              query.finish();
+          }
+      }
+
+
+
+
+
+
+
+
+
+
+
+//      QSqlQuery qry;
+
+//      qry.prepare( "CREATE TABLE IF NOT EXISTS names (id INTEGER UNIQUE PRIMARY KEY, firstname VARCHAR(30), lastname VARCHAR(30))" );
+//      if( !qry.exec() )
+//        qDebug() << qry.lastError();
+//      else
+//        qDebug() << "Table created!";
 
 //      qry.prepare( "INSERT INTO names (id, firstname, lastname) VALUES (1, 'John', 'Doe')" );
 //      if( !qry.exec() )
