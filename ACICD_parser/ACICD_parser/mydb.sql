@@ -6,7 +6,7 @@
 -- Created       : 2016-01-06 13:36
 
 -- Schema: mydb 
-CREATE SCHEMA [mydb];
+CREATE SCHEMA  [mydb];
 
 CREATE TABLE [mydb].[Signals](
  [Id] INTEGER CONSTRAINT [pk_Signals] PRIMARY KEY  NOT NULL,  

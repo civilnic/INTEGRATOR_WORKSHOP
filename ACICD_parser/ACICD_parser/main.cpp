@@ -136,7 +136,7 @@ int main(int argc, char** argv)
       }
 
 
-      QFile scriptFile("integrator_workshop.sql");
+      QFile scriptFile("test.sql");
       QSqlQuery query;
 
       if (scriptFile.open(QIODevice::ReadOnly))
