@@ -8,7 +8,8 @@
 #include <boost/optional/optional_io.hpp>
 
 #include "acicd_header.h"
-#include "mysql_database.h"
+#include "sql_database.h"
+#include "acicd_equipment.h"
 
 #include <QtSql>
 
@@ -91,8 +92,50 @@ int main(int argc, char** argv)
 
 
 //    std::string db_name="INTEGRATOR_WORKSHOP";
-//    mysql_database BDD;
-//    QSqlDatabase db=BDD.set_database(db_name);
+sql_database BDD;
+QSqlDatabase db=BDD.create_database();
+BDD.open_database(db);
+
+QSqlQuery query(db);
+query.prepare(DB_QUERY_CREATE_ACICD);
+if( !query.exec() )
+qDebug() << query.lastError();
+else
+qDebug() << "Table created!";
+
+query.prepare(DB_QUERY_CREATE_EQUIPMENT);
+if( !query.exec() )
+qDebug() << query.lastError();
+else
+qDebug() << "Table created!";
+
+
+query.prepare(DB_QUERY_CREATE_CONNECTOR);
+if( !query.exec() )
+qDebug() << query.lastError();
+else
+qDebug() << "Table created!";
+
+
+
+query.prepare(DB_QUERY_CREATE_Connector_Line_type);
+if( !query.exec() )
+qDebug() << query.lastError();
+else
+qDebug() << "Table created!";
+
+query.prepare(DB_QUERY_CREATE_Connector_Pin_Role);
+if( !query.exec() )
+qDebug() << query.lastError();
+else
+qDebug() << "Table created!";
+
+query.prepare(DB_QUERY_CREATE_Connection_Name);
+if( !query.exec() )
+qDebug() << query.lastError();
+else
+qDebug() << "Table created!";
+
 
 
 //    if(db.open())
@@ -119,45 +162,45 @@ int main(int argc, char** argv)
 //    }
 
 
-      QSqlDatabase db = QSqlDatabase::addDatabase( "QSQLITE" );
+//      QSqlDatabase db = QSqlDatabase::addDatabase( "QSQLITE" );
 
-      db.setHostName( "localhost" );
-      db.setDatabaseName( "qtbook.db" );
+//      db.setHostName( "localhost" );
+//      db.setDatabaseName( "INTEGRATOR_WORKSHOP.db" );
 
-      db.setUserName( "root" );
-      db.setPassword( "sa" );
+//      db.setUserName( "root" );
+//      db.setPassword( "" );
 
-      if( !db.open() )
-      {
-        qDebug() << db.lastError();
-        qFatal( "Failed to connect." );
-      }else{
-        qDebug( "Connected!" );
-      }
+//      if( !db.open() )
+//      {
+//        qDebug() << db.lastError();
+//        qFatal( "Failed to connect." );
+//      }else{
+//        qDebug( "Connected!" );
+//      }
 
 
-      QFile scriptFile("test.sql");
-      QSqlQuery query;
+//      QFile scriptFile("test.sql");
+//      QSqlQuery query;
 
-      if (scriptFile.open(QIODevice::ReadOnly))
-      {
-          // The SQLite driver executes only a single (the first) query in the QSqlQuery
-          //  if the script contains more queries, it needs to be splitted.
-          QStringList scriptQueries = QTextStream(&scriptFile).readAll().split(';');
+//      if (scriptFile.open(QIODevice::ReadOnly))
+//      {
+//          // The SQLite driver executes only a single (the first) query in the QSqlQuery
+//          //  if the script contains more queries, it needs to be splitted.
+//          QStringList scriptQueries = QTextStream(&scriptFile).readAll().split(';');
 
-          foreach (QString queryTxt, scriptQueries)
-          {
-              if (queryTxt.trimmed().isEmpty()) {
-                  continue;
-              }
-              if (!query.exec(queryTxt))
-              {
-                  qFatal(QString("One of the query failed to execute."
-                              " Error detail: " + query.lastError().text()).toLocal8Bit());
-              }
-              query.finish();
-          }
-      }
+//          foreach (QString queryTxt, scriptQueries)
+//          {
+//              if (queryTxt.trimmed().isEmpty()) {
+//                  continue;
+//              }
+//              if (!query.exec(queryTxt))
+//              {
+//                  qFatal(QString("One of the query failed to execute."
+//                              " Error detail: " + query.lastError().text()).toLocal8Bit());
+//              }
+//              query.finish();
+//          }
+//      }
 
 
 
