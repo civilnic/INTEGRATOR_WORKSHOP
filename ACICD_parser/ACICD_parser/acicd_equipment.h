@@ -3,6 +3,8 @@
 
 #include <string>
 #include <QString>
+#include <map>
+#include <regex>
 
 class acicd_equipment
 {
@@ -38,7 +40,6 @@ const QString DB_QUERY_CREATE_EQUIPMENT="\
      [Zone] VARCHAR( 45 ) NULL\
     );\
 ";
-
 
 const QString DB_QUERY_CREATE_CONNECTOR="\
     CREATE TABLE IF NOT EXISTS [CONNECTOR](\
@@ -91,5 +92,7 @@ const QString DB_QUERY_CREATE_Connection_Name="\
          [Name] VARCHAR( 45 ) NULL\
         );\
  ";
+
+
 
 #endif // ACICD_EQUIPMENT_H

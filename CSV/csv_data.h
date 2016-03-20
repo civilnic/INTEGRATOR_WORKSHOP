@@ -8,6 +8,13 @@
 
 #include "acicd_header.h"
 
+#include <sstream>
+std::string intToString(int i) {
+     std::ostringstream oss;
+     oss << i;
+     return oss.str();
+}
+
 namespace dvp
 {
 
@@ -120,10 +127,11 @@ class acicd_data_handler
     bool at_beginning_of_line;
     bool at_first_line;
     acicd_header_section acicd_localization;
-    acicd_data_section acicd_section_id;
     std::vector<std::string> section_name;
+    acicd_data_section acicd_section_id;
 
 public:
+
 
     bool comment_handler(std::string const& s)
     {
@@ -154,12 +162,12 @@ public:
 //                     std::cout <<"indice: " << std::endl;
 //                     std::cout <<it_headers - vect_header.begin()+1<< std::endl;
                      acicd_section_id=acicd_data_section(it_headers - vect_header.begin()+1);
-//                      printf("acicd_data_section: %d\n",acicd_section_id);
+                     printf("acicd_data_section: %d\n",acicd_section_id);
                 }
-             //   for(std::vector<std::string>::const_iterator it_column_name=(*it_headers).begin();it_column_name!=(*it_headers).end();++it_column_name)
-           //     {
-            //        std::cout <<*it_column_name << std::endl;
-           //     }
+//                for(std::vector<std::string>::const_iterator it_column_name=(*it_headers).begin();it_column_name!=(*it_headers).end();++it_column_name)
+//                {
+//                    std::cout <<*it_column_name << std::endl;
+//                }
 
 
             }
@@ -221,6 +229,7 @@ public:
             {
                 data_.new_record();
                 at_beginning_of_line = false;
+                data_.add_field(intToString((int)acicd_section_id));
             }
             data_.add_field(s);
         }

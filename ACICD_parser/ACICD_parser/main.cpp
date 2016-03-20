@@ -10,7 +10,7 @@
 #include "acicd_header.h"
 #include "sql_database.h"
 #include "acicd_equipment.h"
-
+#include "boost/lexical_cast.hpp"
 #include <QtSql>
 
 #define q2c(string) string.toStdString()
@@ -44,48 +44,42 @@ int main(int argc, char** argv)
 
     dvp::csv_parser<dvp::csv_stl_traits> parser;
 
-    //handler<std::string> h(parser);
+//    handler<std::string> h(parser);
     dvp::csv_data data;
 
     dvp::acicd_data_handler handler(data, true, parser);
 
-    std::vector<std::string> vect_header;
-    std::vector<std::string>::iterator it_header;
+//    std::vector<std::string> vect_header;
+//    std::vector<std::string>::iterator it_header;
 
     if(argc <= 1)
+    {
+            std::cout << "File par defaut" << std::endl;
             file = "acicd.csv";
-        else
+    }
+    else
+    {
+            std::cout << "File en parametre" << std::endl;
             file = argv[1];
-
+    }
 
 
     std::fstream f(file);
 
+
+    if ( f.peek() == std::ifstream::traits_type::eof() )
+    {
+       // Empty File
+         std::cout << "File is empty" << std::endl;
+    }
+
     parsefile(f, parser);
-    std::cout << //h.nbfields
+    std::cout << //handler.nbfields
             data.size()
- //           << " " << h.nblines
+ //           << " " << handler.nblines
             << std::endl;
 //    int i=0;
 
-//    dvp::csv_data::const_iterator it;
-//    std::vector<std::string>::const_iterator it_record;
-
-
-//    for(it=data.begin();it!=data.end();++it)
-//    {
-//       if((*it)[0].compare(key_word_begin_data_section)==0)
-//       {
-//            ++it;
-//            std::cout <<(*it)[0] << std::endl;
-//       }
-
-
-//       for(it_record=it->begin();it_record!=it->end();++it_record)
-//       {
-//           // std::cout <<"test nasa:" +   *it_record   << std::endl;
-//       }
-//   }
 
 
 
@@ -135,6 +129,76 @@ if( !query.exec() )
 qDebug() << query.lastError();
 else
 qDebug() << "Table created!";
+
+std::map<int,std::string> DB_FIELDS_EQUIPMENT = { { 1, "Name" }, { 2, "Description" }, { 3, "Type" }, { 4, "EMC Protection" }, { 5, "Zone" } };
+
+
+dvp::csv_data::const_iterator it;
+std::vector<std::string>::const_iterator it_record;
+acicd_data_section section;
+int indice;
+
+std::vector<std::string> vect;
+
+for(it=data.begin();it!=data.end();++it)
+{
+   indice=boost::lexical_cast<int,std::string>((*it)[0]);
+   section=(acicd_data_section)indice;
+
+//   vect=vect_header[indice];
+
+
+   if(section==acicd_data_section::EQUIPMENT)
+   {
+       std::cout <<(*it)[0] << std::endl;
+
+       std::string query_field="INSERT INTO EQUIPMENT (" ;
+       std::string query_values="VALUES (" ;
+
+       for(it_record=it->begin();it_record!=it->end();++it_record)
+       {
+
+           if(DB_FIELDS_EQUIPMENT.count(it_record-it->begin())==1)
+           {
+                if((*it_record).empty()!=1)
+                {
+                    //      qry.prepare( "INSERT INTO names (id, firstname, lastname) VALUES (1, 'John', 'Doe')" );
+                    query_field+=", "+DB_FIELDS_EQUIPMENT[it_record-it->begin()];
+                    query_values+=", \'"+*it_record+"\'";
+
+                    std::cout << it_record-it->begin()   << std::endl;
+                    std::cout <<"test nasa:" +   *it_record   << std::endl;
+                }
+           }
+       }
+        query_field+=") ";
+        query_values+=")";
+
+        query_field = std::regex_replace(query_field, std::regex("\\(, "), "\(");
+        query_values = std::regex_replace(query_values, std::regex("\\(, "), "\(");
+
+        QString test;
+        test=QString::fromStdString(query_field+query_values);
+        std::cout <<"query:" +   test.toStdString()   << std::endl;
+        query.prepare(test);
+
+        if( !query.exec() )
+        qDebug() << query.lastError();
+        else
+        qDebug() << "query executed succesfully !";
+
+        QString test2="INSERT INTO EQUIPMENT (Name) VALUES ('serge')";
+         query.prepare( test2 );
+         if( !query.exec() )
+         qDebug() << query.lastError();
+         else
+         qDebug() << "query executed succesfully !";
+
+         QString test3="INSERT INTO EQUIPMENT (Name, Description, EMC Protection) VALUES ('deuxieme_ligneEQUIPMENT', 'PRIM1A', 'LRU')";
+
+   }
+}
+
 
 
 

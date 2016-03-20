@@ -4,8 +4,6 @@
 #include <vector>
 #include <string>
 
-
-
 const std::vector<std::string> EQUIPMENT_header={"EQUIPMENT","Equipment name","description","type","EMC Protection","Zone","FIN"};
 const std::vector<std::string> CONNECTOR_header={"CONNECTOR","Connector Type","Connector Name","Connector Pin","Connector Pin Role","Connection Name","Line Type"};
 const std::vector<std::string> AFDX_OUTPUT_VL_header={"AFDX_OUTPUT_VL","Physical Port Id","Physical Port Speed","Pin Name","AFDX Line EMC Protection","Network Id","Connector name","VL Identifier","VL name","Network Select","BAG","Max frame size","Number of sub VL","Sub VL Identifier","TX AFDX port Identifier","AFDX Port Master Name","AFDX Port type","port characteristic","IP frag allowed","AFDX port transmission type","Src IP address","Dest IP address","Src UDP address","Dest UDP address","Buffer Size"};
@@ -84,5 +82,14 @@ enum class acicd_data_section {
     MIL1553_OUTPUT_DATA_header,
     MIL1553_INPUT_DATA_header
 };
+
+template <typename T>
+T StringToNumber ( const std::string &Text )//Text not by const reference so that the function can be used with a
+{                               //character array as argument
+    std::stringstream ss(Text);
+    T result;
+    return ss >> result ? result : 0;
+}
+
 
 #endif // ACICD_HEADER_H
