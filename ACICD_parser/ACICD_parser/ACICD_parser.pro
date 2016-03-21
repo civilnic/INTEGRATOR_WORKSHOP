@@ -7,7 +7,9 @@ QT       += sql # On rajoute SQL
 
 SOURCES += main.cpp \
     acicd_equipment.cpp \
-    sql_database.cpp
+    sql_database.cpp \
+    acicd.cpp \
+    acicd_connector.cpp
 
 HEADERS += \
     ../../CSV/csv_common.h \
@@ -16,7 +18,9 @@ HEADERS += \
     ../../CSV/csv_stl_traits.h \
     acicd_header.h \
     acicd_equipment.h \
-    sql_database.h
+    sql_database.h \
+    acicd.h \
+    acicd_connector.h
 
 INCLUDEPATH += ../../CSV/ \
                C:\local\boost_1_60_0
