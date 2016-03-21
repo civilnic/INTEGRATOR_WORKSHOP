@@ -17,6 +17,38 @@
 
 using namespace std;
 
+
+void Query2DB(QSqlDatabase db,std::string &fields,std::string &values)
+{
+    QSqlQuery query(db);
+
+    //    finalize query string
+    fields+=") ";
+    values+=")";
+
+    fields = std::regex_replace(fields, std::regex("\\(, "), "\(");
+    values = std::regex_replace(values, std::regex("\\(, "), "\(");
+
+    //    concatenate fields and values into one QString for execution
+    QString QueryforQT;
+    QueryforQT=QString::fromStdString(fields+values);
+
+    //    concatenate fields and values into one QString for execution
+    query.prepare(QueryforQT);
+
+    if( !query.exec() )
+    {
+        std::cout <<"query error:  " +   QueryforQT.toStdString()   << std::endl;
+        qDebug() << query.lastError();
+    }
+    else
+    {
+//        qDebug() << "query executed succesfully !";
+    }
+}
+
+
+
 template<typename parser_>
 void parsefile(std::fstream& f, parser_& parser)
 {
@@ -85,119 +117,157 @@ int main(int argc, char** argv)
 
 
 
-//    std::string db_name="INTEGRATOR_WORKSHOP";
-sql_database BDD;
-QSqlDatabase db=BDD.create_database();
-BDD.open_database(db);
+    //    std::string db_name="INTEGRATOR_WORKSHOP";
+    sql_database BDD;
+    QSqlDatabase db=BDD.create_database();
+    BDD.open_database(db);
 
-QSqlQuery query(db);
-query.prepare(DB_QUERY_CREATE_ACICD);
-if( !query.exec() )
-qDebug() << query.lastError();
-else
-qDebug() << "Table created!";
+    QSqlQuery query(db);
+    query.prepare(DB_QUERY_CREATE_ACICD);
+    if( !query.exec() )
+    qDebug() << query.lastError();
+    else
+    qDebug() << "Table created!";
 
-query.prepare(DB_QUERY_CREATE_EQUIPMENT);
-if( !query.exec() )
-qDebug() << query.lastError();
-else
-qDebug() << "Table created!";
-
-
-query.prepare(DB_QUERY_CREATE_CONNECTOR);
-if( !query.exec() )
-qDebug() << query.lastError();
-else
-qDebug() << "Table created!";
+    query.prepare(DB_QUERY_CREATE_EQUIPMENT);
+    if( !query.exec() )
+    qDebug() << query.lastError();
+    else
+    qDebug() << "Table created!";
 
 
-
-query.prepare(DB_QUERY_CREATE_Connector_Line_type);
-if( !query.exec() )
-qDebug() << query.lastError();
-else
-qDebug() << "Table created!";
-
-query.prepare(DB_QUERY_CREATE_Connector_Pin_Role);
-if( !query.exec() )
-qDebug() << query.lastError();
-else
-qDebug() << "Table created!";
-
-query.prepare(DB_QUERY_CREATE_Connection_Name);
-if( !query.exec() )
-qDebug() << query.lastError();
-else
-qDebug() << "Table created!";
-
-std::map<int,std::string> DB_FIELDS_EQUIPMENT = { { 1, "Name" }, { 2, "Description" }, { 3, "Type" }, { 4, "EMC Protection" }, { 5, "Zone" } };
+    query.prepare(DB_QUERY_CREATE_CONNECTOR);
+    if( !query.exec() )
+    qDebug() << query.lastError();
+    else
+    qDebug() << "Table created!";
 
 
-dvp::csv_data::const_iterator it;
-std::vector<std::string>::const_iterator it_record;
-acicd_data_section section;
-int indice;
 
-std::vector<std::string> vect;
+    query.prepare(DB_QUERY_CREATE_Connector_Line_type);
+    if( !query.exec() )
+    qDebug() << query.lastError();
+    else
+    qDebug() << "Table created!";
 
-for(it=data.begin();it!=data.end();++it)
-{
-   indice=boost::lexical_cast<int,std::string>((*it)[0]);
-   section=(acicd_data_section)indice;
+    query.prepare(DB_QUERY_CREATE_Connector_Pin_Role);
+    if( !query.exec() )
+    qDebug() << query.lastError();
+    else
+    qDebug() << "Table created!";
 
-//   vect=vect_header[indice];
+    query.prepare(DB_QUERY_CREATE_Connection_Name);
+    if( !query.exec() )
+    qDebug() << query.lastError();
+    else
+    qDebug() << "Table created!";
+
+    std::map<int,std::string> DB_FIELDS_EQUIPMENT = { { 2, "Name" },
+                                                      { 3, "Description" },
+                                                      { 4, "Type" },
+                                                      { 5, "EMC Protection" },
+                                                      { 6, "Zone" }
+                                                    };
+    std::map<int,std::string> DB_FIELDS_CONNECTOR = { { 2, "Type" },
+                                                      { 3, "Name" },
+                                                      { 4, "Pin" },
+                                                      { 5, "Pin_Role" },
+                                                      { 6, "Line_Type" }
+                                                    };
 
 
-   if(section==acicd_data_section::EQUIPMENT)
-   {
-       std::cout <<(*it)[0] << std::endl;
+    dvp::csv_data::const_iterator it;
+    std::vector<std::string>::const_iterator it_record;
+    acicd_data_section section;
+    int indice;
 
-       std::string query_field="INSERT INTO EQUIPMENT (" ;
-       std::string query_values="VALUES (" ;
+    std::vector<std::string> vect;
 
-       for(it_record=it->begin();it_record!=it->end();++it_record)
+    for(it=data.begin();it!=data.end();++it)
+    {
+       indice=boost::lexical_cast<int,std::string>((*it)[0]);
+       section=(acicd_data_section)indice;
+
+    //   vect=vect_header[indice];
+
+
+       if(section==acicd_data_section::EQUIPMENT)
        {
+//           std::cout <<(*it)[0] << std::endl;
 
-           if(DB_FIELDS_EQUIPMENT.count(it_record-it->begin())==1)
+           std::string query_field="INSERT INTO EQUIPMENT (" ;
+           std::string query_values="VALUES (" ;
+
+           for(it_record=it->begin();it_record!=it->end();++it_record)
            {
-                if((*it_record).empty()!=1)
-                {
-                    //      qry.prepare( "INSERT INTO names (id, firstname, lastname) VALUES (1, 'John', 'Doe')" );
-                    query_field+=", "+DB_FIELDS_EQUIPMENT[it_record-it->begin()];
-                    query_values+=", \'"+*it_record+"\'";
 
-                    std::cout << it_record-it->begin()   << std::endl;
-                    std::cout <<"test nasa:" +   *it_record   << std::endl;
-                }
+               if(DB_FIELDS_EQUIPMENT.count(it_record-it->begin())==1)
+               {
+                    if((*it_record).empty()!=1)
+                    {
+                        query_field+=", \'"+DB_FIELDS_EQUIPMENT[it_record-it->begin()]+"\'";
+                        query_values+=", \'"+*it_record+"\'";
+
+//                        std::cout << it_record-it->begin()   << std::endl;
+//                        std::cout <<"test nasa:" +   *it_record   << std::endl;
+                    }
+               }
            }
+           Query2DB(db,query_field,query_values);
        }
-        query_field+=") ";
-        query_values+=")";
 
-        query_field = std::regex_replace(query_field, std::regex("\\(, "), "\(");
-        query_values = std::regex_replace(query_values, std::regex("\\(, "), "\(");
+       if(section==acicd_data_section::CONNECTOR)
+       {
+ //          std::cout <<(*it)[0] << std::endl;
 
-        QString test;
-        test=QString::fromStdString(query_field+query_values);
-        std::cout <<"query:" +   test.toStdString()   << std::endl;
-        query.prepare(test);
+           std::string query_field="INSERT INTO CONNECTOR (" ;
+           std::string query_values="VALUES (" ;
 
-        if( !query.exec() )
-        qDebug() << query.lastError();
-        else
-        qDebug() << "query executed succesfully !";
+           for(it_record=it->begin();it_record!=it->end();++it_record)
+           {
 
-        QString test2="INSERT INTO EQUIPMENT (Name) VALUES ('serge')";
-         query.prepare( test2 );
-         if( !query.exec() )
-         qDebug() << query.lastError();
-         else
-         qDebug() << "query executed succesfully !";
+               if(DB_FIELDS_CONNECTOR.count(it_record-it->begin())==1)
+               {
+                    if((*it_record).empty()!=1)
+                    {
+                        query_field+=", \'"+DB_FIELDS_CONNECTOR[it_record-it->begin()]+"\'";
+                        query_values+=", \'"+*it_record+"\'";
 
-         QString test3="INSERT INTO EQUIPMENT (Name, Description, EMC Protection) VALUES ('deuxieme_ligneEQUIPMENT', 'PRIM1A', 'LRU')";
+//                        std::cout << it_record-it->begin()   << std::endl;
+//                        std::cout <<"test nasa:" +   *it_record   << std::endl;
+                    }
+               }
+           }
+           Query2DB(db,query_field,query_values);
+       }
 
-   }
+
+
+    }
+
+db.close();
+return 0;
 }
+
+
+
+
+
+
+
+//        QString test2="INSERT INTO EQUIPMENT (Name) VALUES ('serge')";
+//         query.prepare( test2 );
+//         if( !query.exec() )
+//         qDebug() << query.lastError();
+//         else
+//         qDebug() << "query executed succesfully !";
+
+//         QString test3="INSERT INTO EQUIPMENT (Name,Description,'EMC Protection') VALUES ('deuxieme_ligneEQUIPMENT', 'PRIM1A', 'LRU')";
+//         query.prepare( test3 );
+//         if( !query.exec() )
+//         qDebug() << query.lastError();
+//         else
+//         qDebug() << "query executed succesfully !";
 
 
 
@@ -589,9 +659,4 @@ for(it=data.begin();it!=data.end();++it)
 
 
 
-
-
-    db.close();
-    return 0;
-}
 

@@ -162,7 +162,7 @@ public:
 //                     std::cout <<"indice: " << std::endl;
 //                     std::cout <<it_headers - vect_header.begin()+1<< std::endl;
                      acicd_section_id=acicd_data_section(it_headers - vect_header.begin()+1);
-                     printf("acicd_data_section: %d\n",acicd_section_id);
+             //        printf("acicd_data_section: %d\n",acicd_section_id);
                 }
 //                for(std::vector<std::string>::const_iterator it_column_name=(*it_headers).begin();it_column_name!=(*it_headers).end();++it_column_name)
 //                {

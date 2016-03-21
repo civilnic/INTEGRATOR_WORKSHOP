@@ -44,31 +44,31 @@ const QString DB_QUERY_CREATE_EQUIPMENT="\
 const QString DB_QUERY_CREATE_CONNECTOR="\
     CREATE TABLE IF NOT EXISTS [CONNECTOR](\
      [id] INTEGER CONSTRAINT [pk_CONNECTOR] PRIMARY KEY  NOT NULL,\
-     [Equipment] INTEGER NULL,\
-     [ACICD] INTEGER NULL,\
-     [Type] VARCHAR( 45 ) NULL,\
-     [Name] VARCHAR( 45 ) NULL,\
-     [Pin] VARCHAR( 45 ) NULL,\
-     [Pin_Role] INTEGER NULL,\
-     [Connection_Name] INTEGER NULL,\
-     [Line_Type] INTEGER NULL,\
-     [Speed] INTEGER NULL,\
-     [NetworkId] VARCHAR( 3 ) NULL,\
-      CONSTRAINT [Equipment]\
-      FOREIGN KEY([Equipment])\
-        REFERENCES [EQUIPMENT] ( [id] ),\
-      CONSTRAINT [ACICD]\
-      FOREIGN KEY([ACICD])\
-        REFERENCES [ACICD] ( [id] ),\
-      CONSTRAINT [Pin_Role]\
-      FOREIGN KEY([Pin_Role])\
-        REFERENCES [Connector_Pin_Role] ( [id] ),\
-      CONSTRAINT [Line_Type]\
-      FOREIGN KEY([Line_Type])\
-        REFERENCES [Connector_Line_type] ( [id] ),\
-      CONSTRAINT [Connection_Name]\
-      FOREIGN KEY([Connection_Name])\
-        REFERENCES [Connection_Name] ( [id] )\
+      [Equipment] INTEGER NULL,\
+      [ACICD] INTEGER NULL,\
+      [Type] VARCHAR( 45 ) NULL,\
+      [Name] VARCHAR( 45 ) NULL,\
+      [Pin] VARCHAR( 45 ) NULL,\
+      [Pin_Role] INTEGER NULL,\
+      [Connection_Name] INTEGER NULL,\
+      [Line_Type] INTEGER NULL,\
+      [Speed] INTEGER NULL,\
+      [NetworkId] VARCHAR( 3 ) NULL,\
+       CONSTRAINT [Equipment]\
+       FOREIGN KEY([Equipment])\
+         REFERENCES [EQUIPMENT] ( [id] ),\
+       CONSTRAINT [ACICD]\
+       FOREIGN KEY([ACICD])\
+         REFERENCES [ACICD] ( [id] ),\
+       CONSTRAINT [Pin_Role]\
+       FOREIGN KEY([Pin_Role])\
+         REFERENCES [Connector_Pin_Role] ( [id] ),\
+       CONSTRAINT [Line_Type]\
+       FOREIGN KEY([Line_Type])\
+         REFERENCES [Connector_Line_type] ( [id] ),\
+       CONSTRAINT [Connection_Name]\
+       FOREIGN KEY([Connection_Name])\
+         REFERENCES [Connection_Name] ( [id] )\
     );\
  ";
 
