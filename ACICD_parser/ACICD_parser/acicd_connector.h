@@ -39,7 +39,7 @@ const QString DB_QUERY_CREATE_CONNECTOR="\
        CONSTRAINT [Connection_Name]\
        FOREIGN KEY([Connection_Name])\
          REFERENCES [Connection_Name] ( [id] )\
-    );\
+    );\n\
  ";
 
 
@@ -47,21 +47,21 @@ const QString DB_QUERY_CREATE_Connector_Line_type="\
         CREATE TABLE IF NOT EXISTS [Connector_Line_type](\
          [id] INTEGER CONSTRAINT [pk_Connector_Line_type] PRIMARY KEY  NOT NULL,  \
          [Name] VARCHAR( 45 ) NULL\
-        );\
+        );\n\
  ";
 
 const QString DB_QUERY_CREATE_Connector_Pin_Role="\
         CREATE TABLE IF NOT EXISTS [Connector_Pin_Role](\
          [id] INTEGER CONSTRAINT [pk_Connector_Pin_Role] PRIMARY KEY  NOT NULL,\
          [Name] VARCHAR( 45 ) NULL\
-        );\
+        );\n\
  ";
 
 const QString DB_QUERY_CREATE_Connection_Name="\
         CREATE TABLE IF NOT EXISTS [Connection_Name](\
          [id] INTEGER CONSTRAINT [pk_Connection_Name] PRIMARY KEY  NOT NULL,\
          [Name] VARCHAR( 45 ) NULL\
-        );\
+        );\n\
  ";
 
 #endif // ACICD_CONNECTOR_H

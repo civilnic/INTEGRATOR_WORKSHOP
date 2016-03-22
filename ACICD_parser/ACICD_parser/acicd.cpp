@@ -1,11 +1,5 @@
 #include "acicd.h"
 
-ACICD::ACICD(QSqlDatabase db,std::string path_name)
-{
-    this->path_name=path_name;
-    this->db=db;
-}
-
 template<typename parser_>
 void parsefile(std::fstream& f, parser_& parser)
 {
@@ -26,11 +20,43 @@ void parsefile(std::fstream& f, parser_& parser)
         parser.end_of_data();
 }
 
+void Query2DB(QSqlDatabase db,std::string &fields,std::string &values)
+{
+    QSqlQuery query(db);
+
+    //    finalize query string
+    fields+=") ";
+    values+=")";
+
+    fields = std::regex_replace(fields, std::regex("\\(, "), "\(");
+    values = std::regex_replace(values, std::regex("\\(, "), "\(");
+
+    //    concatenate fields and values into one QString for execution
+    QString QueryforQT;
+    QueryforQT=QString::fromStdString(fields+values);
+
+    //    concatenate fields and values into one QString for execution
+    query.prepare(QueryforQT);
+
+    if( !query.exec() )
+    {
+        std::cout <<"query error:  " +   QueryforQT.toStdString()   << std::endl;
+        qDebug() << query.lastError();
+    }
+    else
+    {
+//        qDebug() << "query executed succesfully !";
+    }
+}
+
+ACICD::ACICD(QSqlDatabase db,std::string path_name)
+{
+    this->path_name=path_name;
+    this->db=db;
+}
 
 bool ACICD::parse_ACICD(void)
 {
-    dvp::csv_parser<dvp::csv_stl_traits> parser;
-    dvp::csv_data data;
     dvp::acicd_data_handler handler(data, true, parser);
 
     std::fstream f(this->path_name.c_str());
@@ -46,6 +72,33 @@ bool ACICD::parse_ACICD(void)
 
     return true;
 }
+
+bool ACICD::create_ACICD_tables(void)
+{
+    QSqlQuery query(db);
+    QString query_string;
+
+    query_string="BEGIN;\n" +DB_QUERY_CREATE_ACICD
+                            +DB_QUERY_CREATE_EQUIPMENT
+                            +DB_QUERY_CREATE_CONNECTOR
+                            +DB_QUERY_CREATE_Connector_Line_type
+                            +DB_QUERY_CREATE_Connector_Pin_Role
+                            +DB_QUERY_CREATE_Connection_Name
+                 +"COMMIT;\n";
+
+
+    query.prepare(query_string);
+    if( !query.exec() )
+    qDebug() << query.lastError();
+    else
+    qDebug() << "Tables created!";
+
+    return true;
+}
+
+
+
+
 
 bool ACICD::ACICD2DB(void)
 {
@@ -66,62 +119,6 @@ bool ACICD::ACICD2DB(void)
                                                       { 5, "Pin_Role" },
                                                       { 6, "Line_Type" }
                                                     };
-
-
-
-    QSqlQuery query(db);
-    query.prepare(DB_QUERY_CREATE_ACICD);
-    if( !query.exec() )
-    qDebug() << query.lastError();
-    else
-    qDebug() << "Table created!";
-
-    query.prepare(DB_QUERY_CREATE_EQUIPMENT);
-    if( !query.exec() )
-    qDebug() << query.lastError();
-    else
-    qDebug() << "Table created!";
-
-
-    query.prepare(DB_QUERY_CREATE_CONNECTOR);
-    if( !query.exec() )
-    qDebug() << query.lastError();
-    else
-    qDebug() << "Table created!";
-
-
-
-    query.prepare(DB_QUERY_CREATE_Connector_Line_type);
-    if( !query.exec() )
-    qDebug() << query.lastError();
-    else
-    qDebug() << "Table created!";
-
-    query.prepare(DB_QUERY_CREATE_Connector_Pin_Role);
-    if( !query.exec() )
-    qDebug() << query.lastError();
-    else
-    qDebug() << "Table created!";
-
-    query.prepare(DB_QUERY_CREATE_Connection_Name);
-    if( !query.exec() )
-    qDebug() << query.lastError();
-    else
-    qDebug() << "Table created!";
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -181,4 +178,5 @@ bool ACICD::ACICD2DB(void)
            Query2DB(db,query_field,query_values);
        }
     }
+    return true;
 }

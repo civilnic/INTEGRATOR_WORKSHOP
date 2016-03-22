@@ -23,7 +23,7 @@ const QString DB_QUERY_CREATE_EQUIPMENT="\
      [Type] VARCHAR( 45 ) NULL,\
      [EMC Protection] VARCHAR( 45 ) NULL,\
      [Zone] VARCHAR( 45 ) NULL\
-    );\
+    );\n\
 ";
 
 
