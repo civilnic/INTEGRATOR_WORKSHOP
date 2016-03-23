@@ -8,6 +8,7 @@
 #include "csv_parser.h"
 #include "csv_stl_traits.h"
 #include "csv_data.h"
+
 #include <boost/optional/optional_io.hpp>
 #include "boost/lexical_cast.hpp"
 
@@ -46,9 +47,7 @@ CREATE TABLE IF NOT EXISTS [ACICD](\
  [Version] VARCHAR( 45 ) NULL,\
   CONSTRAINT [Equipment]\
   FOREIGN KEY([Equipment])\
-    REFERENCES [EQUIPMENT] ( [id] )\
-);\n\
-";
+    REFERENCES [EQUIPMENT] ( [id] ));\n";
 
 
 #endif // ACICD_H

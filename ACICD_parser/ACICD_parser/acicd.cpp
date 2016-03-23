@@ -1,5 +1,11 @@
 #include "acicd.h"
 
+ACICD::ACICD(QSqlDatabase db,std::string path_name)
+{
+    this->path_name=path_name;
+    this->db=db;
+}
+
 template<typename parser_>
 void parsefile(std::fstream& f, parser_& parser)
 {
@@ -49,11 +55,6 @@ void Query2DB(QSqlDatabase db,std::string &fields,std::string &values)
     }
 }
 
-ACICD::ACICD(QSqlDatabase db,std::string path_name)
-{
-    this->path_name=path_name;
-    this->db=db;
-}
 
 bool ACICD::parse_ACICD(void)
 {
@@ -64,7 +65,7 @@ bool ACICD::parse_ACICD(void)
     if ( f.peek() == std::ifstream::traits_type::eof() )
     {
        // Empty File
-       std::cout << "The file "+this->path_name+" is empty" << std::endl;
+      //std::cout << "The file "+this->path_name+" is empty" << std::endl;
        return false;
     }
 
@@ -78,20 +79,14 @@ bool ACICD::create_ACICD_tables(void)
     QSqlQuery query(db);
     QString query_string;
 
-    query_string="BEGIN;\n" +DB_QUERY_CREATE_ACICD
-                            +DB_QUERY_CREATE_EQUIPMENT
-                            +DB_QUERY_CREATE_CONNECTOR
-                            +DB_QUERY_CREATE_Connector_Line_type
-                            +DB_QUERY_CREATE_Connector_Pin_Role
-                            +DB_QUERY_CREATE_Connection_Name
-                 +"COMMIT;\n";
+    query_string="BEGIN;\n" + DB_QUERY_CREATE_ACICD + DB_QUERY_CREATE_EQUIPMENT + DB_QUERY_CREATE_CONNECTOR + DB_QUERY_CREATE_Connector_Line_type + DB_QUERY_CREATE_Connector_Pin_Role + DB_QUERY_CREATE_Connection_Name + "COMMIT;\n";
 
 
     query.prepare(query_string);
     if( !query.exec() )
-    qDebug() << query.lastError();
+        qDebug() << query.lastError();
     else
-    qDebug() << "Tables created!";
+        qDebug() << "Tables created!";
 
     return true;
 }
@@ -119,10 +114,6 @@ bool ACICD::ACICD2DB(void)
                                                       { 5, "Pin_Role" },
                                                       { 6, "Line_Type" }
                                                     };
-
-
-
-
 
 
     for(it=data.begin();it!=data.end();++it)

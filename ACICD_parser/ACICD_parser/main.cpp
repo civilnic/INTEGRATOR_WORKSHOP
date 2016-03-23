@@ -1,7 +1,5 @@
-#include <string>
 #include "sql_database.h"
 #include "acicd.h"
-#define q2c(string) string.toStdString()
 
 using namespace std;
 
