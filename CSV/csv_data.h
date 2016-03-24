@@ -149,6 +149,7 @@ public:
 //std::cout <<section_name[0].compare(*it_column_name) << std::endl;
                 if(section_name[0].compare(*it_column_name)==0)
                 {
+<<<<<<< HEAD
 //                    std::cout <<"avant test: " << std::endl;
 //                    std::cout <<*it_column_name << std::endl;
 //                    std::cout <<"section_name: " << std::endl;
@@ -160,6 +161,18 @@ public:
                     section=it_headers - vect_header.begin()+1;
                      acicd_section_id=acicd_data_section(section);
              //        printf("acicd_data_section: %d\n",acicd_section_id);
+=======
+                    std::cout <<"avant test: " << std::endl;
+                    std::cout <<*it_column_name << std::endl;
+                    std::cout <<"section_name: " << std::endl;
+                   std::cout <<section_name[0] << std::endl;
+                     std::cout <<"entete: " << std::endl;
+                     std::cout <<*it_column_name << std::endl;
+                     std::cout <<"indice: " << std::endl;
+                     std::cout <<it_headers - vect_header.begin()+1<< std::endl;
+                     acicd_section_id=acicd_data_section(it_headers - vect_header.begin()+1);
+                      printf("acicd_data_section: %d\n",acicd_section_id);
+>>>>>>> parent of 42a6387... debut test base de donnee
                 }
 //                for(std::vector<std::string>::const_iterator it_column_name=(*it_headers).begin();it_column_name!=(*it_headers).end();++it_column_name)
 //                {
@@ -177,20 +190,20 @@ public:
             if(section_name[0].compare(key_word_begin_data_section)==0)
             {
                 acicd_localization=acicd_header_section::Begin;
-//                std::cout <<"passage a begin" << std::endl;
+                std::cout <<"passage a begin" << std::endl;
                 return true;
             }
             else if(section_name[0].compare(key_word_end_data_section)==0)
             {
                 acicd_localization=acicd_header_section::End;
- //               std::cout <<"passage a end" << std::endl;
+                std::cout <<"passage a end" << std::endl;
                 return true;
             }
 
             if(acicd_localization==acicd_header_section::Begin)
             {
                 acicd_localization=acicd_header_section::Header;
-//                std::cout <<"passage a header" << std::endl;
+                std::cout <<"passage a header" << std::endl;
                 return true;
             }
 
@@ -198,7 +211,7 @@ public:
             {
                 acicd_localization=acicd_header_section::Data;
               //  section_name.clear();
- //               std::cout <<"passage a data" << std::endl;
+                std::cout <<"passage a data" << std::endl;
                 return true;
             }
 
