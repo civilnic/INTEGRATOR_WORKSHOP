@@ -3,17 +3,12 @@
 
 #include <vector>
 #include <string>
+#include <sstream>
 #include <boost/optional.hpp>
 #include <boost/algorithm/string.hpp>
-
+#include "boost/lexical_cast.hpp"
 #include "acicd_header.h"
 
-#include <sstream>
-std::string intToString(int i) {
-     std::ostringstream oss;
-     oss << i;
-     return oss.str();
-}
 
 namespace dvp
 {
@@ -129,6 +124,7 @@ class acicd_data_handler
     acicd_header_section acicd_localization;
     std::vector<std::string> section_name;
     acicd_data_section acicd_section_id;
+    int section;
 
 public:
 
@@ -161,7 +157,8 @@ public:
 //                     std::cout <<*it_column_name << std::endl;
 //                     std::cout <<"indice: " << std::endl;
 //                     std::cout <<it_headers - vect_header.begin()+1<< std::endl;
-                     acicd_section_id=acicd_data_section(it_headers - vect_header.begin()+1);
+                    section=it_headers - vect_header.begin()+1;
+                     acicd_section_id=acicd_data_section(section);
              //        printf("acicd_data_section: %d\n",acicd_section_id);
                 }
 //                for(std::vector<std::string>::const_iterator it_column_name=(*it_headers).begin();it_column_name!=(*it_headers).end();++it_column_name)
@@ -229,7 +226,8 @@ public:
             {
                 data_.new_record();
                 at_beginning_of_line = false;
-                data_.add_field(intToString((int)acicd_section_id));
+                data_.add_field(boost::lexical_cast<std::string,int>(section));
+
             }
             data_.add_field(s);
         }
@@ -250,13 +248,14 @@ public:
         acicd_localization(acicd_header_section::Comment),
         acicd_section_id(acicd_data_section::UNDEF),
         at_first_line(true)
-    {
+        {
         parser.comment_handler = [this](std::string const& s) { return this->comment_handler(s); };
         parser.field_handler = [this](std::string const& s) { return this->field_handler(s); };
         parser.end_line_handler = [this]() { return this->end_line_handler(); };
-    }
+        }
 
 };
+
 }
 
 #endif

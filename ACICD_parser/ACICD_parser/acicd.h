@@ -50,4 +50,6 @@ CREATE TABLE IF NOT EXISTS [ACICD](\
     REFERENCES [EQUIPMENT] ( [id] ));\n";
 
 
+
+
 #endif // ACICD_H
