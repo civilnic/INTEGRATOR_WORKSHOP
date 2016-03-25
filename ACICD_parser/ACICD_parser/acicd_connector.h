@@ -11,36 +11,31 @@ public:
     acicd_connector();
 };
 
-const QString DB_QUERY_CREATE_CONNECTOR="\
-    CREATE TABLE IF NOT EXISTS [CONNECTOR](\
-     [id] INTEGER CONSTRAINT [pk_CONNECTOR] PRIMARY KEY  NOT NULL,\
-      [Equipment] INTEGER NULL,\
-      [ACICD] INTEGER NULL,\
-      [Type] VARCHAR( 45 ) NULL,\
-      [Name] VARCHAR( 45 ) NULL,\
-      [Pin] VARCHAR( 45 ) NULL,\
-      [Pin_Role] INTEGER NULL,\
-      [Connection_Name] INTEGER NULL,\
-      [Line_Type] INTEGER NULL,\
-      [Speed] INTEGER NULL,\
-      [NetworkId] VARCHAR( 3 ) NULL,\
-       CONSTRAINT [Equipment]\
-       FOREIGN KEY([Equipment])\
-         REFERENCES [EQUIPMENT] ( [id] ),\
-       CONSTRAINT [ACICD]\
-       FOREIGN KEY([ACICD])\
-         REFERENCES [ACICD] ( [id] ),\
-       CONSTRAINT [Pin_Role]\
-       FOREIGN KEY([Pin_Role])\
-         REFERENCES [Connector_Pin_Role] ( [id] ),\
-       CONSTRAINT [Line_Type]\
-       FOREIGN KEY([Line_Type])\
-         REFERENCES [Connector_Line_type] ( [id] ),\
-       CONSTRAINT [Connection_Name]\
-       FOREIGN KEY([Connection_Name])\
-         REFERENCES [Connection_Name] ( [id] )\
-    );\n\
- ";
+const QString DB_QUERY_CREATE_CONNECTOR="CREATE TABLE IF NOT EXISTS [CONNECTOR]([id] INTEGER CONSTRAINT [pk_CONNECTOR] PRIMARY KEY  NOT NULL,[Equipment] INTEGER NULL,[ACICD] INTEGER NULL,\n\
+[Type] VARCHAR( 45 ) NULL,\n\
+[Name] VARCHAR( 45 ) NULL,\n\
+[Pin] VARCHAR( 45 ) NULL,\n\
+[Pin_Role] INTEGER NULL,\n\
+[Connection_Name] INTEGER NULL,\n\
+[Line_Type] INTEGER NULL,\n\
+[Speed] INTEGER NULL,\n\
+[NetworkId] VARCHAR( 3 ) NULL,\n\
+CONSTRAINT [Equipment]\n\
+FOREIGN KEY([Equipment])\n\
+REFERENCES [EQUIPMENT] ( [id] ),\n\
+CONSTRAINT [ACICD]\n\
+FOREIGN KEY([ACICD])\n\
+REFERENCES [ACICD] ( [id] ),\n\
+CONSTRAINT [Pin_Role]\n\
+FOREIGN KEY([Pin_Role])\n\
+REFERENCES [Connector_Pin_Role] ( [id] ),\n\
+CONSTRAINT [Line_Type]\n\
+FOREIGN KEY([Line_Type])\n\
+REFERENCES [Connector_Line_type] ( [id] ),\n\
+CONSTRAINT [Connection_Name]\n\
+FOREIGN KEY([Connection_Name])\n\
+REFERENCES [Connection_Name] ( [id] )\n\
+);\n";
 
 
 const QString DB_QUERY_CREATE_Connector_Line_type="\

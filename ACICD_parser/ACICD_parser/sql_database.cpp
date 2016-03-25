@@ -24,6 +24,7 @@ void sql_database::open_database(QSqlDatabase db)
     }else{
       qDebug( "Connected!" );
     }
+    db.transaction();
 }
 
 void sql_database::set_dbname(std::string name)

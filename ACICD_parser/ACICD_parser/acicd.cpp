@@ -1,9 +1,16 @@
 #include "acicd.h"
 
-ACICD::ACICD(QSqlDatabase db,std::string path_name)
+#include "csv_parser.h"
+#include "csv_stl_traits.h"
+#include "csv_data.h"
+#include <boost/optional/optional_io.hpp>
+#include "boost/lexical_cast.hpp"
+
+ACICD::ACICD(QSqlDatabase *db,std::string path_name)
 {
     this->path_name=path_name;
     this->db=db;
+    ACICD::create_ACICD_tables();
 }
 
 template<typename parser_>
@@ -26,9 +33,9 @@ void parsefile(std::fstream& f, parser_& parser)
         parser.end_of_data();
 }
 
-void Query2DB(QSqlDatabase db,std::string &fields,std::string &values)
+void Query2DB(QSqlDatabase *db,std::string &fields,std::string &values)
 {
-    QSqlQuery query(db);
+    QSqlQuery query(*db);
 
     //    finalize query string
     fields+=") ";
@@ -51,13 +58,16 @@ void Query2DB(QSqlDatabase db,std::string &fields,std::string &values)
     }
     else
     {
-//        qDebug() << "query executed succesfully !";
+        qDebug() << "query executed succesfully !";
     }
 }
 
 
 bool ACICD::parse_ACICD(void)
 {
+    dvp::csv_parser<dvp::csv_stl_traits> parser;
+    dvp::csv_data data;
+
     dvp::acicd_data_handler handler(data, true, parser);
 
     std::fstream f(this->path_name.c_str());
@@ -71,32 +81,6 @@ bool ACICD::parse_ACICD(void)
 
     parsefile(f, parser);
 
-    return true;
-}
-
-bool ACICD::create_ACICD_tables(void)
-{
-    QSqlQuery query(db);
-    QString query_string;
-
-    query_string="BEGIN;\n" + DB_QUERY_CREATE_ACICD + DB_QUERY_CREATE_EQUIPMENT + DB_QUERY_CREATE_CONNECTOR + DB_QUERY_CREATE_Connector_Line_type + DB_QUERY_CREATE_Connector_Pin_Role + DB_QUERY_CREATE_Connection_Name + "COMMIT;\n";
-
-
-    query.prepare(query_string);
-    if( !query.exec() )
-        qDebug() << query.lastError();
-    else
-        qDebug() << "Tables created!";
-
-    return true;
-}
-
-
-
-
-
-bool ACICD::ACICD2DB(void)
-{
     dvp::csv_data::const_iterator it;
     std::vector<std::string>::const_iterator it_record;
     acicd_data_section section;
@@ -169,5 +153,27 @@ bool ACICD::ACICD2DB(void)
            Query2DB(db,query_field,query_values);
        }
     }
+    db->commit();
+    return true;
+}
+
+bool ACICD::create_ACICD_tables(void)
+{
+    QSqlQuery query(*db);
+    QString query_string;
+
+    query_string=DB_QUERY_CREATE_ACICD + DB_QUERY_CREATE_EQUIPMENT + DB_QUERY_CREATE_CONNECTOR + DB_QUERY_CREATE_Connector_Line_type + DB_QUERY_CREATE_Connector_Pin_Role + DB_QUERY_CREATE_Connection_Name;
+    //   query_string="BEGIN;\n" + DB_QUERY_CREATE_ACICD + DB_QUERY_CREATE_EQUIPMENT + DB_QUERY_CREATE_CONNECTOR + DB_QUERY_CREATE_Connector_Line_type + DB_QUERY_CREATE_Connector_Pin_Role + DB_QUERY_CREATE_Connection_Name + "COMMIT;\n";
+
+
+    query.prepare(query_string);
+    if( !query.exec() )
+    {
+         std::cout << "query_string: "+ query_string.toStdString()   << std::endl;
+        qDebug() << query.lastError();
+    }
+    else
+        qDebug() << "Tables created!";
+
     return true;
 }

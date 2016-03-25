@@ -149,7 +149,6 @@ public:
 //std::cout <<section_name[0].compare(*it_column_name) << std::endl;
                 if(section_name[0].compare(*it_column_name)==0)
                 {
-<<<<<<< HEAD
 //                    std::cout <<"avant test: " << std::endl;
 //                    std::cout <<*it_column_name << std::endl;
 //                    std::cout <<"section_name: " << std::endl;
@@ -161,18 +160,7 @@ public:
                     section=it_headers - vect_header.begin()+1;
                      acicd_section_id=acicd_data_section(section);
              //        printf("acicd_data_section: %d\n",acicd_section_id);
-=======
-                    std::cout <<"avant test: " << std::endl;
-                    std::cout <<*it_column_name << std::endl;
-                    std::cout <<"section_name: " << std::endl;
-                   std::cout <<section_name[0] << std::endl;
-                     std::cout <<"entete: " << std::endl;
-                     std::cout <<*it_column_name << std::endl;
-                     std::cout <<"indice: " << std::endl;
-                     std::cout <<it_headers - vect_header.begin()+1<< std::endl;
-                     acicd_section_id=acicd_data_section(it_headers - vect_header.begin()+1);
-                      printf("acicd_data_section: %d\n",acicd_section_id);
->>>>>>> parent of 42a6387... debut test base de donnee
+
                 }
 //                for(std::vector<std::string>::const_iterator it_column_name=(*it_headers).begin();it_column_name!=(*it_headers).end();++it_column_name)
 //                {
