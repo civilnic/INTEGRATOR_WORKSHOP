@@ -6,11 +6,29 @@
 #include <boost/optional/optional_io.hpp>
 #include "boost/lexical_cast.hpp"
 
-ACICD::ACICD(QSqlDatabase *db,std::string path_name)
+ACICD::ACICD(sql_database_manager *BDD,QString filename)
 {
-    this->path_name=path_name;
-    this->db=db;
-    ACICD::create_ACICD_tables();
+    printf("creation objet ACICD\n");
+    path_name=filename;
+    db=(*BDD).get_db();
+
+    int ret=0;
+
+    if(BDD->create_acicd_table())
+    {
+        if(!BDD->is_acicd_exist(path_name))
+        {
+            db_id=BDD->insert_acicd(path_name,"",0,5,"V4.5");
+            printf("insert_acicd db_id: %d\n",db_id);
+            db->commit();
+        }
+    }
+    else
+    {
+        printf("failed to create ACICD table\n");
+    }
+
+
 }
 
 template<typename parser_>
@@ -70,7 +88,7 @@ bool ACICD::parse_ACICD(void)
 
     dvp::acicd_data_handler handler(data, true, parser);
 
-    std::fstream f(this->path_name.c_str());
+    std::fstream f(this->path_name.toStdString().c_str());
 
     if ( f.peek() == std::ifstream::traits_type::eof() )
     {
@@ -153,27 +171,6 @@ bool ACICD::parse_ACICD(void)
            Query2DB(db,query_field,query_values);
        }
     }
-    db->commit();
-    return true;
-}
-
-bool ACICD::create_ACICD_tables(void)
-{
-    QSqlQuery query(*db);
-    QString query_string;
-
-    query_string=DB_QUERY_CREATE_ACICD + DB_QUERY_CREATE_EQUIPMENT + DB_QUERY_CREATE_CONNECTOR + DB_QUERY_CREATE_Connector_Line_type + DB_QUERY_CREATE_Connector_Pin_Role + DB_QUERY_CREATE_Connection_Name;
-    //   query_string="BEGIN;\n" + DB_QUERY_CREATE_ACICD + DB_QUERY_CREATE_EQUIPMENT + DB_QUERY_CREATE_CONNECTOR + DB_QUERY_CREATE_Connector_Line_type + DB_QUERY_CREATE_Connector_Pin_Role + DB_QUERY_CREATE_Connection_Name + "COMMIT;\n";
-
-
-    query.prepare(query_string);
-    if( !query.exec() )
-    {
-         std::cout << "query_string: "+ query_string.toStdString()   << std::endl;
-        qDebug() << query.lastError();
-    }
-    else
-        qDebug() << "Tables created!";
-
+    (*db).commit();
     return true;
 }

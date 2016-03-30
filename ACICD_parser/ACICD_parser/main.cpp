@@ -1,4 +1,3 @@
-#include "sql_database.h"
 #include "acicd.h"
 
 #include <iostream>
@@ -10,16 +9,13 @@ using namespace std;
 
 int main(void)
 {
-    sql_database BDD;
+    sql_database_manager *BDD;
+    BDD= new sql_database_manager();
 
-    QSqlDatabase db=BDD.create_database();
-    BDD.open_database(db);
-
-    ACICD acicd_object(&db,"acicd.csv");
+    QString acicd_name="acicd.csv";
+    ACICD objet_acicd(BDD,acicd_name);
 
  //   acicd_object.parse_ACICD();
-
-    db.close();
 
     return 0;
 }

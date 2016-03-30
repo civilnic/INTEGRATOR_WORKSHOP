@@ -15,18 +15,6 @@ private:
 };
 
 
-const QString DB_QUERY_CREATE_EQUIPMENT="\
-    CREATE TABLE IF NOT EXISTS [EQUIPMENT](      \
-     [id] INTEGER CONSTRAINT [pk_EQUIPMENT] PRIMARY KEY  NOT NULL,  \
-     [Name] VARCHAR( 45 ) NULL,                                     \
-     [Description] VARCHAR( 45 ) NULL,  \
-     [Type] VARCHAR( 45 ) NULL,\
-     [EMC Protection] VARCHAR( 45 ) NULL,\
-     [Zone] VARCHAR( 45 ) NULL\
-    );\n\
-";
-
-
 
 
 #endif // ACICD_EQUIPMENT_H
