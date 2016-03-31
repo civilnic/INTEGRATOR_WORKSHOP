@@ -15,7 +15,8 @@ int main(void)
     QString acicd_name="acicd.csv";
     ACICD objet_acicd(BDD,acicd_name);
 
- //   acicd_object.parse_ACICD();
+    objet_acicd.parse_ACICD();
+
 
     return 0;
 }

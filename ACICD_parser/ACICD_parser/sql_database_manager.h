@@ -1,6 +1,7 @@
 #ifndef SQL_DATABASE_H
 #define SQL_DATABASE_H
 
+#include <iostream>
 #include <QSqlDatabase>
 #include <QtSql>
 
@@ -13,6 +14,7 @@ public:
     void set_dbname(std::string name);
     bool create_acicd_table(void);
     int insert_acicd(QString Name, QString Path, int Micd, int Equipment, QString Version);
+    int insert_equipment(QString Name, QString Path, int Micd, int Equipment, QString Version);
     bool is_acicd_exist(QString Name);
     bool delete_acicd(int id);
     std::string get_dbname(void);

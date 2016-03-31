@@ -22,6 +22,10 @@ ACICD::ACICD(sql_database_manager *BDD,QString filename)
             printf("insert_acicd db_id: %d\n",db_id);
             db->commit();
         }
+        else
+        {
+            std::cout << path_name.toStdString() + " already exists in db" << std::endl;
+        }
     }
     else
     {
@@ -104,12 +108,7 @@ bool ACICD::parse_ACICD(void)
     acicd_data_section section;
     int indice;
 
-    std::map<int,std::string> DB_FIELDS_EQUIPMENT = { { 2, "Name" },
-                                                      { 3, "Description" },
-                                                      { 4, "Type" },
-                                                      { 5, "EMC Protection" },
-                                                      { 6, "Zone" }
-                                                    };
+
     std::map<int,std::string> DB_FIELDS_CONNECTOR = { { 2, "Type" },
                                                       { 3, "Name" },
                                                       { 4, "Pin" },
@@ -125,25 +124,25 @@ bool ACICD::parse_ACICD(void)
 
        if(section==acicd_data_section::EQUIPMENT)
        {
-           std::string query_field="INSERT INTO EQUIPMENT (" ;
-           std::string query_values="VALUES (" ;
+
+           acicd_equipment *equipment_obj=new acicd_equipment();
 
            for(it_record=it->begin();it_record!=it->end();++it_record)
            {
-
-               if(DB_FIELDS_EQUIPMENT.count(it_record-it->begin())==1)
+               if(equipment_obj->DB_FIELDS_EQUIPMENT.count(it_record-it->begin())==1)
                {
                     if((*it_record).empty()!=1)
                     {
-                        query_field+=", \'"+DB_FIELDS_EQUIPMENT[it_record-it->begin()]+"\'";
-                        query_values+=", \'"+*it_record+"\'";
 
+                        equipment_obj->set_parameters(it_record-it->begin(),*it_record);
 //                        std::cout << it_record-it->begin()   << std::endl;
 //                        std::cout <<"test nasa:" +   *it_record   << std::endl;
                     }
                }
            }
-           Query2DB(db,query_field,query_values);
+
+           BDD->insert_equipment(equipment_obj);
+           free(equipment_obj);
        }
 
        if(section==acicd_data_section::CONNECTOR)

@@ -43,24 +43,25 @@ std::string sql_database_manager::get_dbname(void)
 int sql_database_manager::insert_acicd(QString Name, QString Path, int Micd, int Equipment, QString Version)
 {
     int newId = -1;
-    bool ret = false;
+    bool success = false;
 
     if (database.isOpen())
     {
         // NULL = is the keyword for the autoincrement to generate next value
 
         QSqlQuery query(database);
-        ret = query.exec(QString("INSERT INTO ACICD VALUES(NULL,'%1','%2',%3,%4,'%5')").arg(Name).arg(Path).arg(Micd).arg(Equipment).arg(Version));
+        success = query.exec(QString("INSERT INTO ACICD VALUES(NULL,'%1','%2',%3,%4,'%5')").arg(Name).arg(Path).arg(Micd).arg(Equipment).arg(Version));
 
         // Get database given autoincrement value
-        if (ret)
+        if (success)
         {
             // http://www.sqlite.org/c3ref/last_insert_rowid.html
             newId = query.lastInsertId().toInt();
         }
         else
         {
-            qDebug() << query.lastError();
+            qDebug() << "insert_acicd: "
+                     << query.lastError();
         }
 
     }
@@ -70,47 +71,99 @@ int sql_database_manager::insert_acicd(QString Name, QString Path, int Micd, int
 
 bool sql_database_manager::is_acicd_exist(QString Name)
 {
-    bool ret = false;
+    bool success = false;
     if (database.isOpen())
     {
         QSqlQuery query(database);
-        query.exec(QString("SELECT * FROM ACICD WHERE Name=%1").arg(Name));
-        printf("insert_acicd query.size(): %d\n",query.size());
-        if(query.size()>1)
+
+        query.prepare("SELECT Name FROM ACICD WHERE Name = (:name)");
+        query.bindValue(":name", Name);
+
+
+        success=query.exec();
+
+        if(!success)
         {
-            ret=true;
+            qDebug() << "delete_acicd: "
+                     << query.lastError();
         }
-        database.commit();
+        else
+        {
+            // on first valid record
+            query.first();
+
+            // record is valid
+            if(query.isValid())
+            {
+                // number of matching record = 0 => acicd is not in db
+                if(query.value(0)==0)
+                {
+                 success=false;
+                }
+
+                // acicd is already in db
+                else
+                {
+                 success=true;
+                }
+            }
+            // record is not valid => query.first failed => no entry in db => acicd is not in db
+            else
+            {
+                success=false;
+            }
+        }
     }
-    return ret;
+    return success;
 }
 
 
 bool sql_database_manager::delete_acicd(int id)
 {
-    bool ret = false;
+    bool success = false;
     if (database.isOpen())
     {
         QSqlQuery query(database);
-        ret = query.exec(QString("DELETE FROM ACICD WHERE ID=%1").arg(id));
-        database.commit();
+
+        query.prepare("DELETE FROM ACICD WHERE Id = (:id)");
+        query.bindValue(":id", id);
+
+        success=query.exec();
+
+        if(!success)
+        {
+            qDebug() << "delete_acicd: "
+                     << query.lastError();
+        }
+        else
+        {
+            database.commit();
+        }
 
     }
-    return ret;
+    return success;
 }
 
 bool sql_database_manager::create_acicd_table(void)
 {
 
     // Create table "ACICD"
-    bool ret = false;
+    bool success = false;
     if (database.isOpen())
     {
         QSqlQuery query(database);
-        ret = query.exec(DB_QUERY_CREATE_ACICD);
-        database.commit();
+        success = query.exec(DB_QUERY_CREATE_ACICD);
+        if(!success)
+        {
+            qDebug() << "create_acicd_table: "
+                     << query.lastError();
+        }
+        else
+        {
+            database.commit();
+        }
     }
-    return ret;
+    return success;
 
 }
 
