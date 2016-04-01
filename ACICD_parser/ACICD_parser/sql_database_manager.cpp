@@ -42,31 +42,44 @@ std::string sql_database_manager::get_dbname(void)
 
 int sql_database_manager::insert_acicd(QString Name, QString Path, int Micd, int Equipment, QString Version)
 {
-    int newId = -1;
+    int Id = -1;
     bool success = false;
 
     if (database.isOpen())
     {
-        // NULL = is the keyword for the autoincrement to generate next value
+        Id=this->is_acicd_exist(Name);
 
-        QSqlQuery query(database);
-        success = query.exec(QString("INSERT INTO ACICD VALUES(NULL,'%1','%2',%3,%4,'%5')").arg(Name).arg(Path).arg(Micd).arg(Equipment).arg(Version));
-
-        // Get database given autoincrement value
-        if (success)
+        // acicd is not in DB
+        if(Id==0)
         {
-            // http://www.sqlite.org/c3ref/last_insert_rowid.html
-            newId = query.lastInsertId().toInt();
-        }
-        else
-        {
-            qDebug() << "insert_acicd: "
-                     << query.lastError();
-        }
+            // NULL = is the keyword for the autoincrement to generate next value
 
+            QSqlQuery query(database);
+            query.prepare("INSERT INTO ACICD VALUES(NULL,:Name,:Path,:Micd,:Equipment,:Version)");
+
+            query.bindValue(":Name", Name);
+            query.bindValue(":Path", Path);
+            query.bindValue(":Micd", Micd);
+            query.bindValue(":Equipment", Equipment);
+            query.bindValue(":Version", Version);
+
+            success = query.exec();
+
+            // Get database given autoincrement value
+            if (success)
+            {
+                // http://www.sqlite.org/c3ref/last_insert_rowid.html
+                Id = query.lastInsertId().toInt();
+            }
+            else
+            {
+                qDebug() << "insert_acicd: "
+                         << query.lastError();
+            }
+        }
     }
 
-    return newId;
+    return Id;
 }
 
 int sql_database_manager::insert_equipment(acicd_equipment *equipment)
@@ -76,6 +89,8 @@ int sql_database_manager::insert_equipment(acicd_equipment *equipment)
 
     if (database.isOpen())
     {
+        //if(! this->is_equipment_exist(equipment->get_name())
+
         // NULL = is the keyword for the autoincrement to generate next value
 
         QSqlQuery query(database);
@@ -84,20 +99,17 @@ int sql_database_manager::insert_equipment(acicd_equipment *equipment)
         std::string query_values="VALUES (" ;
         QString Query;
         int indice=0;
-        std::map<int,std::string>::iterator iterator;
+        std::map<QString,QString>::iterator iterator;
 
-        for(iterator=(equipment->DB_FIELDS_EQUIPMENT).begin();iterator!=(equipment->DB_FIELDS_EQUIPMENT.end());++iterator)
+
+        query.prepare("INSERT INTO EQUIPMENT VALUES(NULL,:Name,:Description,:Type,:EMC_Protection,:Zone)");
+
+        for(iterator=(equipment->DB_FIELDS_VALUES).begin();iterator!=(equipment->DB_FIELDS_VALUES.end());++iterator)
         {
-            indice=iterator -(equipment->DB_FIELDS_EQUIPMENT.begin());
-
-            query_field +=", \'" + equipment->DB_FIELDS_EQUIPMENT[indice] + "\'";
-            query_values +=", \'" + equipment->DB_FIELDS_VALUES[indice] + "\'";
+            query.bindValue(":"+iterator->first, equipment->DB_FIELDS_VALUES[iterator->second]);
         }
 
-        Query=this->end_Query(query_field,query_values);
-
-        query.prepare(Query);
-        success = query.exec(Query);
+        success = query.exec();
 
         // Get database given autoincrement value
         if (success)
@@ -118,14 +130,62 @@ int sql_database_manager::insert_equipment(acicd_equipment *equipment)
 
 
 
-bool sql_database_manager::is_acicd_exist(QString Name)
+int sql_database_manager::is_acicd_exist(QString Name)
 {
     bool success = false;
     if (database.isOpen())
     {
         QSqlQuery query(database);
 
-        query.prepare("SELECT Name FROM ACICD WHERE Name = (:name)");
+        query.prepare("SELECT Id, Name FROM ACICD WHERE Name = (:name)");
+        query.bindValue(":name", Name);
+
+        success=query.exec();
+
+        if(!success)
+        {
+            qDebug() << "is_acicd_exist: "
+                     << query.lastError();
+        }
+        else
+        {
+            // on first valid record
+            query.first();
+
+            // record is valid
+            if(query.isValid())
+            {
+                // number of matching record = 0 => acicd is not in db
+                if(query.value("Id")==0)
+                {
+                    return 0;
+                }
+
+                // acicd is already in db
+                else
+                {
+                    return query.value("Id").toInt();
+                }
+            }
+            // record is not valid => query.first failed => no entry in db => acicd is not in db
+            else
+            {
+                return 0;
+            }
+        }
+    }
+    return -1;
+}
+
+
+bool sql_database_manager::is_equipement_exist(QString Name)
+{
+    bool success = false;
+    if (database.isOpen())
+    {
+        QSqlQuery query(database);
+
+        query.prepare("SELECT Name FROM EQUIPMENT WHERE Name = (:name)");
         query.bindValue(":name", Name);
 
 
@@ -133,7 +193,7 @@ bool sql_database_manager::is_acicd_exist(QString Name)
 
         if(!success)
         {
-            qDebug() << "delete_acicd: "
+            qDebug() << "is_equipement_exist: "
                      << query.lastError();
         }
         else
@@ -165,7 +225,6 @@ bool sql_database_manager::is_acicd_exist(QString Name)
     }
     return success;
 }
-
 
 bool sql_database_manager::delete_acicd(int id)
 {
@@ -220,20 +279,4 @@ bool sql_database_manager::create_acicd_table(void)
 QSqlDatabase *sql_database_manager::get_db(void)
 {
    return &database;
-}
-
-QString *sql_database_manager::end_Query(std::string &fields,std::string &values)
-{
-    //    finalize query string
-    fields+=") ";
-    values+=")";
-
-    fields = std::regex_replace(fields, std::regex("\\(, "), "\(");
-    values = std::regex_replace(values, std::regex("\\(, "), "\(");
-
-    //    concatenate fields and values into one QString for execution
-    QString QueryforQT;
-    QueryforQT=QString::fromStdString(fields+values);
-
-    return &QueryforQT;
 }

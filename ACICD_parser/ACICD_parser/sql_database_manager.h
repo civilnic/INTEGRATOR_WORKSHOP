@@ -17,7 +17,8 @@ public:
     bool create_acicd_table(void);
     int insert_acicd(QString Name, QString Path, int Micd, int Equipment, QString Version);
     int insert_equipment(acicd_equipment *equipment);
-    bool is_acicd_exist(QString Name);
+    int is_acicd_exist(QString Name);
+    bool is_equipement_exist(QString Name);
     bool delete_acicd(int id);
     std::string get_dbname(void);
     QSqlDatabase *get_db(void);
@@ -29,7 +30,6 @@ private:
     QString db_user="root";
     QString db_pass="";
     QString db_hostname="localhost";
-    QString *end_Query(std::string &fields,std::string &values);
 
     const QString DB_QUERY_CREATE_ACICD="CREATE TABLE IF NOT EXISTS [ACICD](\
      [id] INTEGER CONSTRAINT [pk_ACICD] NOT NULL PRIMARY KEY AUTOINCREMENT,\
@@ -97,7 +97,7 @@ private:
          [Name] VARCHAR( 45 ) NULL,                                     \
          [Description] VARCHAR( 45 ) NULL,  \
          [Type] VARCHAR( 45 ) NULL,\
-         [EMC Protection] VARCHAR( 45 ) NULL,\
+         [EMC_Protection] VARCHAR( 45 ) NULL,\
          [Zone] VARCHAR( 45 ) NULL\
         );\n\
     ";
