@@ -69,6 +69,55 @@ int sql_database_manager::insert_acicd(QString Name, QString Path, int Micd, int
     return newId;
 }
 
+int sql_database_manager::insert_equipment(acicd_equipment *equipment)
+{
+    int newId = -1;
+    bool success = false;
+
+    if (database.isOpen())
+    {
+        // NULL = is the keyword for the autoincrement to generate next value
+
+        QSqlQuery query(database);
+
+        std::string query_field="INSERT INTO EQUIPMENT (" ;
+        std::string query_values="VALUES (" ;
+        QString Query;
+        int indice=0;
+        std::map<int,std::string>::iterator iterator;
+
+        for(iterator=(equipment->DB_FIELDS_EQUIPMENT).begin();iterator!=(equipment->DB_FIELDS_EQUIPMENT.end());++iterator)
+        {
+            indice=iterator -(equipment->DB_FIELDS_EQUIPMENT.begin());
+
+            query_field +=", \'" + equipment->DB_FIELDS_EQUIPMENT[indice] + "\'";
+            query_values +=", \'" + equipment->DB_FIELDS_VALUES[indice] + "\'";
+        }
+
+        Query=this->end_Query(query_field,query_values);
+
+        query.prepare(Query);
+        success = query.exec(Query);
+
+        // Get database given autoincrement value
+        if (success)
+        {
+            // http://www.sqlite.org/c3ref/last_insert_rowid.html
+            newId = query.lastInsertId().toInt();
+        }
+        else
+        {
+            qDebug() << "insert_acicd: "
+                     << query.lastError();
+        }
+
+    }
+
+    return newId;
+}
+
+
+
 bool sql_database_manager::is_acicd_exist(QString Name)
 {
     bool success = false;
@@ -171,4 +220,20 @@ bool sql_database_manager::create_acicd_table(void)
 QSqlDatabase *sql_database_manager::get_db(void)
 {
    return &database;
+}
+
+QString *sql_database_manager::end_Query(std::string &fields,std::string &values)
+{
+    //    finalize query string
+    fields+=") ";
+    values+=")";
+
+    fields = std::regex_replace(fields, std::regex("\\(, "), "\(");
+    values = std::regex_replace(values, std::regex("\\(, "), "\(");
+
+    //    concatenate fields and values into one QString for execution
+    QString QueryforQT;
+    QueryforQT=QString::fromStdString(fields+values);
+
+    return &QueryforQT;
 }

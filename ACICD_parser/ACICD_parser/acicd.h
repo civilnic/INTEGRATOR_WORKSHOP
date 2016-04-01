@@ -17,12 +17,13 @@
 class ACICD
 {
 public:
-    ACICD(sql_database_manager *BDD,QString path_name);
+    ACICD(sql_database_manager *BDD_,QString path_name);
     bool parse_ACICD(void);
 private:
     int db_id;
     QString path_name;
     QSqlDatabase *db;
+    sql_database_manager *BDD;
 };
 
 

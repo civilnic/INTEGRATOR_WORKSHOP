@@ -5,6 +5,8 @@
 #include <QSqlDatabase>
 #include <QtSql>
 
+#include "acicd_equipment.h"
+
 class sql_database_manager
 {
 public:
@@ -14,7 +16,7 @@ public:
     void set_dbname(std::string name);
     bool create_acicd_table(void);
     int insert_acicd(QString Name, QString Path, int Micd, int Equipment, QString Version);
-    int insert_equipment(QString Name, QString Path, int Micd, int Equipment, QString Version);
+    int insert_equipment(acicd_equipment *equipment);
     bool is_acicd_exist(QString Name);
     bool delete_acicd(int id);
     std::string get_dbname(void);
@@ -27,6 +29,7 @@ private:
     QString db_user="root";
     QString db_pass="";
     QString db_hostname="localhost";
+    QString *end_Query(std::string &fields,std::string &values);
 
     const QString DB_QUERY_CREATE_ACICD="CREATE TABLE IF NOT EXISTS [ACICD](\
      [id] INTEGER CONSTRAINT [pk_ACICD] NOT NULL PRIMARY KEY AUTOINCREMENT,\

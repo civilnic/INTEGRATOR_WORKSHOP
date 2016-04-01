@@ -6,13 +6,12 @@
 #include <boost/optional/optional_io.hpp>
 #include "boost/lexical_cast.hpp"
 
-ACICD::ACICD(sql_database_manager *BDD,QString filename)
+ACICD::ACICD(sql_database_manager *BDD_,QString filename)
 {
     printf("creation objet ACICD\n");
     path_name=filename;
+    BDD=BDD_;
     db=(*BDD).get_db();
-
-    int ret=0;
 
     if(BDD->create_acicd_table())
     {
@@ -55,34 +54,7 @@ void parsefile(std::fstream& f, parser_& parser)
         parser.end_of_data();
 }
 
-void Query2DB(QSqlDatabase *db,std::string &fields,std::string &values)
-{
-    QSqlQuery query(*db);
 
-    //    finalize query string
-    fields+=") ";
-    values+=")";
-
-    fields = std::regex_replace(fields, std::regex("\\(, "), "\(");
-    values = std::regex_replace(values, std::regex("\\(, "), "\(");
-
-    //    concatenate fields and values into one QString for execution
-    QString QueryforQT;
-    QueryforQT=QString::fromStdString(fields+values);
-
-    //    concatenate fields and values into one QString for execution
-    query.prepare(QueryforQT);
-
-    if( !query.exec() )
-    {
-        std::cout <<"query error:  " +   QueryforQT.toStdString()   << std::endl;
-        qDebug() << query.lastError();
-    }
-    else
-    {
-        qDebug() << "query executed succesfully !";
-    }
-}
 
 
 bool ACICD::parse_ACICD(void)
@@ -145,30 +117,30 @@ bool ACICD::parse_ACICD(void)
            free(equipment_obj);
        }
 
-       if(section==acicd_data_section::CONNECTOR)
-       {
- //          std::cout <<(*it)[0] << std::endl;
+//       if(section==acicd_data_section::CONNECTOR)
+//       {
+//           std::cout <<(*it)[0] << std::endl;
 
-           std::string query_field="INSERT INTO CONNECTOR (" ;
-           std::string query_values="VALUES (" ;
+//           std::string query_field="INSERT INTO CONNECTOR (" ;
+//           std::string query_values="VALUES (" ;
 
-           for(it_record=it->begin();it_record!=it->end();++it_record)
-           {
+//           for(it_record=it->begin();it_record!=it->end();++it_record)
+//           {
 
-               if(DB_FIELDS_CONNECTOR.count(it_record-it->begin())==1)
-               {
-                    if((*it_record).empty()!=1)
-                    {
-                        query_field+=", \'"+DB_FIELDS_CONNECTOR[it_record-it->begin()]+"\'";
-                        query_values+=", \'"+*it_record+"\'";
+//               if(DB_FIELDS_CONNECTOR.count(it_record-it->begin())==1)
+//               {
+//                    if((*it_record).empty()!=1)
+//                    {
+//                        query_field+=", \'"+DB_FIELDS_CONNECTOR[it_record-it->begin()]+"\'";
+//                        query_values+=", \'"+*it_record+"\'";
 
 //                        std::cout << it_record-it->begin()   << std::endl;
 //                        std::cout <<"test nasa:" +   *it_record   << std::endl;
-                    }
-               }
-           }
-           Query2DB(db,query_field,query_values);
-       }
+//                    }
+//               }
+//           }
+//           Query2DB(db,query_field,query_values);
+//       }
     }
     (*db).commit();
     return true;
