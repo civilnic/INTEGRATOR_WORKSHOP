@@ -15,10 +15,11 @@ public:
     void open_database();
     void set_dbname(std::string name);
     bool create_acicd_table(void);
+    bool create_equipment_table(void);
     int insert_acicd(QString Name, QString Path, int Micd, int Equipment, QString Version);
     int insert_equipment(acicd_equipment *equipment);
     int is_acicd_exist(QString Name);
-    bool is_equipement_exist(QString Name);
+    int is_equipment_exist(QString Name);
     bool delete_acicd(int id);
     std::string get_dbname(void);
     QSqlDatabase *get_db(void);
@@ -71,21 +72,21 @@ private:
 
     const QString DB_QUERY_CREATE_Connector_Line_type="\
             CREATE TABLE IF NOT EXISTS [Connector_Line_type](\
-             [id] INTEGER CONSTRAINT [pk_Connector_Line_type] PRIMARY KEY  NOT NULL AUTOINCREMENT,  \
+             [id] INTEGER CONSTRAINT [pk_Connector_Line_type] NOT NULL PRIMARY KEY  AUTOINCREMENT,  \
              [Name] VARCHAR( 45 ) NULL\
             );\n\
      ";
 
     const QString DB_QUERY_CREATE_Connector_Pin_Role="\
             CREATE TABLE IF NOT EXISTS [Connector_Pin_Role](\
-             [id] INTEGER CONSTRAINT [pk_Connector_Pin_Role] PRIMARY KEY  NOT NULL AUTOINCREMENT,\
+             [id] INTEGER CONSTRAINT [pk_Connector_Pin_Role] NOT NULL PRIMARY KEY AUTOINCREMENT,\
              [Name] VARCHAR( 45 ) NULL\
             );\n\
      ";
 
     const QString DB_QUERY_CREATE_Connection_Name="\
             CREATE TABLE IF NOT EXISTS [Connection_Name](\
-             [id] INTEGER CONSTRAINT [pk_Connection_Name] PRIMARY KEY  NOT NULL AUTOINCREMENT,\
+             [id] INTEGER CONSTRAINT [pk_Connection_Name ]NOT NULL PRIMARY KEY AUTOINCREMENT,\
              [Name] VARCHAR( 45 ) NULL\
             );\n\
      ";
@@ -93,12 +94,13 @@ private:
 
     const QString DB_QUERY_CREATE_EQUIPMENT="\
         CREATE TABLE IF NOT EXISTS [EQUIPMENT](      \
-         [id] INTEGER CONSTRAINT [pk_EQUIPMENT] PRIMARY KEY  NOT NULL AUTOINCREMENT,  \
+         [id] INTEGER CONSTRAINT [pk_EQUIPMENT] NOT NULL PRIMARY KEY AUTOINCREMENT,  \
          [Name] VARCHAR( 45 ) NULL,                                     \
          [Description] VARCHAR( 45 ) NULL,  \
          [Type] VARCHAR( 45 ) NULL,\
          [EMC_Protection] VARCHAR( 45 ) NULL,\
-         [Zone] VARCHAR( 45 ) NULL\
+         [Zone] VARCHAR( 45 ) NULL,\
+         [FIN] VARCHAR( 45 ) NULL\
         );\n\
     ";
 

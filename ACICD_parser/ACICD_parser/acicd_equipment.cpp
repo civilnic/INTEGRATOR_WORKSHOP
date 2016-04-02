@@ -6,7 +6,8 @@ acicd_equipment::acicd_equipment()
                           { 3, "Description" },
                           { 4, "Type" },
                           { 5, "EMC_Protection" },
-                          { 6, "Zone" }
+                          { 6, "Zone" },
+                          { 7, "FIN" }
                         };
 }
 

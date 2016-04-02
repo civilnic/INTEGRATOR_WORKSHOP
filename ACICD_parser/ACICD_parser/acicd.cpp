@@ -15,16 +15,9 @@ ACICD::ACICD(sql_database_manager *BDD_,QString filename)
 
     if(BDD->create_acicd_table())
     {
-        if(!BDD->is_acicd_exist(path_name))
-        {
-            db_id=BDD->insert_acicd(path_name,"",0,5,"V4.5");
-            printf("insert_acicd db_id: %d\n",db_id);
-            db->commit();
-        }
-        else
-        {
-            std::cout << path_name.toStdString() + " already exists in db" << std::endl;
-        }
+        db_id=BDD->insert_acicd(path_name,"",0,5,"V4.5");
+        db->commit();
+
     }
     else
     {
@@ -61,7 +54,6 @@ bool ACICD::parse_ACICD(void)
 {
     dvp::csv_parser<dvp::csv_stl_traits> parser;
     dvp::csv_data data;
-
     dvp::acicd_data_handler handler(data, true, parser);
 
     std::fstream f(this->path_name.toStdString().c_str());
@@ -78,8 +70,8 @@ bool ACICD::parse_ACICD(void)
     dvp::csv_data::const_iterator it;
     std::vector<std::string>::const_iterator it_record;
     acicd_data_section section;
+    acicd_data_section previous_section=(acicd_data_section)0;
     int indice;
-
 
     std::map<int,std::string> DB_FIELDS_CONNECTOR = { { 2, "Type" },
                                                       { 3, "Name" },
@@ -96,6 +88,10 @@ bool ACICD::parse_ACICD(void)
 
        if(section==acicd_data_section::EQUIPMENT)
        {
+           if(section!=previous_section)
+           {
+              BDD->create_equipment_table();
+           }
 
            acicd_equipment *equipment_obj=new acicd_equipment();
 
@@ -105,10 +101,7 @@ bool ACICD::parse_ACICD(void)
                {
                     if((*it_record).empty()!=1)
                     {
-
                         equipment_obj->set_parameters(it_record-it->begin(),*it_record);
-//                        std::cout << it_record-it->begin()   << std::endl;
-//                        std::cout <<"test nasa:" +   *it_record   << std::endl;
                     }
                }
            }
@@ -141,6 +134,7 @@ bool ACICD::parse_ACICD(void)
 //           }
 //           Query2DB(db,query_field,query_values);
 //       }
+       previous_section=section;
     }
     (*db).commit();
     return true;

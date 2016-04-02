@@ -77,6 +77,11 @@ int sql_database_manager::insert_acicd(QString Name, QString Path, int Micd, int
                          << query.lastError();
             }
         }
+        else
+        {
+            std::cout << Name.toStdString() + " already exists in db with: " << std::endl;
+            printf("Id: %d\n",Id);
+        }
     }
 
     return Id;
@@ -84,48 +89,49 @@ int sql_database_manager::insert_acicd(QString Name, QString Path, int Micd, int
 
 int sql_database_manager::insert_equipment(acicd_equipment *equipment)
 {
-    int newId = -1;
+    int Id = -1;
     bool success = false;
 
     if (database.isOpen())
     {
-        //if(! this->is_equipment_exist(equipment->get_name())
-
+        Id=this->is_equipment_exist(equipment->get_name());
         // NULL = is the keyword for the autoincrement to generate next value
 
-        QSqlQuery query(database);
-
-        std::string query_field="INSERT INTO EQUIPMENT (" ;
-        std::string query_values="VALUES (" ;
-        QString Query;
-        int indice=0;
-        std::map<QString,QString>::iterator iterator;
-
-
-        query.prepare("INSERT INTO EQUIPMENT VALUES(NULL,:Name,:Description,:Type,:EMC_Protection,:Zone)");
-
-        for(iterator=(equipment->DB_FIELDS_VALUES).begin();iterator!=(equipment->DB_FIELDS_VALUES.end());++iterator)
+        // equipment is not in DB
+        if(Id==0)
         {
-            query.bindValue(":"+iterator->first, equipment->DB_FIELDS_VALUES[iterator->second]);
-        }
+            QSqlQuery query(database);
+            std::map<QString,QString>::iterator iterator;
 
-        success = query.exec();
+            query.prepare("INSERT INTO EQUIPMENT VALUES(NULL,:Name,:Description,:Type,:EMC_Protection,:Zone,:FIN)");
 
-        // Get database given autoincrement value
-        if (success)
-        {
-            // http://www.sqlite.org/c3ref/last_insert_rowid.html
-            newId = query.lastInsertId().toInt();
+            for(iterator=(equipment->DB_FIELDS_VALUES).begin();iterator!=(equipment->DB_FIELDS_VALUES.end());++iterator)
+            {
+                 query.bindValue(":"+iterator->first, iterator->second);
+            }
+
+            success = query.exec();
+
+            // Get database given autoincrement value
+            if (success)
+            {
+                // http://www.sqlite.org/c3ref/last_insert_rowid.html
+                Id = query.lastInsertId().toInt();
+            }
+            else
+            {
+                qDebug() << "insert_acicd: "
+                         << query.lastError();
+            }
         }
         else
         {
-            qDebug() << "insert_acicd: "
-                     << query.lastError();
+            std::cout << equipment->get_name().toStdString() + " already exists in db with: " << std::endl;
+            printf("Id: %d\n",Id);
         }
-
     }
 
-    return newId;
+    return Id;
 }
 
 
@@ -137,7 +143,7 @@ int sql_database_manager::is_acicd_exist(QString Name)
     {
         QSqlQuery query(database);
 
-        query.prepare("SELECT Id, Name FROM ACICD WHERE Name = (:name)");
+        query.prepare("SELECT id, Name FROM ACICD WHERE Name = (:name)");
         query.bindValue(":name", Name);
 
         success=query.exec();
@@ -156,7 +162,7 @@ int sql_database_manager::is_acicd_exist(QString Name)
             if(query.isValid())
             {
                 // number of matching record = 0 => acicd is not in db
-                if(query.value("Id")==0)
+                if(query.value("id")==0)
                 {
                     return 0;
                 }
@@ -164,7 +170,7 @@ int sql_database_manager::is_acicd_exist(QString Name)
                 // acicd is already in db
                 else
                 {
-                    return query.value("Id").toInt();
+                    return query.value("id").toInt();
                 }
             }
             // record is not valid => query.first failed => no entry in db => acicd is not in db
@@ -178,14 +184,14 @@ int sql_database_manager::is_acicd_exist(QString Name)
 }
 
 
-bool sql_database_manager::is_equipement_exist(QString Name)
+int sql_database_manager::is_equipment_exist(QString Name)
 {
     bool success = false;
     if (database.isOpen())
     {
         QSqlQuery query(database);
 
-        query.prepare("SELECT Name FROM EQUIPMENT WHERE Name = (:name)");
+        query.prepare("SELECT id, Name FROM EQUIPMENT WHERE Name = (:name)");
         query.bindValue(":name", Name);
 
 
@@ -205,25 +211,25 @@ bool sql_database_manager::is_equipement_exist(QString Name)
             if(query.isValid())
             {
                 // number of matching record = 0 => acicd is not in db
-                if(query.value(0)==0)
+                if(query.value("id")==0)
                 {
-                 success=false;
+                    return 0;
                 }
 
                 // acicd is already in db
                 else
                 {
-                 success=true;
+                    return query.value("id").toInt();
                 }
             }
             // record is not valid => query.first failed => no entry in db => acicd is not in db
             else
             {
-                success=false;
+                return 0;
             }
         }
     }
-    return success;
+    return -1;
 }
 
 bool sql_database_manager::delete_acicd(int id)
@@ -275,6 +281,28 @@ bool sql_database_manager::create_acicd_table(void)
 
 }
 
+bool sql_database_manager::create_equipment_table(void)
+{
+
+    // Create table "EQUIPMENT"
+    bool success = false;
+    if (database.isOpen())
+    {
+        QSqlQuery query(database);
+        success = query.exec(DB_QUERY_CREATE_EQUIPMENT);
+        if(!success)
+        {
+            qDebug() << "create_equipment_table: "
+                     << query.lastError();
+        }
+        else
+        {
+            database.commit();
+        }
+    }
+    return success;
+
+}
 
 QSqlDatabase *sql_database_manager::get_db(void)
 {
