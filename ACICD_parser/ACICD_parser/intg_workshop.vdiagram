@@ -1,0 +1,743 @@
+<?xml version="1.0" encoding="utf-8"?>
+<properties>
+	<Controls>
+		<Table>
+			<Parent value="#TOP"/>
+			<Properties>
+				<^checks value="0"/>
+				<^group value="-1"/>
+				<^height value="-1"/>
+				<^indexes value="0"/>
+				<^level value="4"/>
+				<^links value="0"/>
+				<^lock value="0"/>
+				<^methods value="0"/>
+				<^minimized value="0"/>
+				<^properties value="0"/>
+				<^triggers value="0"/>
+				<^uniques value="1"/>
+				<back_color value="B4D64700"/>
+				<name value="Table"/>
+				<position value="32;193"/>
+				<size value="182;176"/>
+				<sort_fields value="0"/>
+			</Properties>
+			<Type value="Table"/>
+		</Table>
+		<Table1>
+			<Parent value="#TOP"/>
+			<Properties>
+				<^checks value="0"/>
+				<^group value="-1"/>
+				<^height value="-1"/>
+				<^indexes value="0"/>
+				<^level value="2"/>
+				<^links value="0"/>
+				<^lock value="0"/>
+				<^methods value="0"/>
+				<^minimized value="0"/>
+				<^properties value="0"/>
+				<^triggers value="0"/>
+				<^uniques value="0"/>
+				<back_color value="B4D64700"/>
+				<name value="Table1"/>
+				<position value="552;26"/>
+				<size value="178;140"/>
+				<sort_fields value="0"/>
+			</Properties>
+			<Type value="Table"/>
+		</Table1>
+		<Table2>
+			<Parent value="#TOP"/>
+			<Properties>
+				<^checks value="0"/>
+				<^group value="-1"/>
+				<^height value="-1"/>
+				<^indexes value="0"/>
+				<^level value="3"/>
+				<^links value="0"/>
+				<^lock value="0"/>
+				<^methods value="0"/>
+				<^minimized value="0"/>
+				<^properties value="0"/>
+				<^triggers value="0"/>
+				<^uniques value="1"/>
+				<back_color value="B4D64700"/>
+				<name value="Table2"/>
+				<position value="310;26"/>
+				<size value="166;140"/>
+				<sort_fields value="0"/>
+			</Properties>
+			<Type value="Table"/>
+		</Table2>
+		<Table3>
+			<Parent value="#TOP"/>
+			<Properties>
+				<^checks value="0"/>
+				<^group value="-1"/>
+				<^height value="-1"/>
+				<^indexes value="0"/>
+				<^level value="1"/>
+				<^links value="0"/>
+				<^lock value="0"/>
+				<^methods value="0"/>
+				<^minimized value="0"/>
+				<^properties value="0"/>
+				<^triggers value="0"/>
+				<^uniques value="0"/>
+				<back_color value="B4D64700"/>
+				<name value="Table3"/>
+				<position value="530;315"/>
+				<size value="255;86"/>
+				<sort_fields value="0"/>
+			</Properties>
+			<Type value="Table"/>
+		</Table3>
+		<intg_workshop>
+			<Properties>
+				<^lock value="0"/>
+				<back_color value="FFFFFF"/>
+				<gamma value="0"/>
+				<name value="intg_workshop"/>
+				<size value="2048;2048"/>
+				<style value="4"/>
+				<style_links value="0"/>
+				<units value="5"/>
+			</Properties>
+			<Type value="Diagram"/>
+		</intg_workshop>
+	</Controls>
+	<Editors>
+		<valentina_test>
+			<e0>
+				<data value='&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;properties&gt;
+	&lt;Page value="1"/&gt;
+	&lt;SelectionCheck value="-1"/&gt;
+	&lt;SelectionConsraintTab value="0"/&gt;
+	&lt;SelectionField value="-1"/&gt;
+	&lt;SelectionIndex value="-1"/&gt;
+	&lt;SelectionMethod value="-1"/&gt;
+	&lt;SelectionProperty value="-1"/&gt;
+	&lt;SelectionTrigger value="-1"/&gt;
+	&lt;SelectionTriggerTab value="0"/&gt;
+	&lt;SelectionUnique value="-1"/&gt;
+&lt;/properties&gt;
+
+'/>
+				<name value="Models"/>
+				<type value="37"/>
+			</e0>
+			<e1>
+				<data value='&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;properties&gt;
+	&lt;Page value="2"/&gt;
+	&lt;SelectionCheck value="-1"/&gt;
+	&lt;SelectionConsraintTab value="0"/&gt;
+	&lt;SelectionField value="-1"/&gt;
+	&lt;SelectionIndex value="-1"/&gt;
+	&lt;SelectionMethod value="-1"/&gt;
+	&lt;SelectionProperty value="-1"/&gt;
+	&lt;SelectionTrigger value="-1"/&gt;
+	&lt;SelectionTriggerTab value="0"/&gt;
+	&lt;SelectionUnique value="-1"/&gt;
+&lt;/properties&gt;
+
+'/>
+				<name value="ACICD"/>
+				<type value="37"/>
+			</e1>
+			<e2>
+				<data value='&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;properties&gt;
+	&lt;Page value="1"/&gt;
+	&lt;SelectionCheck value="-1"/&gt;
+	&lt;SelectionConsraintTab value="0"/&gt;
+	&lt;SelectionField value="-1"/&gt;
+	&lt;SelectionIndex value="-1"/&gt;
+	&lt;SelectionMethod value="-1"/&gt;
+	&lt;SelectionProperty value="-1"/&gt;
+	&lt;SelectionTrigger value="-1"/&gt;
+	&lt;SelectionTriggerTab value="0"/&gt;
+	&lt;SelectionUnique value="-1"/&gt;
+&lt;/properties&gt;
+
+'/>
+				<name value="MICD"/>
+				<type value="37"/>
+			</e2>
+			<e3>
+				<data value=""/>
+				<name value="lnk_MICD_Models"/>
+				<type value="21"/>
+			</e3>
+			<e4>
+				<data value=""/>
+				<name value="lnk_ACICD_MM_MICD"/>
+				<type value="21"/>
+			</e4>
+			<e5>
+				<data value=""/>
+				<name value="lnk_MICD_MM_ACICD"/>
+				<type value="21"/>
+			</e5>
+		</valentina_test>
+	</Editors>
+	<GUI>
+		<FullToolbarLeft value="1"/>
+		<FullToolbarRight value="1"/>
+		<PageEditor value="0"/>
+		<PageEditorH value="385"/>
+		<PageToolbarLeft value="0"/>
+		<PageToolbarRB value="0"/>
+		<PageToolbarRight value="1"/>
+		<ScrollX value="0"/>
+		<ScrollY value="0"/>
+		<Selection value="aW50Z193b3Jrc2hvcA=="/>
+		<ShowAll value="1"/>
+		<ShowChanges value="1"/>
+		<ShowGL value="1"/>
+		<ShowGrid value="1"/>
+		<UseGrid value="0"/>
+	</GUI>
+	<Model>
+		<valentina_test>
+			<Links>
+				<o0>
+					<Changes value=""/>
+					<Properties>
+						<Cardinality value="ONE to ONE"/>
+						<Child_Table value="Models"/>
+						<Comment value=""/>
+						<Deferred value="0"/>
+						<Foreign_Key value="MICD_id"/>
+						<Name value="lnk_MICD_Models"/>
+						<On_Delete value=""/>
+						<On_Update value=""/>
+						<Parent_Table value="MICD"/>
+						<Primary_Key value="Id"/>
+					</Properties>
+					<control value=""/>
+					<delete value="0"/>
+					<name value="lnk_MICD_Models"/>
+				</o0>
+				<o1>
+					<Changes value=""/>
+					<Properties>
+						<Cardinality value="ONE to MANY"/>
+						<Child_Table value="tbl_ACICD_MM_MICD"/>
+						<Comment value=""/>
+						<Deferred value="0"/>
+						<Foreign_Key value="MICD_id"/>
+						<Name value="lnk_MICD_MM_ACICD"/>
+						<On_Delete value=""/>
+						<On_Update value=""/>
+						<Parent_Table value="MICD"/>
+						<Primary_Key value="Id"/>
+					</Properties>
+					<control value=""/>
+					<delete value="0"/>
+					<name value="lnk_MICD_MM_ACICD"/>
+				</o1>
+				<o2>
+					<Changes value=""/>
+					<Properties>
+						<Cardinality value="ONE to MANY"/>
+						<Child_Table value="tbl_ACICD_MM_MICD"/>
+						<Comment value=""/>
+						<Deferred value="0"/>
+						<Foreign_Key value="ACICD_id"/>
+						<Name value="lnk_ACICD_MM_MICD"/>
+						<On_Delete value=""/>
+						<On_Update value=""/>
+						<Parent_Table value="ACICD"/>
+						<Primary_Key value="Id"/>
+					</Properties>
+					<control value=""/>
+					<delete value="0"/>
+					<name value="lnk_ACICD_MM_MICD"/>
+				</o2>
+			</Links>
+			<Tables>
+				<o0>
+					<Changes value=""/>
+					<Fields>
+						<o0>
+							<Changes value=""/>
+							<Properties>
+								<Autoincrement value="0"/>
+								<Collation value="BINARY"/>
+								<Comment value=""/>
+								<Default_Value value=""/>
+								<Field_Position value="0"/>
+								<Indexed value="1"/>
+								<Name value="id"/>
+								<Nullable value="0"/>
+								<Type value="Integer"/>
+								<Unique value="1"/>
+							</Properties>
+							<control value=""/>
+							<delete value="0"/>
+							<name value="id"/>
+						</o0>
+						<o1>
+							<Changes value=""/>
+							<Properties>
+								<Autoincrement value="0"/>
+								<Collation value="BINARY"/>
+								<Comment value=""/>
+								<Default_Value value=""/>
+								<Field_Position value="0"/>
+								<Indexed value="0"/>
+								<Name value="Name"/>
+								<Nullable value="0"/>
+								<Type value="Text"/>
+								<Unique value="0"/>
+							</Properties>
+							<control value=""/>
+							<delete value="0"/>
+							<name value="Name"/>
+						</o1>
+						<o2>
+							<Changes value=""/>
+							<Properties>
+								<Autoincrement value="0"/>
+								<Collation value="BINARY"/>
+								<Comment value=""/>
+								<Default_Value value=""/>
+								<Field_Position value="0"/>
+								<Indexed value="0"/>
+								<Name value="Occurence"/>
+								<Nullable value="0"/>
+								<Type value="Integer"/>
+								<Unique value="0"/>
+							</Properties>
+							<control value=""/>
+							<delete value="0"/>
+							<name value="Occurence"/>
+						</o2>
+						<o3>
+							<Changes value=""/>
+							<Properties>
+								<Autoincrement value="0"/>
+								<Collation value="BINARY"/>
+								<Comment value=""/>
+								<Default_Value value=""/>
+								<Field_Position value="0"/>
+								<Indexed value="0"/>
+								<Name value="Micd"/>
+								<Nullable value="1"/>
+								<Type value="Integer"/>
+								<Unique value="0"/>
+							</Properties>
+							<control value=""/>
+							<delete value="0"/>
+							<name value="Micd"/>
+						</o3>
+						<o4>
+							<Changes value=""/>
+							<Properties>
+								<Autoincrement value="0"/>
+								<Collation value="BINARY"/>
+								<Comment value=""/>
+								<Default_Value value=""/>
+								<Field_Position value="0"/>
+								<Indexed value="1"/>
+								<Name value="MICD_id"/>
+								<Nullable value="1"/>
+								<Type value="Integer"/>
+								<Unique value="1"/>
+							</Properties>
+							<control value=""/>
+							<delete value="0"/>
+							<name value="MICD_id"/>
+						</o4>
+					</Fields>
+					<Properties>
+						<Check_Count value="0"/>
+						<Comment value=""/>
+						<Field_Count value="0"/>
+						<Index_Count value="0"/>
+						<Link_Count value="0"/>
+						<Name value="Models"/>
+						<Primary_Key value="id"/>
+						<Query value=""/>
+						<Record_Count value="0"/>
+						<Temporary value="0"/>
+						<Trigger_Count value="0"/>
+						<Unique_Count value="0"/>
+						<Without_RowID value="0"/>
+					</Properties>
+					<Uniques>
+						<o0>
+							<Changes value=""/>
+							<Properties>
+								<Comment value=""/>
+								<Fields value="id	Asc	BINARY"/>
+								<Name value="unique_id"/>
+								<On_Conflict value="Fail"/>
+							</Properties>
+							<control value=""/>
+							<delete value="0"/>
+							<name value="unique_id"/>
+						</o0>
+						<o1>
+							<Changes value=""/>
+							<Properties>
+								<Comment value=""/>
+								<Fields value="MICD_id	Asc	BINARY"/>
+								<Name value="unique_MICD_id"/>
+								<On_Conflict value="Fail"/>
+							</Properties>
+							<control value=""/>
+							<delete value="0"/>
+							<name value="unique_MICD_id"/>
+						</o1>
+					</Uniques>
+					<control value="Table"/>
+					<delete value="0"/>
+					<name value="Models"/>
+				</o0>
+				<o1>
+					<Changes value=""/>
+					<Fields>
+						<o0>
+							<Changes value=""/>
+							<Properties>
+								<Autoincrement value="0"/>
+								<Collation value="BINARY"/>
+								<Comment value=""/>
+								<Default_Value value=""/>
+								<Field_Position value="0"/>
+								<Indexed value="0"/>
+								<Name value="Id"/>
+								<Nullable value="0"/>
+								<Type value="Integer"/>
+								<Unique value="0"/>
+							</Properties>
+							<control value=""/>
+							<delete value="0"/>
+							<name value="Id"/>
+						</o0>
+						<o1>
+							<Changes value=""/>
+							<Properties>
+								<Autoincrement value="0"/>
+								<Collation value="BINARY"/>
+								<Comment value=""/>
+								<Default_Value value=""/>
+								<Field_Position value="0"/>
+								<Indexed value="0"/>
+								<Name value="Name"/>
+								<Nullable value="0"/>
+								<Type value="Text"/>
+								<Unique value="0"/>
+							</Properties>
+							<control value=""/>
+							<delete value="0"/>
+							<name value="Name"/>
+						</o1>
+						<o2>
+							<Changes value=""/>
+							<Properties>
+								<Autoincrement value="0"/>
+								<Collation value="BINARY"/>
+								<Comment value=""/>
+								<Default_Value value=""/>
+								<Field_Position value="0"/>
+								<Indexed value="0"/>
+								<Name value="Path"/>
+								<Nullable value="1"/>
+								<Type value="Text"/>
+								<Unique value="0"/>
+							</Properties>
+							<control value=""/>
+							<delete value="0"/>
+							<name value="Path"/>
+						</o2>
+						<o3>
+							<Changes value=""/>
+							<Properties>
+								<Autoincrement value="0"/>
+								<Collation value="BINARY"/>
+								<Comment value=""/>
+								<Default_Value value=""/>
+								<Field_Position value="0"/>
+								<Indexed value="0"/>
+								<Name value="Micd"/>
+								<Nullable value="1"/>
+								<Type value="Text"/>
+								<Unique value="0"/>
+							</Properties>
+							<control value=""/>
+							<delete value="0"/>
+							<name value="Micd"/>
+						</o3>
+						<o4>
+							<Changes value=""/>
+							<Properties>
+								<Autoincrement value="0"/>
+								<Collation value="BINARY"/>
+								<Comment value=""/>
+								<Default_Value value=""/>
+								<Field_Position value="0"/>
+								<Indexed value="0"/>
+								<Name value="Equipment"/>
+								<Nullable value="0"/>
+								<Type value="Integer"/>
+								<Unique value="0"/>
+							</Properties>
+							<control value=""/>
+							<delete value="0"/>
+							<name value="Equipment"/>
+						</o4>
+						<o5>
+							<Changes value=""/>
+							<Properties>
+								<Autoincrement value="0"/>
+								<Collation value="BINARY"/>
+								<Comment value=""/>
+								<Default_Value value=""/>
+								<Field_Position value="0"/>
+								<Indexed value="0"/>
+								<Name value="Version"/>
+								<Nullable value="0"/>
+								<Type value="Text"/>
+								<Unique value="0"/>
+							</Properties>
+							<control value=""/>
+							<delete value="0"/>
+							<name value="Version"/>
+						</o5>
+					</Fields>
+					<Properties>
+						<Check_Count value="0"/>
+						<Comment value=""/>
+						<Field_Count value="0"/>
+						<Index_Count value="0"/>
+						<Link_Count value="0"/>
+						<Name value="ACICD"/>
+						<Primary_Key value="Id"/>
+						<Query value=""/>
+						<Record_Count value="0"/>
+						<Temporary value="0"/>
+						<Trigger_Count value="0"/>
+						<Unique_Count value="0"/>
+						<Without_RowID value="0"/>
+					</Properties>
+					<control value="Table1"/>
+					<delete value="0"/>
+					<name value="ACICD"/>
+				</o1>
+				<o2>
+					<Changes value=""/>
+					<Fields>
+						<o0>
+							<Changes value=""/>
+							<Properties>
+								<Autoincrement value="0"/>
+								<Collation value="BINARY"/>
+								<Comment value=""/>
+								<Default_Value value=""/>
+								<Field_Position value="0"/>
+								<Indexed value="0"/>
+								<Name value="Id"/>
+								<Nullable value="1"/>
+								<Type value="Integer"/>
+								<Unique value="0"/>
+							</Properties>
+							<control value=""/>
+							<delete value="0"/>
+							<name value="Id"/>
+						</o0>
+						<o1>
+							<Changes value=""/>
+							<Properties>
+								<Autoincrement value="0"/>
+								<Collation value="BINARY"/>
+								<Comment value=""/>
+								<Default_Value value=""/>
+								<Field_Position value="0"/>
+								<Indexed value="0"/>
+								<Name value="Name"/>
+								<Nullable value="0"/>
+								<Type value="Text"/>
+								<Unique value="0"/>
+							</Properties>
+							<control value=""/>
+							<delete value="0"/>
+							<name value="Name"/>
+						</o1>
+						<o2>
+							<Changes value=""/>
+							<Properties>
+								<Autoincrement value="0"/>
+								<Collation value="BINARY"/>
+								<Comment value=""/>
+								<Default_Value value=""/>
+								<Field_Position value="0"/>
+								<Indexed value="0"/>
+								<Name value="Path"/>
+								<Nullable value="1"/>
+								<Type value="Text"/>
+								<Unique value="0"/>
+							</Properties>
+							<control value=""/>
+							<delete value="0"/>
+							<name value="Path"/>
+						</o2>
+						<o3>
+							<Changes value=""/>
+							<Properties>
+								<Autoincrement value="0"/>
+								<Collation value="BINARY"/>
+								<Comment value=""/>
+								<Default_Value value=""/>
+								<Field_Position value="0"/>
+								<Indexed value="1"/>
+								<Name value="Models_id"/>
+								<Nullable value="1"/>
+								<Type value="Integer"/>
+								<Unique value="1"/>
+							</Properties>
+							<control value=""/>
+							<delete value="0"/>
+							<name value="Models_id"/>
+						</o3>
+					</Fields>
+					<Properties>
+						<Check_Count value="0"/>
+						<Comment value=""/>
+						<Field_Count value="0"/>
+						<Index_Count value="0"/>
+						<Link_Count value="0"/>
+						<Name value="MICD"/>
+						<Primary_Key value="Id"/>
+						<Query value=""/>
+						<Record_Count value="0"/>
+						<Temporary value="0"/>
+						<Trigger_Count value="0"/>
+						<Unique_Count value="0"/>
+						<Without_RowID value="0"/>
+					</Properties>
+					<Uniques>
+						<o0>
+							<Changes value=""/>
+							<Properties>
+								<Comment value=""/>
+								<Fields value="Models_id	Asc	BINARY"/>
+								<Name value="unique_Models_id"/>
+								<On_Conflict value="Fail"/>
+							</Properties>
+							<control value=""/>
+							<delete value="0"/>
+							<name value="unique_Models_id"/>
+						</o0>
+					</Uniques>
+					<control value="Table2"/>
+					<delete value="0"/>
+					<name value="MICD"/>
+				</o2>
+				<o3>
+					<Changes value=""/>
+					<Fields>
+						<o0>
+							<Changes value=""/>
+							<Properties>
+								<Autoincrement value="0"/>
+								<Collation value="BINARY"/>
+								<Comment value=""/>
+								<Default_Value value=""/>
+								<Field_Position value="0"/>
+								<Indexed value="1"/>
+								<Name value="ACICD_id"/>
+								<Nullable value="1"/>
+								<Type value="Integer"/>
+								<Unique value="0"/>
+							</Properties>
+							<control value=""/>
+							<delete value="0"/>
+							<name value="ACICD_id"/>
+						</o0>
+						<o1>
+							<Changes value=""/>
+							<Properties>
+								<Autoincrement value="0"/>
+								<Collation value="BINARY"/>
+								<Comment value=""/>
+								<Default_Value value=""/>
+								<Field_Position value="0"/>
+								<Indexed value="1"/>
+								<Name value="MICD_id"/>
+								<Nullable value="1"/>
+								<Type value="Integer"/>
+								<Unique value="0"/>
+							</Properties>
+							<control value=""/>
+							<delete value="0"/>
+							<name value="MICD_id"/>
+						</o1>
+					</Fields>
+					<Indexes>
+						<o0>
+							<Changes value=""/>
+							<Properties>
+								<Comment value=""/>
+								<Fields value="MICD_id	Asc	BINARY"/>
+								<Name value="index_MICD_id"/>
+								<Query value=""/>
+								<Table value=""/>
+								<Temporary value="0"/>
+								<Unique value="0"/>
+								<Where value=""/>
+							</Properties>
+							<control value=""/>
+							<delete value="0"/>
+							<name value="index_MICD_id"/>
+						</o0>
+						<o1>
+							<Changes value=""/>
+							<Properties>
+								<Comment value=""/>
+								<Fields value="ACICD_id	Asc	BINARY"/>
+								<Name value="index_ACICD_id"/>
+								<Query value=""/>
+								<Table value=""/>
+								<Temporary value="0"/>
+								<Unique value="0"/>
+								<Where value=""/>
+							</Properties>
+							<control value=""/>
+							<delete value="0"/>
+							<name value="index_ACICD_id"/>
+						</o1>
+					</Indexes>
+					<Properties>
+						<Check_Count value="0"/>
+						<Comment value=""/>
+						<Field_Count value="0"/>
+						<Index_Count value="0"/>
+						<Link_Count value="0"/>
+						<Name value="tbl_ACICD_MM_MICD"/>
+						<Primary_Key value=""/>
+						<Query value=""/>
+						<Record_Count value="0"/>
+						<Temporary value="0"/>
+						<Trigger_Count value="0"/>
+						<Unique_Count value="0"/>
+						<Without_RowID value="0"/>
+					</Properties>
+					<control value="Table3"/>
+					<delete value="0"/>
+					<name value="tbl_ACICD_MM_MICD"/>
+				</o3>
+			</Tables>
+		</valentina_test>
+	</Model>
+	<Scene>
+		<HeightPX value="2048"/>
+		<WidthPX value="2048"/>
+	</Scene>
+	<version value="60305"/>
+</properties>
+
