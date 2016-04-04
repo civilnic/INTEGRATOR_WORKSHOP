@@ -13,6 +13,7 @@ ACICD_DOCUMENT::ACICD_DOCUMENT(sql_database_manager *database_manager,QString fi
     path_name=filename;
     BDD=database_manager;
     db=(*BDD).get_db();
+    id=-1;
 
     DB_FIELDS_ACICD = { { 2, "Name" },
                           { 3, "Path" },
@@ -86,6 +87,8 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
     acicd_data_section section;
     acicd_data_section previous_section=(acicd_data_section)0;
     int indice;
+    int equipment_id=-1;
+    int connector_id=-1;
 
     std::map<int,std::string> DB_FIELDS_CONNECTOR = { { 2, "Type" },
                                                       { 3, "Name" },
@@ -120,12 +123,37 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
                }
            }
 
-           equipment_obj->insert_equipment();
+           equipment_id=equipment_obj->insert_equipment();
+           this->set_equipment_reference(equipment_id);
            free(equipment_obj);
        }
 
-//       if(section==acicd_data_section::CONNECTOR)
-//       {
+       if(section==acicd_data_section::CONNECTOR)
+       {
+           if(section!=previous_section)
+           {
+              BDD->create_table(DB_QUERY_CREATE_CONNECTOR);
+           }
+
+           acicd_connector *connector_obj=new acicd_connector(BDD);
+
+
+           for(it_record=it->begin();it_record!=it->end();++it_record)
+           {
+               if(connector_obj->DB_FIELDS_EQUIPMENT.count(it_record-it->begin())==1)
+               {
+                    if((*it_record).empty()!=1)
+                    {
+                        connector_obj->set_parameters(it_record-it->begin(),*it_record);
+                    }
+               }
+           }
+
+           connector_id=connector_obj->insert_connector();
+          // this->set_equipment_reference(connector_id);
+           free(connector_obj);
+
+       }
 //           std::cout <<(*it)[0] << std::endl;
 
 //           std::string query_field="INSERT INTO CONNECTOR (" ;
@@ -201,6 +229,52 @@ int ACICD_DOCUMENT::insert_acicd(void)
 
     return Id;
 }
+
+int ACICD_DOCUMENT::set_equipment_reference(int equipment_id)
+{
+    int Id = -1;
+    bool success = false;
+
+    if (db->isOpen())
+    {
+
+        // acicd is not in DB
+        if(id==-1)
+        {
+            std::cout << "[set_equipment_reference] acicd is not in database, cannot reference equipement " << std::endl;
+            return -1;
+        }
+        else
+        {
+
+            // NULL = is the keyword for the autoincrement to generate next value
+
+            QSqlQuery query(*db);
+            query.prepare(update_equipment_query);
+
+            query.bindValue(":id", id);
+            query.bindValue(":Equipment", equipment_id);
+
+            success = query.exec();
+
+            // Get database given autoincrement value
+            if (success)
+            {
+                // http://www.sqlite.org/c3ref/last_insert_rowid.html
+                Id = query.lastInsertId().toInt();
+            }
+            else
+            {
+                qDebug() << "insert_acicd: "
+                         << query.lastError();
+            }
+
+        }
+    }
+
+    return Id;
+}
+
 
 int ACICD_DOCUMENT::is_acicd_exist(QString Name)
 {

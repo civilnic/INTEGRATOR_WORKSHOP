@@ -2,13 +2,7 @@
 
 acicd_equipment::acicd_equipment(sql_database_manager *database_manager)
 {
-    DB_FIELDS_EQUIPMENT = { { 2, "Name" },
-                          { 3, "Description" },
-                          { 4, "Type" },
-                          { 5, "EMC_Protection" },
-                          { 6, "Zone" },
-                          { 7, "FIN" }
-                        };
+    id=-1;
     BDD=database_manager;
     db=(*BDD).get_db();
 }
@@ -24,6 +18,12 @@ QString acicd_equipment::get_name(void)
 {
     return DB_VALUES_EQUIPMENT["Name"];
 }
+
+int acicd_equipment::get_id(void)
+{
+    return id;
+}
+
 
 
 int acicd_equipment::insert_equipment(void)
@@ -42,7 +42,7 @@ int acicd_equipment::insert_equipment(void)
             QSqlQuery query(*db);
             std::map<QString,QString>::iterator iterator;
 
-            query.prepare("INSERT INTO EQUIPMENT VALUES(NULL,:Name,:Description,:Type,:EMC_Protection,:Zone,:FIN)");
+            query.prepare(insert_query);
 
             for(iterator=(this->DB_VALUES_EQUIPMENT).begin();iterator!=(this->DB_VALUES_EQUIPMENT.end());++iterator)
             {

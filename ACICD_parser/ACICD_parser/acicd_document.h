@@ -20,12 +20,12 @@ class ACICD_DOCUMENT
 public:
     ACICD_DOCUMENT(sql_database_manager *database_manager,QString path_name);
     bool parse_ACICD(void);
-    const QString insert_query="INSERT INTO ACICD VALUES(NULL,:Name,:Path,:Micd,:Equipment,:Version)";
 
     std::map<int,QString> DB_FIELDS_ACICD;
     std::map<QString,QString> DB_VALUES_ACICD;
 
     int insert_acicd(void);
+    int set_equipment_reference(int equipment_id);
     bool create_acicd_table(void);
     int is_acicd_exist(QString Name);
     bool delete_acicd(int id);
@@ -35,6 +35,9 @@ private:
     QString path_name;
     QSqlDatabase *db;
     sql_database_manager *BDD;
+
+    const QString insert_query="INSERT INTO ACICD VALUES(NULL,:Name,:Path,:Micd,:Equipment,:Version)";
+    const QString update_equipment_query="UPDATE ACICD SET Equipment = :Equipment WHERE (id=:id)";
 
 };
 
