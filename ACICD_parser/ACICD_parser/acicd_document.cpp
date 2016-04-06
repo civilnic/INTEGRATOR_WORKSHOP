@@ -105,16 +105,16 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
 
        if(section==acicd_data_section::EQUIPMENT)
        {
+           acicd_equipment *equipment_obj=new acicd_equipment(BDD);
+
            if(section!=previous_section)
            {
-              BDD->create_table(DB_QUERY_CREATE_EQUIPMENT);
+              BDD->create_table(equipment_obj->create_table_query);
            }
-
-           acicd_equipment *equipment_obj=new acicd_equipment(BDD);
 
            for(it_record=it->begin();it_record!=it->end();++it_record)
            {
-               if(equipment_obj->DB_FIELDS_EQUIPMENT.count(it_record-it->begin())==1)
+               if(equipment_obj->DB_FIELDS.count(it_record-it->begin())==1)
                {
                     if((*it_record).empty()!=1)
                     {
@@ -123,24 +123,24 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
                }
            }
 
-           equipment_id=equipment_obj->insert_equipment();
+           equipment_id=equipment_obj->insert_intable();
            this->set_equipment_reference(equipment_id);
            free(equipment_obj);
        }
 
        if(section==acicd_data_section::CONNECTOR)
        {
-           if(section!=previous_section)
-           {
-              BDD->create_table(DB_QUERY_CREATE_CONNECTOR);
-           }
 
            acicd_connector *connector_obj=new acicd_connector(BDD);
 
+           if(section!=previous_section)
+           {
+              BDD->create_table(connector_obj->create_table_query);
+           }
 
            for(it_record=it->begin();it_record!=it->end();++it_record)
            {
-               if(connector_obj->DB_FIELDS_EQUIPMENT.count(it_record-it->begin())==1)
+               if(connector_obj->DB_FIELDS.count(it_record-it->begin())==1)
                {
                     if((*it_record).empty()!=1)
                     {
@@ -149,8 +149,7 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
                }
            }
 
-           connector_id=connector_obj->insert_connector();
-          // this->set_equipment_reference(connector_id);
+           connector_id=connector_obj->insert_intable();
            free(connector_obj);
 
        }
