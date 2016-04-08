@@ -19,6 +19,8 @@ QSqlDatabase sql_database_manager::create_database()
 
 void sql_database_manager::open_database()
 {
+    QSqlQuery query(database);
+
     if( !database.open() )
     {
       qDebug() << database.lastError();
@@ -26,7 +28,12 @@ void sql_database_manager::open_database()
     }else{
       qDebug( "Connected!" );
     }
-    database.transaction();
+
+    query.prepare("PRAGMA synchronous=off");
+    query.exec();
+    query.prepare("PRAGMA journal_mode=off");
+    query.exec();
+
 }
 
 
@@ -50,7 +57,7 @@ bool sql_database_manager::create_table(QString TABLE_CREATION_QUERY)
         success = query.exec(TABLE_CREATION_QUERY);
         if(!success)
         {
-            qDebug() << "create_table: "
+            qDebug() << "create_table: " + TABLE_CREATION_QUERY
                      << query.lastError();
         }
         else

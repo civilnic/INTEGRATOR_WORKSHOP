@@ -6,7 +6,7 @@ acicd_connector_pin_role::acicd_connector_pin_role(sql_database_manager *databas
     BDD=database_manager;
     db=(*BDD).get_db();
 
-    DB_FIELDS= { { 2, "Name" },
+    DB_FIELDS= { { 5, "Name" },
                };
 
     DB_table_name="CONNECTOR_PIN_ROLE";
@@ -21,4 +21,7 @@ acicd_connector_pin_role::acicd_connector_pin_role(sql_database_manager *databas
         [Name] VARCHAR( 45 ) NULL\
        );\n\
        ").arg(DB_table_name);
+
+
+    database_manager->create_table(create_table_query);
 }

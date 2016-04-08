@@ -11,8 +11,15 @@
 #include <regex>
 
 #include "acicd_header.h"
+
 #include "acicd_equipment.h"
+
 #include "acicd_connector.h"
+#include "acicd_connection_name.h"
+#include "acicd_connector_line_type.h"
+#include "acicd_connector_pin.h"
+#include "acicd_connector_pin_role.h"
+
 #include "sql_database_manager.h"
 
 class ACICD_DOCUMENT

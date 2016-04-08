@@ -31,6 +31,7 @@ ACICD_DOCUMENT::ACICD_DOCUMENT(sql_database_manager *database_manager,QString fi
 
     if(BDD->create_table(DB_QUERY_CREATE_ACICD))
     {
+        db->transaction();
         id=this->insert_acicd();
         db->commit();
 
@@ -87,16 +88,15 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
     acicd_data_section section;
     acicd_data_section previous_section=(acicd_data_section)0;
     int indice;
-    int equipment_id=-1;
-    int connector_id=-1;
 
-    std::map<int,std::string> DB_FIELDS_CONNECTOR = { { 2, "Type" },
-                                                      { 3, "Name" },
-                                                      { 4, "Pin" },
-                                                      { 5, "Pin_Role" },
-                                                      { 6, "Line_Type" }
-                                                    };
+    acicd_equipment *equipment_obj=new acicd_equipment(BDD);
+    acicd_connection_name *connection_name_obj=new acicd_connection_name(BDD);
+    acicd_connector_line_type *connector_line_type_obj=new acicd_connector_line_type(BDD);
+    acicd_connector_pin *connector_pin_obj=new acicd_connector_pin(BDD);
+    acicd_connector_pin_role *connector_pin_role_obj=new acicd_connector_pin_role(BDD);
+    acicd_connector *connector_obj=new acicd_connector(BDD);
 
+    db->transaction();
 
     for(it=data.begin();it!=data.end();++it)
     {
@@ -105,13 +105,6 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
 
        if(section==acicd_data_section::EQUIPMENT)
        {
-           acicd_equipment *equipment_obj=new acicd_equipment(BDD);
-
-           if(section!=previous_section)
-           {
-              BDD->create_table(equipment_obj->create_table_query);
-           }
-
            for(it_record=it->begin();it_record!=it->end();++it_record)
            {
                if(equipment_obj->DB_FIELDS.count(it_record-it->begin())==1)
@@ -123,20 +116,14 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
                }
            }
 
-           equipment_id=equipment_obj->insert_intable();
-           this->set_equipment_reference(equipment_id);
-           free(equipment_obj);
+           if(equipment_obj->insert_intable())
+           {
+                this->set_equipment_reference(equipment_obj->get_id());
+           }
        }
 
        if(section==acicd_data_section::CONNECTOR)
        {
-
-           acicd_connector *connector_obj=new acicd_connector(BDD);
-
-           if(section!=previous_section)
-           {
-              BDD->create_table(connector_obj->create_table_query);
-           }
 
            for(it_record=it->begin();it_record!=it->end();++it_record)
            {
@@ -147,37 +134,58 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
                         connector_obj->set_parameters(it_record-it->begin(),*it_record);
                     }
                }
+               if(connection_name_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                    if((*it_record).empty()!=1)
+                    {
+                        connection_name_obj->set_parameters(it_record-it->begin(),*it_record);
+                    }
+               }
+               if(connector_line_type_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                    if((*it_record).empty()!=1)
+                    {
+                        connector_line_type_obj->set_parameters(it_record-it->begin(),*it_record);
+                    }
+               }
+               if(connector_pin_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                    if((*it_record).empty()!=1)
+                    {
+                        connector_pin_obj->set_parameters(it_record-it->begin(),*it_record);
+                    }
+               }
+               if(connector_pin_role_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                    if((*it_record).empty()!=1)
+                    {
+                        connector_pin_role_obj->set_parameters(it_record-it->begin(),*it_record);
+                    }
+               }
            }
 
-           connector_id=connector_obj->insert_intable();
-           free(connector_obj);
+           if(connector_obj->insert_intable())
+           {
+                connector_obj->set_reference(QString("ACICD"),id);
+                connector_obj->set_reference(QString("Equipment"),equipment_obj->get_id());
+           }
+
+           connection_name_obj->insert_intable();
+           connector_line_type_obj->insert_intable();
+           connector_pin_role_obj->insert_intable();
+
+           if(connector_pin_obj->insert_intable())
+           {
+                connector_pin_obj->set_reference(QString("Connector_pin_role"),connector_pin_role_obj->get_id());
+                connector_pin_obj->set_reference(QString("Connection_name"),connection_name_obj->get_id());
+                connector_pin_obj->set_reference(QString("Line_type"),connector_line_type_obj->get_id());
+                connector_pin_obj->set_reference(QString("Connector"),connector_obj->get_id());
+           }
 
        }
-//           std::cout <<(*it)[0] << std::endl;
-
-//           std::string query_field="INSERT INTO CONNECTOR (" ;
-//           std::string query_values="VALUES (" ;
-
-//           for(it_record=it->begin();it_record!=it->end();++it_record)
-//           {
-
-//               if(DB_FIELDS_CONNECTOR.count(it_record-it->begin())==1)
-//               {
-//                    if((*it_record).empty()!=1)
-//                    {
-//                        query_field+=", \'"+DB_FIELDS_CONNECTOR[it_record-it->begin()]+"\'";
-//                        query_values+=", \'"+*it_record+"\'";
-
-//                        std::cout << it_record-it->begin()   << std::endl;
-//                        std::cout <<"test nasa:" +   *it_record   << std::endl;
-//                    }
-//               }
-//           }
-//           Query2DB(db,query_field,query_values);
-//       }
        previous_section=section;
     }
-    (*db).commit();
+    db->commit();
     return true;
 }
 

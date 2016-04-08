@@ -6,7 +6,7 @@ acicd_connector_line_type::acicd_connector_line_type(sql_database_manager *datab
     BDD=database_manager;
     db=(*BDD).get_db();
 
-    DB_FIELDS= { { 2, "Name" },
+    DB_FIELDS= { { 7, "Name" },
                };
 
     DB_table_name="CONNECTOR_LINE_TYPE";
@@ -21,4 +21,6 @@ acicd_connector_line_type::acicd_connector_line_type(sql_database_manager *datab
         [Name] VARCHAR( 45 ) NULL\
        );\n\
        ").arg(DB_table_name);
+
+     database_manager->create_table(create_table_query);
 }

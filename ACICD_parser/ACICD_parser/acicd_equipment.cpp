@@ -31,6 +31,7 @@ acicd_equipment::acicd_equipment(sql_database_manager *database_manager) : acicd
              [FIN] VARCHAR( 45 ) NULL\
             );\n\
         ";
+     database_manager->create_table(create_table_query);
 }
 
 

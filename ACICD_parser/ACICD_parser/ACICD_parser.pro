@@ -13,7 +13,8 @@ SOURCES += main.cpp \
     acicd_element.cpp \
     acicd_connector_line_type.cpp \
     acicd_connector_pin_role.cpp \
-    acicd_connection_name.cpp
+    acicd_connection_name.cpp \
+    acicd_connector_pin.cpp
 
 HEADERS += \
     ../../CSV/csv_common.h \
@@ -28,7 +29,8 @@ HEADERS += \
     acicd_element.h \
     acicd_connector_line_type.h \
     acicd_connector_pin_role.h \
-    acicd_connection_name.h
+    acicd_connection_name.h \
+    acicd_connector_pin.h
 
 INCLUDEPATH += ../../CSV/ \
                C:\local\boost_1_60_0
