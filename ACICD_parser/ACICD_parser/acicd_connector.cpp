@@ -22,12 +22,12 @@ acicd_connector::acicd_connector(sql_database_manager *database_manager) : acicd
             [ACICD] INTEGER NULL,\
             [Type] VARCHAR( 45 ) NULL,\
             [Connector_name] VARCHAR( 45 ) NULL,\
-            CONSTRAINT [Equipment]\
-            FOREIGN KEY([Equipment])\
-            REFERENCES [EQUIPMENT] ( [id] ),\
-            CONSTRAINT [ACICD]\
-            FOREIGN KEY([ACICD])\
-            REFERENCES [ACICD] ( [id] )\
+                CONSTRAINT [Equipment]\
+                    FOREIGN KEY([Equipment])\
+                    REFERENCES [EQUIPMENT] ( [id] ),\
+                CONSTRAINT [ACICD]\
+                    FOREIGN KEY([ACICD])\
+                    REFERENCES [ACICD] ( [id] )\
             );";
 
     database_manager->create_table(create_table_query);

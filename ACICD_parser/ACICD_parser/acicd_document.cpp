@@ -95,6 +95,7 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
     acicd_connector_pin *connector_pin_obj=new acicd_connector_pin(BDD);
     acicd_connector_pin_role *connector_pin_role_obj=new acicd_connector_pin_role(BDD);
     acicd_connector *connector_obj=new acicd_connector(BDD);
+    acicd_AFDX_TX_port *AFDX_TX_port_obj=new acicd_AFDX_TX_port(BDD);
 
     db->transaction();
 
@@ -119,6 +120,7 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
            if(equipment_obj->insert_intable())
            {
                 this->set_equipment_reference(equipment_obj->get_id());
+               equipment_obj->set_reference(QString("ACICD"),id);
            }
        }
 
@@ -180,9 +182,28 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
                 connector_pin_obj->set_reference(QString("Connection_name"),connection_name_obj->get_id());
                 connector_pin_obj->set_reference(QString("Line_type"),connector_line_type_obj->get_id());
                 connector_pin_obj->set_reference(QString("Connector"),connector_obj->get_id());
+                connector_pin_obj->set_reference(QString("ACICD"),id);
+           }
+       }
+
+       if(section==acicd_data_section::AFDX_OUTPUT_VL)
+       {
+           for(it_record=it->begin();it_record!=it->end();++it_record)
+           {
+               if(AFDX_TX_port_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                    if((*it_record).empty()!=1)
+                    {
+                        AFDX_TX_port_obj->set_parameters(it_record-it->begin(),*it_record);
+                    }
+               }
            }
 
+
        }
+
+
+
        previous_section=section;
     }
     db->commit();

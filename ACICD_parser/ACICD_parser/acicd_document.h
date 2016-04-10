@@ -20,6 +20,8 @@
 #include "acicd_connector_pin.h"
 #include "acicd_connector_pin_role.h"
 
+#include "acicd_afdx_tx_port.h"
+
 #include "sql_database_manager.h"
 
 class ACICD_DOCUMENT

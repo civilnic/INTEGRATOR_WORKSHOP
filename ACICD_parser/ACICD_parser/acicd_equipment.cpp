@@ -17,7 +17,7 @@ acicd_equipment::acicd_equipment(sql_database_manager *database_manager) : acicd
     DB_table_name="EQUIPMENT";
     test_field="Name";
 
-    insert_query="INSERT INTO EQUIPMENT VALUES(NULL,:Name,:Description,:Type,:EMC_Protection,:Zone,:FIN)";
+    insert_query="INSERT INTO EQUIPMENT VALUES(NULL,:Name,:Description,:Type,:EMC_Protection,:Zone,:FIN,:ACICD)";
     test_query=QString("SELECT id, %1 FROM %2 WHERE %1 = (:test_field)").arg(test_field).arg(DB_table_name);
 
     create_table_query="\
@@ -28,7 +28,11 @@ acicd_equipment::acicd_equipment(sql_database_manager *database_manager) : acicd
              [Type] VARCHAR( 45 ) NULL,\
              [EMC_Protection] VARCHAR( 45 ) NULL,\
              [Zone] VARCHAR( 45 ) NULL,\
-             [FIN] VARCHAR( 45 ) NULL\
+             [FIN] VARCHAR( 45 ) NULL,\
+             [ACICD] INTEGER NULL,\
+              CONSTRAINT [ACICD]\
+              FOREIGN KEY([ACICD])\
+              REFERENCES [ACICD] ( [id] )\
             );\n\
         ";
      database_manager->create_table(create_table_query);

@@ -1,15 +1,15 @@
-#include "acicd_connector_pin_role.h"
+#include "acicd_afdx_port_characteristic.h"
 
-acicd_connector_pin_role::acicd_connector_pin_role(sql_database_manager *database_manager) : acicd_element (database_manager)
+acicd_afdx_port_characteristic::acicd_afdx_port_characteristic(sql_database_manager *database_manager) : acicd_element (database_manager)
 {
     id=-1;
     BDD=database_manager;
     db=(*BDD).get_db();
 
-    DB_FIELDS= { { 5, "Name" },
+    DB_FIELDS= { { 18, "Name" },
                };
 
-    DB_table_name="CONNECTOR_PIN_ROLE";
+    DB_table_name="AFDX_PORT_CHARACTERISTIC";
     test_field="Name";
 
     insert_query=QString("INSERT INTO %1 VALUES(NULL,:Name)").arg(DB_table_name);
@@ -17,11 +17,10 @@ acicd_connector_pin_role::acicd_connector_pin_role(sql_database_manager *databas
 
     create_table_query=QString("\
        CREATE TABLE IF NOT EXISTS [%1](\
-        [id] INTEGER CONSTRAINT [pk_%1] NOT NULL PRIMARY KEY AUTOINCREMENT,\
+        [id] INTEGER CONSTRAINT [pk_%1] NOT NULL PRIMARY KEY  AUTOINCREMENT,  \
         [Name] VARCHAR( 45 ) NULL\
        );\n\
        ").arg(DB_table_name);
 
-
-    database_manager->create_table(create_table_query);
+     database_manager->create_table(create_table_query);
 }
