@@ -21,6 +21,9 @@
 #include "acicd_connector_pin_role.h"
 
 #include "acicd_afdx_tx_port.h"
+#include "acicd_afdx_port_type.h"
+#include "acicd_afdx_port_characteristic.h"
+#include "acicd_afdx_port_transmission_type.h"
 
 #include "sql_database_manager.h"
 

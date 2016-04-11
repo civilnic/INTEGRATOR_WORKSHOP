@@ -96,6 +96,9 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
     acicd_connector_pin_role *connector_pin_role_obj=new acicd_connector_pin_role(BDD);
     acicd_connector *connector_obj=new acicd_connector(BDD);
     acicd_AFDX_TX_port *AFDX_TX_port_obj=new acicd_AFDX_TX_port(BDD);
+    acicd_afdx_port_type *AFDX_port_type_obj=new acicd_afdx_port_type(BDD);
+    acicd_afdx_port_characteristic *AFDX_port_characteristic_obj=new acicd_afdx_port_characteristic(BDD);
+    acicd_afdx_port_transmission_type *AFDX_port_transmission_type_obj=new acicd_afdx_port_transmission_type(BDD);
 
     db->transaction();
 
@@ -197,6 +200,40 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
                         AFDX_TX_port_obj->set_parameters(it_record-it->begin(),*it_record);
                     }
                }
+               if(AFDX_port_type_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                    if((*it_record).empty()!=1)
+                    {
+                        AFDX_port_type_obj->set_parameters(it_record-it->begin(),*it_record);
+                    }
+               }
+               if(AFDX_port_characteristic_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                    if((*it_record).empty()!=1)
+                    {
+                        AFDX_port_characteristic_obj->set_parameters(it_record-it->begin(),*it_record);
+                    }
+               }
+               if(AFDX_port_transmission_type_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                    if((*it_record).empty()!=1)
+                    {
+                        AFDX_port_transmission_type_obj->set_parameters(it_record-it->begin(),*it_record);
+                    }
+               }
+           }
+
+           AFDX_port_type_obj->insert_intable();
+           AFDX_port_characteristic_obj->insert_intable();
+           AFDX_port_transmission_type_obj->insert_intable();
+
+           if(AFDX_TX_port_obj->insert_intable())
+           {
+                AFDX_TX_port_obj->set_reference(QString("ACICD"),id);
+                AFDX_TX_port_obj->set_reference(QString("Equipment"),equipment_obj->get_id());
+                AFDX_TX_port_obj->set_reference(QString("Type"),AFDX_port_type_obj->get_id());
+                AFDX_TX_port_obj->set_reference(QString("characteristic"),AFDX_port_characteristic_obj->get_id());
+                AFDX_TX_port_obj->set_reference(QString("transmission_type"),AFDX_port_transmission_type_obj->get_id());
            }
 
 
