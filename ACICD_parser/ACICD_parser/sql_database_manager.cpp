@@ -2,7 +2,13 @@
 
 sql_database_manager::sql_database_manager(void)
 {
-    printf("creation objet sql_database\n");
+    log_file.setFileName("sql_log.txt");
+    log_file.open(QIODevice::ReadWrite | QIODevice::Text);
+
+    sql_log_file.setDevice(&log_file);
+
+
+    sql_log_file <<"creation objet sql_database\n";
     this->create_database();
     this->open_database();
 }
@@ -24,8 +30,10 @@ void sql_database_manager::open_database()
     if( !database.open() )
     {
       qDebug() << database.lastError();
+      sql_log_file << "Failed to connect.";
       qFatal( "Failed to connect." );
     }else{
+      sql_log_file <<  "Connected!" <<endl;
       qDebug( "Connected!" );
     }
 
@@ -57,6 +65,9 @@ bool sql_database_manager::create_table(QString TABLE_CREATION_QUERY)
         success = query.exec(TABLE_CREATION_QUERY);
         if(!success)
         {
+            sql_log_file << "create_table: "  <<endl;
+            sql_log_file << TABLE_CREATION_QUERY  <<endl;
+            sql_log_file << query.lastError().text() <<endl;
             qDebug() << "create_table: " + TABLE_CREATION_QUERY
                      << query.lastError();
         }

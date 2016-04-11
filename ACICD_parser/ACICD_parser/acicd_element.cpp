@@ -3,6 +3,10 @@
 acicd_element::acicd_element(sql_database_manager *database_manager)
 {
     update_query.clear();
+
+    id=-1;
+    BDD=database_manager;
+    db=(*BDD).get_db();
 }
 
 bool acicd_element::set_parameters(int field,std::string value)
@@ -54,13 +58,14 @@ int acicd_element::is_element_exist(QString Name)
         query.prepare(test_query);
         query.bindValue(":test_field", Name);
 
-
         success=query.exec();
 
         if(!success)
         {
             qDebug() << "[is_element_exist]: "
                      << query.lastError();
+            BDD->sql_log_file << "[is_element_exist]: "
+                                 << query.lastError().text() <<endl;
         }
         else
         {
@@ -124,6 +129,8 @@ bool acicd_element::insert_intable(void)
             }
             else
             {
+                BDD->sql_log_file <<"insert_acicd: "
+                                    << query.lastError().text() <<endl;
                 qDebug() << "insert_acicd: "
                          << query.lastError();
                 return false;
@@ -133,6 +140,9 @@ bool acicd_element::insert_intable(void)
         {
             std::cout << "[insert_intable] [" + DB_table_name.toStdString() + "] element name: ["+this->get_value(test_field).toStdString() + "] already exists in db with: ";
             printf("Id: %d\n",id);
+
+            BDD->sql_log_file << "[insert_intable] [" + DB_table_name + "] element name: ["+this->get_value(test_field) + "] already exists in db with: "
+                              << "Id: " << id  <<endl;
             return false;
         }
     }
@@ -153,6 +163,7 @@ void acicd_element::set_reference(QString field,int ref_id)
         if(id==-1)
         {
             std::cout << "[set_reference] [" + DB_table_name.toStdString() + "] is not in database, cannot reference element: ["+field.toStdString()+"]" << std::endl;
+            BDD->sql_log_file << "[set_reference] [" + DB_table_name + "] is not in database, cannot reference element: ["+field+"]" <<endl;
         }
         else
         {
@@ -161,16 +172,21 @@ void acicd_element::set_reference(QString field,int ref_id)
 
             QSqlQuery query(*db);
             std::cout << "[set_reference] [" + update_query.toStdString() + "] update_query" << std::endl;
+            BDD->sql_log_file << "[set_reference] [" + update_query + "] update_query"  <<endl;
             this->create_update_query(field);
             std::cout << "[set_reference] [" + update_query.toStdString() + "] update_query" << std::endl;
+            BDD->sql_log_file << "[set_reference] [" + update_query + "] update_query"  <<endl;
             query.prepare(update_query);
 
             query.bindValue(":id", id);
 
             const QString temp_string=QString(":")%field;
             std::cout << "[set_reference] [" + temp_string.toStdString() + "] temp_string" << std::endl;
+            BDD->sql_log_file << "[set_reference] [" + temp_string + "] temp_string" <<endl;
             std::cout << "id:";std::cout << id<< std::endl;
+            BDD->sql_log_file << "id:";std::cout << id<< std::endl <<endl;
             std::cout << "ref_id:";std::cout << ref_id<< std::endl;
+            BDD->sql_log_file << "ref_id:";std::cout << ref_id<< std::endl <<endl;
 
 
             query.bindValue(temp_string, ref_id);
@@ -180,6 +196,8 @@ void acicd_element::set_reference(QString field,int ref_id)
             // Get database given autoincrement value
             if (!success)
             {
+                BDD->sql_log_file << "insert_acicd: "<< query.lastError().text() <<endl;
+
                 qDebug() << "insert_acicd: "
                          << query.lastError();
             }

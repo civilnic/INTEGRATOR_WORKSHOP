@@ -2,8 +2,12 @@
 #define SQL_DATABASE_H
 
 #include <iostream>
+#include <fstream>
 #include <QSqlDatabase>
 #include <QtSql>
+#include <QFile>
+
+
 
 class sql_database_manager
 {
@@ -17,6 +21,7 @@ public:
 
     std::string get_dbname(void);
     QSqlDatabase *get_db(void);
+    QTextStream sql_log_file;
 
 private:
     QSqlDatabase database;
@@ -25,6 +30,7 @@ private:
     QString db_user="root";
     QString db_pass="";
     QString db_hostname="localhost";
+    QFile log_file;
 
 
 

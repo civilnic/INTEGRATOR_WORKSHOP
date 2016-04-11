@@ -2,10 +2,6 @@
 
 acicd_AFDX_TX_port::acicd_AFDX_TX_port(sql_database_manager *database_manager) : acicd_element (database_manager)
 {
-    id=-1;
-    BDD=database_manager;
-    db=(*BDD).get_db();
-
     DB_FIELDS= { { 15, "TX_AFDX_port_Identifier" },
                  { 16, "AFDX_Port_Master_Name" },
                  { 19, "IP_frag_allowed" },
@@ -39,7 +35,7 @@ acicd_AFDX_TX_port::acicd_AFDX_TX_port(sql_database_manager *database_manager) :
              [ACICD] INTEGER NULL,\
                 CONSTRAINT [ACICD]\
                     FOREIGN KEY([ACICD])\
-                    REFERENCES [ACICD] ( [id] )\
+                    REFERENCES [ACICD] ( [id] ),\
                 CONSTRAINT [Type]\
                     FOREIGN KEY([Type])\
                     REFERENCES [AFDX_PORT_TYPE] ( [id] ),\

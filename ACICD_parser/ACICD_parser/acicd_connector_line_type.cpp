@@ -2,9 +2,6 @@
 
 acicd_connector_line_type::acicd_connector_line_type(sql_database_manager *database_manager) : acicd_element (database_manager)
 {
-    id=-1;
-    BDD=database_manager;
-    db=(*BDD).get_db();
 
     DB_FIELDS= { { 7, "Name" },
                };

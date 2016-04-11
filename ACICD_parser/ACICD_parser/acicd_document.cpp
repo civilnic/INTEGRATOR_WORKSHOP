@@ -39,7 +39,11 @@ ACICD_DOCUMENT::ACICD_DOCUMENT(sql_database_manager *database_manager,QString fi
     else
     {
         printf("failed to create ACICD table\n");
+        BDD->sql_log_file << "failed to create ACICD table\n" <<endl;
     }
+
+
+
 
 }
 
@@ -101,6 +105,9 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
     acicd_afdx_port_transmission_type *AFDX_port_transmission_type_obj=new acicd_afdx_port_transmission_type(BDD);
 
     db->transaction();
+
+
+
 
     for(it=data.begin();it!=data.end();++it)
     {
@@ -187,6 +194,7 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
                 connector_pin_obj->set_reference(QString("Connector"),connector_obj->get_id());
                 connector_pin_obj->set_reference(QString("ACICD"),id);
            }
+
        }
 
        if(section==acicd_data_section::AFDX_OUTPUT_VL)
@@ -229,6 +237,7 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
 
            if(AFDX_TX_port_obj->insert_intable())
            {
+                AFDX_TX_port_obj->set_reference(QString("ACICD"),id);
                 AFDX_TX_port_obj->set_reference(QString("ACICD"),id);
                 AFDX_TX_port_obj->set_reference(QString("Equipment"),equipment_obj->get_id());
                 AFDX_TX_port_obj->set_reference(QString("Type"),AFDX_port_type_obj->get_id());
@@ -281,6 +290,7 @@ int ACICD_DOCUMENT::insert_acicd(void)
             }
             else
             {
+                BDD->sql_log_file << "insert_acicd: "<< query.lastError().text() <<endl;
                 qDebug() << "insert_acicd: "
                          << query.lastError();
             }
@@ -289,6 +299,8 @@ int ACICD_DOCUMENT::insert_acicd(void)
         {
             std::cout << DB_VALUES_ACICD["Name"].toStdString() + " already exists in db with: " << std::endl;
             printf("Id: %d\n",Id);
+            BDD->sql_log_file << QString(DB_VALUES_ACICD["Name"]) + " already exists in db with: " <<endl;
+            BDD->sql_log_file << "Id: " <<Id <<endl;
         }
     }
 
@@ -330,6 +342,8 @@ int ACICD_DOCUMENT::set_equipment_reference(int equipment_id)
             }
             else
             {
+                BDD->sql_log_file <<"insert_acicd: "
+                                     << query.lastError().text()<<endl;
                 qDebug() << "insert_acicd: "
                          << query.lastError();
             }
@@ -401,6 +415,8 @@ bool ACICD_DOCUMENT::delete_acicd(int id)
 
         if(!success)
         {
+            BDD->sql_log_file <<"delete_acicd: "
+                                 << query.lastError().text()<<endl;
             qDebug() << "delete_acicd: "
                      << query.lastError();
         }
