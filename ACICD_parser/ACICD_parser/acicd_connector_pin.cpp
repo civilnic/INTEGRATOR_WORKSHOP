@@ -9,7 +9,7 @@ acicd_connector_pin::acicd_connector_pin(sql_database_manager *database_manager)
     DB_table_name="CONNECTOR_PIN";
     test_field="Connector_pin";
 
-    insert_query=QString("INSERT INTO %1 VALUES(NULL,:Connector_pin,:Connector_pin_role,:Connection_name,:Line_type,:Connector,:ACICD)").arg(DB_table_name);
+    insert_query=QString("INSERT INTO %1 VALUES(NULL,:Connector_pin,:Connector_pin_role,:Connection_name,:Line_type,:Connector,:ACICD,:Physical_Id,:Physical_speed,:Network_id)").arg(DB_table_name);
     test_query=QString("SELECT id, %1 FROM %2 WHERE %1 = (:test_field)").arg(test_field).arg(DB_table_name);
 
     create_table_query="CREATE TABLE IF NOT EXISTS [CONNECTOR_PIN](\
@@ -20,6 +20,9 @@ acicd_connector_pin::acicd_connector_pin(sql_database_manager *database_manager)
             [Line_type] INTEGER NULL,\
             [Connector] INTEGER NULL,\
             [ACICD] INTEGER NULL,\
+            [Physical_Id] VARCHAR( 45 ) NULL,\
+            [Physical_speed] VARCHAR( 45 ) NULL,\
+            [Network_id] VARCHAR( 45 ) NULL,\
                 CONSTRAINT [Connector_pin_role]\
                     FOREIGN KEY([Connector_pin_role])\
                     REFERENCES [CONNECTOR_PIN_ROLE] ( [id] ),\

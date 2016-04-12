@@ -16,6 +16,13 @@ bool acicd_element::set_parameters(int field,std::string value)
     return true;
 }
 
+bool acicd_element::modify_parameters(std::map<int,std::string> DB_NEW_FIELDS)
+{
+    id=-1;
+    DB_FIELDS=DB_NEW_FIELDS;
+    return true;
+}
+
 QString acicd_element::get_value(QString field)
 {
     return DB_VALUES[field];
@@ -184,9 +191,9 @@ void acicd_element::set_reference(QString field,int ref_id)
             std::cout << "[set_reference] [" + temp_string.toStdString() + "] temp_string" << std::endl;
             BDD->sql_log_file << "[set_reference] [" + temp_string + "] temp_string" <<endl;
             std::cout << "id:";std::cout << id<< std::endl;
-            BDD->sql_log_file << "id:";std::cout << id<< std::endl <<endl;
+            BDD->sql_log_file << "id:";BDD->sql_log_file << id<<endl;
             std::cout << "ref_id:";std::cout << ref_id<< std::endl;
-            BDD->sql_log_file << "ref_id:";std::cout << ref_id<< std::endl <<endl;
+            BDD->sql_log_file << "ref_id:";BDD->sql_log_file << ref_id<<endl;
 
 
             query.bindValue(temp_string, ref_id);
@@ -196,9 +203,64 @@ void acicd_element::set_reference(QString field,int ref_id)
             // Get database given autoincrement value
             if (!success)
             {
-                BDD->sql_log_file << "insert_acicd: "<< query.lastError().text() <<endl;
+                BDD->sql_log_file << "set_reference: "<< query.lastError().text() <<endl;
 
-                qDebug() << "insert_acicd: "
+                qDebug() << "set_reference: "
+                         << query.lastError();
+            }
+
+        }
+    }
+}
+
+void acicd_element::set_value(QString field,QString value)
+{
+    bool success = false;
+
+
+    if (db->isOpen())
+    {
+
+        // acicd is not in DB
+        if(id==-1)
+        {
+            std::cout << "[set_value] [" + DB_table_name.toStdString() + "] is not in database, cannot reference element: ["+field.toStdString()+"]" << std::endl;
+            BDD->sql_log_file << "[set_value] [" + DB_table_name + "] is not in database, cannot reference element: ["+field+"]" <<endl;
+        }
+        else
+        {
+
+            // NULL = is the keyword for the autoincrement to generate next value
+
+            QSqlQuery query(*db);
+            std::cout << "[set_value] [" + update_query.toStdString() + "] update_query" << std::endl;
+            BDD->sql_log_file << "[set_value] [" + update_query + "] update_query"  <<endl;
+            this->create_update_query(field);
+            std::cout << "[set_value] [" + update_query.toStdString() + "] update_query" << std::endl;
+            BDD->sql_log_file << "[set_value] [" + update_query + "] update_query"  <<endl;
+            query.prepare(update_query);
+
+            query.bindValue(":id", id);
+
+            const QString temp_string=QString(":")%field;
+            std::cout << "[set_value] [" + temp_string.toStdString() + "] temp_string" << std::endl;
+            BDD->sql_log_file << "[set_value] [" + temp_string + "] temp_string" <<endl;
+            std::cout << "id:";std::cout << id<< std::endl;
+            BDD->sql_log_file << "id:";BDD->sql_log_file << id <<endl;
+            std::cout << "ref_id:";std::cout << value.toStdString()<< std::endl;
+            BDD->sql_log_file << "ref_id:";BDD->sql_log_file << value <<endl;
+
+
+            query.bindValue(temp_string, value);
+
+            success = query.exec();
+
+            // Get database given autoincrement value
+            if (!success)
+            {
+                BDD->sql_log_file << "set_value: "<< query.lastError().text() <<endl;
+
+                qDebug() << "set_value: "
                          << query.lastError();
             }
 

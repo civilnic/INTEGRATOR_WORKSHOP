@@ -199,6 +199,8 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
 
        if(section==acicd_data_section::AFDX_OUTPUT_VL)
        {
+           connector_pin_obj->modify_parameters({ { 2, "Physical_Id" },{ 3, "Physical_speed" },{ 4, "Connector_pin" },{ 6, "Network_id" }});
+
            for(it_record=it->begin();it_record!=it->end();++it_record)
            {
                if(AFDX_TX_port_obj->DB_FIELDS.count(it_record-it->begin())==1)
@@ -229,6 +231,19 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
                         AFDX_port_transmission_type_obj->set_parameters(it_record-it->begin(),*it_record);
                     }
                }
+               if(connector_pin_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                    if((*it_record).empty()!=1)
+                    {
+                        connector_pin_obj->set_parameters(it_record-it->begin(),*it_record);
+                    }
+               }
+           }
+           if(!connector_pin_obj->insert_intable())
+           {
+                connector_pin_obj->set_value(QString("Physical_Id"),connector_pin_obj->DB_VALUES["Physical_Id"]);
+                connector_pin_obj->set_value(QString("Physical_speed"),connector_pin_obj->DB_VALUES["Physical_speed"]);
+                connector_pin_obj->set_value(QString("Network_id"),connector_pin_obj->DB_VALUES["Network_id"]);
            }
 
            AFDX_port_type_obj->insert_intable();
@@ -238,8 +253,8 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
            if(AFDX_TX_port_obj->insert_intable())
            {
                 AFDX_TX_port_obj->set_reference(QString("ACICD"),id);
-                AFDX_TX_port_obj->set_reference(QString("ACICD"),id);
-                AFDX_TX_port_obj->set_reference(QString("Equipment"),equipment_obj->get_id());
+                AFDX_TX_port_obj->set_reference(QString("Pin"),connector_pin_obj->get_id());
+                AFDX_TX_port_obj->set_reference(QString("EQUIPMENT"),equipment_obj->get_id());
                 AFDX_TX_port_obj->set_reference(QString("Type"),AFDX_port_type_obj->get_id());
                 AFDX_TX_port_obj->set_reference(QString("characteristic"),AFDX_port_characteristic_obj->get_id());
                 AFDX_TX_port_obj->set_reference(QString("transmission_type"),AFDX_port_transmission_type_obj->get_id());
