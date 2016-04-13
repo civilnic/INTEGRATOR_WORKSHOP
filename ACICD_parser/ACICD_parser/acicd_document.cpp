@@ -199,7 +199,7 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
 
        if(section==acicd_data_section::AFDX_OUTPUT_VL)
        {
-           connector_pin_obj->modify_parameters({ { 2, "Physical_Id" },{ 3, "Physical_speed" },{ 4, "Connector_pin" },{ 6, "Network_id" }});
+           connector_pin_obj->modify_parameters({ { 2, "Physical_Id" },{ 3, "Physical_speed" },{ 4, "Connector_pin" }});
 
            for(it_record=it->begin();it_record!=it->end();++it_record)
            {
@@ -253,7 +253,6 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
            if(AFDX_TX_port_obj->insert_intable())
            {
                 AFDX_TX_port_obj->set_reference(QString("ACICD"),id);
-                AFDX_TX_port_obj->set_reference(QString("Pin"),connector_pin_obj->get_id());
                 AFDX_TX_port_obj->set_reference(QString("EQUIPMENT"),equipment_obj->get_id());
                 AFDX_TX_port_obj->set_reference(QString("Type"),AFDX_port_type_obj->get_id());
                 AFDX_TX_port_obj->set_reference(QString("characteristic"),AFDX_port_characteristic_obj->get_id());

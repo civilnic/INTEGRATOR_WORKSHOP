@@ -2,7 +2,8 @@
 
 acicd_AFDX_TX_port::acicd_AFDX_TX_port(sql_database_manager *database_manager) : acicd_element (database_manager)
 {
-    DB_FIELDS= { { 15, "TX_AFDX_port_Identifier" },
+    DB_FIELDS= { { 10, "Network_Select" },
+                 { 15, "TX_AFDX_port_Identifier" },
                  { 16, "AFDX_Port_Master_Name" },
                  { 19, "IP_frag_allowed" },
                  { 21, "Src_IP_Adress" },
@@ -15,7 +16,7 @@ acicd_AFDX_TX_port::acicd_AFDX_TX_port(sql_database_manager *database_manager) :
     DB_table_name="AFDX_TX_PORT";
     test_field="TX_AFDX_port_Identifier";
 
-    insert_query=QString("INSERT INTO %1 VALUES(NULL,:TX_AFDX_port_Identifier,:AFDX_Port_Master_Name,NULL,NULL,NULL,NULL,:Src_IP_Adress,:Dest_IP_Adress,:Src_UDP_Adress,:Dest_UDP_Adress,:Buffersize,:IP_frag_allowed,NULL,NULL)").arg(DB_table_name);
+    insert_query=QString("INSERT INTO %1 VALUES(NULL,:TX_AFDX_port_Identifier,:AFDX_Port_Master_Name,NULL,NULL,NULL,NULL,:Src_IP_Adress,:Dest_IP_Adress,:Src_UDP_Adress,:Dest_UDP_Adress,:Buffersize,:IP_frag_allowed,NULL,:Network_Select)").arg(DB_table_name);
     test_query=QString("SELECT id, %1 FROM %2 WHERE %1 = (:test_field)").arg(test_field).arg(DB_table_name);
 
     create_table_query=QString("CREATE TABLE IF NOT EXISTS [%1](\
@@ -33,13 +34,10 @@ acicd_AFDX_TX_port::acicd_AFDX_TX_port(sql_database_manager *database_manager) :
              [Buffersize] INTEGER NULL,\
              [IP_frag_allowed] BIT NULL,\
              [ACICD] INTEGER NULL,\
-             [Pin] INTEGER NULL,\
+             [Network_Select] VARCHAR( 15 ) NULL,\
                 CONSTRAINT [ACICD]\
                     FOREIGN KEY([ACICD])\
                     REFERENCES [ACICD] ( [id] ),\
-                CONSTRAINT [Pin]\
-                    FOREIGN KEY([Pin])\
-                    REFERENCES [CONNECTOR_PIN] ( [id] ),\
                 CONSTRAINT [Type]\
                     FOREIGN KEY([Type])\
                     REFERENCES [AFDX_PORT_TYPE] ( [id] ),\

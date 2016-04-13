@@ -64,7 +64,10 @@ int acicd_element::is_element_exist(QString Name)
 
         query.prepare(test_query);
         query.bindValue(":test_field", Name);
-
+        std::cout << "[is_element_exist] test_field: " << Name.toStdString() << std::endl;
+        std::cout << "[is_element_exist] test_query: " << test_query.toStdString() << std::endl;
+        BDD->sql_log_file << "[is_element_exist] test_field: " << Name <<endl;
+        BDD->sql_log_file << "[is_element_exist] test_query: " << test_query <<endl;
         success=query.exec();
 
         if(!success)
