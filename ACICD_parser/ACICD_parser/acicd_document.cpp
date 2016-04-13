@@ -103,6 +103,7 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
     acicd_afdx_port_type *AFDX_port_type_obj=new acicd_afdx_port_type(BDD);
     acicd_afdx_port_characteristic *AFDX_port_characteristic_obj=new acicd_afdx_port_characteristic(BDD);
     acicd_afdx_port_transmission_type *AFDX_port_transmission_type_obj=new acicd_afdx_port_transmission_type(BDD);
+    acicd_afdx_VL *AFDX_VL_obj=new acicd_afdx_VL(BDD);
 
     db->transaction();
 
@@ -199,7 +200,7 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
 
        if(section==acicd_data_section::AFDX_OUTPUT_VL)
        {
-           connector_pin_obj->modify_parameters({ { 2, "Physical_Id" },{ 3, "Physical_speed" },{ 4, "Connector_pin" }});
+           connector_pin_obj->modify_parameters({ { 2, "Physical_Id" },{ 3, "Physical_speed" },{ 4, "Connector_pin" },{ 6, "Network_id" }});
 
            for(it_record=it->begin();it_record!=it->end();++it_record)
            {
@@ -238,7 +239,22 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
                         connector_pin_obj->set_parameters(it_record-it->begin(),*it_record);
                     }
                }
+               if(AFDX_VL_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                    if((*it_record).empty()!=1)
+                    {
+                        AFDX_VL_obj->set_parameters(it_record-it->begin(),*it_record);
+                    }
+               }
+
            }
+
+           if(AFDX_VL_obj->insert_intable())
+           {
+               AFDX_VL_obj->set_reference(QString("ACICD"),id);
+               AFDX_VL_obj->set_reference(QString("EQUIPMENT"),equipment_obj->get_id());
+           }
+
            if(!connector_pin_obj->insert_intable())
            {
                 connector_pin_obj->set_value(QString("Physical_Id"),connector_pin_obj->DB_VALUES["Physical_Id"]);
@@ -257,12 +273,24 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
                 AFDX_TX_port_obj->set_reference(QString("Type"),AFDX_port_type_obj->get_id());
                 AFDX_TX_port_obj->set_reference(QString("characteristic"),AFDX_port_characteristic_obj->get_id());
                 AFDX_TX_port_obj->set_reference(QString("transmission_type"),AFDX_port_transmission_type_obj->get_id());
+                AFDX_TX_port_obj->set_reference(QString("AFDX_VL"),AFDX_VL_obj->get_id());
            }
-
-
        }
 
 
+       if(section==acicd_data_section::AFDX_OUTPUT_MESSAGE)
+       {
+           for(it_record=it->begin();it_record!=it->end();++it_record)
+           {
+               if(AFDX_TX_port_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                    if((*it_record).empty()!=1)
+                    {
+                        AFDX_TX_port_obj->set_parameters(it_record-it->begin(),*it_record);
+                    }
+               }
+           }
+       }
 
        previous_section=section;
     }

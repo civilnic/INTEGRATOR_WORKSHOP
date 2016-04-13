@@ -6068,6 +6068,18 @@ ref_id:1
 [is_element_exist] test_field: Int_
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [Int_] already exists in db with: Id: 132
+[is_element_exist] test_field: VL_PRIM1A_CDS_CAPT
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[set_reference] [] update_query
+[set_reference] [UPDATE AFDX_VL SET ACICD=:ACICD WHERE (id=:id)] update_query
+[set_reference] [:ACICD] temp_string
+id:1
+ref_id:1
+[set_reference] [UPDATE AFDX_VL SET ACICD=:ACICD WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_VL SET EQUIPMENT=:EQUIPMENT WHERE (id=:id)] update_query
+[set_reference] [:EQUIPMENT] temp_string
+id:1
+ref_id:1
 [is_element_exist] test_field: 1T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [1T] already exists in db with: Id: 116
@@ -6085,7 +6097,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:116
-ref_id:
+ref_id:A
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [is_element_exist] test_field: Sampling
@@ -6119,6 +6131,14 @@ ref_id:1
 [set_reference] [:transmission_type] temp_string
 id:1
 ref_id:1
+[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
+[set_reference] [:AFDX_VL] temp_string
+id:1
+ref_id:1
+[is_element_exist] test_field: VL_PRIM1A_CDS_CAPT
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_CDS_CAPT] already exists in db with: Id: 1
 [is_element_exist] test_field: 1T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [1T] already exists in db with: Id: 116
@@ -6136,7 +6156,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:116
-ref_id:
+ref_id:A
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -6148,7 +6168,7 @@ ref_id:
 [insert_intable] [AFDX_PORT_TRANSMISSION_TYPE] element name: [multicast] already exists in db with: Id: 1
 [is_element_exist] test_field: 3410
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
-[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
 [set_reference] [UPDATE AFDX_TX_PORT SET ACICD=:ACICD WHERE (id=:id)] update_query
 [set_reference] [:ACICD] temp_string
 id:2
@@ -6173,6 +6193,23 @@ ref_id:1
 [set_reference] [:transmission_type] temp_string
 id:2
 ref_id:1
+[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
+[set_reference] [:AFDX_VL] temp_string
+id:2
+ref_id:1
+[is_element_exist] test_field: VL_PRIM1A_ENGINE
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[set_reference] [UPDATE AFDX_VL SET EQUIPMENT=:EQUIPMENT WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_VL SET ACICD=:ACICD WHERE (id=:id)] update_query
+[set_reference] [:ACICD] temp_string
+id:2
+ref_id:1
+[set_reference] [UPDATE AFDX_VL SET ACICD=:ACICD WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_VL SET EQUIPMENT=:EQUIPMENT WHERE (id=:id)] update_query
+[set_reference] [:EQUIPMENT] temp_string
+id:2
+ref_id:1
 [is_element_exist] test_field: 1T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [1T] already exists in db with: Id: 116
@@ -6190,7 +6227,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:116
-ref_id:
+ref_id:A
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -6202,7 +6239,7 @@ ref_id:
 [insert_intable] [AFDX_PORT_TRANSMISSION_TYPE] element name: [multicast] already exists in db with: Id: 1
 [is_element_exist] test_field: 2800
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
-[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
 [set_reference] [UPDATE AFDX_TX_PORT SET ACICD=:ACICD WHERE (id=:id)] update_query
 [set_reference] [:ACICD] temp_string
 id:3
@@ -6227,6 +6264,23 @@ ref_id:1
 [set_reference] [:transmission_type] temp_string
 id:3
 ref_id:1
+[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
+[set_reference] [:AFDX_VL] temp_string
+id:3
+ref_id:2
+[is_element_exist] test_field: VL_PRIM1A_FCDC
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[set_reference] [UPDATE AFDX_VL SET EQUIPMENT=:EQUIPMENT WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_VL SET ACICD=:ACICD WHERE (id=:id)] update_query
+[set_reference] [:ACICD] temp_string
+id:3
+ref_id:1
+[set_reference] [UPDATE AFDX_VL SET ACICD=:ACICD WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_VL SET EQUIPMENT=:EQUIPMENT WHERE (id=:id)] update_query
+[set_reference] [:EQUIPMENT] temp_string
+id:3
+ref_id:1
 [is_element_exist] test_field: 1T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [1T] already exists in db with: Id: 116
@@ -6244,7 +6298,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:116
-ref_id:
+ref_id:A
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -6256,7 +6310,7 @@ ref_id:
 [insert_intable] [AFDX_PORT_TRANSMISSION_TYPE] element name: [multicast] already exists in db with: Id: 1
 [is_element_exist] test_field: 2500
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
-[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
 [set_reference] [UPDATE AFDX_TX_PORT SET ACICD=:ACICD WHERE (id=:id)] update_query
 [set_reference] [:ACICD] temp_string
 id:4
@@ -6281,6 +6335,14 @@ ref_id:1
 [set_reference] [:transmission_type] temp_string
 id:4
 ref_id:1
+[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
+[set_reference] [:AFDX_VL] temp_string
+id:4
+ref_id:3
+[is_element_exist] test_field: VL_PRIM1A_FCDC
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_FCDC] already exists in db with: Id: 3
 [is_element_exist] test_field: 1T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [1T] already exists in db with: Id: 116
@@ -6298,7 +6360,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:116
-ref_id:
+ref_id:A
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -6310,7 +6372,7 @@ ref_id:
 [insert_intable] [AFDX_PORT_TRANSMISSION_TYPE] element name: [multicast] already exists in db with: Id: 1
 [is_element_exist] test_field: 2510
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
-[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
 [set_reference] [UPDATE AFDX_TX_PORT SET ACICD=:ACICD WHERE (id=:id)] update_query
 [set_reference] [:ACICD] temp_string
 id:5
@@ -6335,6 +6397,14 @@ ref_id:1
 [set_reference] [:transmission_type] temp_string
 id:5
 ref_id:1
+[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
+[set_reference] [:AFDX_VL] temp_string
+id:5
+ref_id:3
+[is_element_exist] test_field: VL_PRIM1A_FCDC
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_FCDC] already exists in db with: Id: 3
 [is_element_exist] test_field: 1T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [1T] already exists in db with: Id: 116
@@ -6352,7 +6422,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:116
-ref_id:
+ref_id:A
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -6364,7 +6434,7 @@ ref_id:
 [insert_intable] [AFDX_PORT_TRANSMISSION_TYPE] element name: [multicast] already exists in db with: Id: 1
 [is_element_exist] test_field: 2520
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
-[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
 [set_reference] [UPDATE AFDX_TX_PORT SET ACICD=:ACICD WHERE (id=:id)] update_query
 [set_reference] [:ACICD] temp_string
 id:6
@@ -6389,6 +6459,14 @@ ref_id:1
 [set_reference] [:transmission_type] temp_string
 id:6
 ref_id:1
+[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
+[set_reference] [:AFDX_VL] temp_string
+id:6
+ref_id:3
+[is_element_exist] test_field: VL_PRIM1A_FCDC
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_FCDC] already exists in db with: Id: 3
 [is_element_exist] test_field: 1T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [1T] already exists in db with: Id: 116
@@ -6406,7 +6484,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:116
-ref_id:
+ref_id:A
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -6418,7 +6496,7 @@ ref_id:
 [insert_intable] [AFDX_PORT_TRANSMISSION_TYPE] element name: [multicast] already exists in db with: Id: 1
 [is_element_exist] test_field: 2530
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
-[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
 [set_reference] [UPDATE AFDX_TX_PORT SET ACICD=:ACICD WHERE (id=:id)] update_query
 [set_reference] [:ACICD] temp_string
 id:7
@@ -6443,6 +6521,23 @@ ref_id:1
 [set_reference] [:transmission_type] temp_string
 id:7
 ref_id:1
+[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
+[set_reference] [:AFDX_VL] temp_string
+id:7
+ref_id:3
+[is_element_exist] test_field: VL_PRIM1A_GENERAL
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[set_reference] [UPDATE AFDX_VL SET EQUIPMENT=:EQUIPMENT WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_VL SET ACICD=:ACICD WHERE (id=:id)] update_query
+[set_reference] [:ACICD] temp_string
+id:4
+ref_id:1
+[set_reference] [UPDATE AFDX_VL SET ACICD=:ACICD WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_VL SET EQUIPMENT=:EQUIPMENT WHERE (id=:id)] update_query
+[set_reference] [:EQUIPMENT] temp_string
+id:4
+ref_id:1
 [is_element_exist] test_field: 1T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [1T] already exists in db with: Id: 116
@@ -6460,7 +6555,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:116
-ref_id:
+ref_id:A
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -6472,7 +6567,7 @@ ref_id:
 [insert_intable] [AFDX_PORT_TRANSMISSION_TYPE] element name: [multicast] already exists in db with: Id: 1
 [is_element_exist] test_field: 2700
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
-[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
 [set_reference] [UPDATE AFDX_TX_PORT SET ACICD=:ACICD WHERE (id=:id)] update_query
 [set_reference] [:ACICD] temp_string
 id:8
@@ -6497,6 +6592,14 @@ ref_id:1
 [set_reference] [:transmission_type] temp_string
 id:8
 ref_id:1
+[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
+[set_reference] [:AFDX_VL] temp_string
+id:8
+ref_id:4
+[is_element_exist] test_field: VL_PRIM1A_GENERAL
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_GENERAL] already exists in db with: Id: 4
 [is_element_exist] test_field: 1T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [1T] already exists in db with: Id: 116
@@ -6514,7 +6617,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:116
-ref_id:
+ref_id:A
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -6526,7 +6629,7 @@ ref_id:
 [insert_intable] [AFDX_PORT_TRANSMISSION_TYPE] element name: [multicast] already exists in db with: Id: 1
 [is_element_exist] test_field: 2710
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
-[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
 [set_reference] [UPDATE AFDX_TX_PORT SET ACICD=:ACICD WHERE (id=:id)] update_query
 [set_reference] [:ACICD] temp_string
 id:9
@@ -6551,6 +6654,14 @@ ref_id:1
 [set_reference] [:transmission_type] temp_string
 id:9
 ref_id:1
+[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
+[set_reference] [:AFDX_VL] temp_string
+id:9
+ref_id:4
+[is_element_exist] test_field: VL_PRIM1A_GENERAL
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_GENERAL] already exists in db with: Id: 4
 [is_element_exist] test_field: 1T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [1T] already exists in db with: Id: 116
@@ -6568,7 +6679,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:116
-ref_id:
+ref_id:A
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -6580,7 +6691,7 @@ ref_id:
 [insert_intable] [AFDX_PORT_TRANSMISSION_TYPE] element name: [multicast] already exists in db with: Id: 1
 [is_element_exist] test_field: 2720
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
-[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
 [set_reference] [UPDATE AFDX_TX_PORT SET ACICD=:ACICD WHERE (id=:id)] update_query
 [set_reference] [:ACICD] temp_string
 id:10
@@ -6605,6 +6716,23 @@ ref_id:1
 [set_reference] [:transmission_type] temp_string
 id:10
 ref_id:1
+[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
+[set_reference] [:AFDX_VL] temp_string
+id:10
+ref_id:4
+[is_element_exist] test_field: VL_PRIM1A_IEV
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[set_reference] [UPDATE AFDX_VL SET EQUIPMENT=:EQUIPMENT WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_VL SET ACICD=:ACICD WHERE (id=:id)] update_query
+[set_reference] [:ACICD] temp_string
+id:5
+ref_id:1
+[set_reference] [UPDATE AFDX_VL SET ACICD=:ACICD WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_VL SET EQUIPMENT=:EQUIPMENT WHERE (id=:id)] update_query
+[set_reference] [:EQUIPMENT] temp_string
+id:5
+ref_id:1
 [is_element_exist] test_field: 1T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [1T] already exists in db with: Id: 116
@@ -6622,7 +6750,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:116
-ref_id:
+ref_id:A
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -6634,7 +6762,7 @@ ref_id:
 [insert_intable] [AFDX_PORT_TRANSMISSION_TYPE] element name: [multicast] already exists in db with: Id: 1
 [is_element_exist] test_field: 2900
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
-[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
 [set_reference] [UPDATE AFDX_TX_PORT SET ACICD=:ACICD WHERE (id=:id)] update_query
 [set_reference] [:ACICD] temp_string
 id:11
@@ -6659,6 +6787,14 @@ ref_id:1
 [set_reference] [:transmission_type] temp_string
 id:11
 ref_id:1
+[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
+[set_reference] [:AFDX_VL] temp_string
+id:11
+ref_id:5
+[is_element_exist] test_field: VL_PRIM1A_IEV
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_IEV] already exists in db with: Id: 5
 [is_element_exist] test_field: 1T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [1T] already exists in db with: Id: 116
@@ -6676,7 +6812,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:116
-ref_id:
+ref_id:A
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -6688,7 +6824,7 @@ ref_id:
 [insert_intable] [AFDX_PORT_TRANSMISSION_TYPE] element name: [multicast] already exists in db with: Id: 1
 [is_element_exist] test_field: 2910
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
-[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
 [set_reference] [UPDATE AFDX_TX_PORT SET ACICD=:ACICD WHERE (id=:id)] update_query
 [set_reference] [:ACICD] temp_string
 id:12
@@ -6713,6 +6849,14 @@ ref_id:1
 [set_reference] [:transmission_type] temp_string
 id:12
 ref_id:1
+[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
+[set_reference] [:AFDX_VL] temp_string
+id:12
+ref_id:5
+[is_element_exist] test_field: VL_PRIM1A_IEV
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_IEV] already exists in db with: Id: 5
 [is_element_exist] test_field: 1T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [1T] already exists in db with: Id: 116
@@ -6730,7 +6874,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:116
-ref_id:
+ref_id:A
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -6742,7 +6886,7 @@ ref_id:
 [insert_intable] [AFDX_PORT_TRANSMISSION_TYPE] element name: [multicast] already exists in db with: Id: 1
 [is_element_exist] test_field: 3000
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
-[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
 [set_reference] [UPDATE AFDX_TX_PORT SET ACICD=:ACICD WHERE (id=:id)] update_query
 [set_reference] [:ACICD] temp_string
 id:13
@@ -6767,6 +6911,14 @@ ref_id:1
 [set_reference] [:transmission_type] temp_string
 id:13
 ref_id:1
+[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
+[set_reference] [:AFDX_VL] temp_string
+id:13
+ref_id:5
+[is_element_exist] test_field: VL_PRIM1A_IEV
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_IEV] already exists in db with: Id: 5
 [is_element_exist] test_field: 1T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [1T] already exists in db with: Id: 116
@@ -6784,7 +6936,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:116
-ref_id:
+ref_id:A
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -6796,7 +6948,7 @@ ref_id:
 [insert_intable] [AFDX_PORT_TRANSMISSION_TYPE] element name: [multicast] already exists in db with: Id: 1
 [is_element_exist] test_field: 3010
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
-[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
 [set_reference] [UPDATE AFDX_TX_PORT SET ACICD=:ACICD WHERE (id=:id)] update_query
 [set_reference] [:ACICD] temp_string
 id:14
@@ -6821,6 +6973,14 @@ ref_id:1
 [set_reference] [:transmission_type] temp_string
 id:14
 ref_id:1
+[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
+[set_reference] [:AFDX_VL] temp_string
+id:14
+ref_id:5
+[is_element_exist] test_field: VL_PRIM1A_IEV
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_IEV] already exists in db with: Id: 5
 [is_element_exist] test_field: 1T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [1T] already exists in db with: Id: 116
@@ -6838,7 +6998,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:116
-ref_id:
+ref_id:A
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -6850,7 +7010,7 @@ ref_id:
 [insert_intable] [AFDX_PORT_TRANSMISSION_TYPE] element name: [multicast] already exists in db with: Id: 1
 [is_element_exist] test_field: 3020
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
-[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
 [set_reference] [UPDATE AFDX_TX_PORT SET ACICD=:ACICD WHERE (id=:id)] update_query
 [set_reference] [:ACICD] temp_string
 id:15
@@ -6875,6 +7035,14 @@ ref_id:1
 [set_reference] [:transmission_type] temp_string
 id:15
 ref_id:1
+[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
+[set_reference] [:AFDX_VL] temp_string
+id:15
+ref_id:5
+[is_element_exist] test_field: VL_PRIM1A_IEV
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_IEV] already exists in db with: Id: 5
 [is_element_exist] test_field: 1T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [1T] already exists in db with: Id: 116
@@ -6892,7 +7060,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:116
-ref_id:
+ref_id:A
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -6904,7 +7072,7 @@ ref_id:
 [insert_intable] [AFDX_PORT_TRANSMISSION_TYPE] element name: [multicast] already exists in db with: Id: 1
 [is_element_exist] test_field: 3040
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
-[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
 [set_reference] [UPDATE AFDX_TX_PORT SET ACICD=:ACICD WHERE (id=:id)] update_query
 [set_reference] [:ACICD] temp_string
 id:16
@@ -6929,6 +7097,14 @@ ref_id:1
 [set_reference] [:transmission_type] temp_string
 id:16
 ref_id:1
+[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
+[set_reference] [:AFDX_VL] temp_string
+id:16
+ref_id:5
+[is_element_exist] test_field: VL_PRIM1A_IEV
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_IEV] already exists in db with: Id: 5
 [is_element_exist] test_field: 1T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [1T] already exists in db with: Id: 116
@@ -6946,7 +7122,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:116
-ref_id:
+ref_id:A
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -6958,7 +7134,7 @@ ref_id:
 [insert_intable] [AFDX_PORT_TRANSMISSION_TYPE] element name: [multicast] already exists in db with: Id: 1
 [is_element_exist] test_field: 3050
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
-[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
 [set_reference] [UPDATE AFDX_TX_PORT SET ACICD=:ACICD WHERE (id=:id)] update_query
 [set_reference] [:ACICD] temp_string
 id:17
@@ -6983,6 +7159,14 @@ ref_id:1
 [set_reference] [:transmission_type] temp_string
 id:17
 ref_id:1
+[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
+[set_reference] [:AFDX_VL] temp_string
+id:17
+ref_id:5
+[is_element_exist] test_field: VL_PRIM1A_IEV
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_IEV] already exists in db with: Id: 5
 [is_element_exist] test_field: 1T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [1T] already exists in db with: Id: 116
@@ -7000,7 +7184,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:116
-ref_id:
+ref_id:A
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -7012,7 +7196,7 @@ ref_id:
 [insert_intable] [AFDX_PORT_TRANSMISSION_TYPE] element name: [multicast] already exists in db with: Id: 1
 [is_element_exist] test_field: 3060
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
-[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
 [set_reference] [UPDATE AFDX_TX_PORT SET ACICD=:ACICD WHERE (id=:id)] update_query
 [set_reference] [:ACICD] temp_string
 id:18
@@ -7037,6 +7221,14 @@ ref_id:1
 [set_reference] [:transmission_type] temp_string
 id:18
 ref_id:1
+[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
+[set_reference] [:AFDX_VL] temp_string
+id:18
+ref_id:5
+[is_element_exist] test_field: VL_PRIM1A_IEV
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_IEV] already exists in db with: Id: 5
 [is_element_exist] test_field: 1T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [1T] already exists in db with: Id: 116
@@ -7054,7 +7246,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:116
-ref_id:
+ref_id:A
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -7066,7 +7258,7 @@ ref_id:
 [insert_intable] [AFDX_PORT_TRANSMISSION_TYPE] element name: [multicast] already exists in db with: Id: 1
 [is_element_exist] test_field: 3070
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
-[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
 [set_reference] [UPDATE AFDX_TX_PORT SET ACICD=:ACICD WHERE (id=:id)] update_query
 [set_reference] [:ACICD] temp_string
 id:19
@@ -7091,6 +7283,14 @@ ref_id:1
 [set_reference] [:transmission_type] temp_string
 id:19
 ref_id:1
+[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
+[set_reference] [:AFDX_VL] temp_string
+id:19
+ref_id:5
+[is_element_exist] test_field: VL_PRIM1A_IEV
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_IEV] already exists in db with: Id: 5
 [is_element_exist] test_field: 1T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [1T] already exists in db with: Id: 116
@@ -7108,7 +7308,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:116
-ref_id:
+ref_id:A
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -7120,7 +7320,7 @@ ref_id:
 [insert_intable] [AFDX_PORT_TRANSMISSION_TYPE] element name: [multicast] already exists in db with: Id: 1
 [is_element_exist] test_field: 3080
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
-[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
 [set_reference] [UPDATE AFDX_TX_PORT SET ACICD=:ACICD WHERE (id=:id)] update_query
 [set_reference] [:ACICD] temp_string
 id:20
@@ -7145,6 +7345,14 @@ ref_id:1
 [set_reference] [:transmission_type] temp_string
 id:20
 ref_id:1
+[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
+[set_reference] [:AFDX_VL] temp_string
+id:20
+ref_id:5
+[is_element_exist] test_field: VL_PRIM1A_IEV
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_IEV] already exists in db with: Id: 5
 [is_element_exist] test_field: 1T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [1T] already exists in db with: Id: 116
@@ -7162,7 +7370,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:116
-ref_id:
+ref_id:A
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -7174,7 +7382,7 @@ ref_id:
 [insert_intable] [AFDX_PORT_TRANSMISSION_TYPE] element name: [multicast] already exists in db with: Id: 1
 [is_element_exist] test_field: 3090
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
-[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
 [set_reference] [UPDATE AFDX_TX_PORT SET ACICD=:ACICD WHERE (id=:id)] update_query
 [set_reference] [:ACICD] temp_string
 id:21
@@ -7199,6 +7407,14 @@ ref_id:1
 [set_reference] [:transmission_type] temp_string
 id:21
 ref_id:1
+[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
+[set_reference] [:AFDX_VL] temp_string
+id:21
+ref_id:5
+[is_element_exist] test_field: VL_PRIM1A_IEV
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_IEV] already exists in db with: Id: 5
 [is_element_exist] test_field: 1T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [1T] already exists in db with: Id: 116
@@ -7216,7 +7432,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:116
-ref_id:
+ref_id:A
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -7228,7 +7444,7 @@ ref_id:
 [insert_intable] [AFDX_PORT_TRANSMISSION_TYPE] element name: [multicast] already exists in db with: Id: 1
 [is_element_exist] test_field: 3100
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
-[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
 [set_reference] [UPDATE AFDX_TX_PORT SET ACICD=:ACICD WHERE (id=:id)] update_query
 [set_reference] [:ACICD] temp_string
 id:22
@@ -7253,6 +7469,14 @@ ref_id:1
 [set_reference] [:transmission_type] temp_string
 id:22
 ref_id:1
+[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
+[set_reference] [:AFDX_VL] temp_string
+id:22
+ref_id:5
+[is_element_exist] test_field: VL_PRIM1A_IEV
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_IEV] already exists in db with: Id: 5
 [is_element_exist] test_field: 1T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [1T] already exists in db with: Id: 116
@@ -7270,7 +7494,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:116
-ref_id:
+ref_id:A
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -7282,7 +7506,7 @@ ref_id:
 [insert_intable] [AFDX_PORT_TRANSMISSION_TYPE] element name: [multicast] already exists in db with: Id: 1
 [is_element_exist] test_field: 3110
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
-[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
 [set_reference] [UPDATE AFDX_TX_PORT SET ACICD=:ACICD WHERE (id=:id)] update_query
 [set_reference] [:ACICD] temp_string
 id:23
@@ -7307,6 +7531,14 @@ ref_id:1
 [set_reference] [:transmission_type] temp_string
 id:23
 ref_id:1
+[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
+[set_reference] [:AFDX_VL] temp_string
+id:23
+ref_id:5
+[is_element_exist] test_field: VL_PRIM1A_IEV
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_IEV] already exists in db with: Id: 5
 [is_element_exist] test_field: 1T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [1T] already exists in db with: Id: 116
@@ -7324,7 +7556,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:116
-ref_id:
+ref_id:A
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -7336,7 +7568,7 @@ ref_id:
 [insert_intable] [AFDX_PORT_TRANSMISSION_TYPE] element name: [multicast] already exists in db with: Id: 1
 [is_element_exist] test_field: 3120
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
-[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
 [set_reference] [UPDATE AFDX_TX_PORT SET ACICD=:ACICD WHERE (id=:id)] update_query
 [set_reference] [:ACICD] temp_string
 id:24
@@ -7361,6 +7593,14 @@ ref_id:1
 [set_reference] [:transmission_type] temp_string
 id:24
 ref_id:1
+[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
+[set_reference] [:AFDX_VL] temp_string
+id:24
+ref_id:5
+[is_element_exist] test_field: VL_PRIM1A_IEV
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_IEV] already exists in db with: Id: 5
 [is_element_exist] test_field: 1T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [1T] already exists in db with: Id: 116
@@ -7378,7 +7618,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:116
-ref_id:
+ref_id:A
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -7390,7 +7630,7 @@ ref_id:
 [insert_intable] [AFDX_PORT_TRANSMISSION_TYPE] element name: [multicast] already exists in db with: Id: 1
 [is_element_exist] test_field: 3130
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
-[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
 [set_reference] [UPDATE AFDX_TX_PORT SET ACICD=:ACICD WHERE (id=:id)] update_query
 [set_reference] [:ACICD] temp_string
 id:25
@@ -7415,6 +7655,23 @@ ref_id:1
 [set_reference] [:transmission_type] temp_string
 id:25
 ref_id:1
+[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
+[set_reference] [:AFDX_VL] temp_string
+id:25
+ref_id:5
+[is_element_exist] test_field: VL_PRIM1A_PFCS
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[set_reference] [UPDATE AFDX_VL SET EQUIPMENT=:EQUIPMENT WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_VL SET ACICD=:ACICD WHERE (id=:id)] update_query
+[set_reference] [:ACICD] temp_string
+id:6
+ref_id:1
+[set_reference] [UPDATE AFDX_VL SET ACICD=:ACICD WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_VL SET EQUIPMENT=:EQUIPMENT WHERE (id=:id)] update_query
+[set_reference] [:EQUIPMENT] temp_string
+id:6
+ref_id:1
 [is_element_exist] test_field: 1T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [1T] already exists in db with: Id: 116
@@ -7432,7 +7689,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:116
-ref_id:
+ref_id:A
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -7444,7 +7701,7 @@ ref_id:
 [insert_intable] [AFDX_PORT_TRANSMISSION_TYPE] element name: [multicast] already exists in db with: Id: 1
 [is_element_exist] test_field: 2600
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
-[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
 [set_reference] [UPDATE AFDX_TX_PORT SET ACICD=:ACICD WHERE (id=:id)] update_query
 [set_reference] [:ACICD] temp_string
 id:26
@@ -7469,6 +7726,14 @@ ref_id:1
 [set_reference] [:transmission_type] temp_string
 id:26
 ref_id:1
+[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
+[set_reference] [:AFDX_VL] temp_string
+id:26
+ref_id:6
+[is_element_exist] test_field: VL_PRIM1A_PFCS
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_PFCS] already exists in db with: Id: 6
 [is_element_exist] test_field: 1T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [1T] already exists in db with: Id: 116
@@ -7486,7 +7751,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:116
-ref_id:
+ref_id:A
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -7498,7 +7763,7 @@ ref_id:
 [insert_intable] [AFDX_PORT_TRANSMISSION_TYPE] element name: [multicast] already exists in db with: Id: 1
 [is_element_exist] test_field: 2610
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
-[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
 [set_reference] [UPDATE AFDX_TX_PORT SET ACICD=:ACICD WHERE (id=:id)] update_query
 [set_reference] [:ACICD] temp_string
 id:27
@@ -7523,6 +7788,23 @@ ref_id:1
 [set_reference] [:transmission_type] temp_string
 id:27
 ref_id:1
+[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
+[set_reference] [:AFDX_VL] temp_string
+id:27
+ref_id:6
+[is_element_exist] test_field: VL_PRIM1A_SERVICE
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[set_reference] [UPDATE AFDX_VL SET EQUIPMENT=:EQUIPMENT WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_VL SET ACICD=:ACICD WHERE (id=:id)] update_query
+[set_reference] [:ACICD] temp_string
+id:7
+ref_id:1
+[set_reference] [UPDATE AFDX_VL SET ACICD=:ACICD WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_VL SET EQUIPMENT=:EQUIPMENT WHERE (id=:id)] update_query
+[set_reference] [:EQUIPMENT] temp_string
+id:7
+ref_id:1
 [is_element_exist] test_field: 1T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [1T] already exists in db with: Id: 116
@@ -7540,7 +7822,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:116
-ref_id:
+ref_id:A
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -7550,7 +7832,7 @@ ref_id:
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TRANSMISSION_TYPE WHERE Name = (:test_field)
 [is_element_exist] test_field: 162
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
-[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
 [set_reference] [UPDATE AFDX_TX_PORT SET ACICD=:ACICD WHERE (id=:id)] update_query
 [set_reference] [:ACICD] temp_string
 id:28
@@ -7575,6 +7857,14 @@ ref_id:2
 [set_reference] [:transmission_type] temp_string
 id:28
 ref_id:2
+[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
+[set_reference] [:AFDX_VL] temp_string
+id:28
+ref_id:7
+[is_element_exist] test_field: VL_PRIM1A_SERVICE
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_SERVICE] already exists in db with: Id: 7
 [is_element_exist] test_field: 1T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [1T] already exists in db with: Id: 116
@@ -7592,7 +7882,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:116
-ref_id:
+ref_id:A
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -7604,7 +7894,7 @@ ref_id:
 [insert_intable] [AFDX_PORT_TRANSMISSION_TYPE] element name: [unicast] already exists in db with: Id: 2
 [is_element_exist] test_field: 163
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
-[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
 [set_reference] [UPDATE AFDX_TX_PORT SET ACICD=:ACICD WHERE (id=:id)] update_query
 [set_reference] [:ACICD] temp_string
 id:29
@@ -7629,6 +7919,14 @@ ref_id:2
 [set_reference] [:transmission_type] temp_string
 id:29
 ref_id:2
+[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
+[set_reference] [:AFDX_VL] temp_string
+id:29
+ref_id:7
+[is_element_exist] test_field: VL_PRIM1A_SERVICE
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_SERVICE] already exists in db with: Id: 7
 [is_element_exist] test_field: 1T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [1T] already exists in db with: Id: 116
@@ -7646,7 +7944,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:116
-ref_id:
+ref_id:A
 [is_element_exist] test_field: SAP
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [is_element_exist] test_field: SAP
@@ -7656,7 +7954,7 @@ ref_id:
 [insert_intable] [AFDX_PORT_TRANSMISSION_TYPE] element name: [unicast] already exists in db with: Id: 2
 [is_element_exist] test_field: 1001
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
-[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
 [set_reference] [UPDATE AFDX_TX_PORT SET ACICD=:ACICD WHERE (id=:id)] update_query
 [set_reference] [:ACICD] temp_string
 id:30
@@ -7681,6 +7979,14 @@ ref_id:3
 [set_reference] [:transmission_type] temp_string
 id:30
 ref_id:2
+[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
+[set_reference] [:AFDX_VL] temp_string
+id:30
+ref_id:7
+[is_element_exist] test_field: VL_PRIM1A_SERVICE
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_SERVICE] already exists in db with: Id: 7
 [is_element_exist] test_field: 1T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [1T] already exists in db with: Id: 116
@@ -7698,7 +8004,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:116
-ref_id:
+ref_id:A
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -7710,7 +8016,7 @@ ref_id:
 [insert_intable] [AFDX_PORT_TRANSMISSION_TYPE] element name: [multicast] already exists in db with: Id: 1
 [is_element_exist] test_field: 50203
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
-[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
 [set_reference] [UPDATE AFDX_TX_PORT SET ACICD=:ACICD WHERE (id=:id)] update_query
 [set_reference] [:ACICD] temp_string
 id:31
@@ -7735,6 +8041,14 @@ ref_id:1
 [set_reference] [:transmission_type] temp_string
 id:31
 ref_id:1
+[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
+[set_reference] [:AFDX_VL] temp_string
+id:31
+ref_id:7
+[is_element_exist] test_field: VL_PRIM1A_SERVICE
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_SERVICE] already exists in db with: Id: 7
 [is_element_exist] test_field: 1T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [1T] already exists in db with: Id: 116
@@ -7752,7 +8066,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:116
-ref_id:
+ref_id:A
 [is_element_exist] test_field: SAP
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [SAP] already exists in db with: Id: 2
@@ -7764,7 +8078,7 @@ ref_id:
 [insert_intable] [AFDX_PORT_TRANSMISSION_TYPE] element name: [unicast] already exists in db with: Id: 2
 [is_element_exist] test_field: 50204
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
-[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
 [set_reference] [UPDATE AFDX_TX_PORT SET ACICD=:ACICD WHERE (id=:id)] update_query
 [set_reference] [:ACICD] temp_string
 id:32
@@ -7789,6 +8103,14 @@ ref_id:3
 [set_reference] [:transmission_type] temp_string
 id:32
 ref_id:2
+[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
+[set_reference] [:AFDX_VL] temp_string
+id:32
+ref_id:7
+[is_element_exist] test_field: VL_PRIM1A_SERVICE
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_SERVICE] already exists in db with: Id: 7
 [is_element_exist] test_field: 1T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [1T] already exists in db with: Id: 116
@@ -7806,7 +8128,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:116
-ref_id:
+ref_id:A
 [is_element_exist] test_field: SAP
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [SAP] already exists in db with: Id: 2
@@ -7818,7 +8140,7 @@ ref_id:
 [insert_intable] [AFDX_PORT_TRANSMISSION_TYPE] element name: [unicast] already exists in db with: Id: 2
 [is_element_exist] test_field: 50218
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
-[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
 [set_reference] [UPDATE AFDX_TX_PORT SET ACICD=:ACICD WHERE (id=:id)] update_query
 [set_reference] [:ACICD] temp_string
 id:33
@@ -7843,6 +8165,14 @@ ref_id:3
 [set_reference] [:transmission_type] temp_string
 id:33
 ref_id:2
+[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
+[set_reference] [:AFDX_VL] temp_string
+id:33
+ref_id:7
+[is_element_exist] test_field: VL_PRIM1A_SERVICE
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_SERVICE] already exists in db with: Id: 7
 [is_element_exist] test_field: 1T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [1T] already exists in db with: Id: 116
@@ -7860,7 +8190,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:116
-ref_id:
+ref_id:A
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -7872,7 +8202,7 @@ ref_id:
 [insert_intable] [AFDX_PORT_TRANSMISSION_TYPE] element name: [unicast] already exists in db with: Id: 2
 [is_element_exist] test_field: 50219
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
-[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
 [set_reference] [UPDATE AFDX_TX_PORT SET ACICD=:ACICD WHERE (id=:id)] update_query
 [set_reference] [:ACICD] temp_string
 id:34
@@ -7897,6 +8227,14 @@ ref_id:2
 [set_reference] [:transmission_type] temp_string
 id:34
 ref_id:2
+[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
+[set_reference] [:AFDX_VL] temp_string
+id:34
+ref_id:7
+[is_element_exist] test_field: VL_PRIM1A_SERVICE
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_SERVICE] already exists in db with: Id: 7
 [is_element_exist] test_field: 1T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [1T] already exists in db with: Id: 116
@@ -7914,7 +8252,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:116
-ref_id:
+ref_id:A
 [is_element_exist] test_field: SAP
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [SAP] already exists in db with: Id: 2
@@ -7926,7 +8264,7 @@ ref_id:
 [insert_intable] [AFDX_PORT_TRANSMISSION_TYPE] element name: [unicast] already exists in db with: Id: 2
 [is_element_exist] test_field: 50300
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
-[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
 [set_reference] [UPDATE AFDX_TX_PORT SET ACICD=:ACICD WHERE (id=:id)] update_query
 [set_reference] [:ACICD] temp_string
 id:35
@@ -7951,6 +8289,14 @@ ref_id:3
 [set_reference] [:transmission_type] temp_string
 id:35
 ref_id:2
+[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
+[set_reference] [:AFDX_VL] temp_string
+id:35
+ref_id:7
+[is_element_exist] test_field: VL_PRIM1A_SERVICE
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_SERVICE] already exists in db with: Id: 7
 [is_element_exist] test_field: 1T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [1T] already exists in db with: Id: 116
@@ -7968,7 +8314,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:116
-ref_id:
+ref_id:A
 [is_element_exist] test_field: SAP
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [SAP] already exists in db with: Id: 2
@@ -7980,7 +8326,7 @@ ref_id:
 [insert_intable] [AFDX_PORT_TRANSMISSION_TYPE] element name: [unicast] already exists in db with: Id: 2
 [is_element_exist] test_field: 50450
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
-[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
 [set_reference] [UPDATE AFDX_TX_PORT SET ACICD=:ACICD WHERE (id=:id)] update_query
 [set_reference] [:ACICD] temp_string
 id:36
@@ -8005,6 +8351,14 @@ ref_id:3
 [set_reference] [:transmission_type] temp_string
 id:36
 ref_id:2
+[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
+[set_reference] [:AFDX_VL] temp_string
+id:36
+ref_id:7
+[is_element_exist] test_field: VL_PRIM1A_SERVICE
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_SERVICE] already exists in db with: Id: 7
 [is_element_exist] test_field: 1T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [1T] already exists in db with: Id: 116
@@ -8022,7 +8376,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:116
-ref_id:
+ref_id:A
 [is_element_exist] test_field: SAP
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [SAP] already exists in db with: Id: 2
@@ -8034,7 +8388,7 @@ ref_id:
 [insert_intable] [AFDX_PORT_TRANSMISSION_TYPE] element name: [unicast] already exists in db with: Id: 2
 [is_element_exist] test_field: 50451
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
-[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
 [set_reference] [UPDATE AFDX_TX_PORT SET ACICD=:ACICD WHERE (id=:id)] update_query
 [set_reference] [:ACICD] temp_string
 id:37
@@ -8059,6 +8413,14 @@ ref_id:3
 [set_reference] [:transmission_type] temp_string
 id:37
 ref_id:2
+[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
+[set_reference] [:AFDX_VL] temp_string
+id:37
+ref_id:7
+[is_element_exist] test_field: VL_PRIM1A_SERVICE
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_SERVICE] already exists in db with: Id: 7
 [is_element_exist] test_field: 1T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [1T] already exists in db with: Id: 116
@@ -8076,7 +8438,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:116
-ref_id:
+ref_id:A
 [is_element_exist] test_field: SAP
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [SAP] already exists in db with: Id: 2
@@ -8088,7 +8450,7 @@ ref_id:
 [insert_intable] [AFDX_PORT_TRANSMISSION_TYPE] element name: [unicast] already exists in db with: Id: 2
 [is_element_exist] test_field: 50452
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
-[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
 [set_reference] [UPDATE AFDX_TX_PORT SET ACICD=:ACICD WHERE (id=:id)] update_query
 [set_reference] [:ACICD] temp_string
 id:38
@@ -8113,6 +8475,14 @@ ref_id:3
 [set_reference] [:transmission_type] temp_string
 id:38
 ref_id:2
+[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
+[set_reference] [:AFDX_VL] temp_string
+id:38
+ref_id:7
+[is_element_exist] test_field: VL_PRIM1A_SERVICE
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_SERVICE] already exists in db with: Id: 7
 [is_element_exist] test_field: 1T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [1T] already exists in db with: Id: 116
@@ -8130,7 +8500,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:116
-ref_id:
+ref_id:A
 [is_element_exist] test_field: SAP
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [SAP] already exists in db with: Id: 2
@@ -8142,7 +8512,7 @@ ref_id:
 [insert_intable] [AFDX_PORT_TRANSMISSION_TYPE] element name: [unicast] already exists in db with: Id: 2
 [is_element_exist] test_field: 50453
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
-[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
 [set_reference] [UPDATE AFDX_TX_PORT SET ACICD=:ACICD WHERE (id=:id)] update_query
 [set_reference] [:ACICD] temp_string
 id:39
@@ -8167,6 +8537,14 @@ ref_id:3
 [set_reference] [:transmission_type] temp_string
 id:39
 ref_id:2
+[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
+[set_reference] [:AFDX_VL] temp_string
+id:39
+ref_id:7
+[is_element_exist] test_field: VL_PRIM1A_SERVICE
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_SERVICE] already exists in db with: Id: 7
 [is_element_exist] test_field: 1T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [1T] already exists in db with: Id: 116
@@ -8184,7 +8562,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:116
-ref_id:
+ref_id:A
 [is_element_exist] test_field: SAP
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [SAP] already exists in db with: Id: 2
@@ -8196,7 +8574,7 @@ ref_id:
 [insert_intable] [AFDX_PORT_TRANSMISSION_TYPE] element name: [unicast] already exists in db with: Id: 2
 [is_element_exist] test_field: 50454
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
-[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
 [set_reference] [UPDATE AFDX_TX_PORT SET ACICD=:ACICD WHERE (id=:id)] update_query
 [set_reference] [:ACICD] temp_string
 id:40
@@ -8221,6 +8599,14 @@ ref_id:3
 [set_reference] [:transmission_type] temp_string
 id:40
 ref_id:2
+[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
+[set_reference] [:AFDX_VL] temp_string
+id:40
+ref_id:7
+[is_element_exist] test_field: VL_PRIM1A_SERVICE
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_SERVICE] already exists in db with: Id: 7
 [is_element_exist] test_field: 1T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [1T] already exists in db with: Id: 116
@@ -8238,7 +8624,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:116
-ref_id:
+ref_id:A
 [is_element_exist] test_field: SAP
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [SAP] already exists in db with: Id: 2
@@ -8250,7 +8636,7 @@ ref_id:
 [insert_intable] [AFDX_PORT_TRANSMISSION_TYPE] element name: [unicast] already exists in db with: Id: 2
 [is_element_exist] test_field: 50455
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
-[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
 [set_reference] [UPDATE AFDX_TX_PORT SET ACICD=:ACICD WHERE (id=:id)] update_query
 [set_reference] [:ACICD] temp_string
 id:41
@@ -8275,6 +8661,14 @@ ref_id:3
 [set_reference] [:transmission_type] temp_string
 id:41
 ref_id:2
+[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
+[set_reference] [:AFDX_VL] temp_string
+id:41
+ref_id:7
+[is_element_exist] test_field: VL_PRIM1A_SERVICE
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_SERVICE] already exists in db with: Id: 7
 [is_element_exist] test_field: 1T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [1T] already exists in db with: Id: 116
@@ -8292,7 +8686,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:116
-ref_id:
+ref_id:A
 [is_element_exist] test_field: SAP
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [SAP] already exists in db with: Id: 2
@@ -8304,7 +8698,7 @@ ref_id:
 [insert_intable] [AFDX_PORT_TRANSMISSION_TYPE] element name: [unicast] already exists in db with: Id: 2
 [is_element_exist] test_field: 50456
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
-[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
 [set_reference] [UPDATE AFDX_TX_PORT SET ACICD=:ACICD WHERE (id=:id)] update_query
 [set_reference] [:ACICD] temp_string
 id:42
@@ -8329,6 +8723,14 @@ ref_id:3
 [set_reference] [:transmission_type] temp_string
 id:42
 ref_id:2
+[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
+[set_reference] [:AFDX_VL] temp_string
+id:42
+ref_id:7
+[is_element_exist] test_field: VL_PRIM1A_SERVICE
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_SERVICE] already exists in db with: Id: 7
 [is_element_exist] test_field: 1T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [1T] already exists in db with: Id: 116
@@ -8346,7 +8748,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:116
-ref_id:
+ref_id:A
 [is_element_exist] test_field: SAP
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [SAP] already exists in db with: Id: 2
@@ -8358,7 +8760,7 @@ ref_id:
 [insert_intable] [AFDX_PORT_TRANSMISSION_TYPE] element name: [unicast] already exists in db with: Id: 2
 [is_element_exist] test_field: 50457
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
-[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
 [set_reference] [UPDATE AFDX_TX_PORT SET ACICD=:ACICD WHERE (id=:id)] update_query
 [set_reference] [:ACICD] temp_string
 id:43
@@ -8383,6 +8785,14 @@ ref_id:3
 [set_reference] [:transmission_type] temp_string
 id:43
 ref_id:2
+[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
+[set_reference] [:AFDX_VL] temp_string
+id:43
+ref_id:7
+[is_element_exist] test_field: VL_PRIM1A_SERVICE
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_SERVICE] already exists in db with: Id: 7
 [is_element_exist] test_field: 1T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [1T] already exists in db with: Id: 116
@@ -8400,7 +8810,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:116
-ref_id:
+ref_id:A
 [is_element_exist] test_field: SAP
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [SAP] already exists in db with: Id: 2
@@ -8412,7 +8822,7 @@ ref_id:
 [insert_intable] [AFDX_PORT_TRANSMISSION_TYPE] element name: [unicast] already exists in db with: Id: 2
 [is_element_exist] test_field: 50458
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
-[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
 [set_reference] [UPDATE AFDX_TX_PORT SET ACICD=:ACICD WHERE (id=:id)] update_query
 [set_reference] [:ACICD] temp_string
 id:44
@@ -8437,6 +8847,14 @@ ref_id:3
 [set_reference] [:transmission_type] temp_string
 id:44
 ref_id:2
+[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
+[set_reference] [:AFDX_VL] temp_string
+id:44
+ref_id:7
+[is_element_exist] test_field: VL_PRIM1A_SERVICE
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_SERVICE] already exists in db with: Id: 7
 [is_element_exist] test_field: 1T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [1T] already exists in db with: Id: 116
@@ -8454,7 +8872,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:116
-ref_id:
+ref_id:A
 [is_element_exist] test_field: SAP
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [SAP] already exists in db with: Id: 2
@@ -8466,7 +8884,7 @@ ref_id:
 [insert_intable] [AFDX_PORT_TRANSMISSION_TYPE] element name: [unicast] already exists in db with: Id: 2
 [is_element_exist] test_field: 50459
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
-[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
 [set_reference] [UPDATE AFDX_TX_PORT SET ACICD=:ACICD WHERE (id=:id)] update_query
 [set_reference] [:ACICD] temp_string
 id:45
@@ -8491,6 +8909,14 @@ ref_id:3
 [set_reference] [:transmission_type] temp_string
 id:45
 ref_id:2
+[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
+[set_reference] [:AFDX_VL] temp_string
+id:45
+ref_id:7
+[is_element_exist] test_field: VL_PRIM1A_SERVICE
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_SERVICE] already exists in db with: Id: 7
 [is_element_exist] test_field: 1T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [1T] already exists in db with: Id: 116
@@ -8508,7 +8934,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:116
-ref_id:
+ref_id:A
 [is_element_exist] test_field: SAP
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [SAP] already exists in db with: Id: 2
@@ -8520,7 +8946,7 @@ ref_id:
 [insert_intable] [AFDX_PORT_TRANSMISSION_TYPE] element name: [unicast] already exists in db with: Id: 2
 [is_element_exist] test_field: 50460
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
-[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
 [set_reference] [UPDATE AFDX_TX_PORT SET ACICD=:ACICD WHERE (id=:id)] update_query
 [set_reference] [:ACICD] temp_string
 id:46
@@ -8545,6 +8971,14 @@ ref_id:3
 [set_reference] [:transmission_type] temp_string
 id:46
 ref_id:2
+[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
+[set_reference] [:AFDX_VL] temp_string
+id:46
+ref_id:7
+[is_element_exist] test_field: VL_PRIM1A_SERVICE
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_SERVICE] already exists in db with: Id: 7
 [is_element_exist] test_field: 1T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [1T] already exists in db with: Id: 116
@@ -8562,7 +8996,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:116
-ref_id:
+ref_id:A
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -8574,7 +9008,7 @@ ref_id:
 [insert_intable] [AFDX_PORT_TRANSMISSION_TYPE] element name: [unicast] already exists in db with: Id: 2
 [is_element_exist] test_field: 50630
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
-[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
 [set_reference] [UPDATE AFDX_TX_PORT SET ACICD=:ACICD WHERE (id=:id)] update_query
 [set_reference] [:ACICD] temp_string
 id:47
@@ -8599,6 +9033,14 @@ ref_id:2
 [set_reference] [:transmission_type] temp_string
 id:47
 ref_id:2
+[set_reference] [UPDATE AFDX_TX_PORT SET transmission_type=:transmission_type WHERE (id=:id)] update_query
+[set_reference] [UPDATE AFDX_TX_PORT SET AFDX_VL=:AFDX_VL WHERE (id=:id)] update_query
+[set_reference] [:AFDX_VL] temp_string
+id:47
+ref_id:7
+[is_element_exist] test_field: VL_PRIM1A_CDS_CAPT
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_CDS_CAPT] already exists in db with: Id: 1
 [is_element_exist] test_field: 2T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [2T] already exists in db with: Id: 117
@@ -8616,7 +9058,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:117
-ref_id:
+ref_id:B
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -8629,6 +9071,9 @@ ref_id:
 [is_element_exist] test_field: 3400
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
 [insert_intable] [AFDX_TX_PORT] element name: [3400] already exists in db with: Id: 1
+[is_element_exist] test_field: VL_PRIM1A_CDS_CAPT
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_CDS_CAPT] already exists in db with: Id: 1
 [is_element_exist] test_field: 2T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [2T] already exists in db with: Id: 117
@@ -8646,7 +9091,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:117
-ref_id:
+ref_id:B
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -8659,6 +9104,9 @@ ref_id:
 [is_element_exist] test_field: 3410
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
 [insert_intable] [AFDX_TX_PORT] element name: [3410] already exists in db with: Id: 2
+[is_element_exist] test_field: VL_PRIM1A_ENGINE
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_ENGINE] already exists in db with: Id: 2
 [is_element_exist] test_field: 2T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [2T] already exists in db with: Id: 117
@@ -8676,7 +9124,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:117
-ref_id:
+ref_id:B
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -8689,6 +9137,9 @@ ref_id:
 [is_element_exist] test_field: 2800
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
 [insert_intable] [AFDX_TX_PORT] element name: [2800] already exists in db with: Id: 3
+[is_element_exist] test_field: VL_PRIM1A_FCDC
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_FCDC] already exists in db with: Id: 3
 [is_element_exist] test_field: 2T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [2T] already exists in db with: Id: 117
@@ -8706,7 +9157,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:117
-ref_id:
+ref_id:B
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -8719,6 +9170,9 @@ ref_id:
 [is_element_exist] test_field: 2500
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
 [insert_intable] [AFDX_TX_PORT] element name: [2500] already exists in db with: Id: 4
+[is_element_exist] test_field: VL_PRIM1A_FCDC
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_FCDC] already exists in db with: Id: 3
 [is_element_exist] test_field: 2T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [2T] already exists in db with: Id: 117
@@ -8736,7 +9190,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:117
-ref_id:
+ref_id:B
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -8749,6 +9203,9 @@ ref_id:
 [is_element_exist] test_field: 2510
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
 [insert_intable] [AFDX_TX_PORT] element name: [2510] already exists in db with: Id: 5
+[is_element_exist] test_field: VL_PRIM1A_FCDC
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_FCDC] already exists in db with: Id: 3
 [is_element_exist] test_field: 2T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [2T] already exists in db with: Id: 117
@@ -8766,7 +9223,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:117
-ref_id:
+ref_id:B
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -8779,6 +9236,9 @@ ref_id:
 [is_element_exist] test_field: 2520
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
 [insert_intable] [AFDX_TX_PORT] element name: [2520] already exists in db with: Id: 6
+[is_element_exist] test_field: VL_PRIM1A_FCDC
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_FCDC] already exists in db with: Id: 3
 [is_element_exist] test_field: 2T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [2T] already exists in db with: Id: 117
@@ -8796,7 +9256,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:117
-ref_id:
+ref_id:B
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -8809,6 +9269,9 @@ ref_id:
 [is_element_exist] test_field: 2530
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
 [insert_intable] [AFDX_TX_PORT] element name: [2530] already exists in db with: Id: 7
+[is_element_exist] test_field: VL_PRIM1A_GENERAL
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_GENERAL] already exists in db with: Id: 4
 [is_element_exist] test_field: 2T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [2T] already exists in db with: Id: 117
@@ -8826,7 +9289,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:117
-ref_id:
+ref_id:B
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -8839,6 +9302,9 @@ ref_id:
 [is_element_exist] test_field: 2700
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
 [insert_intable] [AFDX_TX_PORT] element name: [2700] already exists in db with: Id: 8
+[is_element_exist] test_field: VL_PRIM1A_GENERAL
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_GENERAL] already exists in db with: Id: 4
 [is_element_exist] test_field: 2T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [2T] already exists in db with: Id: 117
@@ -8856,7 +9322,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:117
-ref_id:
+ref_id:B
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -8869,6 +9335,9 @@ ref_id:
 [is_element_exist] test_field: 2710
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
 [insert_intable] [AFDX_TX_PORT] element name: [2710] already exists in db with: Id: 9
+[is_element_exist] test_field: VL_PRIM1A_GENERAL
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_GENERAL] already exists in db with: Id: 4
 [is_element_exist] test_field: 2T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [2T] already exists in db with: Id: 117
@@ -8886,7 +9355,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:117
-ref_id:
+ref_id:B
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -8899,6 +9368,9 @@ ref_id:
 [is_element_exist] test_field: 2720
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
 [insert_intable] [AFDX_TX_PORT] element name: [2720] already exists in db with: Id: 10
+[is_element_exist] test_field: VL_PRIM1A_IEV
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_IEV] already exists in db with: Id: 5
 [is_element_exist] test_field: 2T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [2T] already exists in db with: Id: 117
@@ -8916,7 +9388,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:117
-ref_id:
+ref_id:B
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -8929,6 +9401,9 @@ ref_id:
 [is_element_exist] test_field: 2900
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
 [insert_intable] [AFDX_TX_PORT] element name: [2900] already exists in db with: Id: 11
+[is_element_exist] test_field: VL_PRIM1A_IEV
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_IEV] already exists in db with: Id: 5
 [is_element_exist] test_field: 2T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [2T] already exists in db with: Id: 117
@@ -8946,7 +9421,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:117
-ref_id:
+ref_id:B
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -8959,6 +9434,9 @@ ref_id:
 [is_element_exist] test_field: 2910
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
 [insert_intable] [AFDX_TX_PORT] element name: [2910] already exists in db with: Id: 12
+[is_element_exist] test_field: VL_PRIM1A_IEV
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_IEV] already exists in db with: Id: 5
 [is_element_exist] test_field: 2T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [2T] already exists in db with: Id: 117
@@ -8976,7 +9454,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:117
-ref_id:
+ref_id:B
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -8989,6 +9467,9 @@ ref_id:
 [is_element_exist] test_field: 3000
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
 [insert_intable] [AFDX_TX_PORT] element name: [3000] already exists in db with: Id: 13
+[is_element_exist] test_field: VL_PRIM1A_IEV
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_IEV] already exists in db with: Id: 5
 [is_element_exist] test_field: 2T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [2T] already exists in db with: Id: 117
@@ -9006,7 +9487,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:117
-ref_id:
+ref_id:B
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -9019,6 +9500,9 @@ ref_id:
 [is_element_exist] test_field: 3010
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
 [insert_intable] [AFDX_TX_PORT] element name: [3010] already exists in db with: Id: 14
+[is_element_exist] test_field: VL_PRIM1A_IEV
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_IEV] already exists in db with: Id: 5
 [is_element_exist] test_field: 2T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [2T] already exists in db with: Id: 117
@@ -9036,7 +9520,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:117
-ref_id:
+ref_id:B
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -9049,6 +9533,9 @@ ref_id:
 [is_element_exist] test_field: 3020
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
 [insert_intable] [AFDX_TX_PORT] element name: [3020] already exists in db with: Id: 15
+[is_element_exist] test_field: VL_PRIM1A_IEV
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_IEV] already exists in db with: Id: 5
 [is_element_exist] test_field: 2T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [2T] already exists in db with: Id: 117
@@ -9066,7 +9553,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:117
-ref_id:
+ref_id:B
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -9079,6 +9566,9 @@ ref_id:
 [is_element_exist] test_field: 3040
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
 [insert_intable] [AFDX_TX_PORT] element name: [3040] already exists in db with: Id: 16
+[is_element_exist] test_field: VL_PRIM1A_IEV
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_IEV] already exists in db with: Id: 5
 [is_element_exist] test_field: 2T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [2T] already exists in db with: Id: 117
@@ -9096,7 +9586,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:117
-ref_id:
+ref_id:B
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -9109,6 +9599,9 @@ ref_id:
 [is_element_exist] test_field: 3050
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
 [insert_intable] [AFDX_TX_PORT] element name: [3050] already exists in db with: Id: 17
+[is_element_exist] test_field: VL_PRIM1A_IEV
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_IEV] already exists in db with: Id: 5
 [is_element_exist] test_field: 2T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [2T] already exists in db with: Id: 117
@@ -9126,7 +9619,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:117
-ref_id:
+ref_id:B
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -9139,6 +9632,9 @@ ref_id:
 [is_element_exist] test_field: 3060
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
 [insert_intable] [AFDX_TX_PORT] element name: [3060] already exists in db with: Id: 18
+[is_element_exist] test_field: VL_PRIM1A_IEV
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_IEV] already exists in db with: Id: 5
 [is_element_exist] test_field: 2T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [2T] already exists in db with: Id: 117
@@ -9156,7 +9652,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:117
-ref_id:
+ref_id:B
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -9169,6 +9665,9 @@ ref_id:
 [is_element_exist] test_field: 3070
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
 [insert_intable] [AFDX_TX_PORT] element name: [3070] already exists in db with: Id: 19
+[is_element_exist] test_field: VL_PRIM1A_IEV
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_IEV] already exists in db with: Id: 5
 [is_element_exist] test_field: 2T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [2T] already exists in db with: Id: 117
@@ -9186,7 +9685,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:117
-ref_id:
+ref_id:B
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -9199,6 +9698,9 @@ ref_id:
 [is_element_exist] test_field: 3080
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
 [insert_intable] [AFDX_TX_PORT] element name: [3080] already exists in db with: Id: 20
+[is_element_exist] test_field: VL_PRIM1A_IEV
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_IEV] already exists in db with: Id: 5
 [is_element_exist] test_field: 2T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [2T] already exists in db with: Id: 117
@@ -9216,7 +9718,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:117
-ref_id:
+ref_id:B
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -9229,6 +9731,9 @@ ref_id:
 [is_element_exist] test_field: 3090
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
 [insert_intable] [AFDX_TX_PORT] element name: [3090] already exists in db with: Id: 21
+[is_element_exist] test_field: VL_PRIM1A_IEV
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_IEV] already exists in db with: Id: 5
 [is_element_exist] test_field: 2T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [2T] already exists in db with: Id: 117
@@ -9246,7 +9751,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:117
-ref_id:
+ref_id:B
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -9259,6 +9764,9 @@ ref_id:
 [is_element_exist] test_field: 3100
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
 [insert_intable] [AFDX_TX_PORT] element name: [3100] already exists in db with: Id: 22
+[is_element_exist] test_field: VL_PRIM1A_IEV
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_IEV] already exists in db with: Id: 5
 [is_element_exist] test_field: 2T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [2T] already exists in db with: Id: 117
@@ -9276,7 +9784,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:117
-ref_id:
+ref_id:B
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -9289,6 +9797,9 @@ ref_id:
 [is_element_exist] test_field: 3110
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
 [insert_intable] [AFDX_TX_PORT] element name: [3110] already exists in db with: Id: 23
+[is_element_exist] test_field: VL_PRIM1A_IEV
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_IEV] already exists in db with: Id: 5
 [is_element_exist] test_field: 2T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [2T] already exists in db with: Id: 117
@@ -9306,7 +9817,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:117
-ref_id:
+ref_id:B
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -9319,6 +9830,9 @@ ref_id:
 [is_element_exist] test_field: 3120
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
 [insert_intable] [AFDX_TX_PORT] element name: [3120] already exists in db with: Id: 24
+[is_element_exist] test_field: VL_PRIM1A_IEV
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_IEV] already exists in db with: Id: 5
 [is_element_exist] test_field: 2T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [2T] already exists in db with: Id: 117
@@ -9336,7 +9850,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:117
-ref_id:
+ref_id:B
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -9349,6 +9863,9 @@ ref_id:
 [is_element_exist] test_field: 3130
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
 [insert_intable] [AFDX_TX_PORT] element name: [3130] already exists in db with: Id: 25
+[is_element_exist] test_field: VL_PRIM1A_PFCS
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_PFCS] already exists in db with: Id: 6
 [is_element_exist] test_field: 2T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [2T] already exists in db with: Id: 117
@@ -9366,7 +9883,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:117
-ref_id:
+ref_id:B
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -9379,6 +9896,9 @@ ref_id:
 [is_element_exist] test_field: 2600
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
 [insert_intable] [AFDX_TX_PORT] element name: [2600] already exists in db with: Id: 26
+[is_element_exist] test_field: VL_PRIM1A_PFCS
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_PFCS] already exists in db with: Id: 6
 [is_element_exist] test_field: 2T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [2T] already exists in db with: Id: 117
@@ -9396,7 +9916,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:117
-ref_id:
+ref_id:B
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -9409,6 +9929,9 @@ ref_id:
 [is_element_exist] test_field: 2610
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
 [insert_intable] [AFDX_TX_PORT] element name: [2610] already exists in db with: Id: 27
+[is_element_exist] test_field: VL_PRIM1A_SERVICE
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_SERVICE] already exists in db with: Id: 7
 [is_element_exist] test_field: 2T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [2T] already exists in db with: Id: 117
@@ -9426,7 +9949,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:117
-ref_id:
+ref_id:B
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -9439,6 +9962,9 @@ ref_id:
 [is_element_exist] test_field: 162
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
 [insert_intable] [AFDX_TX_PORT] element name: [162] already exists in db with: Id: 28
+[is_element_exist] test_field: VL_PRIM1A_SERVICE
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_SERVICE] already exists in db with: Id: 7
 [is_element_exist] test_field: 2T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [2T] already exists in db with: Id: 117
@@ -9456,7 +9982,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:117
-ref_id:
+ref_id:B
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -9469,6 +9995,9 @@ ref_id:
 [is_element_exist] test_field: 163
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
 [insert_intable] [AFDX_TX_PORT] element name: [163] already exists in db with: Id: 29
+[is_element_exist] test_field: VL_PRIM1A_SERVICE
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_SERVICE] already exists in db with: Id: 7
 [is_element_exist] test_field: 2T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [2T] already exists in db with: Id: 117
@@ -9486,7 +10015,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:117
-ref_id:
+ref_id:B
 [is_element_exist] test_field: SAP
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [SAP] already exists in db with: Id: 2
@@ -9499,6 +10028,9 @@ ref_id:
 [is_element_exist] test_field: 1001
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
 [insert_intable] [AFDX_TX_PORT] element name: [1001] already exists in db with: Id: 30
+[is_element_exist] test_field: VL_PRIM1A_SERVICE
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_SERVICE] already exists in db with: Id: 7
 [is_element_exist] test_field: 2T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [2T] already exists in db with: Id: 117
@@ -9516,7 +10048,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:117
-ref_id:
+ref_id:B
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -9529,6 +10061,9 @@ ref_id:
 [is_element_exist] test_field: 50203
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
 [insert_intable] [AFDX_TX_PORT] element name: [50203] already exists in db with: Id: 31
+[is_element_exist] test_field: VL_PRIM1A_SERVICE
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_SERVICE] already exists in db with: Id: 7
 [is_element_exist] test_field: 2T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [2T] already exists in db with: Id: 117
@@ -9546,7 +10081,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:117
-ref_id:
+ref_id:B
 [is_element_exist] test_field: SAP
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [SAP] already exists in db with: Id: 2
@@ -9559,6 +10094,9 @@ ref_id:
 [is_element_exist] test_field: 50204
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
 [insert_intable] [AFDX_TX_PORT] element name: [50204] already exists in db with: Id: 32
+[is_element_exist] test_field: VL_PRIM1A_SERVICE
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_SERVICE] already exists in db with: Id: 7
 [is_element_exist] test_field: 2T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [2T] already exists in db with: Id: 117
@@ -9576,7 +10114,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:117
-ref_id:
+ref_id:B
 [is_element_exist] test_field: SAP
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [SAP] already exists in db with: Id: 2
@@ -9589,6 +10127,9 @@ ref_id:
 [is_element_exist] test_field: 50218
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
 [insert_intable] [AFDX_TX_PORT] element name: [50218] already exists in db with: Id: 33
+[is_element_exist] test_field: VL_PRIM1A_SERVICE
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_SERVICE] already exists in db with: Id: 7
 [is_element_exist] test_field: 2T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [2T] already exists in db with: Id: 117
@@ -9606,7 +10147,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:117
-ref_id:
+ref_id:B
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1
@@ -9619,6 +10160,9 @@ ref_id:
 [is_element_exist] test_field: 50219
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
 [insert_intable] [AFDX_TX_PORT] element name: [50219] already exists in db with: Id: 34
+[is_element_exist] test_field: VL_PRIM1A_SERVICE
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_SERVICE] already exists in db with: Id: 7
 [is_element_exist] test_field: 2T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [2T] already exists in db with: Id: 117
@@ -9636,7 +10180,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:117
-ref_id:
+ref_id:B
 [is_element_exist] test_field: SAP
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [SAP] already exists in db with: Id: 2
@@ -9649,6 +10193,9 @@ ref_id:
 [is_element_exist] test_field: 50300
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
 [insert_intable] [AFDX_TX_PORT] element name: [50300] already exists in db with: Id: 35
+[is_element_exist] test_field: VL_PRIM1A_SERVICE
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_SERVICE] already exists in db with: Id: 7
 [is_element_exist] test_field: 2T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [2T] already exists in db with: Id: 117
@@ -9666,7 +10213,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:117
-ref_id:
+ref_id:B
 [is_element_exist] test_field: SAP
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [SAP] already exists in db with: Id: 2
@@ -9679,6 +10226,9 @@ ref_id:
 [is_element_exist] test_field: 50450
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
 [insert_intable] [AFDX_TX_PORT] element name: [50450] already exists in db with: Id: 36
+[is_element_exist] test_field: VL_PRIM1A_SERVICE
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_SERVICE] already exists in db with: Id: 7
 [is_element_exist] test_field: 2T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [2T] already exists in db with: Id: 117
@@ -9696,7 +10246,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:117
-ref_id:
+ref_id:B
 [is_element_exist] test_field: SAP
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [SAP] already exists in db with: Id: 2
@@ -9709,6 +10259,9 @@ ref_id:
 [is_element_exist] test_field: 50451
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
 [insert_intable] [AFDX_TX_PORT] element name: [50451] already exists in db with: Id: 37
+[is_element_exist] test_field: VL_PRIM1A_SERVICE
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_SERVICE] already exists in db with: Id: 7
 [is_element_exist] test_field: 2T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [2T] already exists in db with: Id: 117
@@ -9726,7 +10279,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:117
-ref_id:
+ref_id:B
 [is_element_exist] test_field: SAP
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [SAP] already exists in db with: Id: 2
@@ -9739,6 +10292,9 @@ ref_id:
 [is_element_exist] test_field: 50452
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
 [insert_intable] [AFDX_TX_PORT] element name: [50452] already exists in db with: Id: 38
+[is_element_exist] test_field: VL_PRIM1A_SERVICE
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_SERVICE] already exists in db with: Id: 7
 [is_element_exist] test_field: 2T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [2T] already exists in db with: Id: 117
@@ -9756,7 +10312,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:117
-ref_id:
+ref_id:B
 [is_element_exist] test_field: SAP
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [SAP] already exists in db with: Id: 2
@@ -9769,6 +10325,9 @@ ref_id:
 [is_element_exist] test_field: 50453
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
 [insert_intable] [AFDX_TX_PORT] element name: [50453] already exists in db with: Id: 39
+[is_element_exist] test_field: VL_PRIM1A_SERVICE
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_SERVICE] already exists in db with: Id: 7
 [is_element_exist] test_field: 2T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [2T] already exists in db with: Id: 117
@@ -9786,7 +10345,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:117
-ref_id:
+ref_id:B
 [is_element_exist] test_field: SAP
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [SAP] already exists in db with: Id: 2
@@ -9799,6 +10358,9 @@ ref_id:
 [is_element_exist] test_field: 50454
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
 [insert_intable] [AFDX_TX_PORT] element name: [50454] already exists in db with: Id: 40
+[is_element_exist] test_field: VL_PRIM1A_SERVICE
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_SERVICE] already exists in db with: Id: 7
 [is_element_exist] test_field: 2T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [2T] already exists in db with: Id: 117
@@ -9816,7 +10378,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:117
-ref_id:
+ref_id:B
 [is_element_exist] test_field: SAP
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [SAP] already exists in db with: Id: 2
@@ -9829,6 +10391,9 @@ ref_id:
 [is_element_exist] test_field: 50455
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
 [insert_intable] [AFDX_TX_PORT] element name: [50455] already exists in db with: Id: 41
+[is_element_exist] test_field: VL_PRIM1A_SERVICE
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_SERVICE] already exists in db with: Id: 7
 [is_element_exist] test_field: 2T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [2T] already exists in db with: Id: 117
@@ -9846,7 +10411,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:117
-ref_id:
+ref_id:B
 [is_element_exist] test_field: SAP
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [SAP] already exists in db with: Id: 2
@@ -9859,6 +10424,9 @@ ref_id:
 [is_element_exist] test_field: 50456
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
 [insert_intable] [AFDX_TX_PORT] element name: [50456] already exists in db with: Id: 42
+[is_element_exist] test_field: VL_PRIM1A_SERVICE
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_SERVICE] already exists in db with: Id: 7
 [is_element_exist] test_field: 2T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [2T] already exists in db with: Id: 117
@@ -9876,7 +10444,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:117
-ref_id:
+ref_id:B
 [is_element_exist] test_field: SAP
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [SAP] already exists in db with: Id: 2
@@ -9889,6 +10457,9 @@ ref_id:
 [is_element_exist] test_field: 50457
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
 [insert_intable] [AFDX_TX_PORT] element name: [50457] already exists in db with: Id: 43
+[is_element_exist] test_field: VL_PRIM1A_SERVICE
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_SERVICE] already exists in db with: Id: 7
 [is_element_exist] test_field: 2T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [2T] already exists in db with: Id: 117
@@ -9906,7 +10477,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:117
-ref_id:
+ref_id:B
 [is_element_exist] test_field: SAP
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [SAP] already exists in db with: Id: 2
@@ -9919,6 +10490,9 @@ ref_id:
 [is_element_exist] test_field: 50458
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
 [insert_intable] [AFDX_TX_PORT] element name: [50458] already exists in db with: Id: 44
+[is_element_exist] test_field: VL_PRIM1A_SERVICE
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_SERVICE] already exists in db with: Id: 7
 [is_element_exist] test_field: 2T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [2T] already exists in db with: Id: 117
@@ -9936,7 +10510,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:117
-ref_id:
+ref_id:B
 [is_element_exist] test_field: SAP
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [SAP] already exists in db with: Id: 2
@@ -9949,6 +10523,9 @@ ref_id:
 [is_element_exist] test_field: 50459
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
 [insert_intable] [AFDX_TX_PORT] element name: [50459] already exists in db with: Id: 45
+[is_element_exist] test_field: VL_PRIM1A_SERVICE
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_SERVICE] already exists in db with: Id: 7
 [is_element_exist] test_field: 2T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [2T] already exists in db with: Id: 117
@@ -9966,7 +10543,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:117
-ref_id:
+ref_id:B
 [is_element_exist] test_field: SAP
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [SAP] already exists in db with: Id: 2
@@ -9979,6 +10556,9 @@ ref_id:
 [is_element_exist] test_field: 50460
 [is_element_exist] test_query: SELECT id, TX_AFDX_port_Identifier FROM AFDX_TX_PORT WHERE TX_AFDX_port_Identifier = (:test_field)
 [insert_intable] [AFDX_TX_PORT] element name: [50460] already exists in db with: Id: 46
+[is_element_exist] test_field: VL_PRIM1A_SERVICE
+[is_element_exist] test_query: SELECT id, VL_name FROM AFDX_VL WHERE VL_name = (:test_field)
+[insert_intable] [AFDX_VL] element name: [VL_PRIM1A_SERVICE] already exists in db with: Id: 7
 [is_element_exist] test_field: 2T
 [is_element_exist] test_query: SELECT id, Connector_pin FROM CONNECTOR_PIN WHERE Connector_pin = (:test_field)
 [insert_intable] [CONNECTOR_PIN] element name: [2T] already exists in db with: Id: 117
@@ -9996,7 +10576,7 @@ ref_id:100
 [set_value] [UPDATE CONNECTOR_PIN SET Network_id=:Network_id WHERE (id=:id)] update_query
 [set_value] [:Network_id] temp_string
 id:117
-ref_id:
+ref_id:B
 [is_element_exist] test_field: AFDX communication port
 [is_element_exist] test_query: SELECT id, Name FROM AFDX_PORT_TYPE WHERE Name = (:test_field)
 [insert_intable] [AFDX_PORT_TYPE] element name: [AFDX communication port] already exists in db with: Id: 1

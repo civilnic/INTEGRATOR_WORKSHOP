@@ -38,7 +38,5 @@ acicd_connector_pin::acicd_connector_pin(sql_database_manager *database_manager)
                 CONSTRAINT [Connector]\
                     FOREIGN KEY([Connector])\
                     REFERENCES [CONNECTOR] ( [id] ));";
-
-
      database_manager->create_table(create_table_query);
 }
