@@ -6,10 +6,10 @@
 #include <map>
 #include "acicd_element.h"
 
-class acicd_message : public acicd_element
+class acicd_afdx_message : public acicd_element
 {
 public:
-    acicd_message(sql_database_manager *database_manager);
+    acicd_afdx_message(sql_database_manager *database_manager);
 };
 
 #endif // ACICD_MESSAGE_H

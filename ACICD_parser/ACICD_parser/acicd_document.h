@@ -25,6 +25,9 @@
 #include "acicd_afdx_port_characteristic.h"
 #include "acicd_afdx_port_transmission_type.h"
 #include "acicd_afdx_vl.h"
+#include "acicd_afdx_message.h"
+#include "acicd_afdx_message_type.h"
+#include "acicd_afdx_application.h"
 
 #include "sql_database_manager.h"
 

@@ -104,6 +104,9 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
     acicd_afdx_port_characteristic *AFDX_port_characteristic_obj=new acicd_afdx_port_characteristic(BDD);
     acicd_afdx_port_transmission_type *AFDX_port_transmission_type_obj=new acicd_afdx_port_transmission_type(BDD);
     acicd_afdx_VL *AFDX_VL_obj=new acicd_afdx_VL(BDD);
+    acicd_afdx_message *AFDX_MESSAGE_obj=new acicd_afdx_message(BDD);
+    acicd_afdx_message_type *AFDX_MESSAGE_TYPE_obj=new acicd_afdx_message_type(BDD);
+    acicd_afdx_application *AFDX_APPLICATION_obj=new acicd_afdx_application(BDD);
 
     db->transaction();
 
@@ -280,8 +283,40 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
 
        if(section==acicd_data_section::AFDX_OUTPUT_MESSAGE)
        {
+           AFDX_VL_obj->modify_parameters({{ 5, "VL_name" }});
+           AFDX_TX_port_obj->modify_parameters({ { 6, "TX_AFDX_port_Identifier" }});
+
+
            for(it_record=it->begin();it_record!=it->end();++it_record)
            {
+               if(AFDX_MESSAGE_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                    if((*it_record).empty()!=1)
+                    {
+                        AFDX_MESSAGE_obj->set_parameters(it_record-it->begin(),*it_record);
+                    }
+               }
+               if(AFDX_MESSAGE_TYPE_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                    if((*it_record).empty()!=1)
+                    {
+                        AFDX_MESSAGE_TYPE_obj->set_parameters(it_record-it->begin(),*it_record);
+                    }
+               }
+               if(AFDX_APPLICATION_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                    if((*it_record).empty()!=1)
+                    {
+                        AFDX_APPLICATION_obj->set_parameters(it_record-it->begin(),*it_record);
+                    }
+               }
+               if(AFDX_VL_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                    if((*it_record).empty()!=1)
+                    {
+                        AFDX_VL_obj->set_parameters(it_record-it->begin(),*it_record);
+                    }
+               }
                if(AFDX_TX_port_obj->DB_FIELDS.count(it_record-it->begin())==1)
                {
                     if((*it_record).empty()!=1)
@@ -290,6 +325,23 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
                     }
                }
            }
+
+         if(AFDX_MESSAGE_obj->insert_intable())
+         {
+            AFDX_VL_obj->insert_intable();
+            AFDX_TX_port_obj->insert_intable();
+            AFDX_MESSAGE_TYPE_obj->insert_intable();
+            AFDX_APPLICATION_obj->insert_intable();
+
+            AFDX_MESSAGE_obj->set_reference(QString("ACICD"),id);
+            AFDX_MESSAGE_obj->set_reference(QString("AFDX_VL"),AFDX_VL_obj->get_id());
+            AFDX_MESSAGE_obj->set_reference(QString("AFDX_TX_PORT"),AFDX_TX_port_obj->get_id());
+            AFDX_MESSAGE_obj->set_reference(QString("AFDX_MESSAGE_TYPE"),AFDX_MESSAGE_TYPE_obj->get_id());
+            AFDX_MESSAGE_obj->set_reference(QString("AFDX_APPLICATION"),AFDX_APPLICATION_obj->get_id());
+         }
+
+
+
        }
 
        previous_section=section;
