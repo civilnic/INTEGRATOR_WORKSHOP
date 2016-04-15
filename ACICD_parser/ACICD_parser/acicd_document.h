@@ -29,6 +29,12 @@
 #include "acicd_afdx_message_type.h"
 #include "acicd_afdx_application.h"
 
+#include "acicd_afdx_fds.h"
+#include "acicd_afdx_fs.h"
+#include "acicd_afdx_parameter.h"
+#include "acicd_data_type.h"
+#include "acicd_keyword.h"
+
 #include "sql_database_manager.h"
 
 class ACICD_DOCUMENT

@@ -35,7 +35,10 @@ SOURCES += main.cpp \
     acicd_afdx_signal_float_charact.cpp \
     acicd_afdx_signal_int_charact.cpp \
     acicd_afdx_signal_opaque_charact.cpp \
-    acicd_afdx_network.cpp
+    acicd_afdx_network.cpp \
+    acicd_afdx_parameter.cpp \
+    acicd_keyword.cpp \
+    acicd_data_type.cpp
 
 HEADERS += \
     ../../CSV/csv_common.h \
@@ -72,7 +75,10 @@ HEADERS += \
     acicd_afdx_signal_float_charact.h \
     acicd_afdx_signal_int_charact.h \
     acicd_afdx_signal_opaque_charact.h \
-    acicd_afdx_network.h
+    acicd_afdx_network.h \
+    acicd_afdx_parameter.h \
+    acicd_keyword.h \
+    acicd_data_type.h
 
 INCLUDEPATH += ../../CSV/ \
                C:\local\boost_1_60_0

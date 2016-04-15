@@ -108,6 +108,16 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
     acicd_afdx_message_type *AFDX_MESSAGE_TYPE_obj=new acicd_afdx_message_type(BDD);
     acicd_afdx_application *AFDX_APPLICATION_obj=new acicd_afdx_application(BDD);
 
+    acicd_afdx_FDS *AFDX_FDS_obj=new acicd_afdx_FDS(BDD);
+    acicd_afdx_FS *AFDX_FS_obj=new acicd_afdx_FS(BDD);
+    acicd_afdx_parameter *AFDX_PARAMETER_obj=new acicd_afdx_parameter(BDD);
+    acicd_data_type *AFDX_DATA_TYPE_obj=new acicd_data_type(BDD);
+    acicd_keyword *AFDX_KEYWORD_obj=new acicd_keyword(BDD);
+
+
+
+
+
     db->transaction();
 
 
@@ -324,11 +334,53 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
                         AFDX_TX_port_obj->set_parameters(it_record-it->begin(),*it_record);
                     }
                }
+
+
+
+
+
+               if(AFDX_FDS_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                    if((*it_record).empty()!=1)
+                    {
+                        AFDX_FDS_obj->set_parameters(it_record-it->begin(),*it_record);
+                    }
+               }
+               if(AFDX_FS_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                    if((*it_record).empty()!=1)
+                    {
+                        AFDX_FS_obj->set_parameters(it_record-it->begin(),*it_record);
+                    }
+               }
+               if(AFDX_PARAMETER_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                    if((*it_record).empty()!=1)
+                    {
+                        AFDX_PARAMETER_obj->set_parameters(it_record-it->begin(),*it_record);
+                    }
+               }
+               if(AFDX_DATA_TYPE_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                    if((*it_record).empty()!=1)
+                    {
+                        AFDX_DATA_TYPE_obj->set_parameters(it_record-it->begin(),*it_record);
+                    }
+               }
+               if(AFDX_KEYWORD_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                    if((*it_record).empty()!=1)
+                    {
+                        AFDX_KEYWORD_obj->set_parameters(it_record-it->begin(),*it_record);
+                    }
+               }
            }
+
+         AFDX_VL_obj->insert_intable();
 
          if(AFDX_MESSAGE_obj->insert_intable())
          {
-            AFDX_VL_obj->insert_intable();
+
             AFDX_TX_port_obj->insert_intable();
             AFDX_MESSAGE_TYPE_obj->insert_intable();
             AFDX_APPLICATION_obj->insert_intable();
@@ -338,6 +390,36 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
             AFDX_MESSAGE_obj->set_reference(QString("AFDX_TX_PORT"),AFDX_TX_port_obj->get_id());
             AFDX_MESSAGE_obj->set_reference(QString("AFDX_MESSAGE_TYPE"),AFDX_MESSAGE_TYPE_obj->get_id());
             AFDX_MESSAGE_obj->set_reference(QString("AFDX_APPLICATION"),AFDX_APPLICATION_obj->get_id());
+         }
+
+
+         if(AFDX_FDS_obj->insert_intable())
+         {
+            AFDX_FS_obj->insert_intable();
+
+            if(AFDX_PARAMETER_obj->insert_intable())
+            {
+                AFDX_DATA_TYPE_obj->insert_intable();
+                AFDX_KEYWORD_obj->insert_intable();
+            }
+
+            AFDX_FDS_obj->set_reference(QString("ACICD"),id);
+            AFDX_FDS_obj->set_reference(QString("AFDX_VL"),AFDX_VL_obj->get_id());
+            AFDX_FDS_obj->set_reference(QString("AFDX_MESSAGE"),AFDX_MESSAGE_obj->get_id());
+            AFDX_FDS_obj->set_reference(QString("AFDX_FS"),AFDX_FS_obj->get_id());
+
+            AFDX_FS_obj->set_reference(QString("ACICD"),id);
+            AFDX_FS_obj->set_reference(QString("AFDX_VL"),AFDX_VL_obj->get_id());
+            AFDX_FS_obj->set_reference(QString("AFDX_MESSAGE"),AFDX_MESSAGE_obj->get_id());
+            AFDX_FS_obj->set_reference(QString("AFDX_FDS"),AFDX_FDS_obj->get_id());
+
+
+            AFDX_PARAMETER_obj->set_reference(QString("ACICD"),id);
+            AFDX_PARAMETER_obj->set_reference(QString("AFDX_VL"),AFDX_VL_obj->get_id());
+            AFDX_PARAMETER_obj->set_reference(QString("AFDX_MESSAGE"),AFDX_MESSAGE_obj->get_id());
+            AFDX_PARAMETER_obj->set_reference(QString("AFDX_FDS"),AFDX_FDS_obj->get_id());
+            AFDX_PARAMETER_obj->set_reference(QString("DATA_TYPE"),AFDX_DATA_TYPE_obj->get_id());
+            AFDX_PARAMETER_obj->set_reference(QString("KEYWORD"),AFDX_KEYWORD_obj->get_id());
          }
 
 
