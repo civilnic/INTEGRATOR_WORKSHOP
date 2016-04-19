@@ -13,7 +13,7 @@ acicd_afdx_signal::acicd_afdx_signal(sql_database_manager *database_manager) : a
     DB_table_name="AFDX_SIGNAL";
     test_field="Name";
 
-    insert_query=QString("INSERT INTO %1 VALUES(NULL,:Name,:description,:ref_doc,:nb_of_bit,:address,:position,:AFDX_SIGNAL_TYPE,:AFDX_SIGNAL_BOOL_DESC,:AFDX_SIGNAL_STRING_DESC,:AFDX_SIGNAL_ENUMERATE_DESC,:AFDX_SIGNAL_FLOAT_DESC,:AFDX_SIGNAL_INT_DESC,:AFDX_SIGNAL_OPAQUE_DESC,:AFDX_MESSAGE,:AFDX_SIGNAL_OPAQUE_DESC,:AFDX_FDS,:AFDX_FS,:ACICD)").arg(DB_table_name);
+    insert_query=QString("INSERT INTO %1 VALUES(NULL,:Name,:description,:ref_doc,:nb_of_bit,:address,:position,:AFDX_SIGNAL_TYPE,:AFDX_SIGNAL_BOOL_DESC,:AFDX_SIGNAL_STRING_DESC,:AFDX_SIGNAL_ENUMERATE_DESC,:AFDX_SIGNAL_FLOAT_DESC,:AFDX_SIGNAL_INT_DESC,:AFDX_SIGNAL_OPAQUE_DESC,:AFDX_MESSAGE,:AFDX_FDS,:AFDX_FS,:AFDX_VL,:AFDX_PARAMETER,:ACICD)").arg(DB_table_name);
     test_query=QString("SELECT id, %1 FROM %2 WHERE %1 = (:test_field)").arg(test_field).arg(DB_table_name);
 
     create_table_query=QString("\
@@ -35,6 +35,8 @@ acicd_afdx_signal::acicd_afdx_signal(sql_database_manager *database_manager) : a
                 [AFDX_MESSAGE] INTEGER NULL, \
                 [AFDX_FDS] INTEGER NULL, \
                 [AFDX_FS] INTEGER NULL, \
+                [AFDX_VL] INTEGER NULL, \
+                [AFDX_PARAMETER] INTEGER NULL, \
                 [ACICD] INTEGER NULL, \
                  CONSTRAINT [ACICD]\
                         FOREIGN KEY([ACICD])\
@@ -66,6 +68,12 @@ acicd_afdx_signal::acicd_afdx_signal(sql_database_manager *database_manager) : a
                  CONSTRAINT [AFDX_FDS] \
                         FOREIGN KEY([AFDX_FDS]) \
                         REFERENCES [AFDX_FDS] ( [id] ), \
+                 CONSTRAINT [AFDX_VL] \
+                        FOREIGN KEY([AFDX_VL]) \
+                        REFERENCES [AFDX_VL] ( [id] ), \
+                CONSTRAINT [AFDX_PARAMETER] \
+                        FOREIGN KEY([AFDX_PARAMETER]) \
+                        REFERENCES [AFDX_PARAMETER] ( [id] ), \
                  CONSTRAINT [AFDX_FS] \
                         FOREIGN KEY([AFDX_FS]) \
                         REFERENCES [AFDX_FS] ( [id] ) \

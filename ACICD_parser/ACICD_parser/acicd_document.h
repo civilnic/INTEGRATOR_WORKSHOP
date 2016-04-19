@@ -34,6 +34,8 @@
 #include "acicd_afdx_parameter.h"
 #include "acicd_data_type.h"
 #include "acicd_keyword.h"
+#include "acicd_afdx_signal.h"
+#include "acicd_afdx_signal_bool_charact.h"
 
 #include "sql_database_manager.h"
 
