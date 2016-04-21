@@ -12,7 +12,7 @@ acicd_afdx_signal_bool_charact::acicd_afdx_signal_bool_charact(sql_database_mana
     DB_table_name="AFDX_SIGNAL_BOOL_DESC";
     test_field="rowid";
 
-    insert_query=QString("INSERT INTO %1 VALUES(NULL,:true_def,:false_def,:true_state,:false_state,:bool_logic)").arg(DB_table_name);
+    insert_query=QString("INSERT INTO %1 VALUES(:true_def,:false_def,:true_state,:false_state,:bool_logic)").arg(DB_table_name);
     test_query=QString("SELECT rowid, %1 FROM %2 WHERE %1 = (:test_field)").arg(test_field).arg(DB_table_name);
 
     create_table_query=QString("\
@@ -29,11 +29,11 @@ acicd_afdx_signal_bool_charact::acicd_afdx_signal_bool_charact(sql_database_mana
     database_manager->create_table(create_table_query);
 }
 
-bool acicd_afdx_signal_bool_charact::test_intable(void)
+bool acicd_afdx_signal_bool_charact::insert_intable(void)
 {
 //d    int Id = -1;
     bool success = false;
-
+    BDD->sql_log_file << "[insert_intable] acicd_afdx_signal_bool_charact  BOOL_DESC"  <<endl;
     if (db->isOpen())
     {
 

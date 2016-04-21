@@ -440,7 +440,7 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
          if(AFDX_SIGNAL_obj->insert_intable())
          {
 
-            AFDX_SIGNAL_BOOL_DESC_obj->test_intable();
+            AFDX_SIGNAL_BOOL_DESC_obj->insert_intable();
 
             AFDX_SIGNAL_obj->set_reference(QString("ACICD"),id);
             AFDX_SIGNAL_obj->set_reference(QString("AFDX_VL"),AFDX_VL_obj->get_id());
