@@ -18,6 +18,7 @@ public:
     void set_dbname(std::string name);
 
     bool create_table(QString TABLE_CREATION_QUERY);
+    bool execute_query(QString QUERY);
 
     std::string get_dbname(void);
     QSqlDatabase *get_db(void);

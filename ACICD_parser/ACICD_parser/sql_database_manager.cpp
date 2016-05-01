@@ -80,6 +80,29 @@ bool sql_database_manager::create_table(QString TABLE_CREATION_QUERY)
 
 }
 
+bool sql_database_manager::execute_query(QString QUERY)
+{
+    bool success = false;
+    if (database.isOpen())
+    {
+        QSqlQuery query(database);
+        success = query.exec(QUERY);
+        if(!success)
+        {
+            sql_log_file << "execute_query: "  <<endl;
+            sql_log_file << QUERY  <<endl;
+            sql_log_file << query.lastError().text() <<endl;
+            qDebug() << "execute_query: " + QUERY
+                     << query.lastError();
+        }
+        else
+        {
+            database.commit();
+        }
+    }
+    return success;
+
+}
 QSqlDatabase *sql_database_manager::get_db(void)
 {
    return &database;

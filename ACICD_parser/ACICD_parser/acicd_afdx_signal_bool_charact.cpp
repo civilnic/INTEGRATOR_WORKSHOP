@@ -22,11 +22,22 @@ acicd_afdx_signal_bool_charact::acicd_afdx_signal_bool_charact(sql_database_mana
                 [true_state] VARCHAR( 45 ) NULL,\
                 [false_state] VARCHAR( 45 ) NULL,\
                 [bool_logic] VARCHAR( 45 ) NULL,\
-                PRIMARY KEY(true_def,false_def,true_state,false_state,bool_logic)\
+                CONSTRAINT unique_combinaison UNIQUE (true_def, false_def, true_state, false_state, bool_logic )\
+                );\n\
+            ").arg(DB_table_name);
+
+    create_index_query=QString("\
+             CREATE UNIQUE INDEX IF NOT EXISTS index_signal_bool_charact ON %1 (\
+                true_def,\
+                false_def,\
+                true_state,\
+                false_state,\
+                bool_logic\
                 );\n\
             ").arg(DB_table_name);
 
     database_manager->create_table(create_table_query);
+   // database_manager->execute_query(create_index_query);
 }
 
 bool acicd_afdx_signal_bool_charact::insert_intable(void)
@@ -55,7 +66,7 @@ bool acicd_afdx_signal_bool_charact::insert_intable(void)
                 // http://www.sqlite.org/c3ref/last_insert_rowid.html
                 id = query.lastInsertId().toInt();
                 //Element_collection[this->get_value(test_field).toStdString()]=Id;
-               // id=Id;
+                // id=Id;
                 return true;
             }
             else
