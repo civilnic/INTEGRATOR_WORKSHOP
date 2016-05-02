@@ -22,7 +22,7 @@ acicd_afdx_signal_bool_charact::acicd_afdx_signal_bool_charact(sql_database_mana
                 [true_state] VARCHAR( 45 ) NULL,\
                 [false_state] VARCHAR( 45 ) NULL,\
                 [bool_logic] VARCHAR( 45 ) NULL,\
-                CONSTRAINT unique_combinaison UNIQUE (true_def, false_def, true_state, false_state, bool_logic )\
+                CONSTRAINT unique_combinaison PRIMARY KEY (true_def, false_def, true_state, false_state ) ON CONFLICT IGNORE\
                 );\n\
             ").arg(DB_table_name);
 
@@ -57,9 +57,9 @@ bool acicd_afdx_signal_bool_charact::insert_intable(void)
             {
                  query.bindValue(":"+iterator->first, iterator->second);
             }
-            BDD->sql_log_file << "[test_intable] [" + insert_query + "] test_intable"  <<endl;
+            BDD->sql_log_file << "[test_intable] [" + insert_query + "]"  <<endl;
             success = query.exec();
-
+ BDD->sql_log_file << "[test_intable] [" + success  <<endl;
             // Get database given autoincrement value
             if (success)
             {
