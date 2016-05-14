@@ -17,10 +17,10 @@ acicd_afdx_signal_bool_charact::acicd_afdx_signal_bool_charact(sql_database_mana
 
     create_table_query=QString("\
              CREATE TABLE IF NOT EXISTS [%1](\
-                [true_def] VARCHAR( 45 ) NULL,\
-                [false_def] VARCHAR( 45 ) NULL,\
-                [true_state] VARCHAR( 45 ) NULL,\
-                [false_state] VARCHAR( 45 ) NULL,\
+                [true_def] VARCHAR( 45 ) NOT NULL,\
+                [false_def] VARCHAR( 45 ) NOT NULL,\
+                [true_state] VARCHAR( 45 ) NOT NULL,\
+                [false_state] VARCHAR( 45 ) NOT NULL,\
                 [bool_logic] VARCHAR( 45 ) NULL,\
                 CONSTRAINT unique_combinaison PRIMARY KEY (true_def, false_def, true_state, false_state ) ON CONFLICT IGNORE\
                 );\n\

@@ -115,7 +115,7 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
     acicd_keyword *AFDX_KEYWORD_obj=new acicd_keyword(BDD);
     acicd_afdx_signal *AFDX_SIGNAL_obj=new acicd_afdx_signal(BDD);
     acicd_afdx_signal_bool_charact *AFDX_SIGNAL_BOOL_DESC_obj=new acicd_afdx_signal_bool_charact(BDD);
-
+    acicd_afdx_signal_type *AFDX_SIGNAL_TYPE_obj=new acicd_afdx_signal_type(BDD);
 
 
     db->transaction();
@@ -389,6 +389,13 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
                         AFDX_SIGNAL_BOOL_DESC_obj->set_parameters(it_record-it->begin(),*it_record);
                     }
                }
+               if(AFDX_SIGNAL_TYPE_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                    if((*it_record).empty()!=1)
+                    {
+                        AFDX_SIGNAL_TYPE_obj->set_parameters(it_record-it->begin(),*it_record);
+                    }
+               }
            }
 
          AFDX_VL_obj->insert_intable();
@@ -441,6 +448,7 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
          {
 
             AFDX_SIGNAL_BOOL_DESC_obj->insert_intable();
+            AFDX_SIGNAL_TYPE_obj->insert_intable();
 
             AFDX_SIGNAL_obj->set_reference(QString("ACICD"),id);
             AFDX_SIGNAL_obj->set_reference(QString("AFDX_VL"),AFDX_VL_obj->get_id());
@@ -448,6 +456,8 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
             AFDX_SIGNAL_obj->set_reference(QString("AFDX_FDS"),AFDX_FDS_obj->get_id());
             AFDX_SIGNAL_obj->set_reference(QString("AFDX_PARAMETER"),AFDX_PARAMETER_obj->get_id());
             AFDX_SIGNAL_obj->set_reference(QString("AFDX_FS"),AFDX_FS_obj->get_id());
+            AFDX_SIGNAL_obj->set_reference(QString("AFDX_SIGNAL_BOOL_DESC"),AFDX_SIGNAL_BOOL_DESC_obj->get_id());
+            AFDX_SIGNAL_obj->set_reference(QString("AFDX_SIGNAL_TYPE"),AFDX_SIGNAL_TYPE_obj->get_id());
          }
 
 
