@@ -15,7 +15,7 @@ ACICD_DOCUMENT::ACICD_DOCUMENT(sql_database_manager *database_manager,QString fi
     db=(*BDD).get_db();
     id=-1;
 
-    DB_FIELDS_ACICD = { { 2, "Name" },
+    DB_FIELDS_ACICD = {   { 2, "Name" },
                           { 3, "Path" },
                           { 4, "Micd" },
                           { 5, "Equipment" },
@@ -141,10 +141,9 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
                }
            }
 
-           if(equipment_obj->insert_intable())
+           if(equipment_obj->insert_intable_new(id))
            {
-                this->set_equipment_reference(equipment_obj->get_id());
-               equipment_obj->set_reference(QString("ACICD"),id);
+               this->set_equipment_reference(equipment_obj->get_id());
            }
        }
 
@@ -190,23 +189,21 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
                }
            }
 
-           if(connector_obj->insert_intable())
+           if(connector_obj->insert_intable_new(id))
            {
-                connector_obj->set_reference(QString("ACICD"),id);
                 connector_obj->set_reference(QString("Equipment"),equipment_obj->get_id());
            }
 
-           connection_name_obj->insert_intable();
-           connector_line_type_obj->insert_intable();
-           connector_pin_role_obj->insert_intable();
+           connection_name_obj->insert_intable_new(id);
+           connector_line_type_obj->insert_intable_new(id);
+           connector_pin_role_obj->insert_intable_new(id);
 
-           if(connector_pin_obj->insert_intable())
+           if(connector_pin_obj->insert_intable_new(id))
            {
                 connector_pin_obj->set_reference(QString("Connector_pin_role"),connector_pin_role_obj->get_id());
                 connector_pin_obj->set_reference(QString("Connection_name"),connection_name_obj->get_id());
                 connector_pin_obj->set_reference(QString("Line_type"),connector_line_type_obj->get_id());
                 connector_pin_obj->set_reference(QString("Connector"),connector_obj->get_id());
-                connector_pin_obj->set_reference(QString("ACICD"),id);
            }
 
        }
@@ -478,11 +475,11 @@ int ACICD_DOCUMENT::insert_acicd(void)
 
     if (db->isOpen())
     {
-        Id=this->is_acicd_exist(DB_VALUES_ACICD["Name"]);
+ //       Id=this->is_acicd_exist(DB_VALUES_ACICD["Name"]);
 
         // acicd is not in DB
-        if(Id==0)
-        {
+//        if(Id==0)
+//        {
             // NULL = is the keyword for the autoincrement to generate next value
 
             QSqlQuery query(*db);
@@ -504,18 +501,18 @@ int ACICD_DOCUMENT::insert_acicd(void)
             }
             else
             {
-                BDD->sql_log_file << "insert_acicd: "<< query.lastError().text() <<endl;
-                qDebug() << "insert_acicd: "
+                BDD->sql_log_file << "insert_acicd_test: "<< query.lastError().text() <<endl;
+                qDebug() << "insert_acicd_test: "
                          << query.lastError();
             }
-        }
-        else
-        {
-            std::cout << DB_VALUES_ACICD["Name"].toStdString() + " already exists in db with: " << std::endl;
-            printf("Id: %d\n",Id);
-            BDD->sql_log_file << QString(DB_VALUES_ACICD["Name"]) + " already exists in db with: " <<endl;
-            BDD->sql_log_file << "Id: " <<Id <<endl;
-        }
+//        }
+//        else
+//        {
+//            std::cout << DB_VALUES_ACICD["Name"].toStdString() + " already exists in db with: " << std::endl;
+//            printf("Id: %d\n",Id);
+//            BDD->sql_log_file << QString(DB_VALUES_ACICD["Name"]) + " already exists in db with: " <<endl;
+//            BDD->sql_log_file << "Id: " <<Id <<endl;
+//        }
     }
 
     return Id;
@@ -543,7 +540,7 @@ int ACICD_DOCUMENT::set_equipment_reference(int equipment_id)
             QSqlQuery query(*db);
             query.prepare(update_equipment_query);
 
-            query.bindValue(":id", id);
+            query.bindValue(":rowid", id);
             query.bindValue(":Equipment", equipment_id);
 
             success = query.exec();
@@ -556,9 +553,9 @@ int ACICD_DOCUMENT::set_equipment_reference(int equipment_id)
             }
             else
             {
-                BDD->sql_log_file <<"insert_acicd: "
+                BDD->sql_log_file <<"set_equipment_reference: "
                                      << query.lastError().text()<<endl;
-                qDebug() << "insert_acicd: "
+                qDebug() << "set_equipment_reference: "
                          << query.lastError();
             }
 
@@ -576,7 +573,7 @@ int ACICD_DOCUMENT::is_acicd_exist(QString Name)
     {
         QSqlQuery query(*db);
 
-        query.prepare("SELECT id, Name FROM ACICD WHERE Name = (:name)");
+        query.prepare("SELECT rowid, Name FROM ACICD WHERE Name = (:name)");
         query.bindValue(":name", Name);
 
         success=query.exec();
@@ -595,7 +592,7 @@ int ACICD_DOCUMENT::is_acicd_exist(QString Name)
             if(query.isValid())
             {
                 // number of matching record = 0 => acicd is not in db
-                if(query.value("id")==0)
+                if(query.value("rowid")==0)
                 {
                     return 0;
                 }
@@ -603,7 +600,7 @@ int ACICD_DOCUMENT::is_acicd_exist(QString Name)
                 // acicd is already in db
                 else
                 {
-                    return query.value("id").toInt();
+                    return query.value("rowid").toInt();
                 }
             }
             // record is not valid => query.first failed => no entry in db => acicd is not in db

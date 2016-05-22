@@ -62,20 +62,20 @@ private:
     QSqlDatabase *db;
     sql_database_manager *BDD;
 
-    const QString insert_query="INSERT INTO ACICD VALUES(NULL,:Name,:Path,:Micd,:Equipment,:Version)";
-    const QString update_equipment_query="UPDATE ACICD SET Equipment = :Equipment WHERE (id=:id)";
+    const QString insert_query="INSERT INTO ACICD VALUES(:Name,:Path,:Micd,:Equipment,:Version)";
+    const QString update_equipment_query="UPDATE ACICD SET Equipment = :Equipment WHERE (rowid=:rowid)";
 
 };
 
 const QString DB_QUERY_CREATE_ACICD="CREATE TABLE IF NOT EXISTS [ACICD](\
- [id] INTEGER CONSTRAINT [pk_ACICD] NOT NULL PRIMARY KEY AUTOINCREMENT,\
  [Name] VARCHAR( 45 ) NOT NULL,\
  [Path] VARCHAR( 45 ) NULL,\
  [Micd] INTEGER NULL,\
  [Equipment] INTEGER NULL,\
  [Version] VARCHAR( 5 ) NULL,\
-  CONSTRAINT [Equipment]\
-  FOREIGN KEY([Equipment])\
-    REFERENCES [EQUIPMENT] ( [id] ));\n";
+    CONSTRAINT unique_combinaison PRIMARY KEY (Name) ON CONFLICT IGNORE,\
+    CONSTRAINT [Equipment]\
+        FOREIGN KEY([Equipment])\
+        REFERENCES [EQUIPMENT] ( [rowid] ));\n";
 
 #endif //ACICD_DOCUMENT_H

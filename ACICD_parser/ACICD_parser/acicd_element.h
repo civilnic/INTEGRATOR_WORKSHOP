@@ -16,7 +16,9 @@ public:
     bool modify_parameters(std::map<int,std::string> DB_NEW_FIELDS);
     bool create_table(void);
     bool insert_intable(void);
+    bool insert_intable_new(int acicd_reference);
     int is_element_exist(QString Name);
+    int is_element_exist_new(void);
     QString get_value(QString field);
     void create_update_query(QString field);
     void set_reference(QString field,int ref_id);
@@ -28,6 +30,7 @@ public:
     QString create_table_query;
 protected :
     int id;
+    int ref_acicd;
     QSqlDatabase *db;
     sql_database_manager *BDD;
     QString insert_query;

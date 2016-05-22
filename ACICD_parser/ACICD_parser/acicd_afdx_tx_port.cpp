@@ -16,11 +16,10 @@ acicd_AFDX_TX_port::acicd_AFDX_TX_port(sql_database_manager *database_manager) :
     DB_table_name="AFDX_TX_PORT";
     test_field="TX_AFDX_port_Identifier";
 
-    insert_query=QString("INSERT INTO %1 VALUES(NULL,:TX_AFDX_port_Identifier,:AFDX_Port_Master_Name,NULL,NULL,NULL,NULL,:Src_IP_Adress,:Dest_IP_Adress,:Src_UDP_Adress,:Dest_UDP_Adress,:Buffersize,:IP_frag_allowed,:ACICD,:AFDX_VL,:Network_Select)").arg(DB_table_name);
-    test_query=QString("SELECT id, %1 FROM %2 WHERE %1 = (:test_field)").arg(test_field).arg(DB_table_name);
+    insert_query=QString("INSERT INTO %1 VALUES(:TX_AFDX_port_Identifier,:AFDX_Port_Master_Name,NULL,NULL,NULL,NULL,:Src_IP_Adress,:Dest_IP_Adress,:Src_UDP_Adress,:Dest_UDP_Adress,:Buffersize,:IP_frag_allowed,:ACICD,:AFDX_VL,:Network_Select)").arg(DB_table_name);
+    test_query=QString("SELECT rowid FROM %1 WHERE (TX_AFDX_port_Identifier=:TX_AFDX_port_Identifier) AND (ACICD=:ACICD);").arg(DB_table_name);
 
     create_table_query=QString("CREATE TABLE IF NOT EXISTS [%1](\
-             [id] INTEGER CONSTRAINT [pk_%1] NOT NULL PRIMARY KEY AUTOINCREMENT,\
              [TX_AFDX_port_Identifier] INTEGER NULL,\
              [AFDX_Port_Master_Name] VARCHAR( 45 ) NULL,\
              [Type] INTEGER NULL,\
@@ -36,6 +35,7 @@ acicd_AFDX_TX_port::acicd_AFDX_TX_port(sql_database_manager *database_manager) :
              [ACICD] INTEGER NULL,\
              [AFDX_VL] INTEGER NULL,\
              [Network_Select] VARCHAR( 15 ) NULL,\
+                CONSTRAINT unique_combinaison PRIMARY KEY (TX_AFDX_port_Identifier, ACICD) ON CONFLICT IGNORE,\
                 CONSTRAINT [ACICD]\
                     FOREIGN KEY([ACICD])\
                     REFERENCES [ACICD] ( [id] ),\
