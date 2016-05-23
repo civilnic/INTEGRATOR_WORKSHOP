@@ -23,7 +23,7 @@ acicd_afdx_message::acicd_afdx_message(sql_database_manager *database_manager) :
                 [AFDX_APPLICATION] INTEGER NULL,\
                 [AFDX_VL] INTEGER NULL,\
                 [AFDX_TX_PORT] INTEGER NULL,\
-                [ACICD] INTEGER NULL,\
+                [ACICD] INTEGER NOT NULL,\
                 [description] VARCHAR( 45 ) NULL,\
                 [ref_doc] VARCHAR( 45 ) NULL,\
                 [type] VARCHAR( 45 ) NULL,\
