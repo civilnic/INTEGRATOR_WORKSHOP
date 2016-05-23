@@ -17,10 +17,10 @@ acicd_AFDX_TX_port::acicd_AFDX_TX_port(sql_database_manager *database_manager) :
     test_field="TX_AFDX_port_Identifier";
 
     insert_query=QString("INSERT INTO %1 VALUES(:TX_AFDX_port_Identifier,:AFDX_Port_Master_Name,NULL,NULL,NULL,NULL,:Src_IP_Adress,:Dest_IP_Adress,:Src_UDP_Adress,:Dest_UDP_Adress,:Buffersize,:IP_frag_allowed,:ACICD,:AFDX_VL,:Network_Select)").arg(DB_table_name);
-    test_query=QString("SELECT rowid FROM %1 WHERE (TX_AFDX_port_Identifier=:TX_AFDX_port_Identifier) AND (ACICD=:ACICD);").arg(DB_table_name);
+    test_query=QString("SELECT rowid FROM %1 WHERE (AFDX_Port_Master_Name=:AFDX_Port_Master_Name) AND (ACICD=:ACICD);").arg(DB_table_name);
 
     create_table_query=QString("CREATE TABLE IF NOT EXISTS [%1](\
-             [TX_AFDX_port_Identifier] INTEGER NULL,\
+             [TX_AFDX_port_Identifier] INTEGER NOT NULL,\
              [AFDX_Port_Master_Name] VARCHAR( 45 ) NULL,\
              [Type] INTEGER NULL,\
              [characteristic] INTEGER NULL,\
@@ -35,25 +35,25 @@ acicd_AFDX_TX_port::acicd_AFDX_TX_port(sql_database_manager *database_manager) :
              [ACICD] INTEGER NULL,\
              [AFDX_VL] INTEGER NULL,\
              [Network_Select] VARCHAR( 15 ) NULL,\
-                CONSTRAINT unique_combinaison PRIMARY KEY (TX_AFDX_port_Identifier, ACICD) ON CONFLICT IGNORE,\
+                CONSTRAINT unique_combinaison PRIMARY KEY (AFDX_Port_Master_Name,ACICD) ON CONFLICT IGNORE,\
                 CONSTRAINT [ACICD]\
                     FOREIGN KEY([ACICD])\
-                    REFERENCES [ACICD] ( [id] ),\
+                    REFERENCES [ACICD] ( [rowid] ),\
                 CONSTRAINT [Type]\
                     FOREIGN KEY([Type])\
-                    REFERENCES [AFDX_PORT_TYPE] ( [id] ),\
+                    REFERENCES [AFDX_PORT_TYPE] ( [rowid] ),\
                 CONSTRAINT [characteristic]\
                     FOREIGN KEY([characteristic])\
-                    REFERENCES [AFDX_PORT_CHARACTERISTIC] ( [id] ),\
+                    REFERENCES [AFDX_PORT_CHARACTERISTIC] ( [rowid] ),\
                 CONSTRAINT [transmission_type]\
                     FOREIGN KEY([transmission_type])\
-                    REFERENCES [AFDX_PORT_TRANSMISSION_TYPE] ( [id] ),\
+                    REFERENCES [AFDX_PORT_TRANSMISSION_TYPE] ( [rowid] ),\
                 CONSTRAINT [AFDX_VL]\
                     FOREIGN KEY([AFDX_VL])\
-                    REFERENCES [AFDX_VL] ( [id] ),\
+                    REFERENCES [AFDX_VL] ( [rowid] ),\
                 CONSTRAINT [EQUIPMENT]\
                     FOREIGN KEY([EQUIPMENT])\
-                    REFERENCES [EQUIPMENT] ( [id] )\
+                    REFERENCES [EQUIPMENT] ( [rowid] )\
             );\n\
             ").arg(DB_table_name);
 

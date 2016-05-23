@@ -8,7 +8,7 @@ acicd_afdx_port_transmission_type::acicd_afdx_port_transmission_type(sql_databas
     DB_table_name="AFDX_PORT_TRANSMISSION_TYPE";
     test_field="Name";
 
-    insert_query=QString("INSERT INTO %1 VALUES(NULL,:Name)").arg(DB_table_name);
+    insert_query=QString("INSERT INTO %1 VALUES(:Name)").arg(DB_table_name);
     test_query=QString("SELECT rowid FROM %1 WHERE (Name=:Name);").arg(DB_table_name);
 
     create_table_query=QString("\

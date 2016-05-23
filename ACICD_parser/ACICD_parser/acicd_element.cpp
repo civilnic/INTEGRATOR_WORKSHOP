@@ -130,6 +130,7 @@ int acicd_element::is_element_exist_new(void)
                      << query.lastError();
             BDD->sql_log_file << "[is_element_exist_new]: "
                                  << query.lastError().text() <<endl;
+            return -1;
         }
         else
         {
@@ -153,7 +154,7 @@ int acicd_element::is_element_exist_new(void)
             }
         }
     }
-    return -1;
+
 }
 
 bool acicd_element::insert_intable(void)
@@ -229,7 +230,8 @@ bool acicd_element::insert_intable_new(int acicd_reference)
 
         id=this->is_element_exist_new();
         // NULL = is the keyword for the autoincrement to generate next value
-
+        BDD->sql_log_file <<"[is_element_exist_new] return value: "
+                            << id <<endl;
         // element is not in DB
         if(id==0)
         {

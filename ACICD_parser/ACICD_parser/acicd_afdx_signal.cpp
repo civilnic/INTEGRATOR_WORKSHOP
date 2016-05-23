@@ -13,12 +13,11 @@ acicd_afdx_signal::acicd_afdx_signal(sql_database_manager *database_manager) : a
     DB_table_name="AFDX_SIGNAL";
     test_field="Name";
 
-    insert_query=QString("INSERT INTO %1 VALUES(NULL,:Name,:description,:ref_doc,:nb_of_bit,:address,:position,:AFDX_SIGNAL_TYPE,:AFDX_SIGNAL_BOOL_DESC,:AFDX_SIGNAL_STRING_DESC,:AFDX_SIGNAL_ENUMERATE_DESC,:AFDX_SIGNAL_FLOAT_DESC,:AFDX_SIGNAL_INT_DESC,:AFDX_SIGNAL_OPAQUE_DESC,:AFDX_MESSAGE,:AFDX_FDS,:AFDX_FS,:AFDX_VL,:AFDX_PARAMETER,:ACICD)").arg(DB_table_name);
-    test_query=QString("SELECT id, %1 FROM %2 WHERE %1 = (:test_field)").arg(test_field).arg(DB_table_name);
+    insert_query=QString("INSERT INTO %1 VALUES(:Name,:description,:ref_doc,:nb_of_bit,:address,:position,:AFDX_SIGNAL_TYPE,:AFDX_SIGNAL_BOOL_DESC,:AFDX_SIGNAL_STRING_DESC,:AFDX_SIGNAL_ENUMERATE_DESC,:AFDX_SIGNAL_FLOAT_DESC,:AFDX_SIGNAL_INT_DESC,:AFDX_SIGNAL_OPAQUE_DESC,:AFDX_MESSAGE,:AFDX_FDS,:AFDX_FS,:AFDX_VL,:AFDX_PARAMETER,:ACICD)").arg(DB_table_name);
+    test_query=QString("SELECT rowid FROM %1 WHERE (Name=:Name) AND (ACICD=:ACICD);").arg(DB_table_name);
 
     create_table_query=QString("\
              CREATE TABLE IF NOT EXISTS [%1](\
-                [id] INTEGER CONSTRAINT [pk_%1] NOT NULL PRIMARY KEY  AUTOINCREMENT,  \
                 [Name] VARCHAR( 45 ) NULL, \
                 [description] VARCHAR( 45 ) NULL, \
                 [ref_doc] VARCHAR( 45 ) NULL, \
@@ -38,45 +37,46 @@ acicd_afdx_signal::acicd_afdx_signal(sql_database_manager *database_manager) : a
                 [AFDX_VL] INTEGER NULL, \
                 [AFDX_PARAMETER] INTEGER NULL, \
                 [ACICD] INTEGER NULL, \
+                 CONSTRAINT unique_combinaison PRIMARY KEY (Name,ACICD) ON CONFLICT IGNORE,\
                  CONSTRAINT [ACICD]\
                         FOREIGN KEY([ACICD])\
-                        REFERENCES [ACICD] ( [id] ),\
+                        REFERENCES [ACICD] ( [rowid] ),\
                  CONSTRAINT [AFDX_SIGNAL_TYPE] \
                         FOREIGN KEY([AFDX_SIGNAL_TYPE]) \
-                        REFERENCES [AFDX_SIGNAL_TYPE] ( [id] ), \
+                        REFERENCES [AFDX_SIGNAL_TYPE] ( [rowid] ), \
                  CONSTRAINT [AFDX_SIGNAL_BOOL_DESC] \
                         FOREIGN KEY([AFDX_SIGNAL_BOOL_DESC]) \
-                        REFERENCES [AFDX_SIGNAL_BOOL_DESC] ( [id] ), \
+                        REFERENCES [AFDX_SIGNAL_BOOL_DESC] ( [rowid] ), \
                  CONSTRAINT [AFDX_SIGNAL_STRING_DESC] \
                         FOREIGN KEY([AFDX_SIGNAL_STRING_DESC]) \
-                        REFERENCES [AFDX_SIGNAL_STRING_DESC] ( [id] ), \
+                        REFERENCES [AFDX_SIGNAL_STRING_DESC] ( [rowid] ), \
                  CONSTRAINT [AFDX_SIGNAL_ENUMERATE_DESC] \
                         FOREIGN KEY([AFDX_SIGNAL_ENUMERATE_DESC]) \
-                        REFERENCES [AFDX_SIGNAL_ENUMERATE_DESC] ( [id] ), \
+                        REFERENCES [AFDX_SIGNAL_ENUMERATE_DESC] ( [rowid] ), \
                  CONSTRAINT [AFDX_SIGNAL_INT_DESC] \
                         FOREIGN KEY([AFDX_SIGNAL_INT_DESC]) \
-                        REFERENCES [AFDX_SIGNAL_INT_DESC] ( [id] ), \
+                        REFERENCES [AFDX_SIGNAL_INT_DESC] ( [rowid] ), \
                  CONSTRAINT [AFDX_SIGNAL_OPAQUE_DESC] \
                         FOREIGN KEY([AFDX_SIGNAL_OPAQUE_DESC]) \
-                        REFERENCES [AFDX_SIGNAL_OPAQUE_DESC] ( [id] ), \
+                        REFERENCES [AFDX_SIGNAL_OPAQUE_DESC] ( [rowid] ), \
                  CONSTRAINT [AFDX_SIGNAL_FLOAT_DESC] \
                         FOREIGN KEY([AFDX_SIGNAL_FLOAT_DESC]) \
-                        REFERENCES [AFDX_SIGNAL_FLOAT_DESC] ( [id] ), \
+                        REFERENCES [AFDX_SIGNAL_FLOAT_DESC] ( [rowid] ), \
                  CONSTRAINT [AFDX_MESSAGE] \
                         FOREIGN KEY([AFDX_MESSAGE]) \
-                        REFERENCES [AFDX_MESSAGE] ( [id] ), \
+                        REFERENCES [AFDX_MESSAGE] ( [rowid] ), \
                  CONSTRAINT [AFDX_FDS] \
                         FOREIGN KEY([AFDX_FDS]) \
-                        REFERENCES [AFDX_FDS] ( [id] ), \
+                        REFERENCES [AFDX_FDS] ( [rowid] ), \
                  CONSTRAINT [AFDX_VL] \
                         FOREIGN KEY([AFDX_VL]) \
-                        REFERENCES [AFDX_VL] ( [id] ), \
+                        REFERENCES [AFDX_VL] ( [rowid] ), \
                 CONSTRAINT [AFDX_PARAMETER] \
                         FOREIGN KEY([AFDX_PARAMETER]) \
-                        REFERENCES [AFDX_PARAMETER] ( [id] ), \
+                        REFERENCES [AFDX_PARAMETER] ( [rowid] ), \
                  CONSTRAINT [AFDX_FS] \
                         FOREIGN KEY([AFDX_FS]) \
-                        REFERENCES [AFDX_FS] ( [id] ) \
+                        REFERENCES [AFDX_FS] ( [rowid] ) \
                 );\n\
             ").arg(DB_table_name);
 

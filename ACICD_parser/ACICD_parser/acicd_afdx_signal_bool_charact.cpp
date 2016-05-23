@@ -13,7 +13,7 @@ acicd_afdx_signal_bool_charact::acicd_afdx_signal_bool_charact(sql_database_mana
     test_field="rowid";
 
     insert_query=QString("INSERT INTO %1 VALUES(:true_def,:false_def,:true_state,:false_state,:bool_logic)").arg(DB_table_name);
-    test_query=QString("SELECT rowid, %1 FROM %2 WHERE %1 = (:test_field)").arg(test_field).arg(DB_table_name);
+     test_query=QString("SELECT rowid FROM %1 WHERE (true_def=:true_def) AND (false_def=:false_def) AND (true_state=:true_state) AND (false_state=:false_state);").arg(DB_table_name);
 
     create_table_query=QString("\
              CREATE TABLE IF NOT EXISTS [%1](\
@@ -26,15 +26,6 @@ acicd_afdx_signal_bool_charact::acicd_afdx_signal_bool_charact(sql_database_mana
                 );\n\
             ").arg(DB_table_name);
 
-    create_index_query=QString("\
-             CREATE UNIQUE INDEX IF NOT EXISTS index_signal_bool_charact ON %1 (\
-                true_def,\
-                false_def,\
-                true_state,\
-                false_state,\
-                bool_logic\
-                );\n\
-            ").arg(DB_table_name);
 
     database_manager->create_table(create_table_query);
    // database_manager->execute_query(create_index_query);

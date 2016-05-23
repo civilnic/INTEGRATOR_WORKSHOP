@@ -15,12 +15,11 @@ acicd_afdx_parameter::acicd_afdx_parameter(sql_database_manager *database_manage
     DB_table_name="AFDX_PARAMETER";
     test_field="Name";
 
-    insert_query=QString("INSERT INTO %1 VALUES(NULL,:Name,:local_name,:local_name_not_produced,:refresh_period,:fonctionnal_attribute,:name_description,:keyword,:description,:ref_doc,:type,:AFDX_FDS,:AFDX_MESSAGE,:AFDX_VL,:ACICD)").arg(DB_table_name);
-    test_query=QString("SELECT id, %1 FROM %2 WHERE %1 = (:test_field)").arg(test_field).arg(DB_table_name);
+    insert_query=QString("INSERT INTO %1 VALUES(:Name,:local_name,:local_name_not_produced,:refresh_period,:fonctionnal_attribute,:name_description,:keyword,:description,:ref_doc,:type,:AFDX_FDS,:AFDX_MESSAGE,:AFDX_VL,:ACICD)").arg(DB_table_name);
+    test_query=QString("SELECT rowid FROM %1 WHERE (Name=:Name) AND (ACICD=:ACICD);").arg(DB_table_name);
 
     create_table_query=QString("\
                CREATE TABLE  IF NOT EXISTS [%1](\
-                [id] INTEGER CONSTRAINT [pk_%1] NOT NULL PRIMARY KEY  AUTOINCREMENT,  \
                 [Name] VARCHAR( 45 ) NULL,\
                 [local_name] VARCHAR( 45 ) NULL,\
                 [local_name_not_produced] VARCHAR( 45 ) NULL,\
@@ -35,24 +34,25 @@ acicd_afdx_parameter::acicd_afdx_parameter(sql_database_manager *database_manage
                 [AFDX_MESSAGE] INTEGER NULL,\
                 [AFDX_VL] INTEGER NULL,\
                 [ACICD] INTEGER NULL,\
-                CONSTRAINT [type]\
+                 CONSTRAINT unique_combinaison PRIMARY KEY (Name,ACICD) ON CONFLICT IGNORE,\
+                 CONSTRAINT [type]\
                     FOREIGN KEY([type])\
-                    REFERENCES [DATA_TYPE] ( [id] ),\
-                CONSTRAINT [KEYWORD]\
+                    REFERENCES [DATA_TYPE] ( [rowid] ),\
+                 CONSTRAINT [KEYWORD]\
                     FOREIGN KEY([KEYWORD])\
-                    REFERENCES [KEYWORD] ( [id] ),\
+                    REFERENCES [KEYWORD] ( [rowid] ),\
                  CONSTRAINT [ACICD]\
                     FOREIGN KEY([ACICD])\
-                    REFERENCES [ACICD] ( [id] ),\
+                    REFERENCES [ACICD] ( [rowid] ),\
                  CONSTRAINT [AFDX_FDS]\
                     FOREIGN KEY([AFDX_FDS])\
-                    REFERENCES [AFDX_FDS] ( [id] ),\
+                    REFERENCES [AFDX_FDS] ( [rowid] ),\
                  CONSTRAINT [AFDX_MESSAGE]\
                     FOREIGN KEY([AFDX_MESSAGE])\
-                    REFERENCES [AFDX_MESSAGE] ( [id] ),\
+                    REFERENCES [AFDX_MESSAGE] ( [rowid] ),\
                  CONSTRAINT [AFDX_VL]\
                     FOREIGN KEY([AFDX_VL])\
-                    REFERENCES [AFDX_VL] ( [id] )\
+                    REFERENCES [AFDX_VL] ( [rowid] )\
                 );\n\
             ").arg(DB_table_name);
 

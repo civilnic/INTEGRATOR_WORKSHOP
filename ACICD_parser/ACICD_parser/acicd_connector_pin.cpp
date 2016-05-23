@@ -22,7 +22,7 @@ acicd_connector_pin::acicd_connector_pin(sql_database_manager *database_manager)
             [Physical_Id] VARCHAR( 45 ) NULL,\
             [Physical_speed] VARCHAR( 45 ) NULL,\
             [Network_id] VARCHAR( 45 ) NULL,\
-                CONSTRAINT unique_combinaison PRIMARY KEY (Connector_pin, ACICD) ON CONFLICT IGNORE,\
+                CONSTRAINT unique_combinaison PRIMARY KEY (Connector_pin,ACICD) ON CONFLICT IGNORE,\
                 CONSTRAINT [Connector_pin_role]\
                     FOREIGN KEY([Connector_pin_role])\
                     REFERENCES [CONNECTOR_PIN_ROLE] ( [rowid] ),\

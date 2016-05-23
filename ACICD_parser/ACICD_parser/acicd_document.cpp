@@ -258,26 +258,24 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
                }
            }
 
-           if(AFDX_VL_obj->insert_intable())
+           if(AFDX_VL_obj->insert_intable_new(id))
            {
-               AFDX_VL_obj->set_reference(QString("ACICD"),id);
                AFDX_VL_obj->set_reference(QString("EQUIPMENT"),equipment_obj->get_id());
            }
 
-           if(!connector_pin_obj->insert_intable())
+           if(!connector_pin_obj->insert_intable_new(id))
            {
                 connector_pin_obj->set_value(QString("Physical_Id"),connector_pin_obj->DB_VALUES["Physical_Id"]);
                 connector_pin_obj->set_value(QString("Physical_speed"),connector_pin_obj->DB_VALUES["Physical_speed"]);
                 connector_pin_obj->set_value(QString("Network_id"),connector_pin_obj->DB_VALUES["Network_id"]);
            }
 
-           AFDX_port_type_obj->insert_intable();
-           AFDX_port_characteristic_obj->insert_intable();
-           AFDX_port_transmission_type_obj->insert_intable();
+           AFDX_port_type_obj->insert_intable_new(id);
+           AFDX_port_characteristic_obj->insert_intable_new(id);
+           AFDX_port_transmission_type_obj->insert_intable_new(id);
 
-           if(AFDX_TX_port_obj->insert_intable())
+           if(AFDX_TX_port_obj->insert_intable_new(id))
            {
-                AFDX_TX_port_obj->set_reference(QString("ACICD"),id);
                 AFDX_TX_port_obj->set_reference(QString("EQUIPMENT"),equipment_obj->get_id());
                 AFDX_TX_port_obj->set_reference(QString("Type"),AFDX_port_type_obj->get_id());
                 AFDX_TX_port_obj->set_reference(QString("characteristic"),AFDX_port_characteristic_obj->get_id());
@@ -395,16 +393,15 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
                }
            }
 
-         AFDX_VL_obj->insert_intable();
+         AFDX_VL_obj->insert_intable_new(id);
 
-         if(AFDX_MESSAGE_obj->insert_intable())
+         if(AFDX_MESSAGE_obj->insert_intable_new(id))
          {
 
-            AFDX_TX_port_obj->insert_intable();
-            AFDX_MESSAGE_TYPE_obj->insert_intable();
-            AFDX_APPLICATION_obj->insert_intable();
+            AFDX_TX_port_obj->insert_intable_new(id);
+            AFDX_MESSAGE_TYPE_obj->insert_intable_new(id);
+            AFDX_APPLICATION_obj->insert_intable_new(id);
 
-            AFDX_MESSAGE_obj->set_reference(QString("ACICD"),id);
             AFDX_MESSAGE_obj->set_reference(QString("AFDX_VL"),AFDX_VL_obj->get_id());
             AFDX_MESSAGE_obj->set_reference(QString("AFDX_TX_PORT"),AFDX_TX_port_obj->get_id());
             AFDX_MESSAGE_obj->set_reference(QString("AFDX_MESSAGE_TYPE"),AFDX_MESSAGE_TYPE_obj->get_id());
@@ -412,42 +409,37 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
          }
 
 
-         if(AFDX_FDS_obj->insert_intable())
+         if(AFDX_FDS_obj->insert_intable_new(id))
          {
-            AFDX_FS_obj->insert_intable();
+            AFDX_FS_obj->insert_intable_new(id);
 
-            if(AFDX_PARAMETER_obj->insert_intable())
-            {
-                AFDX_DATA_TYPE_obj->insert_intable();
-                AFDX_KEYWORD_obj->insert_intable();
-            }
-
-            AFDX_FDS_obj->set_reference(QString("ACICD"),id);
             AFDX_FDS_obj->set_reference(QString("AFDX_VL"),AFDX_VL_obj->get_id());
             AFDX_FDS_obj->set_reference(QString("AFDX_MESSAGE"),AFDX_MESSAGE_obj->get_id());
             AFDX_FDS_obj->set_reference(QString("AFDX_FS"),AFDX_FS_obj->get_id());
 
-            AFDX_FS_obj->set_reference(QString("ACICD"),id);
             AFDX_FS_obj->set_reference(QString("AFDX_VL"),AFDX_VL_obj->get_id());
             AFDX_FS_obj->set_reference(QString("AFDX_MESSAGE"),AFDX_MESSAGE_obj->get_id());
             AFDX_FS_obj->set_reference(QString("AFDX_FDS"),AFDX_FDS_obj->get_id());
-
-
-            AFDX_PARAMETER_obj->set_reference(QString("ACICD"),id);
-            AFDX_PARAMETER_obj->set_reference(QString("AFDX_VL"),AFDX_VL_obj->get_id());
-            AFDX_PARAMETER_obj->set_reference(QString("AFDX_MESSAGE"),AFDX_MESSAGE_obj->get_id());
-            AFDX_PARAMETER_obj->set_reference(QString("AFDX_FDS"),AFDX_FDS_obj->get_id());
-            AFDX_PARAMETER_obj->set_reference(QString("DATA_TYPE"),AFDX_DATA_TYPE_obj->get_id());
-            AFDX_PARAMETER_obj->set_reference(QString("KEYWORD"),AFDX_KEYWORD_obj->get_id());
          }
 
-         if(AFDX_SIGNAL_obj->insert_intable())
+         if(AFDX_PARAMETER_obj->insert_intable_new(id))
+         {
+             AFDX_DATA_TYPE_obj->insert_intable_new(id);
+             AFDX_KEYWORD_obj->insert_intable_new(id);
+
+             AFDX_PARAMETER_obj->set_reference(QString("AFDX_VL"),AFDX_VL_obj->get_id());
+             AFDX_PARAMETER_obj->set_reference(QString("AFDX_MESSAGE"),AFDX_MESSAGE_obj->get_id());
+             AFDX_PARAMETER_obj->set_reference(QString("AFDX_FDS"),AFDX_FDS_obj->get_id());
+             AFDX_PARAMETER_obj->set_reference(QString("DATA_TYPE"),AFDX_DATA_TYPE_obj->get_id());
+             AFDX_PARAMETER_obj->set_reference(QString("KEYWORD"),AFDX_KEYWORD_obj->get_id());
+         }
+
+         if(AFDX_SIGNAL_obj->insert_intable_new(id))
          {
 
-            AFDX_SIGNAL_BOOL_DESC_obj->insert_intable();
-            AFDX_SIGNAL_TYPE_obj->insert_intable();
+            AFDX_SIGNAL_BOOL_DESC_obj->insert_intable_new(id);
+            AFDX_SIGNAL_TYPE_obj->insert_intable_new(id);
 
-            AFDX_SIGNAL_obj->set_reference(QString("ACICD"),id);
             AFDX_SIGNAL_obj->set_reference(QString("AFDX_VL"),AFDX_VL_obj->get_id());
             AFDX_SIGNAL_obj->set_reference(QString("AFDX_MESSAGE"),AFDX_MESSAGE_obj->get_id());
             AFDX_SIGNAL_obj->set_reference(QString("AFDX_FDS"),AFDX_FDS_obj->get_id());
