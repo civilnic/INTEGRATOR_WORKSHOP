@@ -38,7 +38,8 @@ SOURCES += main.cpp \
     acicd_afdx_network.cpp \
     acicd_afdx_parameter.cpp \
     acicd_keyword.cpp \
-    acicd_data_type.cpp
+    acicd_data_type.cpp \
+    acicd_unit.cpp
 
 HEADERS += \
     ../../CSV/csv_common.h \
@@ -78,7 +79,8 @@ HEADERS += \
     acicd_afdx_network.h \
     acicd_afdx_parameter.h \
     acicd_keyword.h \
-    acicd_data_type.h
+    acicd_data_type.h \
+    acicd_unit.h
 
 INCLUDEPATH += ../../CSV/ \
                C:\local\boost_1_60_0

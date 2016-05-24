@@ -37,7 +37,12 @@
 #include "acicd_afdx_signal.h"
 #include "acicd_afdx_signal_bool_charact.h"
 #include "acicd_afdx_signal_type.h"
-
+#include "acicd_afdx_signal_enumerate_charact.h"
+#include "acicd_afdx_signal_float_charact.h"
+#include "acicd_afdx_signal_int_charact.h"
+#include "acicd_afdx_signal_opaque_charact.h"
+#include "acicd_afdx_signal_string_charact.h"
+#include "acicd_unit.h"
 
 #include "sql_database_manager.h"
 

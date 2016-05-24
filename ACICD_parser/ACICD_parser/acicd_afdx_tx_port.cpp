@@ -17,7 +17,7 @@ acicd_AFDX_TX_port::acicd_AFDX_TX_port(sql_database_manager *database_manager) :
     test_field="TX_AFDX_port_Identifier";
 
     insert_query=QString("INSERT INTO %1 VALUES(:TX_AFDX_port_Identifier,:AFDX_Port_Master_Name,NULL,NULL,NULL,NULL,:Src_IP_Adress,:Dest_IP_Adress,:Src_UDP_Adress,:Dest_UDP_Adress,:Buffersize,:IP_frag_allowed,:ACICD,:AFDX_VL,:Network_Select)").arg(DB_table_name);
-    test_query=QString("SELECT rowid FROM %1 WHERE (AFDX_Port_Master_Name=:AFDX_Port_Master_Name) AND (ACICD=:ACICD);").arg(DB_table_name);
+    test_query=QString("SELECT rowid FROM %1 WHERE (TX_AFDX_port_Identifier=:TX_AFDX_port_Identifier) AND (ACICD=:ACICD);").arg(DB_table_name);
 
     create_table_query=QString("CREATE TABLE IF NOT EXISTS [%1](\
              [TX_AFDX_port_Identifier] INTEGER NOT NULL,\
@@ -35,7 +35,7 @@ acicd_AFDX_TX_port::acicd_AFDX_TX_port(sql_database_manager *database_manager) :
              [ACICD] INTEGER NULL,\
              [AFDX_VL] INTEGER NULL,\
              [Network_Select] VARCHAR( 15 ) NULL,\
-                CONSTRAINT unique_combinaison PRIMARY KEY (AFDX_Port_Master_Name,ACICD) ON CONFLICT IGNORE,\
+                CONSTRAINT unique_combinaison PRIMARY KEY (TX_AFDX_port_Identifier,ACICD) ON CONFLICT IGNORE,\
                 CONSTRAINT [ACICD]\
                     FOREIGN KEY([ACICD])\
                     REFERENCES [ACICD] ( [rowid] ),\
