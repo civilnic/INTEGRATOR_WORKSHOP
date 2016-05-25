@@ -22,6 +22,7 @@ public:
     QString get_value(QString field);
     void create_update_query(QString field);
     void set_reference(QString field,int ref_id);
+    void update_value(QString field,QString value);
     void set_value(QString field,QString value);
     int get_id(void);
 

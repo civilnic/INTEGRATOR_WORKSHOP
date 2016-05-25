@@ -272,9 +272,9 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
 
            if(!connector_pin_obj->insert_intable_new(id))
            {
-                connector_pin_obj->set_value(QString("Physical_Id"),connector_pin_obj->DB_VALUES["Physical_Id"]);
-                connector_pin_obj->set_value(QString("Physical_speed"),connector_pin_obj->DB_VALUES["Physical_speed"]);
-                connector_pin_obj->set_value(QString("Network_id"),connector_pin_obj->DB_VALUES["Network_id"]);
+                connector_pin_obj->update_value(QString("Physical_Id"),connector_pin_obj->DB_VALUES["Physical_Id"]);
+                connector_pin_obj->update_value(QString("Physical_speed"),connector_pin_obj->DB_VALUES["Physical_speed"]);
+                connector_pin_obj->update_value(QString("Network_id"),connector_pin_obj->DB_VALUES["Network_id"]);
            }
 
            AFDX_port_type_obj->insert_intable_new(id);
@@ -414,10 +414,10 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
                }
                if(AFDX_SIGNAL_FLOAT_DESC_obj->DB_FIELDS.count(it_record-it->begin())==1)
                {
-                    if((*it_record).empty()!=1)
-                    {
+//                   if((*it_record).empty()!=1)
+//                    {
                         AFDX_SIGNAL_FLOAT_DESC_obj->set_parameters(it_record-it->begin(),*it_record);
-                    }
+//                    }
                }
                if(AFDX_SIGNAL_INT_DESC_obj->DB_FIELDS.count(it_record-it->begin())==1)
                {
@@ -485,35 +485,38 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
 
          if(AFDX_SIGNAL_obj->insert_intable_new(id))
          {
+            ACICD_UNIT_obj->insert_intable_new(id);
 
-            if(AFDX_SIGNAL_BOOL_DESC_obj->insert_intable_new(id))
-            {
-                AFDX_SIGNAL_obj->set_reference(QString("AFDX_SIGNAL_BOOL_DESC"),AFDX_SIGNAL_BOOL_DESC_obj->get_id());
-            }
-            else if (AFDX_SIGNAL_STRING_DESC_obj->insert_intable_new(id))
-            {
-                AFDX_SIGNAL_obj->set_reference(QString("AFDX_SIGNAL_STRING_DESC"),AFDX_SIGNAL_STRING_DESC_obj->get_id());
-            }
-            else if (AFDX_SIGNAL_ENUMERATE_DESC_obj->insert_intable_new(id))
-            {
-                AFDX_SIGNAL_obj->set_reference(QString("AFDX_SIGNAL_ENUMERATE_DESC"),AFDX_SIGNAL_ENUMERATE_DESC_obj->get_id());
-            }
-            else if (AFDX_SIGNAL_FLOAT_DESC_obj->insert_intable_new(id))
-            {
-                ACICD_UNIT_obj->insert_intable_new(id);
-                AFDX_SIGNAL_FLOAT_DESC_obj->set_reference(QString("unit"),ACICD_UNIT_obj->get_id());
-                AFDX_SIGNAL_obj->set_reference(QString("AFDX_SIGNAL_FLOAT_DESC"),AFDX_SIGNAL_FLOAT_DESC_obj->get_id());
-            }
-            else if (AFDX_SIGNAL_INT_DESC_obj->insert_intable_new(id))
-            {
-                ACICD_UNIT_obj->insert_intable_new(id);
-                AFDX_SIGNAL_INT_DESC_obj->set_reference(QString("unit"),ACICD_UNIT_obj->get_id());
-                AFDX_SIGNAL_obj->set_reference(QString("AFDX_SIGNAL_INT_DESC"),AFDX_SIGNAL_INT_DESC_obj->get_id());
-            }
-            else if (AFDX_SIGNAL_OPAQUE_DESC_obj->insert_intable_new(id))
-            {
-                AFDX_SIGNAL_obj->set_reference(QString("AFDX_SIGNAL_OPAQUE_DESC"),AFDX_SIGNAL_OPAQUE_DESC_obj->get_id());
-            }
+  //             AFDX_SIGNAL_FLOAT_DESC_obj->set_value(QString("unit"),QString::number(ACICD_UNIT_obj->get_id()));
+  //             AFDX_SIGNAL_INT_DESC_obj->set_value(QString("unit"),QString::number(ACICD_UNIT_obj->get_id()));
+
+            AFDX_SIGNAL_BOOL_DESC_obj->insert_intable_new(id);
+            AFDX_SIGNAL_obj->set_reference(QString("AFDX_SIGNAL_BOOL_DESC"),AFDX_SIGNAL_BOOL_DESC_obj->get_id());
+
+            AFDX_SIGNAL_STRING_DESC_obj->insert_intable_new(id);
+            AFDX_SIGNAL_obj->set_reference(QString("AFDX_SIGNAL_STRING_DESC"),AFDX_SIGNAL_STRING_DESC_obj->get_id());
+
+            AFDX_SIGNAL_ENUMERATE_DESC_obj->insert_intable_new(id);
+            AFDX_SIGNAL_obj->set_reference(QString("AFDX_SIGNAL_ENUMERATE_DESC"),AFDX_SIGNAL_ENUMERATE_DESC_obj->get_id());
+
+            AFDX_SIGNAL_FLOAT_DESC_obj->insert_intable_new(id);
+
+ //               ACICD_UNIT_obj->insert_intable_new(id);
+ //              AFDX_SIGNAL_FLOAT_DESC_obj->set_value(QString("unit"),ACICD_UNIT_obj->get_id());
+ //               AFDX_SIGNAL_FLOAT_DESC_obj->set_reference(QString("unit"),ACICD_UNIT_obj->get_id());
+            AFDX_SIGNAL_obj->set_reference(QString("AFDX_SIGNAL_FLOAT_DESC"),AFDX_SIGNAL_FLOAT_DESC_obj->get_id());
+
+            AFDX_SIGNAL_INT_DESC_obj->insert_intable_new(id);
+
+//                ACICD_UNIT_obj->insert_intable_new(id);
+//                AFDX_SIGNAL_INT_DESC_obj->set_value(QString("unit"),QString(ACICD_UNIT_obj->get_id()));
+//                AFDX_SIGNAL_INT_DESC_obj->set_reference(QString("unit"),ACICD_UNIT_obj->get_id());
+            AFDX_SIGNAL_obj->set_reference(QString("AFDX_SIGNAL_INT_DESC"),AFDX_SIGNAL_INT_DESC_obj->get_id());
+
+            AFDX_SIGNAL_OPAQUE_DESC_obj->insert_intable_new(id);
+
+            AFDX_SIGNAL_obj->set_reference(QString("AFDX_SIGNAL_OPAQUE_DESC"),AFDX_SIGNAL_OPAQUE_DESC_obj->get_id());
+
 
             AFDX_SIGNAL_TYPE_obj->insert_intable_new(id);
 
