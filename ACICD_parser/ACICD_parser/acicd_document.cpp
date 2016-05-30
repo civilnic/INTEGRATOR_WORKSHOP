@@ -100,6 +100,7 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
     acicd_connector_pin_role *connector_pin_role_obj=new acicd_connector_pin_role(BDD);
     acicd_connector *connector_obj=new acicd_connector(BDD);
     acicd_AFDX_TX_port *AFDX_TX_port_obj=new acicd_AFDX_TX_port(BDD);
+    acicd_afdx_rx_port *AFDX_RX_port_obj=new acicd_afdx_rx_port(BDD);
     acicd_afdx_port_type *AFDX_port_type_obj=new acicd_afdx_port_type(BDD);
     acicd_afdx_port_characteristic *AFDX_port_characteristic_obj=new acicd_afdx_port_characteristic(BDD);
     acicd_afdx_port_transmission_type *AFDX_port_transmission_type_obj=new acicd_afdx_port_transmission_type(BDD);
@@ -337,10 +338,6 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
                     }
                }
 
-
-
-
-
                if(AFDX_FDS_obj->DB_FIELDS.count(it_record-it->begin())==1)
                {
                     if((*it_record).empty()!=1)
@@ -527,10 +524,320 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
             AFDX_SIGNAL_obj->set_reference(QString("AFDX_FS"),AFDX_FS_obj->get_id());
             AFDX_SIGNAL_obj->set_reference(QString("AFDX_SIGNAL_TYPE"),AFDX_SIGNAL_TYPE_obj->get_id());
          }
+       }
 
 
+       if(section==acicd_data_section::AFDX_INPUT_VL)
+       {
+           AFDX_VL_obj->modify_parameters({ { 8, "VL_Identifier" },{ 9, "VL_name" },{ 11, "BAG" },{ 12, "MAX_frame_size" }});
+           connector_pin_obj->modify_parameters({ { 2, "Physical_Id" },{ 3, "Physical_speed" },{ 4, "Connector_pin" },{ 6, "Network_id" }});
+           AFDX_port_type_obj->modify_parameters({ { 18, "Name" } });
+
+           for(it_record=it->begin();it_record!=it->end();++it_record)
+           {
+               if(AFDX_RX_port_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                    if((*it_record).empty()!=1)
+                    {
+                        AFDX_RX_port_obj->set_parameters(it_record-it->begin(),*it_record);
+                    }
+               }
+               if(AFDX_port_type_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                    if((*it_record).empty()!=1)
+                    {
+                        AFDX_port_type_obj->set_parameters(it_record-it->begin(),*it_record);
+                    }
+               }
+               if(AFDX_port_characteristic_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                    if((*it_record).empty()!=1)
+                    {
+                        AFDX_port_characteristic_obj->set_parameters(it_record-it->begin(),*it_record);
+                    }
+               }
+               if(AFDX_port_transmission_type_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                    if((*it_record).empty()!=1)
+                    {
+                        AFDX_port_transmission_type_obj->set_parameters(it_record-it->begin(),*it_record);
+                    }
+               }
+               if(connector_pin_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                    if((*it_record).empty()!=1)
+                    {
+                        connector_pin_obj->set_parameters(it_record-it->begin(),*it_record);
+                    }
+               }
+               if(AFDX_VL_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                    if((*it_record).empty()!=1)
+                    {
+                        AFDX_VL_obj->set_parameters(it_record-it->begin(),*it_record);
+                    }
+               }
+           }
+
+           if(AFDX_VL_obj->insert_intable_new(id))
+           {
+               AFDX_VL_obj->set_reference(QString("EQUIPMENT"),equipment_obj->get_id());
+           }
+
+           if(!connector_pin_obj->insert_intable_new(id))
+           {
+                connector_pin_obj->update_value(QString("Physical_Id"),connector_pin_obj->DB_VALUES["Physical_Id"]);
+                connector_pin_obj->update_value(QString("Physical_speed"),connector_pin_obj->DB_VALUES["Physical_speed"]);
+                connector_pin_obj->update_value(QString("Network_id"),connector_pin_obj->DB_VALUES["Network_id"]);
+           }
+
+           AFDX_port_type_obj->insert_intable_new(id);
+           AFDX_port_characteristic_obj->insert_intable_new(id);
+           AFDX_port_transmission_type_obj->insert_intable_new(id);
+
+           if(AFDX_RX_port_obj->insert_intable_new(id))
+           {
+                AFDX_RX_port_obj->set_reference(QString("EQUIPMENT"),equipment_obj->get_id());
+                AFDX_RX_port_obj->set_reference(QString("Type"),AFDX_port_type_obj->get_id());
+                AFDX_RX_port_obj->set_reference(QString("characteristic"),AFDX_port_characteristic_obj->get_id());
+                AFDX_RX_port_obj->set_reference(QString("transmission_type"),AFDX_port_transmission_type_obj->get_id());
+                AFDX_RX_port_obj->set_reference(QString("AFDX_VL"),AFDX_VL_obj->get_id());
+           }
 
        }
+
+       if(section==acicd_data_section::AFDX_INPUT_MESSAGE)
+       {
+           AFDX_VL_obj->modify_parameters({{ 5, "VL_name" }});
+           AFDX_RX_port_obj->modify_parameters({ { 6, "RX_AFDX_port_Identifier" }});
+
+
+           for(it_record=it->begin();it_record!=it->end();++it_record)
+           {
+               if(AFDX_MESSAGE_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                    if((*it_record).empty()!=1)
+                    {
+                        AFDX_MESSAGE_obj->set_parameters(it_record-it->begin(),*it_record);
+                    }
+               }
+               if(AFDX_MESSAGE_TYPE_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                    if((*it_record).empty()!=1)
+                    {
+                        AFDX_MESSAGE_TYPE_obj->set_parameters(it_record-it->begin(),*it_record);
+                    }
+               }
+               if(AFDX_APPLICATION_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                    if((*it_record).empty()!=1)
+                    {
+                        AFDX_APPLICATION_obj->set_parameters(it_record-it->begin(),*it_record);
+                    }
+               }
+               if(AFDX_VL_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                    if((*it_record).empty()!=1)
+                    {
+                        AFDX_VL_obj->set_parameters(it_record-it->begin(),*it_record);
+                    }
+               }
+               if(AFDX_RX_port_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                    if((*it_record).empty()!=1)
+                    {
+                        AFDX_RX_port_obj->set_parameters(it_record-it->begin(),*it_record);
+                    }
+               }
+
+               if(AFDX_FDS_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                    if((*it_record).empty()!=1)
+                    {
+                        AFDX_FDS_obj->set_parameters(it_record-it->begin(),*it_record);
+                    }
+               }
+               if(AFDX_FS_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                    if((*it_record).empty()!=1)
+                    {
+                        AFDX_FS_obj->set_parameters(it_record-it->begin(),*it_record);
+                    }
+               }
+               if(AFDX_PARAMETER_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                    if((*it_record).empty()!=1)
+                    {
+                        AFDX_PARAMETER_obj->set_parameters(it_record-it->begin(),*it_record);
+                    }
+               }
+               if(AFDX_DATA_TYPE_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                    if((*it_record).empty()!=1)
+                    {
+                        AFDX_DATA_TYPE_obj->set_parameters(it_record-it->begin(),*it_record);
+                    }
+               }
+               if(AFDX_KEYWORD_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                    if((*it_record).empty()!=1)
+                    {
+                        AFDX_KEYWORD_obj->set_parameters(it_record-it->begin(),*it_record);
+                    }
+               }
+
+               if(AFDX_SIGNAL_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                    if((*it_record).empty()!=1)
+                    {
+                        AFDX_SIGNAL_obj->set_parameters(it_record-it->begin(),*it_record);
+                    }
+               }
+               if(AFDX_SIGNAL_TYPE_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                    if((*it_record).empty()!=1)
+                    {
+                        AFDX_SIGNAL_TYPE_obj->set_parameters(it_record-it->begin(),*it_record);
+                    }
+               }
+               if(AFDX_SIGNAL_BOOL_DESC_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+//                    if((*it_record).empty()!=1)
+//                    {
+                        AFDX_SIGNAL_BOOL_DESC_obj->set_parameters(it_record-it->begin(),*it_record);
+//                    }
+               }
+               if(AFDX_SIGNAL_STRING_DESC_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+//                    if((*it_record).empty()!=1)
+//                    {
+                        AFDX_SIGNAL_STRING_DESC_obj->set_parameters(it_record-it->begin(),*it_record);
+//                    }
+               }
+               if(AFDX_SIGNAL_ENUMERATE_DESC_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+//                    if((*it_record).empty()!=1)
+//                    {
+                        AFDX_SIGNAL_ENUMERATE_DESC_obj->set_parameters(it_record-it->begin(),*it_record);
+//                    }
+               }
+               if(AFDX_SIGNAL_FLOAT_DESC_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+//                   if((*it_record).empty()!=1)
+//                    {
+                        AFDX_SIGNAL_FLOAT_DESC_obj->set_parameters(it_record-it->begin(),*it_record);
+//                    }
+               }
+               if(AFDX_SIGNAL_INT_DESC_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+//                    if((*it_record).empty()!=1)
+//                    {
+                        AFDX_SIGNAL_INT_DESC_obj->set_parameters(it_record-it->begin(),*it_record);
+//                    }
+               }
+               if(AFDX_SIGNAL_OPAQUE_DESC_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+//                    if((*it_record).empty()!=1)
+//                    {
+                        AFDX_SIGNAL_OPAQUE_DESC_obj->set_parameters(it_record-it->begin(),*it_record);
+//                    }
+               }
+               if(ACICD_UNIT_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                    if((*it_record).empty()!=1)
+                    {
+                        ACICD_UNIT_obj->set_parameters(it_record-it->begin(),*it_record);
+                    }
+               }
+           }
+
+         AFDX_VL_obj->insert_intable_new(id);
+
+         if(AFDX_MESSAGE_obj->insert_intable_new(id))
+         {
+
+            AFDX_RX_port_obj->insert_intable_new(id);
+            AFDX_MESSAGE_TYPE_obj->insert_intable_new(id);
+            AFDX_APPLICATION_obj->insert_intable_new(id);
+
+            AFDX_MESSAGE_obj->set_reference(QString("AFDX_VL"),AFDX_VL_obj->get_id());
+            AFDX_MESSAGE_obj->set_reference(QString("AFDX_RX_PORT"),AFDX_RX_port_obj->get_id());
+            AFDX_MESSAGE_obj->set_reference(QString("AFDX_MESSAGE_TYPE"),AFDX_MESSAGE_TYPE_obj->get_id());
+            AFDX_MESSAGE_obj->set_reference(QString("AFDX_APPLICATION"),AFDX_APPLICATION_obj->get_id());
+         }
+
+
+         if(AFDX_FDS_obj->insert_intable_new(id))
+         {
+            AFDX_FS_obj->insert_intable_new(id);
+
+            AFDX_FDS_obj->set_reference(QString("AFDX_VL"),AFDX_VL_obj->get_id());
+            AFDX_FDS_obj->set_reference(QString("AFDX_MESSAGE"),AFDX_MESSAGE_obj->get_id());
+            AFDX_FDS_obj->set_reference(QString("AFDX_FS"),AFDX_FS_obj->get_id());
+
+            AFDX_FS_obj->set_reference(QString("AFDX_VL"),AFDX_VL_obj->get_id());
+            AFDX_FS_obj->set_reference(QString("AFDX_MESSAGE"),AFDX_MESSAGE_obj->get_id());
+            AFDX_FS_obj->set_reference(QString("AFDX_FDS"),AFDX_FDS_obj->get_id());
+         }
+
+         if(AFDX_PARAMETER_obj->insert_intable_new(id))
+         {
+             AFDX_DATA_TYPE_obj->insert_intable_new(id);
+             AFDX_KEYWORD_obj->insert_intable_new(id);
+
+             AFDX_PARAMETER_obj->set_reference(QString("AFDX_VL"),AFDX_VL_obj->get_id());
+             AFDX_PARAMETER_obj->set_reference(QString("AFDX_MESSAGE"),AFDX_MESSAGE_obj->get_id());
+             AFDX_PARAMETER_obj->set_reference(QString("AFDX_FDS"),AFDX_FDS_obj->get_id());
+             AFDX_PARAMETER_obj->set_reference(QString("DATA_TYPE"),AFDX_DATA_TYPE_obj->get_id());
+             AFDX_PARAMETER_obj->set_reference(QString("KEYWORD"),AFDX_KEYWORD_obj->get_id());
+         }
+
+         if(AFDX_SIGNAL_obj->insert_intable_new(id))
+         {
+            ACICD_UNIT_obj->insert_intable_new(id);
+
+  //             AFDX_SIGNAL_FLOAT_DESC_obj->set_value(QString("unit"),QString::number(ACICD_UNIT_obj->get_id()));
+  //             AFDX_SIGNAL_INT_DESC_obj->set_value(QString("unit"),QString::number(ACICD_UNIT_obj->get_id()));
+
+            AFDX_SIGNAL_BOOL_DESC_obj->insert_intable_new(id);
+            AFDX_SIGNAL_obj->set_reference(QString("AFDX_SIGNAL_BOOL_DESC"),AFDX_SIGNAL_BOOL_DESC_obj->get_id());
+
+            AFDX_SIGNAL_STRING_DESC_obj->insert_intable_new(id);
+            AFDX_SIGNAL_obj->set_reference(QString("AFDX_SIGNAL_STRING_DESC"),AFDX_SIGNAL_STRING_DESC_obj->get_id());
+
+            AFDX_SIGNAL_ENUMERATE_DESC_obj->insert_intable_new(id);
+            AFDX_SIGNAL_obj->set_reference(QString("AFDX_SIGNAL_ENUMERATE_DESC"),AFDX_SIGNAL_ENUMERATE_DESC_obj->get_id());
+
+            AFDX_SIGNAL_FLOAT_DESC_obj->insert_intable_new(id);
+
+ //               ACICD_UNIT_obj->insert_intable_new(id);
+ //              AFDX_SIGNAL_FLOAT_DESC_obj->set_value(QString("unit"),ACICD_UNIT_obj->get_id());
+ //               AFDX_SIGNAL_FLOAT_DESC_obj->set_reference(QString("unit"),ACICD_UNIT_obj->get_id());
+            AFDX_SIGNAL_obj->set_reference(QString("AFDX_SIGNAL_FLOAT_DESC"),AFDX_SIGNAL_FLOAT_DESC_obj->get_id());
+
+            AFDX_SIGNAL_INT_DESC_obj->insert_intable_new(id);
+
+//                ACICD_UNIT_obj->insert_intable_new(id);
+//                AFDX_SIGNAL_INT_DESC_obj->set_value(QString("unit"),QString(ACICD_UNIT_obj->get_id()));
+//                AFDX_SIGNAL_INT_DESC_obj->set_reference(QString("unit"),ACICD_UNIT_obj->get_id());
+            AFDX_SIGNAL_obj->set_reference(QString("AFDX_SIGNAL_INT_DESC"),AFDX_SIGNAL_INT_DESC_obj->get_id());
+
+            AFDX_SIGNAL_OPAQUE_DESC_obj->insert_intable_new(id);
+
+            AFDX_SIGNAL_obj->set_reference(QString("AFDX_SIGNAL_OPAQUE_DESC"),AFDX_SIGNAL_OPAQUE_DESC_obj->get_id());
+
+
+            AFDX_SIGNAL_TYPE_obj->insert_intable_new(id);
+
+            AFDX_SIGNAL_obj->set_reference(QString("AFDX_VL"),AFDX_VL_obj->get_id());
+            AFDX_SIGNAL_obj->set_reference(QString("AFDX_MESSAGE"),AFDX_MESSAGE_obj->get_id());
+            AFDX_SIGNAL_obj->set_reference(QString("AFDX_FDS"),AFDX_FDS_obj->get_id());
+            AFDX_SIGNAL_obj->set_reference(QString("AFDX_PARAMETER"),AFDX_PARAMETER_obj->get_id());
+            AFDX_SIGNAL_obj->set_reference(QString("AFDX_FS"),AFDX_FS_obj->get_id());
+            AFDX_SIGNAL_obj->set_reference(QString("AFDX_SIGNAL_TYPE"),AFDX_SIGNAL_TYPE_obj->get_id());
+         }
+       }
+
 
        previous_section=section;
     }

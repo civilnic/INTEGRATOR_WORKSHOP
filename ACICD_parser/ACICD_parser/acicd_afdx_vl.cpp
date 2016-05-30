@@ -5,9 +5,7 @@ acicd_afdx_VL::acicd_afdx_VL(sql_database_manager *database_manager) : acicd_ele
     DB_FIELDS= { { 8, "VL_Identifier" },
                  { 9, "VL_name" },
                  { 11, "BAG" },
-                 { 12, "MAX_frame_size" },
-                 { 13, "Sub_VL_Number" },
-                 { 14, "Sub_VL_Identifier" },
+                 { 12, "MAX_frame_size" }
                };
 
     DB_table_name="AFDX_VL";

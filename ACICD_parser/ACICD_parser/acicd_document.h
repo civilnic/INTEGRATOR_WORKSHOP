@@ -44,6 +44,7 @@
 #include "acicd_afdx_signal_string_charact.h"
 #include "acicd_unit.h"
 
+#include "acicd_afdx_rx_port.h"
 #include "sql_database_manager.h"
 
 class ACICD_DOCUMENT
