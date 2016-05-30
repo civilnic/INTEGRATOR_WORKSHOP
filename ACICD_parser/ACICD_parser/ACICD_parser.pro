@@ -39,7 +39,10 @@ SOURCES += main.cpp \
     acicd_afdx_parameter.cpp \
     acicd_keyword.cpp \
     acicd_data_type.cpp \
-    acicd_unit.cpp
+    acicd_unit.cpp \
+    acicd_a429_bus.cpp \
+    acicd_a429_label.cpp \
+    acicd_a429_signal.cpp
 
 HEADERS += \
     ../../CSV/csv_common.h \
@@ -80,7 +83,10 @@ HEADERS += \
     acicd_afdx_parameter.h \
     acicd_keyword.h \
     acicd_data_type.h \
-    acicd_unit.h
+    acicd_unit.h \
+    acicd_a429_bus.h \
+    acicd_a429_label.h \
+    acicd_a429_signal.h
 
 INCLUDEPATH += ../../CSV/ \
                C:\local\boost_1_60_0

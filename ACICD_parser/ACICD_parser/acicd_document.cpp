@@ -125,6 +125,7 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
     acicd_afdx_signal_string_charact *AFDX_SIGNAL_STRING_DESC_obj=new acicd_afdx_signal_string_charact(BDD);
     acicd_unit *ACICD_UNIT_obj=new acicd_unit(BDD);
 
+    acicd_a429_bus *A429_BUS_obj=new acicd_a429_bus(BDD);
 
     db->transaction();
 
@@ -266,17 +267,20 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
                }
            }
 
-           if(AFDX_VL_obj->insert_intable_new(id))
-           {
-               AFDX_VL_obj->set_reference(QString("EQUIPMENT"),equipment_obj->get_id());
-           }
-
            if(!connector_pin_obj->insert_intable_new(id))
            {
                 connector_pin_obj->update_value(QString("Physical_Id"),connector_pin_obj->DB_VALUES["Physical_Id"]);
                 connector_pin_obj->update_value(QString("Physical_speed"),connector_pin_obj->DB_VALUES["Physical_speed"]);
                 connector_pin_obj->update_value(QString("Network_id"),connector_pin_obj->DB_VALUES["Network_id"]);
            }
+
+           if(AFDX_VL_obj->insert_intable_new(id))
+           {
+               AFDX_VL_obj->set_reference(QString("EQUIPMENT"),equipment_obj->get_id());
+               AFDX_VL_obj->set_reference(QString("Connector_pin"),connector_pin_obj->get_id());
+           }
+
+
 
            AFDX_port_type_obj->insert_intable_new(id);
            AFDX_port_characteristic_obj->insert_intable_new(id);
@@ -579,17 +583,20 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
                }
            }
 
-           if(AFDX_VL_obj->insert_intable_new(id))
-           {
-               AFDX_VL_obj->set_reference(QString("EQUIPMENT"),equipment_obj->get_id());
-           }
-
            if(!connector_pin_obj->insert_intable_new(id))
            {
                 connector_pin_obj->update_value(QString("Physical_Id"),connector_pin_obj->DB_VALUES["Physical_Id"]);
                 connector_pin_obj->update_value(QString("Physical_speed"),connector_pin_obj->DB_VALUES["Physical_speed"]);
                 connector_pin_obj->update_value(QString("Network_id"),connector_pin_obj->DB_VALUES["Network_id"]);
            }
+
+           if(AFDX_VL_obj->insert_intable_new(id))
+           {
+               AFDX_VL_obj->set_reference(QString("EQUIPMENT"),equipment_obj->get_id());
+               AFDX_VL_obj->set_reference(QString("Connector_pin"),connector_pin_obj->get_id());
+           }
+
+
 
            AFDX_port_type_obj->insert_intable_new(id);
            AFDX_port_characteristic_obj->insert_intable_new(id);
@@ -838,6 +845,42 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
          }
        }
 
+
+       if((section==acicd_data_section::A429_INPUT_BUS) || (section==acicd_data_section::A429_OUTPUT_BUS))
+       {
+
+           connector_pin_obj->modify_parameters({ { 8, "Connector_pin" } });
+
+           for(it_record=it->begin();it_record!=it->end();++it_record)
+           {
+               if(connector_pin_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                    if((*it_record).empty()!=1)
+                    {
+                        connector_pin_obj->set_parameters(it_record-it->begin(),*it_record);
+                    }
+               }
+               if(A429_BUS_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                    if((*it_record).empty()!=1)
+                    {
+                        A429_BUS_obj->set_parameters(it_record-it->begin(),*it_record);
+                    }
+               }
+           }
+
+           connector_pin_obj->insert_intable_new(id);
+
+           if(A429_BUS_obj->insert_intable_new(id))
+           {
+               A429_BUS_obj->set_reference(QString("EQUIPMENT"),equipment_obj->get_id());
+               A429_BUS_obj->set_reference(QString("Connector_pin"),connector_pin_obj->get_id());
+           }
+
+
+
+
+       }
 
        previous_section=section;
     }
