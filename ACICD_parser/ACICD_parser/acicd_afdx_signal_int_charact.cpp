@@ -17,11 +17,11 @@ acicd_afdx_signal_int_charact::acicd_afdx_signal_int_charact(sql_database_manage
 
     create_table_query=QString("\
              CREATE TABLE IF NOT EXISTS [%1](\
-                [min] VARCHAR( 45 ) NOT NULL,\
-                [max] VARCHAR( 45 ) NOT NULL,\
-                [unit]  VARCHAR( 10 ) NOT NULL,\
+                [min] NUMERIC CHECK (min != ''),\
+                [max] NUMERIC CHECK (max != ''),\
+                [unit]  VARCHAR( 10 ) CHECK (unit != ''),\
                 [accuracy] VARCHAR( 45 ) NULL,\
-                [coding_type] VARCHAR( 45 ) NOT NULL,\
+                [coding_type] VARCHAR( 45 ) CHECK (coding_type != ''),\
                     CONSTRAINT unique_combinaison PRIMARY KEY (min, max, unit,coding_type) ON CONFLICT IGNORE,\
                     CONSTRAINT [unit]\
                         FOREIGN KEY([unit])\

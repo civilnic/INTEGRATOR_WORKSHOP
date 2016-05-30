@@ -393,24 +393,24 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
                }
                if(AFDX_SIGNAL_BOOL_DESC_obj->DB_FIELDS.count(it_record-it->begin())==1)
                {
-                    if((*it_record).empty()!=1)
-                    {
+//                    if((*it_record).empty()!=1)
+//                    {
                         AFDX_SIGNAL_BOOL_DESC_obj->set_parameters(it_record-it->begin(),*it_record);
-                    }
+//                    }
                }
                if(AFDX_SIGNAL_STRING_DESC_obj->DB_FIELDS.count(it_record-it->begin())==1)
                {
-                    if((*it_record).empty()!=1)
-                    {
+//                    if((*it_record).empty()!=1)
+//                    {
                         AFDX_SIGNAL_STRING_DESC_obj->set_parameters(it_record-it->begin(),*it_record);
-                    }
+//                    }
                }
                if(AFDX_SIGNAL_ENUMERATE_DESC_obj->DB_FIELDS.count(it_record-it->begin())==1)
                {
-                    if((*it_record).empty()!=1)
-                    {
+//                    if((*it_record).empty()!=1)
+//                    {
                         AFDX_SIGNAL_ENUMERATE_DESC_obj->set_parameters(it_record-it->begin(),*it_record);
-                    }
+//                    }
                }
                if(AFDX_SIGNAL_FLOAT_DESC_obj->DB_FIELDS.count(it_record-it->begin())==1)
                {
@@ -421,17 +421,17 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
                }
                if(AFDX_SIGNAL_INT_DESC_obj->DB_FIELDS.count(it_record-it->begin())==1)
                {
-                    if((*it_record).empty()!=1)
-                    {
+//                    if((*it_record).empty()!=1)
+//                    {
                         AFDX_SIGNAL_INT_DESC_obj->set_parameters(it_record-it->begin(),*it_record);
-                    }
+//                    }
                }
                if(AFDX_SIGNAL_OPAQUE_DESC_obj->DB_FIELDS.count(it_record-it->begin())==1)
                {
-                    if((*it_record).empty()!=1)
-                    {
+//                    if((*it_record).empty()!=1)
+//                    {
                         AFDX_SIGNAL_OPAQUE_DESC_obj->set_parameters(it_record-it->begin(),*it_record);
-                    }
+//                    }
                }
                if(ACICD_UNIT_obj->DB_FIELDS.count(it_record-it->begin())==1)
                {

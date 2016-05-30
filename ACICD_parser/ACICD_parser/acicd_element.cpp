@@ -59,16 +59,16 @@ int acicd_element::is_element_exist(QString Name)
         query.bindValue(":test_field", Name);
  //       std::cout << "[is_element_exist] test_field: " << Name.toStdString() << std::endl;
  //       std::cout << "[is_element_exist] test_query: " << test_query.toStdString() << std::endl;
- //       BDD->sql_log_file << "[is_element_exist] test_field: " << Name <<endl;
- //       BDD->sql_log_file << "[is_element_exist] test_query: " << test_query <<endl;
+        BDD->sql_log_file << "[is_element_exist] test_field: " << Name <<endl;
+        BDD->sql_log_file << "[is_element_exist] test_query: " << test_query <<endl;
         success=query.exec();
 
         if(!success)
         {
  //           qDebug() << "[is_element_exist]: "
  //                    << query.lastError();
- //           BDD->sql_log_file << "[is_element_exist]: "
- //                                << query.lastError().text() <<endl;
+            BDD->sql_log_file << "[is_element_exist]: "
+                                 << query.lastError().text() <<endl;
         }
         else
         {
@@ -109,21 +109,21 @@ int acicd_element::is_element_exist_new(void)
 
         for(iterator=(this->DB_VALUES).begin();iterator!=(this->DB_VALUES.end());++iterator)
         {
-             query.bindValue(":"+iterator->first, iterator->second);
-//                BDD->sql_log_file << "[is_element_exist_new] champ: " << iterator->first << "[is_element_exist_new] valeur: " << iterator->second <<endl;
+            query.bindValue(":"+iterator->first, iterator->second);
+                BDD->sql_log_file << "[is_element_exist_new] champ: " << iterator->first << "[is_element_exist_new] valeur: " << iterator->second <<endl;
 
         }
 
 //        std::cout << "[is_element_exist_new] test_query: " << test_query.toStdString() << std::endl;
-//        BDD->sql_log_file << "[is_element_exist_new] test_query: " << test_query <<endl;
+        BDD->sql_log_file << "[is_element_exist_new] test_query: " << test_query <<endl;
         success=query.exec();
 
         if(!success)
         {
 //            qDebug() << "[is_element_exist_new]: "
 //                     << query.lastError();
-//            BDD->sql_log_file << "[is_element_exist_new]: "
-//                                 << query.lastError().text() <<endl;
+            BDD->sql_log_file << "[is_element_exist_new]: "
+                                 << query.lastError().text() <<endl;
             return -1;
         }
         else
@@ -221,11 +221,12 @@ bool acicd_element::insert_intable_new(int acicd_reference)
 
     if (db->isOpen())
     {
-
+        BDD->sql_log_file <<"[insert_intable_new] before is_element_exist_new value: "
+                            << id <<endl;
         id=this->is_element_exist_new();
         // NULL = is the keyword for the autoincrement to generate next value
- //       BDD->sql_log_file <<"[is_element_exist_new] return value: "
- //                           << id <<endl;
+        BDD->sql_log_file <<"[insert_intable_new] return value: "
+                            << id <<endl;
         // element is not in DB
         if(id==0)
         {
@@ -244,14 +245,16 @@ bool acicd_element::insert_intable_new(int acicd_reference)
             {
                 // http://www.sqlite.org/c3ref/last_insert_rowid.html
                 id = query.lastInsertId().toInt();
+                BDD->sql_log_file <<"insert_intable_new: ajoute avec succes avec id=" << id  << query.lastError().text() <<endl;
+
                 //Element_collection[this->get_value(test_field).toStdString()]=Id;
                // id=Id;
                 return true;
             }
             else
             {
-//               BDD->sql_log_file <<"insert_intable_new: "
-//                                   << query.lastError().text() <<endl;
+               BDD->sql_log_file <<"insert_intable_new: id=" << id
+                                   << query.lastError().text() <<endl;
 //                qDebug() << "insert_intable_new: "
 //                         << query.lastError();
                 id=-1;
@@ -263,8 +266,8 @@ bool acicd_element::insert_intable_new(int acicd_reference)
  //           std::cout << "[insert_intable_new] [" + DB_table_name.toStdString() + "] element name: ["+this->get_value(test_field).toStdString() + "] already exists in db with: ";
  //           printf("Id: %d\n",id);
 
- //           BDD->sql_log_file << "[insert_intable_new] [" + DB_table_name + "] element name: ["+this->get_value(test_field) + "] already exists in db with: "
- //                             << "Id: " << id  <<endl;
+            BDD->sql_log_file << "[insert_intable_new] [" + DB_table_name + "] element name: ["+this->get_value(test_field) + "] already exists in db with: "
+                              << "Id: " << id  <<endl;
             return false;
         }
     }
@@ -284,7 +287,7 @@ void acicd_element::set_reference(QString field,int ref_id)
         if(id==-1)
         {
 //            std::cout << "[set_reference] [" + DB_table_name.toStdString() + "] is not in database, cannot reference element: ["+field.toStdString()+"]" << std::endl;
-//            BDD->sql_log_file << "[set_reference] [" + DB_table_name + "] is not in database, cannot reference element: ["+field+"]" <<endl;
+            BDD->sql_log_file << "[set_reference] [" + DB_table_name + "] is not in database, cannot reference element: ["+field+"]" <<endl;
         }
         else
         {
@@ -293,21 +296,21 @@ void acicd_element::set_reference(QString field,int ref_id)
 
             QSqlQuery query(*db);
  //           std::cout << "[set_reference] [" + update_query.toStdString() + "] update_query" << std::endl;
- //           BDD->sql_log_file << "[set_reference] [" + update_query + "] update_query"  <<endl;
+            BDD->sql_log_file << "[set_reference] [" + update_query + "] update_query and id="<<id  <<endl;
             this->create_update_query(field);
  //           std::cout << "[set_reference] [" + update_query.toStdString() + "] update_query" << std::endl;
- //           BDD->sql_log_file << "[set_reference] [" + update_query + "] update_query"  <<endl;
+            BDD->sql_log_file << "[set_reference] [" + update_query + "] update_query"  <<endl;
             query.prepare(update_query);
 
             query.bindValue(":rowid", id);
 
             const QString temp_string=QString(":")%field;
 //            std::cout << "[set_reference] [" + temp_string.toStdString() + "] temp_string" << std::endl;
-//            BDD->sql_log_file << "[set_reference] [" + temp_string + "] temp_string" <<endl;
+            BDD->sql_log_file << "[set_reference] [" + temp_string + "] temp_string" <<endl;
 //            std::cout << "id:";std::cout << id<< std::endl;
-//            BDD->sql_log_file << "id:";BDD->sql_log_file << id<<endl;
+            BDD->sql_log_file << "id:" << id<<endl;
  //           std::cout << "ref_id:";std::cout << ref_id<< std::endl;
- //           BDD->sql_log_file << "ref_id:";BDD->sql_log_file << ref_id<<endl;
+            BDD->sql_log_file << "ref_id:" << ref_id <<endl;
 
 
             query.bindValue(temp_string, ref_id);
@@ -317,7 +320,7 @@ void acicd_element::set_reference(QString field,int ref_id)
             // Get database given autoincrement value
             if (!success)
             {
-//                BDD->sql_log_file << "set_reference: "<< query.lastError().text() <<endl;
+                BDD->sql_log_file << "set_reference: "<< query.lastError().text() <<endl;
 
 //                qDebug() << "set_reference: "
 //                         << query.lastError();
@@ -339,7 +342,7 @@ void acicd_element::update_value(QString field,QString value)
         if(id==-1)
         {
 //            std::cout << "[set_value] [" + DB_table_name.toStdString() + "] is not in database, cannot reference element: ["+field.toStdString()+"]" << std::endl;
-//            BDD->sql_log_file << "[set_value] [" + DB_table_name + "] is not in database, cannot reference element: ["+field+"]" <<endl;
+            BDD->sql_log_file << "[set_value] [" + DB_table_name + "] is not in database, cannot reference element: ["+field+"]" <<endl;
         }
         else
         {
@@ -348,21 +351,21 @@ void acicd_element::update_value(QString field,QString value)
 
             QSqlQuery query(*db);
 //            std::cout << "[set_value] [" + update_query.toStdString() + "] update_query" << std::endl;
-//            BDD->sql_log_file << "[set_value] [" + update_query + "] update_query"  <<endl;
+            BDD->sql_log_file << "[set_value] [" + update_query + "] update_query"  <<endl;
             this->create_update_query(field);
 //            std::cout << "[set_value] [" + update_query.toStdString() + "] update_query" << std::endl;
-//            BDD->sql_log_file << "[set_value] [" + update_query + "] update_query"  <<endl;
+            BDD->sql_log_file << "[set_value] [" + update_query + "] update_query"  <<endl;
             query.prepare(update_query);
 
             query.bindValue(":id", id);
 
             const QString temp_string=QString(":")%field;
  //           std::cout << "[set_value] [" + temp_string.toStdString() + "] temp_string" << std::endl;
- //           BDD->sql_log_file << "[set_value] [" + temp_string + "] temp_string" <<endl;
+            BDD->sql_log_file << "[set_value] [" + temp_string + "] temp_string" <<endl;
  //           std::cout << "id:";std::cout << id<< std::endl;
- //           BDD->sql_log_file << "id:";BDD->sql_log_file << id <<endl;
+           BDD->sql_log_file << "id:";BDD->sql_log_file << id <<endl;
  //           std::cout << "ref_id:";std::cout << value.toStdString()<< std::endl;
- //           BDD->sql_log_file << "ref_id:";BDD->sql_log_file << value <<endl;
+            BDD->sql_log_file << "ref_id:";BDD->sql_log_file << value <<endl;
 
 
             query.bindValue(temp_string, value);
@@ -372,7 +375,7 @@ void acicd_element::update_value(QString field,QString value)
             // Get database given autoincrement value
             if (!success)
             {
-//                BDD->sql_log_file << "set_value: "<< query.lastError().text() <<endl;
+                BDD->sql_log_file << "set_value: "<< query.lastError().text() <<endl;
 
 //                qDebug() << "set_value: "
 //                         << query.lastError();

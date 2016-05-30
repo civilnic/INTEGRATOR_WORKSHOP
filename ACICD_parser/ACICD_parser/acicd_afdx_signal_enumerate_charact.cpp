@@ -14,8 +14,8 @@ acicd_afdx_signal_enumerate_charact::acicd_afdx_signal_enumerate_charact(sql_dat
 
     create_table_query=QString("\
              CREATE TABLE IF NOT EXISTS [%1](\
-                [state] VARCHAR( 45 ) NOT NULL,\
-                [value] VARCHAR( 45 ) NOT NULL,\
+                [state] VARCHAR( 45 ) CHECK (state != ''),\
+                [value] VARCHAR( 45 ) CHECK (value != ''),\
                 CONSTRAINT unique_combinaison PRIMARY KEY (state, value) ON CONFLICT IGNORE\
                 );\n\
             ").arg(DB_table_name);
