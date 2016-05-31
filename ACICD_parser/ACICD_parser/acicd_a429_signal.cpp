@@ -7,7 +7,7 @@ acicd_a429_signal::acicd_a429_signal(sql_database_manager *database_manager) : a
                  { 4, "type" },
                };
 
-    DB_table_name="AFDX_APPLICATION";
+    DB_table_name="A429_SIGNAL";
     test_field="Name";
 
     insert_query=QString("INSERT INTO %1 VALUES(:Name,:description,:type)").arg(DB_table_name);

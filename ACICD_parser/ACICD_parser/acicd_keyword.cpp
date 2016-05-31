@@ -13,7 +13,7 @@ acicd_keyword::acicd_keyword(sql_database_manager *database_manager) : acicd_ele
 
     create_table_query=QString("\
        CREATE TABLE IF NOT EXISTS [%1](\
-        [Name] VARCHAR( 45 ) NULL,\
+        [Name] VARCHAR( 45 ) CHECK (Name != ''),\
                 CONSTRAINT unique_combinaison PRIMARY KEY (Name) ON CONFLICT IGNORE\
        );\n\
        ").arg(DB_table_name);

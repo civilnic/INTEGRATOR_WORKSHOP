@@ -107,7 +107,7 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
     acicd_afdx_VL *AFDX_VL_obj=new acicd_afdx_VL(BDD);
     acicd_afdx_message *AFDX_MESSAGE_obj=new acicd_afdx_message(BDD);
     acicd_afdx_message_type *AFDX_MESSAGE_TYPE_obj=new acicd_afdx_message_type(BDD);
-    acicd_afdx_application *AFDX_APPLICATION_obj=new acicd_afdx_application(BDD);
+    acicd_application *APPLICATION_obj=new acicd_application(BDD);
 
     acicd_afdx_FDS *AFDX_FDS_obj=new acicd_afdx_FDS(BDD);
     acicd_afdx_FS *AFDX_FS_obj=new acicd_afdx_FS(BDD);
@@ -126,6 +126,10 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
     acicd_unit *ACICD_UNIT_obj=new acicd_unit(BDD);
 
     acicd_a429_bus *A429_BUS_obj=new acicd_a429_bus(BDD);
+    acicd_a429_label *A429_LABEL_obj=new acicd_a429_label(BDD);
+    acicd_a429_label_type *A429_LABEL_TYPE_obj=new acicd_a429_label_type(BDD);
+
+    acicd_description *DESCRIPTION_obj=new acicd_description(BDD);
 
     db->transaction();
 
@@ -306,91 +310,98 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
 
            for(it_record=it->begin();it_record!=it->end();++it_record)
            {
+               if(DESCRIPTION_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+ //                   if((*it_record).empty()!=1)
+//                    {
+                        DESCRIPTION_obj->set_parameters(it_record-it->begin(),*it_record);
+//                    }
+               }
                if(AFDX_MESSAGE_obj->DB_FIELDS.count(it_record-it->begin())==1)
                {
-                    if((*it_record).empty()!=1)
-                    {
+ //                   if((*it_record).empty()!=1)
+ //                   {
                         AFDX_MESSAGE_obj->set_parameters(it_record-it->begin(),*it_record);
-                    }
+ //                   }
                }
                if(AFDX_MESSAGE_TYPE_obj->DB_FIELDS.count(it_record-it->begin())==1)
                {
-                    if((*it_record).empty()!=1)
-                    {
+//                    if((*it_record).empty()!=1)
+//                    {
                         AFDX_MESSAGE_TYPE_obj->set_parameters(it_record-it->begin(),*it_record);
-                    }
+ //                   }
                }
-               if(AFDX_APPLICATION_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               if(APPLICATION_obj->DB_FIELDS.count(it_record-it->begin())==1)
                {
-                    if((*it_record).empty()!=1)
-                    {
-                        AFDX_APPLICATION_obj->set_parameters(it_record-it->begin(),*it_record);
-                    }
+ //                   if((*it_record).empty()!=1)
+//                    {
+                        APPLICATION_obj->set_parameters(it_record-it->begin(),*it_record);
+ //                   }
                }
                if(AFDX_VL_obj->DB_FIELDS.count(it_record-it->begin())==1)
                {
-                    if((*it_record).empty()!=1)
-                    {
+//                    if((*it_record).empty()!=1)
+//                    {
                         AFDX_VL_obj->set_parameters(it_record-it->begin(),*it_record);
-                    }
+//                    }
                }
                if(AFDX_TX_port_obj->DB_FIELDS.count(it_record-it->begin())==1)
                {
-                    if((*it_record).empty()!=1)
-                    {
+//                    if((*it_record).empty()!=1)
+//                    {
                         AFDX_TX_port_obj->set_parameters(it_record-it->begin(),*it_record);
-                    }
+//                    }
                }
 
                if(AFDX_FDS_obj->DB_FIELDS.count(it_record-it->begin())==1)
                {
-                    if((*it_record).empty()!=1)
-                    {
+ //                   if((*it_record).empty()!=1)
+//                    {
                         AFDX_FDS_obj->set_parameters(it_record-it->begin(),*it_record);
-                    }
+ //                   }
                }
                if(AFDX_FS_obj->DB_FIELDS.count(it_record-it->begin())==1)
                {
-                    if((*it_record).empty()!=1)
-                    {
+//                    if((*it_record).empty()!=1)
+//                    {
                         AFDX_FS_obj->set_parameters(it_record-it->begin(),*it_record);
-                    }
+//                    }
                }
                if(AFDX_PARAMETER_obj->DB_FIELDS.count(it_record-it->begin())==1)
                {
-                    if((*it_record).empty()!=1)
-                    {
+//                    if((*it_record).empty()!=1)
+//                    {
                         AFDX_PARAMETER_obj->set_parameters(it_record-it->begin(),*it_record);
-                    }
+//                    }
                }
                if(AFDX_DATA_TYPE_obj->DB_FIELDS.count(it_record-it->begin())==1)
                {
-                    if((*it_record).empty()!=1)
-                    {
+ //                   if((*it_record).empty()!=1)
+ //                   {
                         AFDX_DATA_TYPE_obj->set_parameters(it_record-it->begin(),*it_record);
-                    }
+//                    }
                }
                if(AFDX_KEYWORD_obj->DB_FIELDS.count(it_record-it->begin())==1)
                {
-                    if((*it_record).empty()!=1)
-                    {
+//                    if((*it_record).empty()!=1)
+//                    {
                         AFDX_KEYWORD_obj->set_parameters(it_record-it->begin(),*it_record);
-                    }
+//                    }
                }
 
                if(AFDX_SIGNAL_obj->DB_FIELDS.count(it_record-it->begin())==1)
                {
-                    if((*it_record).empty()!=1)
-                    {
+//                    if((*it_record).empty()!=1)
+//                    {
                         AFDX_SIGNAL_obj->set_parameters(it_record-it->begin(),*it_record);
-                    }
+//                    }
                }
                if(AFDX_SIGNAL_TYPE_obj->DB_FIELDS.count(it_record-it->begin())==1)
                {
-                    if((*it_record).empty()!=1)
-                    {
+//                    if((*it_record).empty()!=1)
+//                    {
                         AFDX_SIGNAL_TYPE_obj->set_parameters(it_record-it->begin(),*it_record);
-                    }
+//                    }
                }
                if(AFDX_SIGNAL_BOOL_DESC_obj->DB_FIELDS.count(it_record-it->begin())==1)
                {
@@ -436,10 +447,10 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
                }
                if(ACICD_UNIT_obj->DB_FIELDS.count(it_record-it->begin())==1)
                {
-                    if((*it_record).empty()!=1)
-                    {
+//                    if((*it_record).empty()!=1)
+ //                   {
                         ACICD_UNIT_obj->set_parameters(it_record-it->begin(),*it_record);
-                    }
+//                    }
                }
            }
 
@@ -450,12 +461,12 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
 
             AFDX_TX_port_obj->insert_intable_new(id);
             AFDX_MESSAGE_TYPE_obj->insert_intable_new(id);
-            AFDX_APPLICATION_obj->insert_intable_new(id);
+            APPLICATION_obj->insert_intable_new(id);
 
             AFDX_MESSAGE_obj->set_reference(QString("AFDX_VL"),AFDX_VL_obj->get_id());
             AFDX_MESSAGE_obj->set_reference(QString("AFDX_TX_PORT"),AFDX_TX_port_obj->get_id());
             AFDX_MESSAGE_obj->set_reference(QString("AFDX_MESSAGE_TYPE"),AFDX_MESSAGE_TYPE_obj->get_id());
-            AFDX_MESSAGE_obj->set_reference(QString("AFDX_APPLICATION"),AFDX_APPLICATION_obj->get_id());
+            AFDX_MESSAGE_obj->set_reference(QString("AFDX_APPLICATION"),APPLICATION_obj->get_id());
          }
 
 
@@ -541,45 +552,45 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
            {
                if(AFDX_RX_port_obj->DB_FIELDS.count(it_record-it->begin())==1)
                {
-                    if((*it_record).empty()!=1)
-                    {
+  //                  if((*it_record).empty()!=1)
+  //                  {
                         AFDX_RX_port_obj->set_parameters(it_record-it->begin(),*it_record);
-                    }
+  //                  }
                }
                if(AFDX_port_type_obj->DB_FIELDS.count(it_record-it->begin())==1)
                {
-                    if((*it_record).empty()!=1)
-                    {
+//                    if((*it_record).empty()!=1)
+ //                   {
                         AFDX_port_type_obj->set_parameters(it_record-it->begin(),*it_record);
-                    }
+//                   }
                }
                if(AFDX_port_characteristic_obj->DB_FIELDS.count(it_record-it->begin())==1)
                {
-                    if((*it_record).empty()!=1)
-                    {
+ //                   if((*it_record).empty()!=1)
+ //                   {
                         AFDX_port_characteristic_obj->set_parameters(it_record-it->begin(),*it_record);
-                    }
+ //                   }
                }
                if(AFDX_port_transmission_type_obj->DB_FIELDS.count(it_record-it->begin())==1)
                {
-                    if((*it_record).empty()!=1)
-                    {
+//                    if((*it_record).empty()!=1)
+ //                   {
                         AFDX_port_transmission_type_obj->set_parameters(it_record-it->begin(),*it_record);
-                    }
+ //                   }
                }
                if(connector_pin_obj->DB_FIELDS.count(it_record-it->begin())==1)
                {
-                    if((*it_record).empty()!=1)
-                    {
+//                    if((*it_record).empty()!=1)
+//                    {
                         connector_pin_obj->set_parameters(it_record-it->begin(),*it_record);
-                    }
+//                    }
                }
                if(AFDX_VL_obj->DB_FIELDS.count(it_record-it->begin())==1)
                {
-                    if((*it_record).empty()!=1)
-                    {
+ //                  if((*it_record).empty()!=1)
+ //                   {
                         AFDX_VL_obj->set_parameters(it_record-it->begin(),*it_record);
-                    }
+ //                   }
                }
            }
 
@@ -623,89 +634,89 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
            {
                if(AFDX_MESSAGE_obj->DB_FIELDS.count(it_record-it->begin())==1)
                {
-                    if((*it_record).empty()!=1)
-                    {
+ //                   if((*it_record).empty()!=1)
+  //                  {
                         AFDX_MESSAGE_obj->set_parameters(it_record-it->begin(),*it_record);
-                    }
+ //                   }
                }
                if(AFDX_MESSAGE_TYPE_obj->DB_FIELDS.count(it_record-it->begin())==1)
                {
-                    if((*it_record).empty()!=1)
-                    {
+ //                   if((*it_record).empty()!=1)
+ //                   {
                         AFDX_MESSAGE_TYPE_obj->set_parameters(it_record-it->begin(),*it_record);
-                    }
+ //                   }
                }
-               if(AFDX_APPLICATION_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               if(APPLICATION_obj->DB_FIELDS.count(it_record-it->begin())==1)
                {
-                    if((*it_record).empty()!=1)
-                    {
-                        AFDX_APPLICATION_obj->set_parameters(it_record-it->begin(),*it_record);
-                    }
+//                    if((*it_record).empty()!=1)
+//                    {
+                        APPLICATION_obj->set_parameters(it_record-it->begin(),*it_record);
+//                   }
                }
                if(AFDX_VL_obj->DB_FIELDS.count(it_record-it->begin())==1)
                {
-                    if((*it_record).empty()!=1)
-                    {
+ //                   if((*it_record).empty()!=1)
+//                    {
                         AFDX_VL_obj->set_parameters(it_record-it->begin(),*it_record);
-                    }
+//                    }
                }
                if(AFDX_RX_port_obj->DB_FIELDS.count(it_record-it->begin())==1)
                {
-                    if((*it_record).empty()!=1)
-                    {
+//                    if((*it_record).empty()!=1)
+//                    {
                         AFDX_RX_port_obj->set_parameters(it_record-it->begin(),*it_record);
-                    }
+//                    }
                }
 
                if(AFDX_FDS_obj->DB_FIELDS.count(it_record-it->begin())==1)
                {
-                    if((*it_record).empty()!=1)
-                    {
+//                    if((*it_record).empty()!=1)
+//                    {
                         AFDX_FDS_obj->set_parameters(it_record-it->begin(),*it_record);
-                    }
+//                    }
                }
                if(AFDX_FS_obj->DB_FIELDS.count(it_record-it->begin())==1)
                {
-                    if((*it_record).empty()!=1)
-                    {
+//                    if((*it_record).empty()!=1)
+//                    {
                         AFDX_FS_obj->set_parameters(it_record-it->begin(),*it_record);
-                    }
+//                    }
                }
                if(AFDX_PARAMETER_obj->DB_FIELDS.count(it_record-it->begin())==1)
                {
-                    if((*it_record).empty()!=1)
-                    {
+//                    if((*it_record).empty()!=1)
+//                    {
                         AFDX_PARAMETER_obj->set_parameters(it_record-it->begin(),*it_record);
-                    }
+//                    }
                }
                if(AFDX_DATA_TYPE_obj->DB_FIELDS.count(it_record-it->begin())==1)
                {
-                    if((*it_record).empty()!=1)
-                    {
+//                    if((*it_record).empty()!=1)
+//                    {
                         AFDX_DATA_TYPE_obj->set_parameters(it_record-it->begin(),*it_record);
-                    }
+//                    }
                }
                if(AFDX_KEYWORD_obj->DB_FIELDS.count(it_record-it->begin())==1)
                {
-                    if((*it_record).empty()!=1)
-                    {
+//                    if((*it_record).empty()!=1)
+//                    {
                         AFDX_KEYWORD_obj->set_parameters(it_record-it->begin(),*it_record);
-                    }
+//                    }
                }
 
                if(AFDX_SIGNAL_obj->DB_FIELDS.count(it_record-it->begin())==1)
                {
-                    if((*it_record).empty()!=1)
-                    {
+ //                   if((*it_record).empty()!=1)
+ //                   {
                         AFDX_SIGNAL_obj->set_parameters(it_record-it->begin(),*it_record);
-                    }
+ //                   }
                }
                if(AFDX_SIGNAL_TYPE_obj->DB_FIELDS.count(it_record-it->begin())==1)
                {
-                    if((*it_record).empty()!=1)
-                    {
+  //                  if((*it_record).empty()!=1)
+  //                  {
                         AFDX_SIGNAL_TYPE_obj->set_parameters(it_record-it->begin(),*it_record);
-                    }
+  //                  }
                }
                if(AFDX_SIGNAL_BOOL_DESC_obj->DB_FIELDS.count(it_record-it->begin())==1)
                {
@@ -751,10 +762,10 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
                }
                if(ACICD_UNIT_obj->DB_FIELDS.count(it_record-it->begin())==1)
                {
-                    if((*it_record).empty()!=1)
-                    {
+ //                   if((*it_record).empty()!=1)
+ //                   {
                         ACICD_UNIT_obj->set_parameters(it_record-it->begin(),*it_record);
-                    }
+ //                   }
                }
            }
 
@@ -765,12 +776,12 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
 
             AFDX_RX_port_obj->insert_intable_new(id);
             AFDX_MESSAGE_TYPE_obj->insert_intable_new(id);
-            AFDX_APPLICATION_obj->insert_intable_new(id);
+            APPLICATION_obj->insert_intable_new(id);
 
             AFDX_MESSAGE_obj->set_reference(QString("AFDX_VL"),AFDX_VL_obj->get_id());
             AFDX_MESSAGE_obj->set_reference(QString("AFDX_RX_PORT"),AFDX_RX_port_obj->get_id());
             AFDX_MESSAGE_obj->set_reference(QString("AFDX_MESSAGE_TYPE"),AFDX_MESSAGE_TYPE_obj->get_id());
-            AFDX_MESSAGE_obj->set_reference(QString("AFDX_APPLICATION"),AFDX_APPLICATION_obj->get_id());
+            AFDX_MESSAGE_obj->set_reference(QString("AFDX_APPLICATION"),APPLICATION_obj->get_id());
          }
 
 
@@ -846,7 +857,7 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
        }
 
 
-       if((section==acicd_data_section::A429_INPUT_BUS) || (section==acicd_data_section::A429_OUTPUT_BUS))
+       if(section==acicd_data_section::A429_OUTPUT_BUS)
        {
 
            connector_pin_obj->modify_parameters({ { 8, "Connector_pin" } });
@@ -855,17 +866,17 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
            {
                if(connector_pin_obj->DB_FIELDS.count(it_record-it->begin())==1)
                {
-                    if((*it_record).empty()!=1)
-                    {
+ //                   if((*it_record).empty()!=1)
+ //                   {
                         connector_pin_obj->set_parameters(it_record-it->begin(),*it_record);
-                    }
+//                    }
                }
                if(A429_BUS_obj->DB_FIELDS.count(it_record-it->begin())==1)
                {
-                    if((*it_record).empty()!=1)
-                    {
+ //                   if((*it_record).empty()!=1)
+//                    {
                         A429_BUS_obj->set_parameters(it_record-it->begin(),*it_record);
-                    }
+//                    }
                }
            }
 
@@ -877,8 +888,165 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
                A429_BUS_obj->set_reference(QString("Connector_pin"),connector_pin_obj->get_id());
            }
 
+       }
+       if(section==acicd_data_section::A429_OUTPUT_LABEL)
+       {
+           A429_BUS_obj->modify_parameters({ { 5, "Name" } });
+
+           for(it_record=it->begin();it_record!=it->end();++it_record)
+           {
+               if(APPLICATION_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+//                    if((*it_record).empty()!=1)
+//                    {
+                        APPLICATION_obj->set_parameters(it_record-it->begin(),*it_record);
+ //                   }
+               }
+               if(A429_BUS_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+ //                   if((*it_record).empty()!=1)
+  //                  {
+                        A429_BUS_obj->set_parameters(it_record-it->begin(),*it_record);
+  //                  }
+               }
+               if(A429_LABEL_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+ //                   if((*it_record).empty()!=1)
+ //                   {
+                        A429_LABEL_obj->set_parameters(it_record-it->begin(),*it_record);
+ //                   }
+               }
+               if(A429_LABEL_TYPE_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+ //                   if((*it_record).empty()!=1)
+ //                   {
+                        A429_LABEL_TYPE_obj->set_parameters(it_record-it->begin(),*it_record);
+ //                   }
+               }
+           }
+
+           if(A429_LABEL_obj->insert_intable_new(id))
+           {
+
+               A429_BUS_obj->insert_intable_new(id);
+               A429_LABEL_obj->set_reference(QString("A429_BUS"),A429_BUS_obj->get_id());
+
+               APPLICATION_obj->insert_intable_new(id);
+               A429_LABEL_TYPE_obj->insert_intable_new(id);
+
+               A429_LABEL_obj->set_reference(QString("APPLICATION"),APPLICATION_obj->get_id());
+               A429_LABEL_obj->set_reference(QString("type"),A429_LABEL_TYPE_obj->get_id());
+           }
+
+       }
 
 
+       if(section==acicd_data_section::A429_INPUT_BUS)
+       {
+           A429_BUS_obj->modify_parameters({  { 2, "Name" },
+                                { 3, "description" },
+                                { 4, "EMC_protection" },
+                                { 5, "Speed" },
+                                { 6, "Parity_type" },
+                                { 7, "transmission_rate" } });
+
+           connector_pin_obj->modify_parameters({ { 8, "Connector_pin" } });
+
+           for(it_record=it->begin();it_record!=it->end();++it_record)
+           {
+               if(connector_pin_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+ //                   if((*it_record).empty()!=1)
+//                    {
+                        connector_pin_obj->set_parameters(it_record-it->begin(),*it_record);
+//                    }
+               }
+               if(A429_BUS_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+//                    if((*it_record).empty()!=1)
+//                    {
+                        A429_BUS_obj->set_parameters(it_record-it->begin(),*it_record);
+//                    }
+               }
+           }
+
+           connector_pin_obj->insert_intable_new(id);
+
+           if(A429_BUS_obj->insert_intable_new(id))
+           {
+               A429_BUS_obj->set_reference(QString("EQUIPMENT"),equipment_obj->get_id());
+               A429_BUS_obj->set_reference(QString("Connector_pin"),connector_pin_obj->get_id());
+           }
+
+       }
+
+       if(section==acicd_data_section::A429_INPUT_LABEL)
+       {
+           A429_BUS_obj->modify_parameters({ { 5, "Name" } });
+           A429_LABEL_obj->modify_parameters({ { 6, "Name" },
+                                               { 7, "number" },
+                                               { 10, "frequency" },
+                                               { 11, "cycle_frequency" },
+                                               { 12, "description" },
+                                               { 13, "type" },
+                                               { 14, "SDI" },
+                                               { 15, "SDI_00" },
+                                               { 16, "SDI_01" },
+                                               { 17, "SDI_10" },
+                                               { 18, "SDI_11" },
+                                               { 19, "SSM_lenght" },
+                                               { 20, "SSM_00" },
+                                               { 21, "SSM_01" },
+                                               { 22, "SSM_10" },
+                                               { 23, "SSM_11" },
+                                               { 26, "bit29_0" },
+                                               { 27, "bit29_1" }   });
+           A429_LABEL_TYPE_obj->modify_parameters({ { 13, "Name" } });
+
+           for(it_record=it->begin();it_record!=it->end();++it_record)
+           {
+               if(APPLICATION_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+  //                  if((*it_record).empty()!=1)
+  //                  {
+                        APPLICATION_obj->set_parameters(it_record-it->begin(),*it_record);
+  //                  }
+               }
+               if(A429_BUS_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+  //                  if((*it_record).empty()!=1)
+  //                  {
+                        A429_BUS_obj->set_parameters(it_record-it->begin(),*it_record);
+  //                  }
+               }
+               if(A429_LABEL_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+ //                   if((*it_record).empty()!=1)
+ //                   {
+                        A429_LABEL_obj->set_parameters(it_record-it->begin(),*it_record);
+ //                   }
+               }
+               if(A429_LABEL_TYPE_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+//                    if((*it_record).empty()!=1)
+//                    {
+                        A429_LABEL_TYPE_obj->set_parameters(it_record-it->begin(),*it_record);
+//                    }
+               }
+           }
+
+           if(A429_LABEL_obj->insert_intable_new(id))
+           {
+
+               A429_BUS_obj->insert_intable_new(id);
+               A429_LABEL_obj->set_reference(QString("A429_BUS"),A429_BUS_obj->get_id());
+
+               APPLICATION_obj->insert_intable_new(id);
+               A429_LABEL_TYPE_obj->insert_intable_new(id);
+
+               A429_LABEL_obj->set_reference(QString("APPLICATION"),APPLICATION_obj->get_id());
+               A429_LABEL_obj->set_reference(QString("type"),A429_LABEL_TYPE_obj->get_id());
+           }
 
        }
 

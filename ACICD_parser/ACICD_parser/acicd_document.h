@@ -21,13 +21,14 @@
 #include "acicd_connector_pin_role.h"
 
 #include "acicd_afdx_tx_port.h"
+#include "acicd_afdx_rx_port.h"
 #include "acicd_afdx_port_type.h"
 #include "acicd_afdx_port_characteristic.h"
 #include "acicd_afdx_port_transmission_type.h"
 #include "acicd_afdx_vl.h"
 #include "acicd_afdx_message.h"
 #include "acicd_afdx_message_type.h"
-#include "acicd_afdx_application.h"
+#include "acicd_application.h"
 
 #include "acicd_afdx_fds.h"
 #include "acicd_afdx_fs.h"
@@ -47,7 +48,10 @@
 #include "acicd_a429_bus.h"
 #include "acicd_a429_label.h"
 #include "acicd_a429_signal.h"
-#include "acicd_afdx_rx_port.h"
+#include "acicd_a429_label_type.h"
+
+#include "acicd_description.h"
+
 #include "sql_database_manager.h"
 
 

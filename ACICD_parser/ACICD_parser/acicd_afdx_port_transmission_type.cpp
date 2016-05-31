@@ -13,7 +13,7 @@ acicd_afdx_port_transmission_type::acicd_afdx_port_transmission_type(sql_databas
 
     create_table_query=QString("\
        CREATE TABLE IF NOT EXISTS [%1](\
-                [Name] VARCHAR( 45 ) NULL,\
+                [Name] VARCHAR( 45 ) CHECK (Name != ''),\
                     CONSTRAINT unique_combinaison PRIMARY KEY (Name) ON CONFLICT IGNORE\
        );\n\
        ").arg(DB_table_name);

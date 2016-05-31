@@ -13,7 +13,7 @@ acicd_data_type::acicd_data_type(sql_database_manager *database_manager) : acicd
 
     create_table_query=QString("\
        CREATE TABLE IF NOT EXISTS [%1](\
-        [Name] VARCHAR( 45 ) NULL,\
+        [Name] VARCHAR( 15 ) CHECK (Name != ''),\
                 CONSTRAINT unique_combinaison PRIMARY KEY (Name) ON CONFLICT IGNORE\
        );\n\
        ").arg(DB_table_name);

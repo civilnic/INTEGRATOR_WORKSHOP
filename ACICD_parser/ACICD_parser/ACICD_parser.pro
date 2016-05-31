@@ -20,7 +20,6 @@ SOURCES += main.cpp \
     acicd_afdx_message.cpp \
     acicd_afdx_rx_port.cpp \
     acicd_afdx_message_type.cpp \
-    acicd_afdx_application.cpp \
     acicd_afdx_port_characteristic.cpp \
     acicd_afdx_port_type.cpp \
     acicd_afdx_port_transmission_type.cpp \
@@ -42,7 +41,10 @@ SOURCES += main.cpp \
     acicd_unit.cpp \
     acicd_a429_bus.cpp \
     acicd_a429_label.cpp \
-    acicd_a429_signal.cpp
+    acicd_a429_signal.cpp \
+    acicd_application.cpp \
+    acicd_a429_label_type.cpp \
+    acicd_description.cpp
 
 HEADERS += \
     ../../CSV/csv_common.h \
@@ -64,7 +66,6 @@ HEADERS += \
     acicd_afdx_message.h \
     acicd_afdx_rx_port.h \
     acicd_afdx_message_type.h \
-    acicd_afdx_application.h \
     acicd_afdx_port_characteristic.h \
     acicd_afdx_port_type.h \
     acicd_afdx_port_transmission_type.h \
@@ -86,7 +87,10 @@ HEADERS += \
     acicd_unit.h \
     acicd_a429_bus.h \
     acicd_a429_label.h \
-    acicd_a429_signal.h
+    acicd_a429_signal.h \
+    acicd_application.h \
+    acicd_a429_label_type.h \
+    acicd_description.h
 
 INCLUDEPATH += ../../CSV/ \
                C:\local\boost_1_60_0
