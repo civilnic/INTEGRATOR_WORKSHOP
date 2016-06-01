@@ -49,6 +49,7 @@
 #include "acicd_a429_label.h"
 #include "acicd_a429_signal.h"
 #include "acicd_a429_label_type.h"
+#include "acicd_a429_parameter.h"
 
 #include "acicd_description.h"
 

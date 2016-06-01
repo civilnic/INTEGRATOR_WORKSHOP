@@ -44,7 +44,14 @@ SOURCES += main.cpp \
     acicd_a429_signal.cpp \
     acicd_application.cpp \
     acicd_a429_label_type.cpp \
-    acicd_description.cpp
+    acicd_description.cpp \
+    acicd_a429_parameter.cpp \
+    acicd_a429_signal_bool_charact.cpp \
+    acicd_a429_signal_string_charact.cpp \
+    acicd_a429_signal_enumerate_charact.cpp \
+    acicd_a429_signal_int_charact.cpp \
+    acicd_a429_signal_float_charact.cpp \
+    acicd_a429_signal_opaque_charact.cpp
 
 HEADERS += \
     ../../CSV/csv_common.h \
@@ -90,7 +97,14 @@ HEADERS += \
     acicd_a429_signal.h \
     acicd_application.h \
     acicd_a429_label_type.h \
-    acicd_description.h
+    acicd_description.h \
+    acicd_a429_parameter.h \
+    acicd_a429_signal_bool_charact.h \
+    acicd_a429_signal_string_charact.h \
+    acicd_a429_signal_enumerate_charact.h \
+    acicd_a429_signal_int_charact.h \
+    acicd_a429_signal_float_charact.h \
+    acicd_a429_signal_opaque_charact.h
 
 INCLUDEPATH += ../../CSV/ \
                C:\local\boost_1_60_0
