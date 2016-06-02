@@ -51,7 +51,8 @@ SOURCES += main.cpp \
     acicd_a429_signal_enumerate_charact.cpp \
     acicd_a429_signal_int_charact.cpp \
     acicd_a429_signal_float_charact.cpp \
-    acicd_a429_signal_opaque_charact.cpp
+    acicd_a429_signal_opaque_charact.cpp \
+    acicd_a429_signal_type.cpp
 
 HEADERS += \
     ../../CSV/csv_common.h \
@@ -104,7 +105,8 @@ HEADERS += \
     acicd_a429_signal_enumerate_charact.h \
     acicd_a429_signal_int_charact.h \
     acicd_a429_signal_float_charact.h \
-    acicd_a429_signal_opaque_charact.h
+    acicd_a429_signal_opaque_charact.h \
+    acicd_a429_signal_type.h
 
 INCLUDEPATH += ../../CSV/ \
                C:\local\boost_1_60_0

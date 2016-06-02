@@ -12,7 +12,7 @@ acicd_a429_signal::acicd_a429_signal(sql_database_manager *database_manager) : a
                  { 46, "start_bit" }
                };
 
-    DB_table_name="AFDX_SIGNAL";
+    DB_table_name="A429_SIGNAL";
     test_field="Name";
 
     insert_query=QString("INSERT INTO %1 VALUES(:Name,:description,:ref_doc,:nb_of_bit,:LSB,:MSB,:Transmit_order,:start_bit,:A429_SIGNAL_TYPE,:A429_SIGNAL_BOOL_DESC,:A429_SIGNAL_STRING_DESC,:A429_SIGNAL_ENUMERATE_DESC,:A429_SIGNAL_FLOAT_DESC,:A429_SIGNAL_INT_DESC,:A429_SIGNAL_OPAQUE_DESC,:A429_LABEL,:A429_BUS,:A429_PARAMETER,:ACICD)").arg(DB_table_name);
@@ -72,7 +72,7 @@ acicd_a429_signal::acicd_a429_signal(sql_database_manager *database_manager) : a
                         REFERENCES [A429_BUS] ( [rowid] ), \
                 CONSTRAINT [A429_PARAMETER] \
                         FOREIGN KEY([A429_PARAMETER]) \
-                        REFERENCES [A429_PARAMETER] ( [rowid] ), \
+                        REFERENCES [A429_PARAMETER] ( [rowid] ) \
                 );\n\
             ").arg(DB_table_name);
 

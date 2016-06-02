@@ -50,6 +50,14 @@
 #include "acicd_a429_signal.h"
 #include "acicd_a429_label_type.h"
 #include "acicd_a429_parameter.h"
+#include "acicd_a429_signal_bool_charact.h"
+#include "acicd_a429_signal_enumerate_charact.h"
+#include "acicd_a429_signal_float_charact.h"
+#include "acicd_a429_signal_int_charact.h"
+#include "acicd_a429_signal_opaque_charact.h"
+#include "acicd_a429_signal_string_charact.h"
+#include "acicd_a429_signal_type.h"
+
 
 #include "acicd_description.h"
 
