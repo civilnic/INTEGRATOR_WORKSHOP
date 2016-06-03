@@ -110,7 +110,7 @@ int acicd_element::is_element_exist_new(void)
         for(iterator=(this->DB_VALUES).begin();iterator!=(this->DB_VALUES.end());++iterator)
         {
             query.bindValue(":"+iterator->first, iterator->second);
-                BDD->sql_log_file << "[is_element_exist_new] champ: " << iterator->first << "[is_element_exist_new] valeur: " << iterator->second <<endl;
+//                BDD->sql_log_file << "[is_element_exist_new] champ: " << iterator->first << "[is_element_exist_new] valeur: " << iterator->second <<endl;
 
         }
 

@@ -14,7 +14,7 @@ acicd_afdx_message::acicd_afdx_message(sql_database_manager *database_manager) :
     DB_table_name="AFDX_MESSAGE";
     test_field="Name";
 
-    insert_query=QString("INSERT INTO %1 VALUES(:Name,:APPLICATION,:AFDX_VL,:AFDX_TX_PORT,:AFDX_RX_PORT,:ACICD,:description,:ref_doc,:type,:AFDX_MESSAGE_TYPE,:Protocol_type,:Lenght,:Global_spare,:Transmission_rate)").arg(DB_table_name);
+    insert_query=QString("INSERT INTO %1 VALUES(:Name,:APPLICATION,:AFDX_VL,:AFDX_TX_PORT,:AFDX_RX_PORT,:ACICD,:description,:ref_doc,:AFDX_MESSAGE_TYPE,:Protocol_type,:Lenght,:Global_spare,:Transmission_rate)").arg(DB_table_name);
     test_query=QString("SELECT rowid FROM %1 WHERE (Name=:Name) AND (ACICD=:ACICD);").arg(DB_table_name);
 
     create_table_query=QString("\
@@ -27,7 +27,6 @@ acicd_afdx_message::acicd_afdx_message(sql_database_manager *database_manager) :
                 [ACICD] INTEGER NOT NULL,\
                 [description] VARCHAR( 45 ) NULL,\
                 [ref_doc] VARCHAR( 45 ) NULL,\
-                [type] VARCHAR( 45 ) NULL,\
                 [AFDX_MESSAGE_TYPE] INTEGER NULL,\
                 [Protocol_type] VARCHAR( 45 ) NULL,\
                 [Lenght] INTEGER NULL,\

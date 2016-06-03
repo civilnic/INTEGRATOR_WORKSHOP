@@ -2,7 +2,7 @@
 
 acicd_a429_signal_type::acicd_a429_signal_type(sql_database_manager *database_manager) : acicd_element (database_manager)
 {
-    DB_FIELDS= { { 39, "Name" },
+    DB_FIELDS= { { 38, "Name" },
                };
 
     DB_table_name="A429_SIGNAL_TYPE";

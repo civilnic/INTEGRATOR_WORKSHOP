@@ -2,14 +2,14 @@
 
 acicd_a429_signal::acicd_a429_signal(sql_database_manager *database_manager) : acicd_element (database_manager)
 {
-    DB_FIELDS= { { 38, "Name" },
-                 { 40, "description" },
-                 { 41, "ref_doc" },
-                 { 42, "nb_of_bit" },
-                 { 43, "LSB" },
-                 { 44, "MSB" },
-                 { 45, "Transmit_order" },
-                 { 46, "start_bit" }
+    DB_FIELDS= { { 37, "Name" },
+                 { 39, "description" },
+                 { 40, "ref_doc" },
+                 { 41, "nb_of_bit" },
+                 { 42, "LSB" },
+                 { 43, "MSB" },
+                 { 44, "Transmit_order" },
+                 { 45, "start_bit" }
                };
 
     DB_table_name="A429_SIGNAL";
