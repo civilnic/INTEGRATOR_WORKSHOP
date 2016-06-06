@@ -1269,10 +1269,11 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
                }
            }
 
-           connector_pin_obj->insert_intable_new(id);
+
 
            if(ANA_LINE_obj->insert_intable_new(id))
            {
+               connector_pin_obj->insert_intable_new(id);
                ANA_LINE_obj->set_reference(QString("EQUIPMENT"),equipment_obj->get_id());
                ANA_LINE_obj->set_reference(QString("CONNECTOR_PIN"),connector_pin_obj->get_id());
            }
@@ -1284,7 +1285,7 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
 
            ANA_LINE_obj->modify_parameters({ { 5, "Name" } });
            DATA_TYPE_obj->modify_parameters({ { 6, "Name" } });
-           KEYWORD_obj->modify_parameters({ { 16, "Name" } });
+           KEYWORD_obj->modify_parameters({ { 13, "Name" } });
 
            for(it_record=it->begin();it_record!=it->end();++it_record)
            {
@@ -1350,15 +1351,62 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
                }
            }
 
-           connector_pin_obj->insert_intable_new(id);
-
            if(ANA_LINE_obj->insert_intable_new(id))
            {
+               connector_pin_obj->insert_intable_new(id);
                ANA_LINE_obj->set_reference(QString("EQUIPMENT"),equipment_obj->get_id());
                ANA_LINE_obj->set_reference(QString("CONNECTOR_PIN"),connector_pin_obj->get_id());
            }
        }
 
+       if(section==acicd_data_section::ANALOGUE_INPUT_SIGNAL)
+       {
+
+           ANA_LINE_obj->modify_parameters({ { 5, "Name" } });
+           DATA_TYPE_obj->modify_parameters({ { 6, "Name" } });
+           KEYWORD_obj->modify_parameters({ { 13, "Name" } });
+
+           for(it_record=it->begin();it_record!=it->end();++it_record)
+           {
+               if(ANA_LINE_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                        ANA_LINE_obj->set_parameters(it_record-it->begin(),*it_record);
+               }
+               if(ANA_PARAMETER_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                        ANA_PARAMETER_obj->set_parameters(it_record-it->begin(),*it_record);
+               }
+               if(ANA_SIGNAL_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                        ANA_SIGNAL_obj->set_parameters(it_record-it->begin(),*it_record);
+               }
+               if(DATA_TYPE_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                        DATA_TYPE_obj->set_parameters(it_record-it->begin(),*it_record);
+               }
+               if(KEYWORD_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                        KEYWORD_obj->set_parameters(it_record-it->begin(),*it_record);
+               }
+           }
+
+           ANA_LINE_obj->insert_intable_new(id);
+           DATA_TYPE_obj->insert_intable_new(id);
+
+           if(ANA_PARAMETER_obj->insert_intable_new(id))
+           {
+               KEYWORD_obj->insert_intable_new(id);
+               ANA_PARAMETER_obj->set_reference(QString("ANA_LINE"),ANA_LINE_obj->get_id());
+               ANA_PARAMETER_obj->set_reference(QString("keyword"),KEYWORD_obj->get_id());
+               ANA_PARAMETER_obj->set_reference(QString("type"),DATA_TYPE_obj->get_id());
+           }
+           if(ANA_SIGNAL_obj->insert_intable_new(id))
+           {
+               ANA_SIGNAL_obj->set_reference(QString("ANA_PARAMETER"),ANA_PARAMETER_obj->get_id());
+               ANA_SIGNAL_obj->set_reference(QString("ANA_LINE"),ANA_LINE_obj->get_id());
+               ANA_SIGNAL_obj->set_reference(QString("type"),DATA_TYPE_obj->get_id());
+           }
+       }
 
 
 
@@ -1403,9 +1451,9 @@ int ACICD_DOCUMENT::insert_acicd(void)
             }
             else
             {
-                BDD->sql_log_file << "insert_acicd_test: "<< query.lastError().text() <<endl;
-                qDebug() << "insert_acicd_test: "
-                         << query.lastError();
+//                BDD->sql_log_file << "insert_acicd_test: "<< query.lastError().text() <<endl;
+//                qDebug() << "insert_acicd_test: "
+//                         << query.lastError();
             }
 //        }
 //        else
@@ -1455,10 +1503,10 @@ int ACICD_DOCUMENT::set_equipment_reference(int equipment_id)
             }
             else
             {
-                BDD->sql_log_file <<"set_equipment_reference: "
-                                     << query.lastError().text()<<endl;
-                qDebug() << "set_equipment_reference: "
-                         << query.lastError();
+ //               BDD->sql_log_file <<"set_equipment_reference: "
+ //                                    << query.lastError().text()<<endl;
+ //               qDebug() << "set_equipment_reference: "
+  //                       << query.lastError();
             }
 
         }
@@ -1482,8 +1530,8 @@ int ACICD_DOCUMENT::is_acicd_exist(QString Name)
 
         if(!success)
         {
-            qDebug() << "is_acicd_exist: "
-                     << query.lastError();
+  //          qDebug() << "is_acicd_exist: "
+  //                   << query.lastError();
         }
         else
         {
@@ -1528,10 +1576,10 @@ bool ACICD_DOCUMENT::delete_acicd(int id)
 
         if(!success)
         {
-            BDD->sql_log_file <<"delete_acicd: "
-                                 << query.lastError().text()<<endl;
-            qDebug() << "delete_acicd: "
-                     << query.lastError();
+ //           BDD->sql_log_file <<"delete_acicd: "
+ //                                << query.lastError().text()<<endl;
+ //           qDebug() << "delete_acicd: "
+ //                    << query.lastError();
         }
         else
         {

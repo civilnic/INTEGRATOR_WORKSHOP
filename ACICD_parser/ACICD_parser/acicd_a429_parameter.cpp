@@ -16,12 +16,12 @@ acicd_a429_parameter::acicd_a429_parameter(sql_database_manager *database_manage
             test_field="Name";
 
             insert_query=QString("INSERT INTO %1 VALUES(:Name,:local_name,:local_name_not_used,:refresh_period,:fonctionnal_attribute,:name_description,:keyword,:description,:ref_doc,:type,:A429_LABEL,:A429_BUS,:ACICD)").arg(DB_table_name);
-            test_query=QString("SELECT rowid FROM %1 WHERE (Name=:Name) AND (ACICD=:ACICD);").arg(DB_table_name);
+            test_query=QString("SELECT rowid FROM %1 WHERE (Name=:Name) AND (local_name=:local_name) AND (ACICD=:ACICD);").arg(DB_table_name);
 
             create_table_query=QString("\
                        CREATE TABLE  IF NOT EXISTS [%1](\
                         [Name] VARCHAR( 45 )  CHECK (Name != ''),\
-                        [local_name] VARCHAR( 45 ) NULL,\
+                        [local_name] VARCHAR( 45 ) CHECK (Name != ''),\
                         [local_name_not_used] VARCHAR( 45 ) NULL,\
                         [refresh_period] INTEGER NULL,\
                         [fonctionnal_attribute] VARCHAR( 45 ) NULL,\
@@ -33,7 +33,7 @@ acicd_a429_parameter::acicd_a429_parameter(sql_database_manager *database_manage
                         [A429_LABEL] INTEGER NULL,\
                         [A429_BUS] INTEGER NULL,\
                         [ACICD] INTEGER NULL,\
-                         CONSTRAINT unique_combinaison PRIMARY KEY (Name,ACICD) ON CONFLICT IGNORE,\
+                         CONSTRAINT unique_combinaison PRIMARY KEY (Name,local_name,ACICD) ON CONFLICT IGNORE,\
                          CONSTRAINT [type]\
                             FOREIGN KEY([type])\
                             REFERENCES [DATA_TYPE] ( [rowid] ),\
