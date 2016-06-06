@@ -20,7 +20,7 @@ acicd_a429_parameter::acicd_a429_parameter(sql_database_manager *database_manage
 
             create_table_query=QString("\
                        CREATE TABLE  IF NOT EXISTS [%1](\
-                        [Name] VARCHAR( 45 ) NULL,\
+                        [Name] VARCHAR( 45 )  CHECK (Name != ''),\
                         [local_name] VARCHAR( 45 ) NULL,\
                         [local_name_not_used] VARCHAR( 45 ) NULL,\
                         [refresh_period] INTEGER NULL,\

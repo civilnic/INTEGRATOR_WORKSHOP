@@ -58,6 +58,9 @@
 #include "acicd_a429_signal_string_charact.h"
 #include "acicd_a429_signal_type.h"
 
+#include "acicd_ana_line.h"
+#include "acicd_ana_signal.h"
+#include "acicd_ana_parameter.h"
 
 #include "acicd_description.h"
 

@@ -139,7 +139,14 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
     acicd_a429_signal_opaque_charact *A429_SIGNAL_OPAQUE_DESC_obj=new acicd_a429_signal_opaque_charact(BDD);
     acicd_a429_signal_string_charact *A429_SIGNAL_STRING_DESC_obj=new acicd_a429_signal_string_charact(BDD);
 
+    acicd_ANA_line *ANA_LINE_obj=new acicd_ANA_line(BDD);
+    acicd_ANA_parameter *ANA_PARAMETER_obj=new acicd_ANA_parameter(BDD);
+    acicd_ANA_signal *ANA_SIGNAL_obj=new acicd_ANA_signal(BDD);
+
+
     acicd_description *DESCRIPTION_obj=new acicd_description(BDD);
+
+
 
     db->transaction();
 
@@ -1244,6 +1251,117 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
            }
 
        }
+
+       if(section==acicd_data_section::ANALOGUE_OUTPUT_LINE)
+       {
+
+           connector_pin_obj->modify_parameters({ { 5, "Connector_pin" } });
+
+           for(it_record=it->begin();it_record!=it->end();++it_record)
+           {
+               if(connector_pin_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                        connector_pin_obj->set_parameters(it_record-it->begin(),*it_record);
+               }
+               if(ANA_LINE_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                        ANA_LINE_obj->set_parameters(it_record-it->begin(),*it_record);
+               }
+           }
+
+           connector_pin_obj->insert_intable_new(id);
+
+           if(ANA_LINE_obj->insert_intable_new(id))
+           {
+               ANA_LINE_obj->set_reference(QString("EQUIPMENT"),equipment_obj->get_id());
+               ANA_LINE_obj->set_reference(QString("CONNECTOR_PIN"),connector_pin_obj->get_id());
+           }
+       }
+
+
+       if(section==acicd_data_section::ANALOGUE_OUTPUT_SIGNAL)
+       {
+
+           ANA_LINE_obj->modify_parameters({ { 5, "Name" } });
+           DATA_TYPE_obj->modify_parameters({ { 6, "Name" } });
+           KEYWORD_obj->modify_parameters({ { 16, "Name" } });
+
+           for(it_record=it->begin();it_record!=it->end();++it_record)
+           {
+               if(ANA_LINE_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                        ANA_LINE_obj->set_parameters(it_record-it->begin(),*it_record);
+               }
+               if(ANA_PARAMETER_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                        ANA_PARAMETER_obj->set_parameters(it_record-it->begin(),*it_record);
+               }
+               if(ANA_SIGNAL_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                        ANA_SIGNAL_obj->set_parameters(it_record-it->begin(),*it_record);
+               }
+               if(DATA_TYPE_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                        DATA_TYPE_obj->set_parameters(it_record-it->begin(),*it_record);
+               }
+               if(KEYWORD_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                        KEYWORD_obj->set_parameters(it_record-it->begin(),*it_record);
+               }
+           }
+
+           ANA_LINE_obj->insert_intable_new(id);
+           DATA_TYPE_obj->insert_intable_new(id);
+
+           if(ANA_PARAMETER_obj->insert_intable_new(id))
+           {
+               KEYWORD_obj->insert_intable_new(id);
+               ANA_PARAMETER_obj->set_reference(QString("ANA_LINE"),ANA_LINE_obj->get_id());
+               ANA_PARAMETER_obj->set_reference(QString("keyword"),KEYWORD_obj->get_id());
+               ANA_PARAMETER_obj->set_reference(QString("type"),DATA_TYPE_obj->get_id());
+           }
+           if(ANA_SIGNAL_obj->insert_intable_new(id))
+           {
+               ANA_SIGNAL_obj->set_reference(QString("ANA_PARAMETER"),ANA_PARAMETER_obj->get_id());
+               ANA_SIGNAL_obj->set_reference(QString("ANA_LINE"),ANA_LINE_obj->get_id());
+               ANA_SIGNAL_obj->set_reference(QString("type"),DATA_TYPE_obj->get_id());
+           }
+       }
+
+
+
+
+       if(section==acicd_data_section::ANALOGUE_INPUT_LINE)
+       {
+           ANA_LINE_obj->modify_parameters({ { 2, "Name" },
+                                             { 3, "description" },
+                                             { 4, "EMC_protection" } });
+           connector_pin_obj->modify_parameters({ { 5, "Connector_pin" } });
+
+           for(it_record=it->begin();it_record!=it->end();++it_record)
+           {
+               if(connector_pin_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                        connector_pin_obj->set_parameters(it_record-it->begin(),*it_record);
+               }
+               if(ANA_LINE_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                        ANA_LINE_obj->set_parameters(it_record-it->begin(),*it_record);
+               }
+           }
+
+           connector_pin_obj->insert_intable_new(id);
+
+           if(ANA_LINE_obj->insert_intable_new(id))
+           {
+               ANA_LINE_obj->set_reference(QString("EQUIPMENT"),equipment_obj->get_id());
+               ANA_LINE_obj->set_reference(QString("CONNECTOR_PIN"),connector_pin_obj->get_id());
+           }
+       }
+
+
+
+
 
        previous_section=section;
     }
