@@ -55,7 +55,10 @@ SOURCES += main.cpp \
     acicd_a429_signal_type.cpp \
     acicd_ana_line.cpp \
     acicd_ana_signal.cpp \
-    acicd_ana_parameter.cpp
+    acicd_ana_parameter.cpp \
+    acicd_discret_line.cpp \
+    acicd_discret_parameter.cpp \
+    acicd_discret_signal.cpp
 
 HEADERS += \
     ../../CSV/csv_common.h \
@@ -112,7 +115,10 @@ HEADERS += \
     acicd_a429_signal_type.h \
     acicd_ana_line.h \
     acicd_ana_signal.h \
-    acicd_ana_parameter.h
+    acicd_ana_parameter.h \
+    acicd_discret_line.h \
+    acicd_discret_parameter.h \
+    acicd_discret_signal.h
 
 INCLUDEPATH += ../../CSV/ \
                C:\local\boost_1_60_0

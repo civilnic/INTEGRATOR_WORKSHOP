@@ -62,6 +62,10 @@
 #include "acicd_ana_signal.h"
 #include "acicd_ana_parameter.h"
 
+#include "acicd_discret_line.h"
+#include "acicd_discret_signal.h"
+#include "acicd_discret_parameter.h"
+
 #include "acicd_description.h"
 
 #include "sql_database_manager.h"
