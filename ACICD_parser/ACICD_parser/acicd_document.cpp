@@ -143,6 +143,9 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
     acicd_ANA_parameter *ANA_PARAMETER_obj=new acicd_ANA_parameter(BDD);
     acicd_ANA_signal *ANA_SIGNAL_obj=new acicd_ANA_signal(BDD);
 
+    acicd_discret_line *DISCRET_LINE_obj=new acicd_discret_line(BDD);
+    acicd_discret_parameter *DISCRET_PARAMETER_obj=new acicd_discret_parameter(BDD);
+    acicd_discret_signal *DISCRET_SIGNAL_obj=new acicd_discret_signal(BDD);
 
     acicd_description *DESCRIPTION_obj=new acicd_description(BDD);
 
@@ -1407,6 +1410,166 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
                ANA_SIGNAL_obj->set_reference(QString("type"),DATA_TYPE_obj->get_id());
            }
        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       if(section==acicd_data_section::DISCRETE_OUTPUT_LINE)
+       {
+
+           connector_pin_obj->modify_parameters({ { 5, "Connector_pin" } });
+
+           for(it_record=it->begin();it_record!=it->end();++it_record)
+           {
+               if(connector_pin_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                        connector_pin_obj->set_parameters(it_record-it->begin(),*it_record);
+               }
+               if(DISCRET_LINE_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                        DISCRET_LINE_obj->set_parameters(it_record-it->begin(),*it_record);
+               }
+           }
+
+
+
+           if(DISCRET_LINE_obj->insert_intable_new(id))
+           {
+               connector_pin_obj->insert_intable_new(id);
+               DISCRET_LINE_obj->set_reference(QString("EQUIPMENT"),equipment_obj->get_id());
+               DISCRET_LINE_obj->set_reference(QString("CONNECTOR_PIN"),connector_pin_obj->get_id());
+           }
+       }
+
+
+       if(section==acicd_data_section::DISCRETE_OUTPUT_SIGNAL)
+       {
+
+           DISCRET_LINE_obj->modify_parameters({ { 5, "Name" } });
+           KEYWORD_obj->modify_parameters({ { 14, "Name" } });
+
+           for(it_record=it->begin();it_record!=it->end();++it_record)
+           {
+               if(DISCRET_LINE_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                        DISCRET_LINE_obj->set_parameters(it_record-it->begin(),*it_record);
+               }
+               if(DISCRET_PARAMETER_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                        DISCRET_PARAMETER_obj->set_parameters(it_record-it->begin(),*it_record);
+               }
+               if(DISCRET_SIGNAL_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                        DISCRET_SIGNAL_obj->set_parameters(it_record-it->begin(),*it_record);
+               }
+               if(KEYWORD_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                        KEYWORD_obj->set_parameters(it_record-it->begin(),*it_record);
+               }
+           }
+
+           DISCRET_LINE_obj->insert_intable_new(id);
+
+           if(DISCRET_PARAMETER_obj->insert_intable_new(id))
+           {
+               KEYWORD_obj->insert_intable_new(id);
+               DISCRET_PARAMETER_obj->set_reference(QString("DISCRET_LINE"),DISCRET_LINE_obj->get_id());
+               DISCRET_PARAMETER_obj->set_reference(QString("keyword"),KEYWORD_obj->get_id());
+           }
+           if(DISCRET_SIGNAL_obj->insert_intable_new(id))
+           {
+               DISCRET_SIGNAL_obj->set_reference(QString("DISCRET_PARAMETER"),DISCRET_PARAMETER_obj->get_id());
+               DISCRET_SIGNAL_obj->set_reference(QString("DISCRET_LINE"),DISCRET_LINE_obj->get_id());
+           }
+       }
+
+
+
+
+       if(section==acicd_data_section::DISCRETE_INPUT_LINE)
+       {
+           DISCRET_LINE_obj->modify_parameters({ { 2, "Name" },
+                                             { 3, "description" },
+                                             { 4, "EMC_protection" } });
+           connector_pin_obj->modify_parameters({ { 5, "Connector_pin" } });
+
+           for(it_record=it->begin();it_record!=it->end();++it_record)
+           {
+               if(connector_pin_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                        connector_pin_obj->set_parameters(it_record-it->begin(),*it_record);
+               }
+               if(DISCRET_LINE_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                        DISCRET_LINE_obj->set_parameters(it_record-it->begin(),*it_record);
+               }
+           }
+
+           if(DISCRET_LINE_obj->insert_intable_new(id))
+           {
+               connector_pin_obj->insert_intable_new(id);
+               DISCRET_LINE_obj->set_reference(QString("EQUIPMENT"),equipment_obj->get_id());
+               DISCRET_LINE_obj->set_reference(QString("CONNECTOR_PIN"),connector_pin_obj->get_id());
+           }
+       }
+
+       if(section==acicd_data_section::DISCRETE_INPUT_SIGNAL)
+       {
+
+           DISCRET_LINE_obj->modify_parameters({ { 5, "Name" } });
+           KEYWORD_obj->modify_parameters({ { 14, "Name" } });
+
+           for(it_record=it->begin();it_record!=it->end();++it_record)
+           {
+               if(DISCRET_LINE_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                        DISCRET_LINE_obj->set_parameters(it_record-it->begin(),*it_record);
+               }
+               if(DISCRET_PARAMETER_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                        DISCRET_PARAMETER_obj->set_parameters(it_record-it->begin(),*it_record);
+               }
+               if(DISCRET_SIGNAL_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                        DISCRET_SIGNAL_obj->set_parameters(it_record-it->begin(),*it_record);
+               }
+               if(KEYWORD_obj->DB_FIELDS.count(it_record-it->begin())==1)
+               {
+                        KEYWORD_obj->set_parameters(it_record-it->begin(),*it_record);
+               }
+           }
+
+           DISCRET_LINE_obj->insert_intable_new(id);
+
+           if(DISCRET_PARAMETER_obj->insert_intable_new(id))
+           {
+               KEYWORD_obj->insert_intable_new(id);
+               DISCRET_PARAMETER_obj->set_reference(QString("DISCRET_LINE"),DISCRET_LINE_obj->get_id());
+               DISCRET_PARAMETER_obj->set_reference(QString("keyword"),KEYWORD_obj->get_id());
+           }
+           if(DISCRET_SIGNAL_obj->insert_intable_new(id))
+           {
+               DISCRET_SIGNAL_obj->set_reference(QString("DISCRET_PARAMETER"),DISCRET_PARAMETER_obj->get_id());
+               DISCRET_SIGNAL_obj->set_reference(QString("DISCRET_LINE"),DISCRET_LINE_obj->get_id());
+           }
+       }
+
+
+
+
 
 
 
