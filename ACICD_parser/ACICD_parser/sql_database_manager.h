@@ -28,6 +28,7 @@ private:
     QSqlDatabase database;
     QString driver_type="QSQLITE";
     QString db_name="INTEGRATOR_WORKSHOP.db";
+//    QString db_name=":memory:";
     QString db_user="root";
     QString db_pass="";
     QString db_hostname="localhost";

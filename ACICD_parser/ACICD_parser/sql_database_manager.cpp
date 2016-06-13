@@ -37,9 +37,9 @@ void sql_database_manager::open_database()
       qDebug( "Connected!" );
     }
 
-    query.prepare("PRAGMA synchronous=off");
+    query.prepare("PRAGMA synchronous = OFF ");
     query.exec();
-    query.prepare("PRAGMA journal_mode=off");
+    query.prepare("PRAGMA journal_mode = MEMORY");
     query.exec();
 
 }

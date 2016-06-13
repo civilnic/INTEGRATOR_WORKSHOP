@@ -227,12 +227,14 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
                 connector_obj->set_reference(QString("Equipment"),equipment_obj->get_id());
            }
 
-           connection_name_obj->insert_intable_new(id);
-           connector_line_type_obj->insert_intable_new(id);
-           connector_pin_role_obj->insert_intable_new(id);
+
 
            if(connector_pin_obj->insert_intable_new(id))
            {
+               connection_name_obj->insert_intable_new(id);
+               connector_line_type_obj->insert_intable_new(id);
+               connector_pin_role_obj->insert_intable_new(id);
+
                 connector_pin_obj->set_reference(QString("Connector_pin_role"),connector_pin_role_obj->get_id());
                 connector_pin_obj->set_reference(QString("Connection_name"),connection_name_obj->get_id());
                 connector_pin_obj->set_reference(QString("Line_type"),connector_line_type_obj->get_id());
@@ -306,12 +308,14 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
 
 
 
-           AFDX_port_type_obj->insert_intable_new(id);
-           AFDX_port_characteristic_obj->insert_intable_new(id);
-           AFDX_port_transmission_type_obj->insert_intable_new(id);
+
 
            if(AFDX_TX_port_obj->insert_intable_new(id))
            {
+               AFDX_port_type_obj->insert_intable_new(id);
+               AFDX_port_characteristic_obj->insert_intable_new(id);
+               AFDX_port_transmission_type_obj->insert_intable_new(id);
+
                 AFDX_TX_port_obj->set_reference(QString("EQUIPMENT"),equipment_obj->get_id());
                 AFDX_TX_port_obj->set_reference(QString("Type"),AFDX_port_type_obj->get_id());
                 AFDX_TX_port_obj->set_reference(QString("characteristic"),AFDX_port_characteristic_obj->get_id());
@@ -619,12 +623,14 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
 
 
 
-           AFDX_port_type_obj->insert_intable_new(id);
-           AFDX_port_characteristic_obj->insert_intable_new(id);
-           AFDX_port_transmission_type_obj->insert_intable_new(id);
+
 
            if(AFDX_RX_port_obj->insert_intable_new(id))
            {
+               AFDX_port_type_obj->insert_intable_new(id);
+               AFDX_port_characteristic_obj->insert_intable_new(id);
+               AFDX_port_transmission_type_obj->insert_intable_new(id);
+
                 AFDX_RX_port_obj->set_reference(QString("EQUIPMENT"),equipment_obj->get_id());
                 AFDX_RX_port_obj->set_reference(QString("Type"),AFDX_port_type_obj->get_id());
                 AFDX_RX_port_obj->set_reference(QString("characteristic"),AFDX_port_characteristic_obj->get_id());
@@ -1040,10 +1046,10 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
                }
            }
 
-           connector_pin_obj->insert_intable_new(id);
 
            if(A429_BUS_obj->insert_intable_new(id))
            {
+               connector_pin_obj->insert_intable_new(id);
                A429_BUS_obj->set_reference(QString("EQUIPMENT"),equipment_obj->get_id());
                A429_BUS_obj->set_reference(QString("Connector_pin"),connector_pin_obj->get_id());
            }
@@ -1566,10 +1572,6 @@ bool ACICD_DOCUMENT::parse_ACICD(void)
                DISCRET_SIGNAL_obj->set_reference(QString("DISCRET_LINE"),DISCRET_LINE_obj->get_id());
            }
        }
-
-
-
-
 
 
 
