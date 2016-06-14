@@ -6,12 +6,8 @@ QT       += sql # On rajoute SQL
 
 TEMPLATE = app
 
-SOURCES += main.cpp \
-    ExcelFormat_src/BasicExcel.cpp \
-    ExcelFormat_src/ExcelFormat.cpp
+SOURCES += main.cpp
 
 HEADERS += \
-    ExcelFormat_src/ExcelFormat.h \
-    ExcelFormat_src/BasicExcel.h
-
-INCLUDEPATH += ExcelFormat_src
+    ../../XLS/libxls/include/libxls/xls.h
+INCLUDEPATH += ../../XLS/libxls/include/
