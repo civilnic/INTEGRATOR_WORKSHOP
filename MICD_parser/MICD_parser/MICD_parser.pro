@@ -6,10 +6,12 @@ QT       += sql # On rajoute SQL
 
 TEMPLATE = app
 
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    micd_parser.cpp
 
 HEADERS += \
-    ../../XLS/libxls/include/xls.h
+    ../../XLS/libxls/include/xls.h \
+    micd_parser.h
 INCLUDEPATH += ../../XLS/libxls/include/
 
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../XLS/libxls/lib/ -lxlsreader
