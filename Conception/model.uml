@@ -1,10 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_Kg5h8DbyEeaHj4rXkVdNig" name="RootElement">
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_Kg5h8DbyEeaHj4rXkVdNig" name="Create_open_application">
   <packagedElement xmi:type="uml:Interaction" xmi:id="_KhfX0DbyEeaHj4rXkVdNig" name="Interaction1"/>
-  <packagedElement xmi:type="uml:Activity" xmi:id="_KhpI1DbyEeaHj4rXkVdNig" name="[ACT-DIAG][1][Create_new_application]" isActive="true"/>
   <packagedElement xmi:type="uml:StateMachine" xmi:id="_KhpI9zbyEeaHj4rXkVdNig" name="StateMachine1">
     <region xmi:type="uml:Region" xmi:id="_KhpI-DbyEeaHj4rXkVdNig" name="Region1"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Activity" xmi:id="_KhpJCTbyEeaHj4rXkVdNig" name="Activity2"/>
   <packagedElement xmi:type="uml:Interaction" xmi:id="_Khy57jbyEeaHj4rXkVdNig" name="Interaction2"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_5o9W0DclEeaQQLV3gs2Gmw" name="UseCase1"/>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_w2CTMDcmEeaQQLV3gs2Gmw" name="user"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_yDm5kDcmEeaQQLV3gs2Gmw" name="Create_new_application"/>
+  <packagedElement xmi:type="uml:Usage" xmi:id="_4EGcYDcmEeaQQLV3gs2Gmw" client="_Kg5h8DbyEeaHj4rXkVdNig" supplier="_yDm5kDcmEeaQQLV3gs2Gmw"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_DXNvYDcnEeaQQLV3gs2Gmw" name="Open_application"/>
+  <packagedElement xmi:type="uml:Usage" xmi:id="_GfE4MDcnEeaQQLV3gs2Gmw" client="_w2CTMDcmEeaQQLV3gs2Gmw" supplier="_DXNvYDcnEeaQQLV3gs2Gmw"/>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_1NlFwDcnEeaQQLV3gs2Gmw" name="user"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_8H6aoDcnEeaQQLV3gs2Gmw" name="Add/delete model"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_-HRN0DcoEeaQQLV3gs2Gmw" name="Add/delete machine"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_rrs08DcpEeaQQLV3gs2Gmw" name="Add/delete liboperateur"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_zkt_oDcpEeaQQLV3gs2Gmw" name="Add/Delete data flow"/>
+  <packagedElement xmi:type="uml:Usage" xmi:id="_kenGsDcqEeaQQLV3gs2Gmw" client="_Kg5h8DbyEeaHj4rXkVdNig" supplier="_8H6aoDcnEeaQQLV3gs2Gmw"/>
+  <packagedElement xmi:type="uml:Usage" xmi:id="_oU-7UDcqEeaQQLV3gs2Gmw" client="_Kg5h8DbyEeaHj4rXkVdNig" supplier="_-HRN0DcoEeaQQLV3gs2Gmw"/>
+  <packagedElement xmi:type="uml:Usage" xmi:id="_pq-d4DcqEeaQQLV3gs2Gmw" client="_1NlFwDcnEeaQQLV3gs2Gmw" supplier="_rrs08DcpEeaQQLV3gs2Gmw"/>
+  <packagedElement xmi:type="uml:Usage" xmi:id="_rIIYYDcqEeaQQLV3gs2Gmw" client="_1NlFwDcnEeaQQLV3gs2Gmw" supplier="_zkt_oDcpEeaQQLV3gs2Gmw"/>
 </uml:Model>
