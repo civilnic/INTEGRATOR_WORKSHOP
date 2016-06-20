@@ -1,0 +1,489 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project owner="CodeDesigner" version="1.0">
+    <project_properties>
+        <object type="udRootItem">
+            <property name="id" type="long">1</property>
+            <property name="name" type="string">Project items</property>
+            <settings>
+                <object type="udGeneratorCategory">
+                    <property name="id" type="long">1</property>
+                    <property name="Output directory" type="dirname">C:\Users</property>
+                    <property name="Base file name" type="string">CDCode</property>
+                    <property name="Code items file name" type="string">CDCode_CI</property>
+                    <property name="Generate code descriptions" type="bool">0</property>
+                    <property name="Synchronize before generation" type="bool">1</property>
+                </object>
+                <object type="udHiddenProjectCategory">
+                    <property name="id" type="long">2</property>
+                    <property name="active_language" type="string">udCPPLanguage</property>
+                    <property name="project_version" type="long">1</property>
+                </object>
+                <object type="udStateChartCategory">
+                    <property name="id" type="long">3</property>
+                    <property name="Invert conditions" type="bool">1</property>
+                    <property name="Merge parallel transitions" type="bool">1</property>
+                    <property name="Merge direct branches" type="bool">1</property>
+                    <property name="Omit unused labels" type="bool">1</property>
+                </object>
+            </settings>
+        </object>
+    </project_properties>
+    <object type="udPackageItem">
+        <property name="id" type="long">2</property>
+        <property name="name" type="string">Package</property>
+        <object type="udClassDiagramItem">
+            <property name="id" type="long">3</property>
+            <property name="name" type="string">Class Diagram</property>
+            <property name="description" type="string">Diagram's description...</property>
+            <property name="diagram_type" type="string">Class Diagram</property>
+            <property name="generate_code" type="bool">1</property>
+            <property name="output_file" type="string">&lt;default&gt;</property>
+            <property name="active_generator" type="string">udClassDiagramGenerator</property>
+            <property name="active_algorithm" type="string">udCPPClassAlgorithm</property>
+            <diagram>
+                <object type="umlClassItem">
+                    <property name="id" type="long">10</property>
+                    <property name="relative_position" type="realpoint">750.000000,90.000000</property>
+                    <property name="user_data" type="serializabledynamic">
+                        <object type="udClassElementItem">
+                            <property name="id" type="long">0</property>
+                            <property name="name" type="string">Flow</property>
+                            <property name="description" type="string">Diagram element's description...</property>
+                            <property name="generate_code" type="bool">1</property>
+                        </object>
+                    </property>
+                    <property name="size" type="realpoint">120.000000,155.000000</property>
+                    <property name="fill" type="brush">254,253,211,255 100</property>
+                    <property name="title" type="serializabledynamicnocreate">
+                        <object type="uddLabelElement">
+                            <property name="id" type="long">11</property>
+                            <property name="relative_position" type="realpoint">47.000000,5.000000</property>
+                            <property name="size" type="realpoint">26.000000,14.000000</property>
+                            <property name="text" type="string">Flow</property>
+                            <property name="label_type" type="int">1</property>
+                        </object>
+                    </property>
+                    <property name="variables_grid" type="serializabledynamicnocreate">
+                        <object type="wxSFGridShape">
+                            <property name="id" type="long">-2</property>
+                            <property name="relative_position" type="realpoint">10.000000,10.000000</property>
+                            <property name="size" type="realpoint">4.000000,4.000000</property>
+                        </object>
+                    </property>
+                    <property name="functions_grid" type="serializabledynamicnocreate">
+                        <object type="wxSFGridShape">
+                            <property name="id" type="long">-3</property>
+                            <property name="relative_position" type="realpoint">10.000000,24.000000</property>
+                            <property name="size" type="realpoint">4.000000,4.000000</property>
+                        </object>
+                    </property>
+                    <property name="main_grid" type="serializabledynamicnocreate">
+                        <object type="wxSFFlexGridShape">
+                            <property name="id" type="long">12</property>
+                            <property name="relative_position" type="realpoint">0.000000,20.000000</property>
+                            <property name="size" type="realpoint">24.000000,38.000000</property>
+                            <property name="cells" type="arrayint">
+                                <item>-2</item>
+                                <item>-3</item>
+                            </property>
+                        </object>
+                    </property>
+                </object>
+                <object type="umlClassItem">
+                    <property name="id" type="long">19</property>
+                    <property name="relative_position" type="realpoint">950.000000,90.000000</property>
+                    <property name="user_data" type="serializabledynamic">
+                        <object type="udClassElementItem">
+                            <property name="id" type="long">0</property>
+                            <property name="name" type="string">connection</property>
+                            <property name="description" type="string">Diagram element's description...</property>
+                            <property name="generate_code" type="bool">1</property>
+                        </object>
+                    </property>
+                    <property name="size" type="realpoint">120.000000,155.000000</property>
+                    <property name="fill" type="brush">254,253,211,255 100</property>
+                    <property name="title" type="serializabledynamicnocreate">
+                        <object type="uddLabelElement">
+                            <property name="id" type="long">20</property>
+                            <property name="relative_position" type="realpoint">30.000000,5.000000</property>
+                            <property name="size" type="realpoint">61.000000,14.000000</property>
+                            <property name="text" type="string">connection</property>
+                            <property name="label_type" type="int">1</property>
+                        </object>
+                    </property>
+                    <property name="variables_grid" type="serializabledynamicnocreate">
+                        <object type="wxSFGridShape">
+                            <property name="id" type="long">-2</property>
+                            <property name="relative_position" type="realpoint">10.000000,10.000000</property>
+                            <property name="size" type="realpoint">4.000000,4.000000</property>
+                        </object>
+                    </property>
+                    <property name="functions_grid" type="serializabledynamicnocreate">
+                        <object type="wxSFGridShape">
+                            <property name="id" type="long">-3</property>
+                            <property name="relative_position" type="realpoint">10.000000,24.000000</property>
+                            <property name="size" type="realpoint">4.000000,4.000000</property>
+                        </object>
+                    </property>
+                    <property name="main_grid" type="serializabledynamicnocreate">
+                        <object type="wxSFFlexGridShape">
+                            <property name="id" type="long">21</property>
+                            <property name="relative_position" type="realpoint">0.000000,20.000000</property>
+                            <property name="size" type="realpoint">24.000000,38.000000</property>
+                            <property name="cells" type="arrayint">
+                                <item>-2</item>
+                                <item>-3</item>
+                            </property>
+                        </object>
+                    </property>
+                </object>
+                <object type="umlClassItem">
+                    <property name="id" type="long">22</property>
+                    <property name="relative_position" type="realpoint">590.000000,410.000000</property>
+                    <property name="user_data" type="serializabledynamic">
+                        <object type="udClassElementItem">
+                            <property name="id" type="long">0</property>
+                            <property name="name" type="string">Port</property>
+                            <property name="description" type="string">Diagram element's description...</property>
+                            <property name="generate_code" type="bool">1</property>
+                        </object>
+                    </property>
+                    <property name="size" type="realpoint">120.000000,155.000000</property>
+                    <property name="fill" type="brush">254,253,211,255 100</property>
+                    <property name="title" type="serializabledynamicnocreate">
+                        <object type="uddLabelElement">
+                            <property name="id" type="long">23</property>
+                            <property name="relative_position" type="realpoint">49.000000,5.000000</property>
+                            <property name="size" type="realpoint">23.000000,14.000000</property>
+                            <property name="text" type="string">Port</property>
+                            <property name="label_type" type="int">1</property>
+                        </object>
+                    </property>
+                    <property name="variables_grid" type="serializabledynamicnocreate">
+                        <object type="wxSFGridShape">
+                            <property name="id" type="long">-2</property>
+                            <property name="relative_position" type="realpoint">10.000000,10.000000</property>
+                            <property name="size" type="realpoint">4.000000,4.000000</property>
+                        </object>
+                    </property>
+                    <property name="functions_grid" type="serializabledynamicnocreate">
+                        <object type="wxSFGridShape">
+                            <property name="id" type="long">-3</property>
+                            <property name="relative_position" type="realpoint">10.000000,24.000000</property>
+                            <property name="size" type="realpoint">4.000000,4.000000</property>
+                        </object>
+                    </property>
+                    <property name="main_grid" type="serializabledynamicnocreate">
+                        <object type="wxSFFlexGridShape">
+                            <property name="id" type="long">24</property>
+                            <property name="relative_position" type="realpoint">0.000000,20.000000</property>
+                            <property name="size" type="realpoint">24.000000,38.000000</property>
+                            <property name="cells" type="arrayint">
+                                <item>-2</item>
+                                <item>-3</item>
+                            </property>
+                        </object>
+                    </property>
+                </object>
+                <object type="umlClassItem">
+                    <property name="id" type="long">1</property>
+                    <property name="relative_position" type="realpoint">310.000000,30.000000</property>
+                    <property name="user_data" type="serializabledynamic">
+                        <object type="udClassElementItem">
+                            <property name="id" type="long">0</property>
+                            <property name="name" type="string">Application</property>
+                            <property name="description" type="string">Diagram element's description...</property>
+                            <property name="generate_code" type="bool">1</property>
+                        </object>
+                    </property>
+                    <property name="size" type="realpoint">120.000000,155.000000</property>
+                    <property name="fill" type="brush">254,253,211,255 100</property>
+                    <property name="title" type="serializabledynamicnocreate">
+                        <object type="uddLabelElement">
+                            <property name="id" type="long">2</property>
+                            <property name="relative_position" type="realpoint">30.000000,5.000000</property>
+                            <property name="size" type="realpoint">61.000000,14.000000</property>
+                            <property name="text" type="string">Application</property>
+                            <property name="label_type" type="int">1</property>
+                        </object>
+                    </property>
+                    <property name="variables_grid" type="serializabledynamicnocreate">
+                        <object type="wxSFGridShape">
+                            <property name="id" type="long">-2</property>
+                            <property name="relative_position" type="realpoint">10.000000,10.000000</property>
+                            <property name="size" type="realpoint">4.000000,4.000000</property>
+                        </object>
+                    </property>
+                    <property name="functions_grid" type="serializabledynamicnocreate">
+                        <object type="wxSFGridShape">
+                            <property name="id" type="long">-3</property>
+                            <property name="relative_position" type="realpoint">10.000000,24.000000</property>
+                            <property name="size" type="realpoint">4.000000,4.000000</property>
+                        </object>
+                    </property>
+                    <property name="main_grid" type="serializabledynamicnocreate">
+                        <object type="wxSFFlexGridShape">
+                            <property name="id" type="long">3</property>
+                            <property name="relative_position" type="realpoint">0.000000,20.000000</property>
+                            <property name="size" type="realpoint">24.000000,38.000000</property>
+                            <property name="cells" type="arrayint">
+                                <item>-2</item>
+                                <item>-3</item>
+                            </property>
+                        </object>
+                    </property>
+                </object>
+                <object type="umlClassItem">
+                    <property name="id" type="long">7</property>
+                    <property name="relative_position" type="realpoint">510.000000,100.000000</property>
+                    <property name="user_data" type="serializabledynamic">
+                        <object type="udClassElementItem">
+                            <property name="id" type="long">0</property>
+                            <property name="name" type="string">Machine</property>
+                            <property name="description" type="string">Diagram element's description...</property>
+                            <property name="generate_code" type="bool">1</property>
+                        </object>
+                    </property>
+                    <property name="size" type="realpoint">120.000000,155.000000</property>
+                    <property name="fill" type="brush">254,253,211,255 100</property>
+                    <property name="title" type="serializabledynamicnocreate">
+                        <object type="uddLabelElement">
+                            <property name="id" type="long">8</property>
+                            <property name="relative_position" type="realpoint">37.000000,5.000000</property>
+                            <property name="size" type="realpoint">46.000000,14.000000</property>
+                            <property name="text" type="string">Machine</property>
+                            <property name="label_type" type="int">1</property>
+                        </object>
+                    </property>
+                    <property name="variables_grid" type="serializabledynamicnocreate">
+                        <object type="wxSFGridShape">
+                            <property name="id" type="long">-2</property>
+                            <property name="relative_position" type="realpoint">10.000000,10.000000</property>
+                            <property name="size" type="realpoint">4.000000,4.000000</property>
+                        </object>
+                    </property>
+                    <property name="functions_grid" type="serializabledynamicnocreate">
+                        <object type="wxSFGridShape">
+                            <property name="id" type="long">-3</property>
+                            <property name="relative_position" type="realpoint">10.000000,24.000000</property>
+                            <property name="size" type="realpoint">4.000000,4.000000</property>
+                        </object>
+                    </property>
+                    <property name="main_grid" type="serializabledynamicnocreate">
+                        <object type="wxSFFlexGridShape">
+                            <property name="id" type="long">9</property>
+                            <property name="relative_position" type="realpoint">0.000000,20.000000</property>
+                            <property name="size" type="realpoint">24.000000,38.000000</property>
+                            <property name="cells" type="arrayint">
+                                <item>-2</item>
+                                <item>-3</item>
+                            </property>
+                        </object>
+                    </property>
+                </object>
+                <object type="umlClassItem">
+                    <property name="id" type="long">4</property>
+                    <property name="relative_position" type="realpoint">110.000000,110.000000</property>
+                    <property name="user_data" type="serializabledynamic">
+                        <object type="udClassElementItem">
+                            <property name="id" type="long">0</property>
+                            <property name="name" type="string">Model</property>
+                            <property name="description" type="string">Diagram element's description...</property>
+                            <property name="generate_code" type="bool">1</property>
+                        </object>
+                    </property>
+                    <property name="size" type="realpoint">120.000000,155.000000</property>
+                    <property name="fill" type="brush">254,253,211,255 100</property>
+                    <property name="title" type="serializabledynamicnocreate">
+                        <object type="uddLabelElement">
+                            <property name="id" type="long">5</property>
+                            <property name="relative_position" type="realpoint">43.000000,5.000000</property>
+                            <property name="size" type="realpoint">34.000000,14.000000</property>
+                            <property name="text" type="string">Model</property>
+                            <property name="label_type" type="int">1</property>
+                        </object>
+                    </property>
+                    <property name="variables_grid" type="serializabledynamicnocreate">
+                        <object type="wxSFGridShape">
+                            <property name="id" type="long">-2</property>
+                            <property name="relative_position" type="realpoint">10.000000,10.000000</property>
+                            <property name="size" type="realpoint">4.000000,4.000000</property>
+                        </object>
+                    </property>
+                    <property name="functions_grid" type="serializabledynamicnocreate">
+                        <object type="wxSFGridShape">
+                            <property name="id" type="long">-3</property>
+                            <property name="relative_position" type="realpoint">10.000000,24.000000</property>
+                            <property name="size" type="realpoint">4.000000,4.000000</property>
+                        </object>
+                    </property>
+                    <property name="main_grid" type="serializabledynamicnocreate">
+                        <object type="wxSFFlexGridShape">
+                            <property name="id" type="long">6</property>
+                            <property name="relative_position" type="realpoint">0.000000,20.000000</property>
+                            <property name="size" type="realpoint">24.000000,38.000000</property>
+                            <property name="cells" type="arrayint">
+                                <item>-2</item>
+                                <item>-3</item>
+                            </property>
+                        </object>
+                    </property>
+                </object>
+                <object type="umlClassItem">
+                    <property name="id" type="long">13</property>
+                    <property name="relative_position" type="realpoint">900.000000,360.000000</property>
+                    <property name="user_data" type="serializabledynamic">
+                        <object type="udClassElementItem">
+                            <property name="id" type="long">0</property>
+                            <property name="name" type="string">MICD</property>
+                            <property name="description" type="string">Diagram element's description...</property>
+                            <property name="generate_code" type="bool">1</property>
+                        </object>
+                    </property>
+                    <property name="size" type="realpoint">120.000000,155.000000</property>
+                    <property name="fill" type="brush">254,253,211,255 100</property>
+                    <property name="title" type="serializabledynamicnocreate">
+                        <object type="uddLabelElement">
+                            <property name="id" type="long">14</property>
+                            <property name="relative_position" type="realpoint">46.000000,5.000000</property>
+                            <property name="size" type="realpoint">28.000000,14.000000</property>
+                            <property name="text" type="string">MICD</property>
+                            <property name="label_type" type="int">1</property>
+                        </object>
+                    </property>
+                    <property name="variables_grid" type="serializabledynamicnocreate">
+                        <object type="wxSFGridShape">
+                            <property name="id" type="long">-2</property>
+                            <property name="relative_position" type="realpoint">10.000000,10.000000</property>
+                            <property name="size" type="realpoint">4.000000,4.000000</property>
+                        </object>
+                    </property>
+                    <property name="functions_grid" type="serializabledynamicnocreate">
+                        <object type="wxSFGridShape">
+                            <property name="id" type="long">-3</property>
+                            <property name="relative_position" type="realpoint">10.000000,24.000000</property>
+                            <property name="size" type="realpoint">4.000000,4.000000</property>
+                        </object>
+                    </property>
+                    <property name="main_grid" type="serializabledynamicnocreate">
+                        <object type="wxSFFlexGridShape">
+                            <property name="id" type="long">15</property>
+                            <property name="relative_position" type="realpoint">0.000000,20.000000</property>
+                            <property name="size" type="realpoint">24.000000,38.000000</property>
+                            <property name="cells" type="arrayint">
+                                <item>-2</item>
+                                <item>-3</item>
+                            </property>
+                        </object>
+                    </property>
+                </object>
+                <object type="umlClassItem">
+                    <property name="id" type="long">16</property>
+                    <property name="relative_position" type="realpoint">120.000000,340.000000</property>
+                    <property name="user_data" type="serializabledynamic">
+                        <object type="udClassElementItem">
+                            <property name="id" type="long">0</property>
+                            <property name="name" type="string">ACICD</property>
+                            <property name="description" type="string">Diagram element's description...</property>
+                            <property name="generate_code" type="bool">1</property>
+                        </object>
+                    </property>
+                    <property name="size" type="realpoint">120.000000,155.000000</property>
+                    <property name="fill" type="brush">254,253,211,255 100</property>
+                    <property name="title" type="serializabledynamicnocreate">
+                        <object type="uddLabelElement">
+                            <property name="id" type="long">17</property>
+                            <property name="relative_position" type="realpoint">43.000000,5.000000</property>
+                            <property name="size" type="realpoint">34.000000,14.000000</property>
+                            <property name="text" type="string">ACICD</property>
+                            <property name="label_type" type="int">1</property>
+                        </object>
+                    </property>
+                    <property name="variables_grid" type="serializabledynamicnocreate">
+                        <object type="wxSFGridShape">
+                            <property name="id" type="long">-2</property>
+                            <property name="relative_position" type="realpoint">10.000000,10.000000</property>
+                            <property name="size" type="realpoint">4.000000,4.000000</property>
+                        </object>
+                    </property>
+                    <property name="functions_grid" type="serializabledynamicnocreate">
+                        <object type="wxSFGridShape">
+                            <property name="id" type="long">-3</property>
+                            <property name="relative_position" type="realpoint">10.000000,24.000000</property>
+                            <property name="size" type="realpoint">4.000000,4.000000</property>
+                        </object>
+                    </property>
+                    <property name="main_grid" type="serializabledynamicnocreate">
+                        <object type="wxSFFlexGridShape">
+                            <property name="id" type="long">18</property>
+                            <property name="relative_position" type="realpoint">0.000000,20.000000</property>
+                            <property name="size" type="realpoint">24.000000,38.000000</property>
+                            <property name="cells" type="arrayint">
+                                <item>-2</item>
+                                <item>-3</item>
+                            </property>
+                        </object>
+                    </property>
+                </object>
+            </diagram>
+        </object>
+    </object>
+    <object type="udCodePackageItem">
+        <property name="id" type="long">5</property>
+        <property name="name" type="string">Constructors/destructors</property>
+        <object type="udConstructorFunctionItem">
+            <property name="id" type="long">4</property>
+            <property name="name" type="string">Constructor</property>
+            <property name="description" type="string">Class constructor's description...</property>
+            <property name="scope" type="string">Application</property>
+            <property name="signature" type="string">Application::Constructor</property>
+            <property name="inline" type="bool">0</property>
+            <property name="retval_data_type" type="int">0</property>
+            <property name="retval_value_type" type="int">0</property>
+            <property name="retval_data_modifier" type="int">0</property>
+            <property name="user_retval_decl_place" type="int">0</property>
+            <property name="function_modifier" type="int">0</property>
+        </object>
+        <object type="udDestructorFunctionItem">
+            <property name="id" type="long">6</property>
+            <property name="name" type="string">Destructor</property>
+            <property name="description" type="string">Class destructor's description...</property>
+            <property name="scope" type="string">Application</property>
+            <property name="signature" type="string">Application::Destructor</property>
+            <property name="inline" type="bool">0</property>
+            <property name="retval_data_type" type="int">0</property>
+            <property name="retval_value_type" type="int">0</property>
+            <property name="retval_data_modifier" type="int">0</property>
+            <property name="user_retval_decl_place" type="int">0</property>
+            <property name="function_modifier" type="int">0</property>
+        </object>
+        <object type="udConstructorFunctionItem">
+            <property name="id" type="long">9</property>
+            <property name="name" type="string">Constructor 2</property>
+            <property name="description" type="string">Class constructor's description...</property>
+            <property name="scope" type="string">Application</property>
+            <property name="signature" type="string">Application::Constructor 2</property>
+            <property name="inline" type="bool">0</property>
+            <property name="retval_data_type" type="int">0</property>
+            <property name="retval_value_type" type="int">0</property>
+            <property name="retval_data_modifier" type="int">0</property>
+            <property name="user_retval_decl_place" type="int">0</property>
+            <property name="function_modifier" type="int">0</property>
+        </object>
+    </object>
+    <object type="udCodePackageItem">
+        <property name="id" type="long">8</property>
+        <property name="name" type="string">Class data members</property>
+        <object type="udMemberDataItem">
+            <property name="id" type="long">7</property>
+            <property name="name" type="string">Variable</property>
+            <property name="description" type="string">Class data member's description...</property>
+            <property name="scope" type="string">Application</property>
+            <property name="signature" type="string">Application::Variable</property>
+            <property name="value_type" type="int">0</property>
+            <property name="data_type" type="int">5</property>
+            <property name="data_modifier" type="int">0</property>
+            <property name="user_decl_place" type="int">0</property>
+        </object>
+    </object>
+</project>
