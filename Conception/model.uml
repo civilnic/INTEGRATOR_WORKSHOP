@@ -31,7 +31,6 @@ A library (optional)&#xD;
     <packagedElement xmi:type="uml:UseCase" xmi:id="_-HRN0DcoEeaQQLV3gs2Gmw" name="[WORKSPACE][U2] Add/delete machine"/>
     <packagedElement xmi:type="uml:UseCase" xmi:id="_8H6aoDcnEeaQQLV3gs2Gmw" name="[WORKSPACE][U1] Add/delete model"/>
     <packagedElement xmi:type="uml:UseCase" xmi:id="_hvxfcDe6EeaHj4rXkVdNig" name="[WORKSPACE][U4] Create application"/>
-    <packagedElement xmi:type="uml:Realization" xmi:id="_vSlYoDfEEeaHj4rXkVdNig" client="_hvxfcDe6EeaHj4rXkVdNig" supplier="_mPqncDeUEeaHj4rXkVdNig"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="_OWPUMDeUEeaHj4rXkVdNig" memberEnd="_OWVa0DeUEeaHj4rXkVdNig _OWVa0TeUEeaHj4rXkVdNig">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_OWPUMTeUEeaHj4rXkVdNig" source="org.eclipse.papyrus">
@@ -58,16 +57,20 @@ A library (optional)&#xD;
     <packagedElement xmi:type="uml:UseCase" xmi:id="_zkt_oDcpEeaQQLV3gs2Gmw" name="[APPLICATION] Create data flow">
       <include xmi:type="uml:Include" xmi:id="_7s_EoDeUEeaHj4rXkVdNig" addition="_1u6jsDeUEeaHj4rXkVdNig"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:UseCase" xmi:id="_1u6jsDeUEeaHj4rXkVdNig" name="[APPLICATION] Associate model">
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_1u6jsDeUEeaHj4rXkVdNig" name="[APPLICATION] Add/remove model">
       <include xmi:type="uml:Include" xmi:id="_5yWj8DeUEeaHj4rXkVdNig" addition="_8H6aoDcnEeaQQLV3gs2Gmw"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:UseCase" xmi:id="_-DtrcDeUEeaHj4rXkVdNig" name="[APPLICATION] Associate lib_operator">
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_-DtrcDeUEeaHj4rXkVdNig" name="[APPLICATION] Add/remove lib_operator">
       <include xmi:type="uml:Include" xmi:id="_ItP18DeVEeaHj4rXkVdNig" addition="_rrs08DcpEeaQQLV3gs2Gmw"/>
     </packagedElement>
     <packagedElement xmi:type="uml:UseCase" xmi:id="_AmjboDeVEeaHj4rXkVdNig" name="CopyOf_[APPLICATION] Associate lib_operator_1"/>
-    <packagedElement xmi:type="uml:UseCase" xmi:id="_BQCdgDeVEeaHj4rXkVdNig" name="[APPLICATION] Associate machine">
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_BQCdgDeVEeaHj4rXkVdNig" name="[APPLICATION] Add/remove machine">
       <include xmi:type="uml:Include" xmi:id="_H_VnEDeVEeaHj4rXkVdNig" addition="_-HRN0DcoEeaQQLV3gs2Gmw"/>
     </packagedElement>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_G00G4DhUEeaHj4rXkVdNig" name="[APPLICATION] Edit data flow">
+      <include xmi:type="uml:Include" xmi:id="_J2cr4DhUEeaHj4rXkVdNig" addition="_zkt_oDcpEeaQQLV3gs2Gmw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_XgxG0DhUEeaHj4rXkVdNig" client="_mPqncDeUEeaHj4rXkVdNig" supplier="_hvxfcDe6EeaHj4rXkVdNig"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="_mtq80De6EeaHj4rXkVdNig" memberEnd="_mtq80ze6EeaHj4rXkVdNig _mtq81De6EeaHj4rXkVdNig">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_mtq80Te6EeaHj4rXkVdNig" source="org.eclipse.papyrus">
@@ -75,5 +78,18 @@ A library (optional)&#xD;
     </eAnnotations>
     <ownedEnd xmi:type="uml:Property" xmi:id="_mtq80ze6EeaHj4rXkVdNig" name="[workspace] create application" type="_hvxfcDe6EeaHj4rXkVdNig" association="_mtq80De6EeaHj4rXkVdNig"/>
     <ownedEnd xmi:type="uml:Property" xmi:id="_mtq81De6EeaHj4rXkVdNig" name="user" type="_1NlFwDcnEeaQQLV3gs2Gmw" association="_mtq80De6EeaHj4rXkVdNig"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_NbW9EDhUEeaHj4rXkVdNig" name="Flow">
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_VRkEUDhUEeaHj4rXkVdNig" client="_NbW9EDhUEeaHj4rXkVdNig" supplier="_G00G4DhUEeaHj4rXkVdNig"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_iizFUDheEeaHj4rXkVdNig" name="Model">
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_OXPVgDhfEeaHj4rXkVdNig" name="[MODEL] Add/remove MICD"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_QGdQYDhfEeaHj4rXkVdNig" name="[MODEL] Set period"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_SdVoMDhfEeaHj4rXkVdNig" name="[MODEL] Set CPU"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_UbFHQDhfEeaHj4rXkVdNig" name="[MODEL] Set task"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_ZYIQEDhfEeaHj4rXkVdNig" name="[MODEL] Add/remove ACICD"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_ditaIDhfEeaHj4rXkVdNig" name="[MODEL] Compare MICD"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_huW7MDhfEeaHj4rXkVdNig" name="CopyOf_[MODEL] Compare MICD_1"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_jVsFYDhfEeaHj4rXkVdNig" name="[MODEL] Compare ACICD"/>
   </packagedElement>
 </uml:Model>
