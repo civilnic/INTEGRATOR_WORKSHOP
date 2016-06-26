@@ -27,17 +27,16 @@ A MICD&#xD;
 A library (optional)&#xD;
 </body>
     </ownedComment>
-    <packagedElement xmi:type="uml:UseCase" xmi:id="_rrs08DcpEeaQQLV3gs2Gmw" name="[WORKSPACE][U3] Add/delete liboperateur"/>
-    <packagedElement xmi:type="uml:UseCase" xmi:id="_-HRN0DcoEeaQQLV3gs2Gmw" name="[WORKSPACE][U2] Add/delete machine"/>
-    <packagedElement xmi:type="uml:UseCase" xmi:id="_8H6aoDcnEeaQQLV3gs2Gmw" name="[WORKSPACE][U1] Add/delete model"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_rrs08DcpEeaQQLV3gs2Gmw" name="[WORKSPACE][U3] Create liboperateur"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_-HRN0DcoEeaQQLV3gs2Gmw" name="[WORKSPACE][U2] Create machine"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_8H6aoDcnEeaQQLV3gs2Gmw" name="[WORKSPACE][U1] Create model">
+      <extend xmi:type="uml:Extend" xmi:id="_LUNpsDveEeajnKgiAVYzEw" extendedCase="_UbFHQDhfEeaHj4rXkVdNig" extensionLocation="_LUNpsTveEeajnKgiAVYzEw"/>
+      <extend xmi:type="uml:Extend" xmi:id="_Nb-ncDveEeajnKgiAVYzEw" extendedCase="_SdVoMDhfEeaHj4rXkVdNig" extensionLocation="_Nb_OgDveEeajnKgiAVYzEw"/>
+      <extend xmi:type="uml:Extend" xmi:id="_SKPtYDveEeajnKgiAVYzEw" extendedCase="_QGdQYDhfEeaHj4rXkVdNig" extensionLocation="_SKQUcDveEeajnKgiAVYzEw"/>
+    </packagedElement>
     <packagedElement xmi:type="uml:UseCase" xmi:id="_hvxfcDe6EeaHj4rXkVdNig" name="[WORKSPACE][U4] Create application"/>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_OWPUMDeUEeaHj4rXkVdNig" memberEnd="_OWVa0DeUEeaHj4rXkVdNig _OWVa0TeUEeaHj4rXkVdNig">
-    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_OWPUMTeUEeaHj4rXkVdNig" source="org.eclipse.papyrus">
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_OWPUMjeUEeaHj4rXkVdNig" key="nature" value="UML_Nature"/>
-    </eAnnotations>
-    <ownedEnd xmi:type="uml:Property" xmi:id="_OWVa0DeUEeaHj4rXkVdNig" name="[edit][workspace][u1] add/delete model" type="_8H6aoDcnEeaQQLV3gs2Gmw" association="_OWPUMDeUEeaHj4rXkVdNig"/>
-    <ownedEnd xmi:type="uml:Property" xmi:id="_OWVa0TeUEeaHj4rXkVdNig" name="user" type="_1NlFwDcnEeaQQLV3gs2Gmw" association="_OWPUMDeUEeaHj4rXkVdNig"/>
+    <packagedElement xmi:type="uml:Usage" xmi:id="__2uSsDvdEeajnKgiAVYzEw" client="_8H6aoDcnEeaQQLV3gs2Gmw" supplier="_OXPVgDhfEeaHj4rXkVdNig"/>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_BbKg8DveEeajnKgiAVYzEw" client="_8H6aoDcnEeaQQLV3gs2Gmw" supplier="_ZYIQEDhfEeaHj4rXkVdNig"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="_VxeWsDeUEeaHj4rXkVdNig" memberEnd="_VxeWszeUEeaHj4rXkVdNig _VxeWtDeUEeaHj4rXkVdNig">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_VxeWsTeUEeaHj4rXkVdNig" source="org.eclipse.papyrus">
@@ -84,12 +83,25 @@ A library (optional)&#xD;
   </packagedElement>
   <packagedElement xmi:type="uml:Package" xmi:id="_iizFUDheEeaHj4rXkVdNig" name="Model">
     <packagedElement xmi:type="uml:UseCase" xmi:id="_OXPVgDhfEeaHj4rXkVdNig" name="[MODEL] Add/remove MICD"/>
-    <packagedElement xmi:type="uml:UseCase" xmi:id="_QGdQYDhfEeaHj4rXkVdNig" name="[MODEL] Set period"/>
-    <packagedElement xmi:type="uml:UseCase" xmi:id="_SdVoMDhfEeaHj4rXkVdNig" name="[MODEL] Set CPU"/>
-    <packagedElement xmi:type="uml:UseCase" xmi:id="_UbFHQDhfEeaHj4rXkVdNig" name="[MODEL] Set task"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_QGdQYDhfEeaHj4rXkVdNig" name="[MODEL] Set period">
+      <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_SKQUcDveEeajnKgiAVYzEw" name="ExtensionPoint1"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_SdVoMDhfEeaHj4rXkVdNig" name="[MODEL] Set CPU">
+      <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_Nb_OgDveEeajnKgiAVYzEw" name="ExtensionPoint1"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_UbFHQDhfEeaHj4rXkVdNig" name="[MODEL] Set task">
+      <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_LUNpsTveEeajnKgiAVYzEw" name="ExtensionPoint1"/>
+    </packagedElement>
     <packagedElement xmi:type="uml:UseCase" xmi:id="_ZYIQEDhfEeaHj4rXkVdNig" name="[MODEL] Add/remove ACICD"/>
     <packagedElement xmi:type="uml:UseCase" xmi:id="_ditaIDhfEeaHj4rXkVdNig" name="[MODEL] Compare MICD"/>
     <packagedElement xmi:type="uml:UseCase" xmi:id="_huW7MDhfEeaHj4rXkVdNig" name="CopyOf_[MODEL] Compare MICD_1"/>
     <packagedElement xmi:type="uml:UseCase" xmi:id="_jVsFYDhfEeaHj4rXkVdNig" name="[MODEL] Compare ACICD"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_AZkWgDvdEeajnKgiAVYzEw" memberEnd="_AZnZ0DvdEeajnKgiAVYzEw _AZoA4DvdEeajnKgiAVYzEw">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_AZlkoDvdEeajnKgiAVYzEw" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_AZlkoTvdEeajnKgiAVYzEw" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_AZnZ0DvdEeajnKgiAVYzEw" name="[workspace][u1] add/delete model" type="_8H6aoDcnEeaQQLV3gs2Gmw" association="_AZkWgDvdEeajnKgiAVYzEw"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_AZoA4DvdEeajnKgiAVYzEw" name="user" type="_1NlFwDcnEeaQQLV3gs2Gmw" association="_AZkWgDvdEeajnKgiAVYzEw"/>
   </packagedElement>
 </uml:Model>
