@@ -59,11 +59,12 @@
         <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_3GnxwzxbEeaWmO7YOoebPw" name="ExtensionPoint1"/>
         <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_3GnxxDxbEeaWmO7YOoebPw" name="ExtensionPoint2"/>
         <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_3GnxxTxbEeaWmO7YOoebPw" name="ExtensionPoint3"/>
+        <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_CggB0DxhEeasZ-LlHoKlzQ" name="ExtensionPoint4"/>
         <include xmi:type="uml:Include" xmi:id="_3GnxxjxbEeaWmO7YOoebPw" addition="_khtfYDxLEeaWmO7YOoebPw"/>
         <include xmi:type="uml:Include" xmi:id="_BYAiADxcEeaWmO7YOoebPw" addition="_y7enADxbEeaWmO7YOoebPw"/>
         <include xmi:type="uml:Include" xmi:id="_KApy0DxcEeaWmO7YOoebPw" addition="_DROtcDxcEeaWmO7YOoebPw"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:UseCase" xmi:id="_DROtcDxcEeaWmO7YOoebPw" name="[WORKSPACE][U3] Get model list">
+      <packagedElement xmi:type="uml:UseCase" xmi:id="_DROtcDxcEeaWmO7YOoebPw" name="[WORKSPACE][U3] Get model list" subject="_8zlt4DxWEeaWmO7YOoebPw">
         <ownedUseCase xmi:type="uml:UseCase" xmi:id="_DROtcTxcEeaWmO7YOoebPw" name="[WORKSPACE][U2] Open application">
           <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_DROtcjxcEeaWmO7YOoebPw" name="ExtensionPoint1"/>
         </ownedUseCase>
@@ -87,45 +88,45 @@
       </packagedElement>
       <packagedElement xmi:type="uml:Component" xmi:id="_codgoDxKEeaWmO7YOoebPw" name="Application bank"/>
       <packagedElement xmi:type="uml:UseCase" xmi:id="_1SDFgDxKEeaWmO7YOoebPw" name="[APPLICATION][U2.1] link model" subject="_8zlt4DxWEeaWmO7YOoebPw">
+        <generalization xmi:type="uml:Generalization" xmi:id="_CzxYkDxgEeasZ-LlHoKlzQ" general="_Qmwz4DxLEeaWmO7YOoebPw"/>
         <ownedUseCase xmi:type="uml:UseCase" xmi:id="_76HlsDxKEeaWmO7YOoebPw" name="[APPLICATION][U2] add model">
           <extend xmi:type="uml:Extend" xmi:id="_76HlsTxKEeaWmO7YOoebPw" extendedCase="_g3qMUDxHEeaWmO7YOoebPw" extensionLocation="_OTJA4DxKEeaWmO7YOoebPw"/>
           <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_76HlsjxKEeaWmO7YOoebPw" name="ExtensionPoint1"/>
         </ownedUseCase>
         <extend xmi:type="uml:Extend" xmi:id="_1SDFgTxKEeaWmO7YOoebPw" extendedCase="_g3qMUDxHEeaWmO7YOoebPw" extensionLocation="_OTJA4DxKEeaWmO7YOoebPw"/>
-        <extend xmi:type="uml:Extend" xmi:id="_dutHQDxbEeaWmO7YOoebPw" extendedCase="_Qmwz4DxLEeaWmO7YOoebPw" extensionLocation="_dutuUDxbEeaWmO7YOoebPw"/>
         <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_1SDFgjxKEeaWmO7YOoebPw" name="ExtensionPoint1"/>
       </packagedElement>
       <packagedElement xmi:type="uml:UseCase" xmi:id="_9Y0_YDxKEeaWmO7YOoebPw" name="[APPLICATION][U2.2] unlink model">
+        <generalization xmi:type="uml:Generalization" xmi:id="_JBJg0DxgEeasZ-LlHoKlzQ" general="_Qmwz4DxLEeaWmO7YOoebPw"/>
         <ownedUseCase xmi:type="uml:UseCase" xmi:id="_9Y0_YTxKEeaWmO7YOoebPw" name="[APPLICATION][U2] add model">
           <extend xmi:type="uml:Extend" xmi:id="_9Y0_YjxKEeaWmO7YOoebPw" extendedCase="_g3qMUDxHEeaWmO7YOoebPw" extensionLocation="_OTJA4DxKEeaWmO7YOoebPw"/>
           <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_9Y0_YzxKEeaWmO7YOoebPw" name="ExtensionPoint1"/>
         </ownedUseCase>
         <extend xmi:type="uml:Extend" xmi:id="_9Y0_ZDxKEeaWmO7YOoebPw" extendedCase="_g3qMUDxHEeaWmO7YOoebPw" extensionLocation="_OTJA4DxKEeaWmO7YOoebPw"/>
-        <extend xmi:type="uml:Extend" xmi:id="_eeygYDxbEeaWmO7YOoebPw" extendedCase="_Qmwz4DxLEeaWmO7YOoebPw" extensionLocation="_eezHcDxbEeaWmO7YOoebPw"/>
         <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_9Y0_ZTxKEeaWmO7YOoebPw" name="ExtensionPoint1"/>
       </packagedElement>
       <packagedElement xmi:type="uml:UseCase" xmi:id="_1xF8gDxLEeaWmO7YOoebPw" name="[APPLICATION][U3] unlink machine">
-        <extend xmi:type="uml:Extend" xmi:id="_hovT4DxbEeaWmO7YOoebPw" extendedCase="_Qmwz4DxLEeaWmO7YOoebPw" extensionLocation="_hov68DxbEeaWmO7YOoebPw"/>
+        <generalization xmi:type="uml:Generalization" xmi:id="_K2xlsDxgEeasZ-LlHoKlzQ" general="_Qmwz4DxLEeaWmO7YOoebPw"/>
       </packagedElement>
       <packagedElement xmi:type="uml:UseCase" xmi:id="_6JoqEDxLEeaWmO7YOoebPw" name="[APPLICATION][U3] link machine">
-        <extend xmi:type="uml:Extend" xmi:id="_f_ooEDxbEeaWmO7YOoebPw" extendedCase="_Qmwz4DxLEeaWmO7YOoebPw" extensionLocation="_f_pPIDxbEeaWmO7YOoebPw"/>
+        <generalization xmi:type="uml:Generalization" xmi:id="_KRB0UDxgEeasZ-LlHoKlzQ" general="_Qmwz4DxLEeaWmO7YOoebPw"/>
       </packagedElement>
       <packagedElement xmi:type="uml:UseCase" xmi:id="_NysUUDxMEeaWmO7YOoebPw" name="[APPLICATION][U4] link liboperator">
-        <extend xmi:type="uml:Extend" xmi:id="_ikfxgDxbEeaWmO7YOoebPw" extendedCase="_Qmwz4DxLEeaWmO7YOoebPw" extensionLocation="_ikgYkDxbEeaWmO7YOoebPw"/>
+        <generalization xmi:type="uml:Generalization" xmi:id="_LvSiEDxgEeasZ-LlHoKlzQ" general="_Qmwz4DxLEeaWmO7YOoebPw"/>
       </packagedElement>
       <packagedElement xmi:type="uml:UseCase" xmi:id="_NysUUTxMEeaWmO7YOoebPw" name="[APPLICATION][U4] unlink liboperator">
-        <extend xmi:type="uml:Extend" xmi:id="_ju1dsDxbEeaWmO7YOoebPw" extendedCase="_Qmwz4DxLEeaWmO7YOoebPw" extensionLocation="_ju1dsTxbEeaWmO7YOoebPw"/>
+        <generalization xmi:type="uml:Generalization" xmi:id="_MkMJwDxgEeasZ-LlHoKlzQ" general="_Qmwz4DxLEeaWmO7YOoebPw"/>
       </packagedElement>
       <packagedElement xmi:type="uml:UseCase" xmi:id="_h4OfMDxMEeaWmO7YOoebPw" name="[APPLICATION][U5] Create data flow">
-        <extend xmi:type="uml:Extend" xmi:id="_lCO_QDxbEeaWmO7YOoebPw" extendedCase="_Qmwz4DxLEeaWmO7YOoebPw" extensionLocation="_lCPmUDxbEeaWmO7YOoebPw"/>
+        <generalization xmi:type="uml:Generalization" xmi:id="_Ni-GMDxgEeasZ-LlHoKlzQ" general="_Qmwz4DxLEeaWmO7YOoebPw"/>
       </packagedElement>
       <packagedElement xmi:type="uml:UseCase" xmi:id="_EyrWQDxVEeaWmO7YOoebPw" name="[APPLICATION][U2.3] create model">
+        <generalization xmi:type="uml:Generalization" xmi:id="_Jo3BEDxgEeasZ-LlHoKlzQ" general="_Qmwz4DxLEeaWmO7YOoebPw"/>
         <ownedUseCase xmi:type="uml:UseCase" xmi:id="_EyrWQTxVEeaWmO7YOoebPw" name="[APPLICATION][U2] add model">
           <extend xmi:type="uml:Extend" xmi:id="_EyrWQjxVEeaWmO7YOoebPw" extendedCase="_g3qMUDxHEeaWmO7YOoebPw" extensionLocation="_OTJA4DxKEeaWmO7YOoebPw"/>
           <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_EyrWQzxVEeaWmO7YOoebPw" name="ExtensionPoint1"/>
         </ownedUseCase>
         <extend xmi:type="uml:Extend" xmi:id="_EyrWRDxVEeaWmO7YOoebPw" extendedCase="_g3qMUDxHEeaWmO7YOoebPw" extensionLocation="_OTJA4DxKEeaWmO7YOoebPw"/>
-        <extend xmi:type="uml:Extend" xmi:id="_fe7HsDxbEeaWmO7YOoebPw" extendedCase="_Qmwz4DxLEeaWmO7YOoebPw" extensionLocation="_fe7uwDxbEeaWmO7YOoebPw"/>
         <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_EyrWRTxVEeaWmO7YOoebPw" name="ExtensionPoint1"/>
       </packagedElement>
     </packagedElement>
@@ -135,7 +136,7 @@
         <extend xmi:type="uml:Extend" xmi:id="_k2_8cDxXEeaWmO7YOoebPw" extendedCase="_gjIwADxWEeaWmO7YOoebPw" extensionLocation="_k3AjgDxXEeaWmO7YOoebPw"/>
         <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_hym-YTxXEeaWmO7YOoebPw" name="ExtensionPoint1"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Component" xmi:id="_8zlt4DxWEeaWmO7YOoebPw" name="Model bank" useCase="_1SDFgDxKEeaWmO7YOoebPw"/>
+      <packagedElement xmi:type="uml:Component" xmi:id="_8zlt4DxWEeaWmO7YOoebPw" name="Model bank" useCase="_1SDFgDxKEeaWmO7YOoebPw _DROtcDxcEeaWmO7YOoebPw"/>
       <packagedElement xmi:type="uml:UseCase" xmi:id="_8zlt4TxWEeaWmO7YOoebPw" name="[MODEL][U1.1.1] Validate">
         <extend xmi:type="uml:Extend" xmi:id="_8zlt4jxWEeaWmO7YOoebPw" extendedCase="_7rGkMDxIEeaWmO7YOoebPw" extensionLocation="_-YWYIDxJEeaWmO7YOoebPw"/>
         <extend xmi:type="uml:Extend" xmi:id="_hym-YDxXEeaWmO7YOoebPw" extendedCase="_wHMTwDxWEeaWmO7YOoebPw" extensionLocation="_hym-YTxXEeaWmO7YOoebPw"/>
@@ -145,6 +146,11 @@
       <packagedElement xmi:type="uml:UseCase" xmi:id="_8zmU8DxWEeaWmO7YOoebPw" name="[MODEL][U1.1.2] Add to model bank">
         <extend xmi:type="uml:Extend" xmi:id="_8zmU8TxWEeaWmO7YOoebPw" extendedCase="_8zlt4TxWEeaWmO7YOoebPw" extensionLocation="_8zlt4zxWEeaWmO7YOoebPw"/>
         <extend xmi:type="uml:Extend" xmi:id="_hGzoUDxXEeaWmO7YOoebPw" extendedCase="_8zlt4TxWEeaWmO7YOoebPw" extensionLocation="_hG0PYDxXEeaWmO7YOoebPw"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:UseCase" xmi:id="_2-pvQDxgEeasZ-LlHoKlzQ" name="[MODEL][U1.2] Modify model parameters">
+        <generalization xmi:type="uml:Generalization" xmi:id="_E13WsDxhEeasZ-LlHoKlzQ" general="_3GnxwDxbEeaWmO7YOoebPw"/>
+        <extend xmi:type="uml:Extend" xmi:id="_2-pvQTxgEeasZ-LlHoKlzQ" extendedCase="_gjIwADxWEeaWmO7YOoebPw" extensionLocation="_k3AjgDxXEeaWmO7YOoebPw"/>
+        <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_2-pvQjxgEeasZ-LlHoKlzQ" name="ExtensionPoint1"/>
       </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_7_EegDxHEeaWmO7YOoebPw" name="Machine"/>
