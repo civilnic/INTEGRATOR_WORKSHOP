@@ -30,13 +30,14 @@ A library (optional)&#xD;
     <packagedElement xmi:type="uml:UseCase" xmi:id="_rrs08DcpEeaQQLV3gs2Gmw" name="[WORKSPACE][U3] Create liboperateur"/>
     <packagedElement xmi:type="uml:UseCase" xmi:id="_-HRN0DcoEeaQQLV3gs2Gmw" name="[WORKSPACE][U2] Create machine"/>
     <packagedElement xmi:type="uml:UseCase" xmi:id="_8H6aoDcnEeaQQLV3gs2Gmw" name="[WORKSPACE][U1] Create model">
-      <extend xmi:type="uml:Extend" xmi:id="_LUNpsDveEeajnKgiAVYzEw" extendedCase="_UbFHQDhfEeaHj4rXkVdNig" extensionLocation="_LUNpsTveEeajnKgiAVYzEw"/>
-      <extend xmi:type="uml:Extend" xmi:id="_Nb-ncDveEeajnKgiAVYzEw" extendedCase="_SdVoMDhfEeaHj4rXkVdNig" extensionLocation="_Nb_OgDveEeajnKgiAVYzEw"/>
-      <extend xmi:type="uml:Extend" xmi:id="_SKPtYDveEeajnKgiAVYzEw" extendedCase="_QGdQYDhfEeaHj4rXkVdNig" extensionLocation="_SKQUcDveEeajnKgiAVYzEw"/>
+      <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_2IH2EDxDEeaWmO7YOoebPw" name="ExtensionPoint1"/>
     </packagedElement>
     <packagedElement xmi:type="uml:UseCase" xmi:id="_hvxfcDe6EeaHj4rXkVdNig" name="[WORKSPACE][U4] Create application"/>
-    <packagedElement xmi:type="uml:Usage" xmi:id="__2uSsDvdEeajnKgiAVYzEw" client="_8H6aoDcnEeaQQLV3gs2Gmw" supplier="_OXPVgDhfEeaHj4rXkVdNig"/>
-    <packagedElement xmi:type="uml:Usage" xmi:id="_BbKg8DveEeajnKgiAVYzEw" client="_8H6aoDcnEeaQQLV3gs2Gmw" supplier="_ZYIQEDhfEeaHj4rXkVdNig"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_pvLjcDxDEeaWmO7YOoebPw" name="[WORKSPACE][U5] Add model to model bank">
+      <extend xmi:type="uml:Extend" xmi:id="_2H-sIDxDEeaWmO7YOoebPw" extendedCase="_8H6aoDcnEeaQQLV3gs2Gmw" extensionLocation="_2IH2EDxDEeaWmO7YOoebPw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_-F89YDxFEeaWmO7YOoebPw" name="[WORKSPACE][U6] Remove model from model bank"/>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_dQJvkDxGEeaWmO7YOoebPw" client="_pvLjcDxDEeaWmO7YOoebPw" supplier="_dNrqYDxGEeaWmO7YOoebPw"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="_VxeWsDeUEeaHj4rXkVdNig" memberEnd="_VxeWszeUEeaHj4rXkVdNig _VxeWtDeUEeaHj4rXkVdNig">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_VxeWsTeUEeaHj4rXkVdNig" source="org.eclipse.papyrus">
@@ -54,20 +55,17 @@ A library (optional)&#xD;
   </packagedElement>
   <packagedElement xmi:type="uml:Package" xmi:id="_mPqncDeUEeaHj4rXkVdNig" name="Application">
     <packagedElement xmi:type="uml:UseCase" xmi:id="_zkt_oDcpEeaQQLV3gs2Gmw" name="[APPLICATION] Create data flow">
-      <include xmi:type="uml:Include" xmi:id="_7s_EoDeUEeaHj4rXkVdNig" addition="_1u6jsDeUEeaHj4rXkVdNig"/>
+      <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_RGoD4TxEEeaWmO7YOoebPw" name="ExtensionPoint1"/>
+      <include xmi:type="uml:Include" xmi:id="_VB5moDxEEeaWmO7YOoebPw" addition="_1u6jsDeUEeaHj4rXkVdNig"/>
     </packagedElement>
     <packagedElement xmi:type="uml:UseCase" xmi:id="_1u6jsDeUEeaHj4rXkVdNig" name="[APPLICATION] Add/remove model">
-      <include xmi:type="uml:Include" xmi:id="_5yWj8DeUEeaHj4rXkVdNig" addition="_8H6aoDcnEeaQQLV3gs2Gmw"/>
+      <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_SUlEwTxEEeaWmO7YOoebPw" name="ExtensionPoint1"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:UseCase" xmi:id="_-DtrcDeUEeaHj4rXkVdNig" name="[APPLICATION] Add/remove lib_operator">
-      <include xmi:type="uml:Include" xmi:id="_ItP18DeVEeaHj4rXkVdNig" addition="_rrs08DcpEeaQQLV3gs2Gmw"/>
-    </packagedElement>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_-DtrcDeUEeaHj4rXkVdNig" name="[APPLICATION] Add/remove lib_operator"/>
     <packagedElement xmi:type="uml:UseCase" xmi:id="_AmjboDeVEeaHj4rXkVdNig" name="CopyOf_[APPLICATION] Associate lib_operator_1"/>
-    <packagedElement xmi:type="uml:UseCase" xmi:id="_BQCdgDeVEeaHj4rXkVdNig" name="[APPLICATION] Add/remove machine">
-      <include xmi:type="uml:Include" xmi:id="_H_VnEDeVEeaHj4rXkVdNig" addition="_-HRN0DcoEeaQQLV3gs2Gmw"/>
-    </packagedElement>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_BQCdgDeVEeaHj4rXkVdNig" name="[APPLICATION] Add/remove machine"/>
     <packagedElement xmi:type="uml:UseCase" xmi:id="_G00G4DhUEeaHj4rXkVdNig" name="[APPLICATION] Edit data flow">
-      <include xmi:type="uml:Include" xmi:id="_J2cr4DhUEeaHj4rXkVdNig" addition="_zkt_oDcpEeaQQLV3gs2Gmw"/>
+      <extend xmi:type="uml:Extend" xmi:id="_RGoD4DxEEeaWmO7YOoebPw" extendedCase="_zkt_oDcpEeaQQLV3gs2Gmw" extensionLocation="_RGoD4TxEEeaWmO7YOoebPw"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Dependency" xmi:id="_XgxG0DhUEeaHj4rXkVdNig" client="_mPqncDeUEeaHj4rXkVdNig" supplier="_hvxfcDe6EeaHj4rXkVdNig"/>
   </packagedElement>
@@ -103,5 +101,10 @@ A library (optional)&#xD;
     </eAnnotations>
     <ownedEnd xmi:type="uml:Property" xmi:id="_AZnZ0DvdEeajnKgiAVYzEw" name="[workspace][u1] add/delete model" type="_8H6aoDcnEeaQQLV3gs2Gmw" association="_AZkWgDvdEeajnKgiAVYzEw"/>
     <ownedEnd xmi:type="uml:Property" xmi:id="_AZoA4DvdEeajnKgiAVYzEw" name="user" type="_1NlFwDcnEeaQQLV3gs2Gmw" association="_AZkWgDvdEeajnKgiAVYzEw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Component" xmi:id="_rBcAEDxEEeaWmO7YOoebPw" name="Model bank">
+    <ownedRule xmi:type="uml:Constraint" xmi:id="_dNrqYDxGEeaWmO7YOoebPw" name="Constraint1">
+      <specification xmi:type="uml:LiteralString" xmi:id="_dOKLgDxGEeaWmO7YOoebPw" name="constraintSpec"/>
+    </ownedRule>
   </packagedElement>
 </uml:Model>
