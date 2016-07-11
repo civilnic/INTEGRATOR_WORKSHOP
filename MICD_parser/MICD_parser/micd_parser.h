@@ -9,7 +9,7 @@ using namespace xls;
 class micd_parser
 {
 public:
-    micd_parser();
+    micd_parser(const char * filename);
 };
 
 #endif // MICD_PARSER_H

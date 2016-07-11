@@ -2,19 +2,13 @@
 #include <string>
 #include <fstream>
 
+#include "micd_parser.h"
 
-
-int main(void)
+int main(int argc, char *argv[])
 {
-    xlsWorkBook *WorkBook;
-    xlsWorkSheet *WorkSheet;
-    int i,t;
-    struct st_row_data* row;
+    const char *micd_name=argv[1];
 
-    const char *micd_name="F:\\Mes documents\\Nicolas\\Boulot\\Developpement\\INTEGRATOR_WORKSHOP\\MICD_parser\\MICD_parser\\ICD_prim_a_1.xls";
+    micd_parser *MICD=new micd_parser(micd_name);
 
-    WorkBook=xls_open(micd_name,"UTF-8");
-
-
-        return 0;
+    return 0;
 }

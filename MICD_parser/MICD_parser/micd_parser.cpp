@@ -1,7 +1,14 @@
 #include "micd_parser.h"
 
-micd_parser::micd_parser()
+micd_parser::micd_parser(const char * filename)
 {
+    xlsWorkBook *WorkBook;
+    xlsWorkSheet *WorkSheet;
+    int i,t;
+    struct st_row_data* row;
+
+    WorkBook=xls_open(filename,"UTF-8");
+
     if (WorkBook!=NULL)
     {
         for (i=0;i<WorkBook->sheets.count;i++)
@@ -18,6 +25,6 @@ micd_parser::micd_parser()
     }
     else
     {
-        printf("Impossible d ouvrir %s\n",micd_name);
+        printf("Impossible d ouvrir %s\n",filename);
     }
 }
