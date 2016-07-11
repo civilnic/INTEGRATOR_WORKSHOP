@@ -41,9 +41,11 @@ extern BYTE* get_string(BYTE *s,BYTE is2, BYTE isUnicode, char *charset);
 extern DWORD xls_getColor(const WORD color,WORD def);
 
 extern void xls_showBookInfo(xlsWorkBook* pWB);
-extern void xls_showROW(struct st_row_data* row);
+//extern void xls_showROW(struct st_row_data* row);
+extern void xls_showROW(xlsRow* row);
 extern void xls_showColinfo(struct st_colinfo_data* col);
-extern void xls_showCell(struct st_cell_data* cell);
+//extern void xls_showCell(struct st_cell_data* cell);
+extern void xls_showCell(xlsCell* cell);
 extern void xls_showFont(struct st_font_data* font);
 extern void xls_showXF(XF8* xf);
 extern void xls_showFormat(struct st_format_data* format);
