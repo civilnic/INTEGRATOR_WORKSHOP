@@ -95,7 +95,7 @@
         <include xmi:type="uml:Include" xmi:id="_ou5hikLuEeard-vNJMD6Tg" addition="_khtfYDxLEeaWmO7YOoebPw"/>
         <include xmi:type="uml:Include" xmi:id="_ou5hi0LuEeard-vNJMD6Tg" addition="_DROtcDxcEeaWmO7YOoebPw"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:UseCase" xmi:id="_2pUYgELvEeard-vNJMD6Tg" name="[WORKSPACE][U2] Display application parameters">
+      <packagedElement xmi:type="uml:UseCase" xmi:id="_2pUYgELvEeard-vNJMD6Tg" name="[WORKSPACE][U2] Display application">
         <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_JD9H0ULwEeard-vNJMD6Tg" name="ExtensionPoint1"/>
         <include xmi:type="uml:Include" xmi:id="_8-VZ0ELvEeard-vNJMD6Tg" addition="_EZdJgDxLEeaWmO7YOoebPw"/>
       </packagedElement>
