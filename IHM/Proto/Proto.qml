@@ -29,6 +29,9 @@ ApplicationWindow {
 
         RowLayout {
             anchors.fill: parent
+            Custom_button{
+
+            }
 
             ToolButton {
                 height:50
@@ -59,19 +62,20 @@ ApplicationWindow {
         }
     }
 
-    SplitView {
-        TableView{
-            height:parent.height
-            TableViewColumn{
-                width:20
 
-                title: "Models"
-                role:  "name"
-            }
-            model: 20
-        }
+        RowLayout{
         Rectangle{
+            width:200
             color: "blue"
         }
-    }
+        Rectangle{
+            width:200
+            color: "white"
+        }
+        Rectangle{
+            width:200
+            color: "red"
+        }
+        }
+
 }
