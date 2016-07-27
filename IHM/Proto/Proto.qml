@@ -4,6 +4,7 @@ import QtQuick.Dialogs 1.2
 import QtQuick.Layouts 1.1
 
 ApplicationWindow {
+    id:main_window
     visible: true
     width: 640
     color: "#9b9696"
@@ -32,30 +33,45 @@ ApplicationWindow {
             ToolButton {
                 height:50
                 width:parent.width
-                text:"Open"
-                iconSource: "images/button.png"
+                iconSource: "images/icons/ic_chevron_left_black_48dp.png"
+                onClicked: main_window.color="blue"
             }
-
+            ToolButton {
+                height:50
+                width:parent.width
+                iconSource: "images/icons/ic_chevron_right_black_48dp.png"
+                onClicked: main_window.color="#9b9696"
+            }
         }
 
 
     }
 
     statusBar: StatusBar{
+        RowLayout {
+            anchors.fill: parent
+            width:parent.width
 
+               Text{
+                   text:qsTr("En cours de dev")
+                }
+
+        }
     }
 
-    MainForm {
-        anchors.fill: parent
-    }
+    SplitView {
+        TableView{
+            height:parent.height
+            TableViewColumn{
+                width:20
 
-    MessageDialog {
-        id: messageDialog
-        title: qsTr("May I have your attention, please?")
-
-        function show(caption) {
-            messageDialog.text = caption;
-            messageDialog.open();
+                title: "Models"
+                role:  "name"
+            }
+            model: 20
+        }
+        Rectangle{
+            color: "blue"
         }
     }
 }
