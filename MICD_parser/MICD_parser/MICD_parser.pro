@@ -4,6 +4,8 @@ CONFIG -= app_bundle
 
 QT       += sql # On rajoute SQL
 
+QMAKE_CXXFLAGS += -D__NO_INLINE__
+
 TEMPLATE = app
 
 SOURCES += main.cpp \

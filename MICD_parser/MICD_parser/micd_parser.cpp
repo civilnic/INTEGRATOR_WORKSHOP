@@ -1,4 +1,5 @@
 #include "micd_parser.h"
+#include "micd_header.h"
 
 micd_parser::micd_parser(const char * filename)
 {
