@@ -1,7 +1,7 @@
-#include "micd_parser.h"
+#include "micd_document.h"
 #include "micd_header.h"
 
-micd_parser::micd_parser(const char * filename)
+micd_document::micd_document(sql_database_manager *database_manager,const char * filename)
 {
 
     int i;
@@ -51,7 +51,7 @@ micd_parser::micd_parser(const char * filename)
                     header_test_string+=temp;
                 }
 
-                std::cout <<header_test_string << std::endl;
+                std::cout <<header_test_string << std::endl<< std::endl;
 
                 std::vector<std::string> vector_test=MICD_header_FUN_IN_type2;
                 string test=boost::algorithm::join(vector_test,"");

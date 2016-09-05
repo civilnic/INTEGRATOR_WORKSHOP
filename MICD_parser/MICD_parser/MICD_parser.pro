@@ -9,13 +9,17 @@ QMAKE_CXXFLAGS += -D__NO_INLINE__
 TEMPLATE = app
 
 SOURCES += main.cpp \
-    micd_parser.cpp
+    ../../SQL_manager/sql_database_manager.cpp \
+    micd_document.cpp
 
 HEADERS += \
     ../../XLS/libxls/include/xls.h \
-    micd_parser.h \
-    micd_header.h
+    micd_header.h \
+    ../../SQL_manager/sql_database_manager.h \
+    micd_document.h
+
 INCLUDEPATH += ../../XLS/libxls/include/
+INCLUDEPATH += ../../SQL_manager/
 
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../XLS/libxls/lib/ -lxlsreader
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../XLS/libxls/lib/ -lxlsreaderd

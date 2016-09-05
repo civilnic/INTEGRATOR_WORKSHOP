@@ -5,6 +5,8 @@ CONFIG -= app_bundle
 
 QT       += sql # On rajoute SQL
 
+QMAKE_CXXFLAGS += -D__NO_INLINE__
+
 SOURCES += main.cpp \
     acicd_equipment.cpp \
     acicd_connector.cpp \
