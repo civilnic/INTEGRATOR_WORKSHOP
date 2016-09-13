@@ -10,13 +10,15 @@ TEMPLATE = app
 
 SOURCES += main.cpp \
     ../../SQL_manager/sql_database_manager.cpp \
-    micd_document.cpp
+    micd_document.cpp \
+    micd_element.cpp
 
 HEADERS += \
     ../../XLS/libxls/include/xls.h \
     micd_header.h \
     ../../SQL_manager/sql_database_manager.h \
-    micd_document.h
+    micd_document.h \
+    micd_element.h
 
 INCLUDEPATH += ../../XLS/libxls/include/
 INCLUDEPATH += ../../SQL_manager/

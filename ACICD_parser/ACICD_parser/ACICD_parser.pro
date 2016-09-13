@@ -10,7 +10,6 @@ QMAKE_CXXFLAGS += -D__NO_INLINE__
 SOURCES += main.cpp \
     acicd_equipment.cpp \
     acicd_connector.cpp \
-    sql_database_manager.cpp \
     acicd_document.cpp \
     acicd_element.cpp \
     acicd_connector_line_type.cpp \
@@ -70,7 +69,6 @@ HEADERS += \
     acicd_header.h \
     acicd_equipment.h \
     acicd_connector.h \
-    sql_database_manager.h \
     acicd_document.h \
     acicd_element.h \
     acicd_connector_line_type.h \
@@ -124,3 +122,14 @@ HEADERS += \
 
 INCLUDEPATH += ../../CSV/ \
                C:\local\boost_1_60_0
+
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../SQL_manager/build-sql_database_manager-Qt_5_7_0_mingw53_32-Release/release/ -lsql_database_manager
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../SQL_manager/build-sql_database_manager-Qt_5_7_0_mingw53_32-Release/debug/ -lsql_database_manager
+
+INCLUDEPATH += $$PWD/../../SQL_manager/build-sql_database_manager-Qt_5_7_0_mingw53_32-Release/release
+DEPENDPATH += $$PWD/../../SQL_manager/build-sql_database_manager-Qt_5_7_0_mingw53_32-Release/release
+
+win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../../SQL_manager/build-sql_database_manager-Qt_5_7_0_mingw53_32-Release/release/libsql_database_manager.a
+else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../../SQL_manager/build-sql_database_manager-Qt_5_7_0_mingw53_32-Release/debug/libsql_database_manager.a
+else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../../SQL_manager/build-sql_database_manager-Qt_5_7_0_mingw53_32-Release/release/sql_database_manager.lib
+else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../../SQL_manager/build-sql_database_manager-Qt_5_7_0_mingw53_32-Release/debug/sql_database_manager.lib
