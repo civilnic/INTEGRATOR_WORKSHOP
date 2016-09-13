@@ -37,3 +37,14 @@ DEPENDPATH += $$PWD/C:/MinGW/include
 
 
 INCLUDEPATH += C:\local\boost_1_60_0
+
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../SQL_manager/sql_database_manager/release/ -lsql_database_manager
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../SQL_manager/sql_database_manager/debug/ -lsql_database_manager
+
+INCLUDEPATH += $$PWD/../../SQL_manager/sql_database_manager/release
+DEPENDPATH += $$PWD/../../SQL_manager/sql_database_manager/release
+
+win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../../SQL_manager/sql_database_manager/release/libsql_database_manager.a
+else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../../SQL_manager/sql_database_manager/debug/libsql_database_manager.a
+else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../../SQL_manager/sql_database_manager/release/sql_database_manager.lib
+else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../../SQL_manager/sql_database_manager/debug/sql_database_manager.lib
