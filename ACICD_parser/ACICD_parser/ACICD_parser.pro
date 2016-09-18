@@ -127,8 +127,8 @@ INCLUDEPATH += ../../CSV/ \
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../SQL_manager/sql_database_manager/release/ -lsql_database_manager
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../SQL_manager/sql_database_manager/debug/ -lsql_database_manager
 
-INCLUDEPATH += $$PWD/../../SQL_manager/sql_database_manager/release
-DEPENDPATH += $$PWD/../../SQL_manager/sql_database_manager/release
+INCLUDEPATH += $$PWD/../../SQL_manager/sql_database_manager/
+DEPENDPATH += $$PWD/../../SQL_manager/sql_database_manager/
 
 win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../../SQL_manager/sql_database_manager/release/libsql_database_manager.a
 else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../../SQL_manager/sql_database_manager/debug/libsql_database_manager.a
