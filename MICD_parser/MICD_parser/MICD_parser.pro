@@ -9,16 +9,28 @@ QMAKE_CXXFLAGS += -D__NO_INLINE__
 TEMPLATE = app
 
 SOURCES += main.cpp \
-    ../../SQL_manager/sql_database_manager.cpp \
     micd_document.cpp \
-    micd_element.cpp
+    micd_element.cpp \
+    micd_port_in.cpp \
+    micd_port_out.cpp \
+    micd_unit.cpp \
+    micd_data_type.cpp \
+    micd_com_format.cpp \
+    micd_com_mode.cpp \
+    micd_interface_level.cpp
 
 HEADERS += \
     ../../XLS/libxls/include/xls.h \
     micd_header.h \
-    ../../SQL_manager/sql_database_manager.h \
     micd_document.h \
-    micd_element.h
+    micd_element.h \
+    micd_port_in.h \
+    micd_port_out.h \
+    micd_unit.h \
+    micd_data_type.h \
+    micd_com_format.h \
+    micd_com_mode.h \
+    micd_interface_level.h
 
 INCLUDEPATH += ../../XLS/libxls/include/
 INCLUDEPATH += ../../SQL_manager/
@@ -41,8 +53,8 @@ INCLUDEPATH += C:\local\boost_1_60_0
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../SQL_manager/sql_database_manager/release/ -lsql_database_manager
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../SQL_manager/sql_database_manager/debug/ -lsql_database_manager
 
-INCLUDEPATH += $$PWD/../../SQL_manager/sql_database_manager/release
-DEPENDPATH += $$PWD/../../SQL_manager/sql_database_manager/release
+INCLUDEPATH += $$PWD/../../SQL_manager/sql_database_manager/
+DEPENDPATH += $$PWD/../../SQL_manager/sql_database_manager/
 
 win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../../SQL_manager/sql_database_manager/release/libsql_database_manager.a
 else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../../SQL_manager/sql_database_manager/debug/libsql_database_manager.a
