@@ -2,8 +2,8 @@
 
 micd_port_in::micd_port_in(sql_database_manager *database_manager) : micd_element (database_manager)
 {
-    DB_FIELDS= { { 52, "Name" },
-                 { 57, "Name" }
+    DB_FIELDS= { { 1, "Name" },
+                 { 2, "Name" }
                };
 
     DB_table_name="UNITS";
@@ -14,8 +14,30 @@ micd_port_in::micd_port_in(sql_database_manager *database_manager) : micd_elemen
 
     create_table_query=QString("\
        CREATE TABLE IF NOT EXISTS [%1](\
-        [Name] VARCHAR( 15 ) CHECK (Name != ''),\
-            CONSTRAINT unique_combinaison PRIMARY KEY (Name) ON CONFLICT IGNORE\
+        [Name] TEXT CHECK (Name != ''),\
+        [Type] TEXT CHECK (Type != ''),\
+        [Unit] TEXT,\
+        [Description] TEXT,\
+        [Convention] TEXT,\
+        [Dim1] INTEGER,\
+        [Dim2] INTEGER,\
+        [Com_format] TEXT,\
+        [Com_mode] TEXT ,\
+        [From] TEXT,\
+        [Refresh_rate] TEXT,\
+        [Min] REAL,\
+        [Max] REAL,\
+        [Enum] TEXT,\
+        [Consumed_if] TEXT,\
+        [Aircraft_signal_name] TEXT,\
+        [Interface_level] TEXT,\
+        [Status] INTEGER( 1 ),\
+        [Simulation_level] TEXT,\
+        [Init_value] REAL,\
+        [Custom] TEXT,\
+        [Comment] TEXT,\
+        [Last_modification] TEXT\
+        CONSTRAINT unique_combinaison PRIMARY KEY (Name) ON CONFLICT IGNORE\
        );\n\
        ").arg(DB_table_name);
 
