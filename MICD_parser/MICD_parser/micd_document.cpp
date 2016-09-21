@@ -1,5 +1,4 @@
 #include "micd_document.h"
-#include "micd_header.h"
 
 micd_document::micd_document(sql_database_manager *database_manager,const char * filename)
 {
@@ -22,6 +21,9 @@ micd_document::micd_document(sql_database_manager *database_manager,const char *
     std::vector<std::string> *vector_test;
 
     WorkBook=xls_open(filename,"UTF-8");
+
+
+
 
     if (WorkBook!=NULL)
     {
@@ -134,8 +136,9 @@ micd_document::micd_document(sql_database_manager *database_manager,const char *
                 }
 
 
+                micd_port_in *Ports_in_obj=new micd_port_in(BDD);
 
-                for (t=0;t<=WorkSheet->rows.lastrow;t++)
+                for (t=1;t<=WorkSheet->rows.lastrow;t++)
                 {
                     row=&WorkSheet->rows.row[t];
                     //xls::xls_showROW(row);
@@ -143,12 +146,17 @@ micd_document::micd_document(sql_database_manager *database_manager,const char *
                     {
                         xlsCell	*cell;
                         cell = &row->cells.cell[tt];
-
+                        Ports_in_obj->set_parameters(tt,cell->str);
 
                         if(cell->id == 0x201) continue;
                         //xls_showCell(&cell);
                         //std::cout << cell->str << std::endl;
                     }
+                    if(Ports_in_obj->insert_intable_new(id))
+                    {
+                        this->set_equipment_reference(Ports_in_obj->get_id());
+                    }
+
                 }
              }
          }
