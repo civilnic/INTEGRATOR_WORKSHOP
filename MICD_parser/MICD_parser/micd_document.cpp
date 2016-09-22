@@ -1,9 +1,10 @@
 #include "micd_document.h"
+#include "micd_header.h"
 
 micd_document::micd_document(sql_database_manager *database_manager,const char * filename)
 {
 
-    int i;
+    unsigned int i;
     WORD t,tt;
 
     xlsRow* row;
@@ -20,10 +21,44 @@ micd_document::micd_document(sql_database_manager *database_manager,const char *
 
     std::vector<std::string> *vector_test;
 
+
+    std::map<QString,QString>::iterator iterator;
+
+
+    printf("creation objet MICD\n");
+    path_name=filename;
+    BDD=database_manager;
+    db=(*BDD).get_db();
+    id_micd=-1;
+
+    DB_FIELDS = {   { 2, "Name" },
+                          { 3, "Path" },
+                          { 4, "Modele" },
+                          { 5, "Version" }
+                        };
+
+    DB_VALUES["Name"]=path_name;
+    DB_VALUES["Path"]="";
+    DB_VALUES["Model"]="prim_a";
+    DB_VALUES["Version"]="V4.5";
+
+
+
+    if(BDD->create_table(DB_QUERY_CREATE_TABLE))
+    {
+        db->transaction();
+        id_micd=this->insert_micd();
+        db->commit();
+
+    }
+    else
+    {
+        printf("failed to create MICD table\n");
+        BDD->sql_log_file << "failed to create MICD table\n" <<endl;
+    }
+
+
     WorkBook=xls_open(filename,"UTF-8");
-
-
-
 
     if (WorkBook!=NULL)
     {
@@ -130,7 +165,7 @@ micd_document::micd_document(sql_database_manager *database_manager,const char *
 
                         // TO BE REMOVED: check header vector
                         temp=boost::algorithm::join(*vector_test,"");
-                        std::cout <<temp << std::endl;
+                    //    std::cout <<temp << std::endl;
                     }
 
                 }
@@ -144,25 +179,87 @@ micd_document::micd_document(sql_database_manager *database_manager,const char *
                     //xls::xls_showROW(row);
                     for (tt=0;tt<=WorkSheet->rows.lastcol;tt++)
                     {
-                        xlsCell	*cell;
+                        xlsCell	*cell=NULL;
+
                         cell = &row->cells.cell[tt];
-                        Ports_in_obj->set_parameters(tt,cell->str);
+
+                        Ports_in_obj->set_parameters((int)(tt+1),std::string((char *)cell->str));
 
                         if(cell->id == 0x201) continue;
                         //xls_showCell(&cell);
-                        //std::cout << cell->str << std::endl;
+                        //std::cout << "cellule:   " << tt << "  /  contenu: "<< cell->str << std::endl;
                     }
-                    if(Ports_in_obj->insert_intable_new(id))
+                    if(Ports_in_obj->insert_intable_new(id_micd))
                     {
-                        this->set_equipment_reference(Ports_in_obj->get_id());
+
+                    }else
+                    {
+                        for(iterator=(this->DB_VALUES).begin();iterator!=(this->DB_VALUES.end());++iterator)
+                        {
+                             std::cout << "cellule:   " << iterator->first << "  /  contenu: " << iterator->second << std::endl;
+                        }
+                        std::cout << "insertion KO" << std::endl;
                     }
 
                 }
+                db->commit();
              }
+
+
          }
     }
     else
     {
         printf("Impossible d ouvrir %s\n",filename);
     }
+}
+
+
+int micd_document::insert_micd(void)
+{
+    int Id = -1;
+    bool success = false;
+
+    if (db->isOpen())
+    {
+ //       Id=this->is_acicd_exist(DB_VALUES_ACICD["Name"]);
+
+        // acicd is not in DB
+//        if(Id==0)
+//        {
+            // NULL = is the keyword for the autoincrement to generate next value
+
+            QSqlQuery query(*db);
+            query.prepare(insert_query);
+
+            query.bindValue(":"+DB_FIELDS[2], DB_VALUES[DB_FIELDS[2]]);
+            query.bindValue(":"+DB_FIELDS[3], DB_VALUES[DB_FIELDS[3]]);
+            query.bindValue(":"+DB_FIELDS[4], DB_VALUES[DB_FIELDS[4]]);
+            query.bindValue(":"+DB_FIELDS[5], DB_VALUES[DB_FIELDS[5]]);
+
+            success = query.exec();
+
+            // Get database given autoincrement value
+            if (success)
+            {
+                // http://www.sqlite.org/c3ref/last_insert_rowid.html
+                Id = query.lastInsertId().toInt();
+            }
+            else
+            {
+//                BDD->sql_log_file << "insert_acicd_test: "<< query.lastError().text() <<endl;
+//                qDebug() << "insert_acicd_test: "
+//                         << query.lastError();
+            }
+//        }
+//        else
+//        {
+//            std::cout << DB_VALUES_ACICD["Name"].toStdString() + " already exists in db with: " << std::endl;
+//            printf("Id: %d\n",Id);
+//            BDD->sql_log_file << QString(DB_VALUES_ACICD["Name"]) + " already exists in db with: " <<endl;
+//            BDD->sql_log_file << "Id: " <<Id <<endl;
+//        }
+    }
+
+    return Id;
 }

@@ -50,7 +50,7 @@ micd_port_in::micd_port_in(sql_database_manager *database_manager) : micd_elemen
         [Init_value] REAL,\
         [Custom] TEXT,\
         [Comment] TEXT,\
-        [Last_modification] TEXT\
+        [Last_modification] TEXT,\
         CONSTRAINT unique_combinaison PRIMARY KEY (Name,Type) ON CONFLICT IGNORE\
        );\n\
        ").arg(DB_table_name);

@@ -2,8 +2,9 @@
 #include <string>
 #include <fstream>
 
-#include "micd_document.h"
+
 #include "sql_database_manager.h"
+#include "micd_document.h"
 
 int main(int argc, char *argv[])
 {
