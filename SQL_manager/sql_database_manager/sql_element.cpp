@@ -4,7 +4,7 @@ sql_element::sql_element(sql_database_manager *database_manager)
 {
     update_query.clear();
     id=-1;
-    ref_sql_element=-1;
+
     BDD=database_manager;
     db=(*BDD).get_db();
 }
@@ -47,55 +47,7 @@ int sql_element::get_id(void)
     return id;
 }
 
-int sql_element::is_element_exist(QString Name)
-{
-    bool success;
-
-    if (db->isOpen())
-    {
-        QSqlQuery query(*db);
-
-        query.prepare(test_query);
-        query.bindValue(":test_field", Name);
- //       std::cout << "[is_element_exist] test_field: " << Name.toStdString() << std::endl;
- //       std::cout << "[is_element_exist] test_query: " << test_query.toStdString() << std::endl;
- //       BDD->sql_log_file << "[is_element_exist] test_field: " << Name <<endl;
- //       BDD->sql_log_file << "[is_element_exist] test_query: " << test_query <<endl;
-        success=query.exec();
-
-        if(!success)
-        {
- //           qDebug() << "[is_element_exist]: "
- //                    << query.lastError();
- //           BDD->sql_log_file << "[is_element_exist]: "
- //                                << query.lastError().text() <<endl;
-        }
-        else
-        {
-
-            query.first();
-
-            if(query.isValid())
-            {
-                if(query.value("id")==0)
-                {
-                    return 0;
-                }
-                else
-                {
-                    return query.value("id").toInt();
-                }
-            }
-            else
-            {
-                return 0;
-            }
-        }
-    }
-    return -1;
-}
-
-int sql_element::is_element_exist_new(void)
+int sql_element::is_element_exist_new(int ref_sql_element)
 {
     bool success;
     std::map<QString,QString>::iterator iterator;
@@ -151,82 +103,25 @@ int sql_element::is_element_exist_new(void)
 
 }
 
-bool sql_element::insert_intable(void)
-{
-//d    int Id = -1;
-    bool success = false;
 
-    if (db->isOpen())
-    {
-        id=this->is_element_exist(this->get_value(test_field));
-        // NULL = is the keyword for the autoincrement to generate next value
-
-        // element is not in DB
-        if(id==0)
-        {
-            QSqlQuery query(*db);
-            std::map<QString,QString>::iterator iterator;
-
-            query.prepare(insert_query);
-
-            query.bindValue(sql_element_field, ref_sql_element);
-
-            for(iterator=(this->DB_VALUES).begin();iterator!=(this->DB_VALUES.end());++iterator)
-            {
-                 query.bindValue(":"+iterator->first, iterator->second);
-            }
-
-            success = query.exec();
-
-            // Get database given autoincrement value
-            if (success)
-            {
-                // http://www.sqlite.org/c3ref/last_insert_rowid.html
-                id = query.lastInsertId().toInt();
-                //Element_collection[this->get_value(test_field).toStdString()]=Id;
-               // id=Id;
-                return true;
-            }
-            else
-            {
- //               BDD->sql_log_file <<"insert_acicd: "
- //                                   << query.lastError().text() <<endl;
- //               qDebug() << "insert_acicd: "
- //                        << query.lastError();
-                return false;
-            }
-        }
-        else
-        {
- //           std::cout << "[insert_intable] [" + DB_table_name.toStdString() + "] element name: ["+this->get_value(test_field).toStdString() + "] already exists in db with: ";
- //           printf("Id: %d\n",id);
-
- //           BDD->sql_log_file << "[insert_intable] [" + DB_table_name + "] element name: ["+this->get_value(test_field) + "] already exists in db with: "
- //                             << "Id: " << id  <<endl;
-            return false;
-        }
-    }
-
-
-}
-
-bool sql_element::insert_intable_new(int acicd_reference)
+bool sql_element::insert_intable_new(int ref_sql_element)
 {
 
     bool success = false;
     QSqlQuery query(*db);
     std::map<QString,QString>::iterator iterator;
 
-    ref_sql_element=acicd_reference;
+
 
     if (db->isOpen())
     {
-//        BDD->sql_log_file <<"[insert_intable_new] before is_element_exist_new value: "
-//                            << id <<endl;
-        id=this->is_element_exist_new();
+  //      BDD->sql_log_file <<"[insert_intable_new] before is_element_exist_new value: " << id <<endl;
+
+        id=this->is_element_exist_new(ref_sql_element);
+
         // NULL = is the keyword for the autoincrement to generate next value
- //       BDD->sql_log_file <<"[insert_intable_new] return value: "
- //                           << id <<endl;
+   //     BDD->sql_log_file <<"[insert_intable_new] return value: " << id <<endl;
+
         // element is not in DB
         if(id==0)
         {
@@ -236,7 +131,9 @@ bool sql_element::insert_intable_new(int acicd_reference)
             for(iterator=(this->DB_VALUES).begin();iterator!=(this->DB_VALUES.end());++iterator)
             {
                  query.bindValue(":"+iterator->first, iterator->second);
-            }
+   //              BDD->sql_log_file << "[insert_intable_new] champ: " << iterator->first << "   [insert_intable_new] valeur: " << iterator->second <<endl;
+
+           }
 
             success = query.exec();
 
@@ -245,7 +142,7 @@ bool sql_element::insert_intable_new(int acicd_reference)
             {
                 // http://www.sqlite.org/c3ref/last_insert_rowid.html
                 id = query.lastInsertId().toInt();
- //               BDD->sql_log_file <<"insert_intable_new: ajoute avec succes avec id=" << id  << query.lastError().text() <<endl;
+   //            BDD->sql_log_file <<"insert_intable_new: ajoute avec succes avec id=" << id  << query.lastError().text() <<endl;
 
                 //Element_collection[this->get_value(test_field).toStdString()]=Id;
                // id=Id;
@@ -253,8 +150,9 @@ bool sql_element::insert_intable_new(int acicd_reference)
             }
             else
             {
-//               BDD->sql_log_file <<"insert_intable_new: id=" << id
- //                                  << query.lastError().text() <<endl;
+  //             BDD->sql_log_file <<"insert_intable_new: id=" << id <<endl
+ //                               << query.lastQuery()<<endl
+//                                  << query.lastError().text() <<endl;
 //                qDebug() << "insert_intable_new: "
 //                         << query.lastError();
                 id=-1;
@@ -263,11 +161,11 @@ bool sql_element::insert_intable_new(int acicd_reference)
         }
         else
         {
- //           std::cout << "[insert_intable_new] [" + DB_table_name.toStdString() + "] element name: ["+this->get_value(test_field).toStdString() + "] already exists in db with: ";
- //           printf("Id: %d\n",id);
+  //          std::cout << "[insert_intable_new] [" + DB_table_name.toStdString() + "] element name: ["+this->get_value(test_field).toStdString() + "] already exists in db with: ";
+  //         printf("Id: %d\n",id);
 
- //           BDD->sql_log_file << "[insert_intable_new] [" + DB_table_name + "] element name: ["+this->get_value(test_field) + "] already exists in db with: "
- //                             << "Id: " << id  <<endl;
+  //          BDD->sql_log_file << "[insert_intable_new] [" + DB_table_name + "] element name: ["+this->get_value(test_field) + "] already exists in db with: "
+  //                            << "Id: " << id  <<endl;
             return false;
         }
     }

@@ -10,7 +10,7 @@ class acicd_afdx_signal_bool_charact : public acicd_element
 {
 public:
     acicd_afdx_signal_bool_charact(sql_database_manager *database_manager);
-    bool insert_intable(void);
+//    bool insert_intable(void);
     QString create_index_query;
 };
 

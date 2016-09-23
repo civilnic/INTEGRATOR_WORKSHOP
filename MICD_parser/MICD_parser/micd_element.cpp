@@ -5,7 +5,6 @@ micd_element::micd_element(sql_database_manager *database_manager) : sql_element
     update_query.clear();
 
     id=-1;
-    ref_sql_element=-1;
     sql_element_field=":MICD";
 
     BDD=database_manager;

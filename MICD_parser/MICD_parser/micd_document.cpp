@@ -171,21 +171,24 @@ micd_document::micd_document(sql_database_manager *database_manager,const char *
                 }
 
 
-                micd_port_in *Ports_in_obj=new micd_port_in(BDD);
-
                 for (t=1;t<=WorkSheet->rows.lastrow;t++)
                 {
+                    micd_port_in *Ports_in_obj=new micd_port_in(BDD);
+
                     row=&WorkSheet->rows.row[t];
                     //xls::xls_showROW(row);
-                    for (tt=0;tt<=WorkSheet->rows.lastcol;tt++)
+                    //for (tt=0;tt<=WorkSheet->rows.lastcol;tt++)
+                    for (tt=0;tt<16;tt++)
                     {
                         xlsCell	*cell=NULL;
 
                         cell = &row->cells.cell[tt];
 
-                        Ports_in_obj->set_parameters((int)(tt+1),std::string((char *)cell->str));
-
                         if(cell->id == 0x201) continue;
+
+                        Ports_in_obj->set_parameters((int)(tt),std::string((char *)cell->str));
+
+
                         //xls_showCell(&cell);
                         //std::cout << "cellule:   " << tt << "  /  contenu: "<< cell->str << std::endl;
                     }
@@ -194,7 +197,7 @@ micd_document::micd_document(sql_database_manager *database_manager,const char *
 
                     }else
                     {
-                        for(iterator=(this->DB_VALUES).begin();iterator!=(this->DB_VALUES.end());++iterator)
+                        for(iterator=(Ports_in_obj->DB_VALUES).begin();iterator!=(Ports_in_obj->DB_VALUES.end());++iterator)
                         {
                              QString temp1=iterator->first;
                              QString temp2=iterator->second;
@@ -202,11 +205,11 @@ micd_document::micd_document(sql_database_manager *database_manager,const char *
                              std::cout << "cellule:   " << temp1.toStdString() << std::endl;
                              std::cout << "  /  contenu: " << temp2.toStdString() << std::endl;
                         }
-                        std::cout << "insertion KO" << std::endl;
+                        std::cout << "-------------------insertion KO" << std::endl;
                     }
-
+                    db->commit();
                 }
-                db->commit();
+
              }
 
 
