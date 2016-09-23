@@ -196,7 +196,11 @@ micd_document::micd_document(sql_database_manager *database_manager,const char *
                     {
                         for(iterator=(this->DB_VALUES).begin();iterator!=(this->DB_VALUES.end());++iterator)
                         {
-                             std::cout << "cellule:   " << iterator->first << "  /  contenu: " << iterator->second << std::endl;
+                             QString temp1=iterator->first;
+                             QString temp2=iterator->second;
+
+                             std::cout << "cellule:   " << temp1.toStdString() << std::endl;
+                             std::cout << "  /  contenu: " << temp2.toStdString() << std::endl;
                         }
                         std::cout << "insertion KO" << std::endl;
                     }
