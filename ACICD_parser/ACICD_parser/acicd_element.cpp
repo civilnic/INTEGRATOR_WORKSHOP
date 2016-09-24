@@ -5,7 +5,7 @@ acicd_element::acicd_element(sql_database_manager *database_manager) : sql_eleme
     update_query.clear();
 
     id=-1;
-    ref_sql_element=-1;
+
     sql_element_field=":ACICD";
 
     BDD=database_manager;

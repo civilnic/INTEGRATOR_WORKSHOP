@@ -15,6 +15,7 @@
 #include "micd_data_type.h"
 #include "micd_interface_level.h"
 #include "micd_port_in.h"
+#include "micd_port_name.h"
 #include "micd_port_out.h"
 #include "micd_unit.h"
 

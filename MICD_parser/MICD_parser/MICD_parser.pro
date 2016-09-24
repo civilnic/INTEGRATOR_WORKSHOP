@@ -17,7 +17,8 @@ SOURCES += main.cpp \
     micd_data_type.cpp \
     micd_com_format.cpp \
     micd_com_mode.cpp \
-    micd_interface_level.cpp
+    micd_interface_level.cpp \
+    micd_port_name.cpp
 
 HEADERS += \
     ../../XLS/libxls/include/xls.h \
@@ -30,7 +31,8 @@ HEADERS += \
     micd_data_type.h \
     micd_com_format.h \
     micd_com_mode.h \
-    micd_interface_level.h
+    micd_interface_level.h \
+    micd_port_name.h
 
 INCLUDEPATH += ../../XLS/libxls/include/
 INCLUDEPATH += ../../SQL_manager/

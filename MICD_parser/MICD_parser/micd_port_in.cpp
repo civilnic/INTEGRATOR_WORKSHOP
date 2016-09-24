@@ -29,7 +29,7 @@ micd_port_in::micd_port_in(sql_database_manager *database_manager) : micd_elemen
     create_table_query=QString("\
        CREATE TABLE IF NOT EXISTS [%1](\
         [MICD] INTEGER NULL,\
-        [Name] TEXT CHECK (Name != ''),\
+        [Name] INTEGER CHECK (Name != ''),\
         [Type] TEXT CHECK (Type != ''),\
         [Unit] TEXT,\
         [Description] TEXT,\
@@ -55,7 +55,10 @@ micd_port_in::micd_port_in(sql_database_manager *database_manager) : micd_elemen
         CONSTRAINT [MICD] \
                    FOREIGN KEY([MICD]) \
                    REFERENCES [MICD] ( [rowid] ), \
-        CONSTRAINT unique_combinaison PRIMARY KEY (Name,Type) ON CONFLICT IGNORE\
+        CONSTRAINT [MICD] \
+                   FOREIGN KEY([MICD]) \
+                   REFERENCES [MICD] ( [rowid] ), \
+        CONSTRAINT unique_combinaison PRIMARY KEY (Name) ON CONFLICT IGNORE\
        );\n\
        ").arg(DB_table_name);
 

@@ -21,7 +21,6 @@ micd_document::micd_document(sql_database_manager *database_manager,const char *
 
     std::vector<std::string> *vector_test;
 
-
     std::map<QString,QString>::iterator iterator;
 
 
@@ -170,10 +169,19 @@ micd_document::micd_document(sql_database_manager *database_manager,const char *
 
                 }
 
+//                TODO: utiliser le header determiner plus haut pour parser les colonnes simulation level (dont le nombre varie suivant le template) et les colonnes suivantes
 
+
+                //
+                // loop on each line except the first one (already parsed) of the current tab
+                //
                 for (t=1;t<=WorkSheet->rows.lastrow;t++)
                 {
+
+                    // create a micd_port_in object
                     micd_port_in *Ports_in_obj=new micd_port_in(BDD);
+
+                    micd_port_name *Ports_name_obj=new micd_port_name(BDD);
 
                     row=&WorkSheet->rows.row[t];
                     //xls::xls_showROW(row);
@@ -183,15 +191,28 @@ micd_document::micd_document(sql_database_manager *database_manager,const char *
                         xlsCell	*cell=NULL;
 
                         cell = &row->cells.cell[tt];
-
                         if(cell->id == 0x201) continue;
 
-                        Ports_in_obj->set_parameters((int)(tt),std::string((char *)cell->str));
+                        std::string cell_value=std::string((char *)cell->str);
+
+                        if(Ports_name_obj->DB_FIELDS.count((int)tt)==1)
+                        {
+                             if((cell_value.empty())!=1)
+                             {
+                                 Ports_name_obj->set_parameters((int)(tt),cell_value);
+                             }
+                        }
+
+
+                        Ports_in_obj->set_parameters((int)(tt),cell_value);
 
 
                         //xls_showCell(&cell);
                         //std::cout << "cellule:   " << tt << "  /  contenu: "<< cell->str << std::endl;
                     }
+
+                    Ports_name_obj->insert_intable_new(id_micd);
+
                     if(Ports_in_obj->insert_intable_new(id_micd))
                     {
 
