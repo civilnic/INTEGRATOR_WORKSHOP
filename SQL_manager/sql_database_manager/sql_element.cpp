@@ -218,7 +218,7 @@ void sql_element::set_reference(QString field,int ref_id)
             // Get database given autoincrement value
             if (!success)
             {
-//                BDD->sql_log_file << "set_reference: "<< query.lastError().text() <<endl;
+                BDD->sql_log_file << "set_reference: "<< query.lastError().text() <<endl;
 
 //                qDebug() << "set_reference: "
 //                         << query.lastError();

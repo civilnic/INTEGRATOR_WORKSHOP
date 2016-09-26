@@ -182,6 +182,7 @@ micd_document::micd_document(sql_database_manager *database_manager,const char *
                     micd_port_in *Ports_in_obj=new micd_port_in(BDD);
 
                     micd_port_name *Ports_name_obj=new micd_port_name(BDD);
+                    micd_data_type *Ports_type_obj=new micd_data_type(BDD);
 
                     row=&WorkSheet->rows.row[t];
                     //xls::xls_showROW(row);
@@ -202,16 +203,33 @@ micd_document::micd_document(sql_database_manager *database_manager,const char *
                                  Ports_name_obj->set_parameters((int)(tt),cell_value);
                              }
                         }
+                        if(Ports_type_obj->DB_FIELDS.count((int)tt)==1)
+                        {
+                             if((cell_value.empty())!=1)
+                             {
+                                 Ports_type_obj->set_parameters((int)(tt),cell_value);
+                             }
+                        }
 
 
-                        Ports_in_obj->set_parameters((int)(tt),cell_value);
+                       // Ports_in_obj->set_parameters((int)(tt),cell_value);
 
 
                         //xls_showCell(&cell);
                         //std::cout << "cellule:   " << tt << "  /  contenu: "<< cell->str << std::endl;
                     }
 
-                    Ports_name_obj->insert_intable_new(id_micd);
+               //     Ports_name_obj->insert_intable_new(id_micd);
+               //     Ports_type_obj->insert_intable_new(id_micd);
+
+                    if(Ports_name_obj->insert_intable_new(id_micd))
+                    {
+                         Ports_in_obj->set_reference(QString("Name"),Ports_name_obj->get_id());
+                    }
+
+
+                    Ports_type_obj->insert_intable_new(id_micd);
+                    Ports_in_obj->set_reference(QString("Type"),Ports_type_obj->get_id());
 
                     if(Ports_in_obj->insert_intable_new(id_micd))
                     {

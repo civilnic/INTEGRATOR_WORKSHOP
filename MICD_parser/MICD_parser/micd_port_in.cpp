@@ -30,7 +30,7 @@ micd_port_in::micd_port_in(sql_database_manager *database_manager) : micd_elemen
        CREATE TABLE IF NOT EXISTS [%1](\
         [MICD] INTEGER NULL,\
         [Name] INTEGER CHECK (Name != ''),\
-        [Type] TEXT CHECK (Type != ''),\
+        [Type] INTEGER CHECK (Type != ''),\
         [Unit] TEXT,\
         [Description] TEXT,\
         [Convention] TEXT,\
@@ -52,9 +52,12 @@ micd_port_in::micd_port_in(sql_database_manager *database_manager) : micd_elemen
         [Custom] TEXT,\
         [Comment] TEXT,\
         [Last_modification] TEXT,\
-        CONSTRAINT [MICD] \
-                   FOREIGN KEY([MICD]) \
-                   REFERENCES [MICD] ( [rowid] ), \
+        CONSTRAINT [Name] \
+                   FOREIGN KEY([Name]) \
+                   REFERENCES [PORTS_NAME] ( [rowid] ), \
+        CONSTRAINT [Type] \
+                   FOREIGN KEY([Type]) \
+                   REFERENCES [DATA_TYPE] ( [rowid] ), \
         CONSTRAINT [MICD] \
                    FOREIGN KEY([MICD]) \
                    REFERENCES [MICD] ( [rowid] ), \
