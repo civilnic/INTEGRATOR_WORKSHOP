@@ -18,7 +18,14 @@ SOURCES += main.cpp \
     micd_com_format.cpp \
     micd_com_mode.cpp \
     micd_interface_level.cpp \
-    micd_port_name.cpp
+    micd_port_name.cpp \
+    micd_simple_tab.cpp \
+    micd_description.cpp \
+    micd_convention.cpp \
+    micd_from_to.cpp \
+    micd_enum.cpp \
+    micd_cons_prod_if.cpp \
+    micd_aircraft_signal_name.cpp
 
 HEADERS += \
     ../../XLS/libxls/include/xls.h \
@@ -32,7 +39,14 @@ HEADERS += \
     micd_com_format.h \
     micd_com_mode.h \
     micd_interface_level.h \
-    micd_port_name.h
+    micd_port_name.h \
+    micd_simple_tab.h \
+    micd_description.h \
+    micd_convention.h \
+    micd_from_to.h \
+    micd_enum.h \
+    micd_cons_prod_if.h \
+    micd_aircraft_signal_name.h
 
 INCLUDEPATH += ../../XLS/libxls/include/
 INCLUDEPATH += ../../SQL_manager/

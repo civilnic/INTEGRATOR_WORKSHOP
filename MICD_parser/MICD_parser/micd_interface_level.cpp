@@ -1,23 +1,13 @@
 #include "micd_interface_level.h"
 
-micd_interface_level::micd_interface_level(sql_database_manager *database_manager) : micd_element (database_manager)
+micd_interface_level::micd_interface_level(sql_database_manager *database_manager) : micd_simple_tab (database_manager)
 {
-    DB_FIELDS= { { 52, "Name" },
-                 { 57, "Name" }
+    DB_FIELDS= { { 16, "Name" }
                };
 
-    DB_table_name="UNITS";
-    test_field="Name";
+    DB_table_name="INTERFACE_LEVEL";
 
-    insert_query=QString("INSERT INTO %1 VALUES(:Name)").arg(DB_table_name);
-    test_query=QString("SELECT rowid FROM %1 WHERE (Name=:Name);").arg(DB_table_name);
+    this->init_table(database_manager);
 
-    create_table_query=QString("\
-       CREATE TABLE IF NOT EXISTS [%1](\
-        [Name] VARCHAR( 15 ) CHECK (Name != ''),\
-            CONSTRAINT unique_combinaison PRIMARY KEY (Name) ON CONFLICT IGNORE\
-       );\n\
-       ").arg(DB_table_name);
-
-     database_manager->create_table(create_table_query);
 }
+

@@ -183,6 +183,16 @@ micd_document::micd_document(sql_database_manager *database_manager,const char *
 
                     micd_port_name *Ports_name_obj=new micd_port_name(BDD);
                     micd_data_type *Ports_type_obj=new micd_data_type(BDD);
+                    micd_unit *Ports_unit_obj=new micd_unit(BDD);
+                    micd_description *Ports_description_obj=new micd_description(BDD);
+                    micd_convention *Ports_convention_obj=new micd_convention(BDD);
+                    micd_cons_prod_if *Ports_cons_prod_if_obj=new micd_cons_prod_if(BDD);
+                    micd_com_format *Ports_com_format_obj=new micd_com_format(BDD);
+                    micd_com_mode *Ports_com_mode_obj=new micd_com_mode(BDD);
+                    micd_from_to *Ports_from_to_obj=new micd_from_to(BDD);
+                    micd_aircraft_signal_name *Ports_aircraft_signal_name_obj=new micd_aircraft_signal_name(BDD);
+                    micd_interface_level *Ports_interface_level_obj=new micd_interface_level(BDD);
+                    micd_enum *Ports_enum_obj=new micd_enum(BDD);
 
                     row=&WorkSheet->rows.row[t];
                     //xls::xls_showROW(row);
@@ -211,7 +221,92 @@ micd_document::micd_document(sql_database_manager *database_manager,const char *
                              }
                         }
 
+                        if(Ports_unit_obj->DB_FIELDS.count((int)tt)==1)
+                        {
+                             if((cell_value.empty())!=1)
+                             {
+                                 Ports_unit_obj->set_parameters((int)(tt),cell_value);
+                             }
+                        }
 
+
+                        if(Ports_description_obj->DB_FIELDS.count((int)tt)==1)
+                        {
+                             if((cell_value.empty())!=1)
+                             {
+                                 Ports_description_obj->set_parameters((int)(tt),cell_value);
+                             }
+                        }
+
+                        if(Ports_convention_obj->DB_FIELDS.count((int)tt)==1)
+                        {
+                             if((cell_value.empty())!=1)
+                             {
+                                 Ports_convention_obj->set_parameters((int)(tt),cell_value);
+                             }
+                        }
+
+                        if(Ports_com_format_obj->DB_FIELDS.count((int)tt)==1)
+                        {
+                             if((cell_value.empty())!=1)
+                             {
+                                 Ports_com_format_obj->set_parameters((int)(tt),cell_value);
+                             }
+                        }
+                        if(Ports_com_mode_obj->DB_FIELDS.count((int)tt)==1)
+                        {
+                             if((cell_value.empty())!=1)
+                             {
+                                 Ports_com_mode_obj->set_parameters((int)(tt),cell_value);
+                             }
+                        }
+
+                        if(Ports_from_to_obj->DB_FIELDS.count((int)tt)==1)
+                        {
+                             if((cell_value.empty())!=1)
+                             {
+                                 Ports_from_to_obj->set_parameters((int)(tt),cell_value);
+                             }
+                        }
+                        if(Ports_enum_obj->DB_FIELDS.count((int)tt)==1)
+                        {
+                             if((cell_value.empty())!=1)
+                             {
+                                 Ports_enum_obj->set_parameters((int)(tt),cell_value);
+                             }
+                        }
+
+                        if(Ports_cons_prod_if_obj->DB_FIELDS.count((int)tt)==1)
+                        {
+                             if((cell_value.empty())!=1)
+                             {
+                                 Ports_cons_prod_if_obj->set_parameters((int)(tt),cell_value);
+                             }
+                        }
+
+                        if(Ports_aircraft_signal_name_obj->DB_FIELDS.count((int)tt)==1)
+                        {
+                             if((cell_value.empty())!=1)
+                             {
+                                 Ports_aircraft_signal_name_obj->set_parameters((int)(tt),cell_value);
+                             }
+                        }
+
+                        if(Ports_interface_level_obj->DB_FIELDS.count((int)tt)==1)
+                        {
+                             if((cell_value.empty())!=1)
+                             {
+                                 Ports_interface_level_obj->set_parameters((int)(tt),cell_value);
+                             }
+                        }
+
+                        if(Ports_in_obj->DB_FIELDS.count((int)tt)==1)
+                        {
+                             if((cell_value.empty())!=1)
+                             {
+                                 Ports_in_obj->set_parameters((int)(tt),cell_value);
+                             }
+                        }
                        // Ports_in_obj->set_parameters((int)(tt),cell_value);
 
 
@@ -222,19 +317,9 @@ micd_document::micd_document(sql_database_manager *database_manager,const char *
                //     Ports_name_obj->insert_intable_new(id_micd);
                //     Ports_type_obj->insert_intable_new(id_micd);
 
-                    if(Ports_name_obj->insert_intable_new(id_micd))
-                    {
-                         Ports_in_obj->set_reference(QString("Name"),Ports_name_obj->get_id());
-                    }
 
 
-                    Ports_type_obj->insert_intable_new(id_micd);
-                    Ports_in_obj->set_reference(QString("Type"),Ports_type_obj->get_id());
-
-                    if(Ports_in_obj->insert_intable_new(id_micd))
-                    {
-
-                    }else
+                    if(! Ports_in_obj->insert_intable_new(id_micd))
                     {
                         for(iterator=(Ports_in_obj->DB_VALUES).begin();iterator!=(Ports_in_obj->DB_VALUES.end());++iterator)
                         {
@@ -246,9 +331,46 @@ micd_document::micd_document(sql_database_manager *database_manager,const char *
                         }
                         std::cout << "-------------------insertion KO" << std::endl;
                     }
-                    db->commit();
-                }
 
+                    Ports_name_obj->insert_intable_new(id_micd);
+                    Ports_in_obj->set_reference(QString("Name"),Ports_name_obj->get_id());
+
+                    Ports_type_obj->insert_intable_new(id_micd);
+                    Ports_in_obj->set_reference(QString("Type"),Ports_type_obj->get_id());
+
+                    Ports_unit_obj->insert_intable_new(id_micd);
+                    Ports_in_obj->set_reference(QString("Unit"),Ports_unit_obj->get_id());
+
+                    Ports_description_obj->insert_intable_new(id_micd);
+                    Ports_in_obj->set_reference(QString("Description"),Ports_description_obj->get_id());
+
+                    Ports_convention_obj->insert_intable_new(id_micd);
+                    Ports_in_obj->set_reference(QString("Convention"),Ports_convention_obj->get_id());
+
+                    Ports_com_format_obj->insert_intable_new(id_micd);
+                    Ports_in_obj->set_reference(QString("Com_format"),Ports_com_format_obj->get_id());
+
+                    Ports_com_mode_obj->insert_intable_new(id_micd);
+                    Ports_in_obj->set_reference(QString("Com_mode"),Ports_com_mode_obj->get_id());
+
+                    Ports_from_to_obj->insert_intable_new(id_micd);
+                    Ports_in_obj->set_reference(QString("From"),Ports_from_to_obj->get_id());
+
+                    Ports_enum_obj->insert_intable_new(id_micd);
+                    Ports_in_obj->set_reference(QString("Enum"),Ports_enum_obj->get_id());
+
+                    Ports_cons_prod_if_obj->insert_intable_new(id_micd);
+                    Ports_in_obj->set_reference(QString("Consumed_if"),Ports_cons_prod_if_obj->get_id());
+
+                    Ports_aircraft_signal_name_obj->insert_intable_new(id_micd);
+                    Ports_in_obj->set_reference(QString("Aircraft_signal_name"),Ports_aircraft_signal_name_obj->get_id());
+
+                    Ports_interface_level_obj->insert_intable_new(id_micd);
+                    Ports_in_obj->set_reference(QString("Interface_level"),Ports_interface_level_obj->get_id());
+
+
+                }
+                    db->commit();
              }
 
 

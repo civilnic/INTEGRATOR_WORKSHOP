@@ -18,7 +18,14 @@
 #include "micd_port_name.h"
 #include "micd_port_out.h"
 #include "micd_unit.h"
-
+#include "micd_description.h"
+#include "micd_convention.h"
+#include "micd_com_format.h"
+#include "micd_com_mode.h"
+#include "micd_from_to.h"
+#include "micd_enum.h"
+#include "micd_cons_prod_if.h"
+#include "micd_aircraft_signal_name.h"
 
 using namespace std;
 using namespace xls;
