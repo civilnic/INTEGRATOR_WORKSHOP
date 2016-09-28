@@ -370,11 +370,12 @@ micd_document::micd_document(sql_database_manager *database_manager,const char *
 
 
                 }
-                    db->commit();
+
              }
 
 
          }
+        db->commit();
     }
     else
     {
